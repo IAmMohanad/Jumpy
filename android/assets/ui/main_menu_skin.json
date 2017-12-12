@@ -1,0 +1,80 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	bit-regular: {
+		file: 8bit-regular.fnt
+	}
+	bit-regular-smaller: {
+		file: 8bit-regular.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	RGBA_0_0_0_255: {
+		r: 0
+		g: 0
+		b: 0
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	yellow: {
+		up: yellow_button05
+		down: yellow_button05
+		over: yellow_button05
+	}
+	blue: {
+		up: blue_button05
+		down: blue_button05
+		over: blue_button05
+	}
+	green: {
+		up: green_button05
+		down: green_button05
+		over: green_button05
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	default: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		imageCheckedOver: blue_sliderRight
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+	default: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		font: bit-regular
+		fontColor: RGBA_0_0_0_255
+	}
+	blue-start: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		imageCheckedOver: blue_sliderRight
+		font: bit-regular
+		fontColor: RGBA_0_0_0_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: bit-regular-smaller
+		fontColor: RGBA_0_0_0_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+	default: {
+		titleFont: bit-regular
+		titleFontColor: RGBA_0_0_0_255
+	}
+}
+}

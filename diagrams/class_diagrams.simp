@@ -1,0 +1,1684 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="11.40" multi-file="no" uid="simp2c922121683a49aa88a4ae7cdb27fa6c">
+  <meta>
+    <name>Project</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="package" type="UmlPackage" />
+        <value>6</value>
+      </counter>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>28</value>
+      </counter>
+      <counter>
+        <item-type type-id="initial-node" type="UmlInitialNode" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="interaction" type="UmlInteraction" />
+        <value>7</value>
+      </counter>
+      <counter>
+        <item-type type-id="interaction-use" type="UmlInteractionUse" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="activity-final-node" type="UmlActivityFinalNode" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type stereotype="enumeration" type-id="enumeration" type="UmlEnumeration" />
+        <value>1</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="package" type="UmlPackage" />
+        <value>7</value>
+      </counter>
+      <counter>
+        <item-type type-id="class" type="UmlClass" />
+        <value>29</value>
+      </counter>
+      <counter>
+        <item-type type-id="universal-connector" type="UniversalConnector" />
+        <value>21</value>
+      </counter>
+      <counter>
+        <item-type type-id="generalization" type="UmlGeneralization" />
+        <value>11</value>
+      </counter>
+      <counter>
+        <item-type type-id="containment" type="UmlContainment" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="dependency" type="UmlDependency" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>13</value>
+      </counter>
+      <counter>
+        <item-type type-id="initial-node" type="UmlInitialNode" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="interaction" type="UmlInteraction" />
+        <value>14</value>
+      </counter>
+      <counter>
+        <item-type type-id="control-flow" type="UmlControlFlow" />
+        <value>16</value>
+      </counter>
+      <counter>
+        <item-type type-id="interaction-use" type="UmlInteractionUse" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="activity-final-node" type="UmlActivityFinalNode" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="enumeration" type="UmlEnumeration" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>155</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>3</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlInteractionOverviewDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>101</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>93</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management uid="md-b1105c3656c3405da72e211627cc66cd" name="" task-id-sequence="0">
+    <working-schedule uid="ws-9ff1f612c29144b2b4fbe5b2d7ce9d71" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+    <persons>
+      <person id="Pe2834d48d3204932b8502a11f18d353f">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+        <working-schedule uid="ws-526f6c26b91b4d9bb569b5985335efe9" hours="8" monday="8" tuesday="8" wednesday="8" thursday="8" friday="8" saturday="0" sunday="0" />
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-e79002988edc489d9093ae019d5ad927" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="Vector" tid="" name="Vector" description="" />
+      <type id="OrthographicCamera" tid="" name="OrthographicCamera" description="" />
+      <type id="int" tid="" name="int" description="" />
+      <type id="SpriteBatch" tid="" name="SpriteBatch" description="" />
+      <type id="float" tid="" name="float" description="" />
+      <type id="TextureRegion" tid="" name="TextureRegion" description="" />
+      <type id="Class:di979663362306113206" tid="" name="TileType" description="" class-ref="di979663362306113206" />
+      <type id="boolean" tid="" name="boolean" description="" />
+      <type id="Vector2" tid="" name="Vector2" description="" />
+      <type id="Rectangle" tid="" name="Rectangle" description="" />
+      <type id="Intersection" tid="" name="Intersection" description="" />
+      <type id="Texture" tid="" name="Texture" description="" />
+      <type id="Class:di837706432891536701" tid="" name="GameMap" description="" class-ref="di837706432891536701" />
+      <type id="STATE" tid="" name="STATE" description="" />
+      <type id="HashMap&lt;STATE, Screen&gt;" tid="" name="HashMap&lt;STATE, Screen&gt;" description="" />
+      <type id="MainMenuScene" tid="" name="MainMenuScene" description="" />
+      <type id="Stage" tid="" name="Stage" description="" />
+      <type id="LevelSelectScene" tid="" name="LevelSelectScene" description="" />
+      <type id="InputMultiplexer" tid="" name="InputMultiplexer" description="" />
+      <type id="Class:di633633190825120669" tid="" name="InputController" description="" class-ref="di633633190825120669" />
+      <type id="Game" tid="" name="Game" description="" />
+      <type id="Viewport" tid="" name="Viewport" description="" />
+      <type id="Class:di509235891577847328" tid="" name="Hud" description="" class-ref="di509235891577847328" />
+      <type id="SettingsScene" tid="" name="SettingsScene" description="" />
+      <type id="Touchpad" tid="" name="Touchpad" description="" />
+      <type id="Preferences" tid="" name="Preferences" description="" />
+      <type id="ArrayList&lt;Coin&gt;" tid="" name="ArrayList&lt;Coin&gt;" description="" />
+      <type id="ArrayList&lt;Enemy&gt;" tid="" name="ArrayList&lt;Enemy&gt;" description="" />
+      <type id="Class:di157784257406523926" tid="" name="Player" description="" class-ref="di157784257406523926" />
+      <type id="char" tid="" name="char" description="" />
+    </custom-types>
+  </types>
+  <items />
+  <models>
+    <model id="p099ab275b47446629bb2b6877145675e_140170421" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>12/05/2017 12:53:46</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p5d9e26cf15cd4c3589a0a25a588160fe_403018779" name="Objects" order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-124,49" zoom="0.9">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/05/2017 12:53:46</creation-date>
+          <change-date>12/05/2017 13:08:44</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di916595135149404208" cid="PKG001" type="package" name="Objects" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:53:54">
+            <style class="default" />
+          </item>
+          <item id="di437969437369299720" cid="C001" type="class" name="Object" style-class="" owner="di916595135149404208" is-abstract="true" visibility="protected" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:54:16">
+            <style class="default" />
+            <attributes>
+              <attribute id="af434147036584974bf010d5d05ac5ab9372" cid="ELEM001" name="velocityY" creation-date="01/01/0001 00:00:00" type="float" type-id="float" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-6ea9a602-6b8f-4150-aa3a-e492da831679" />
+                </source-codes>
+              </attribute>
+              <attribute id="ac606a72a90f945c4b65030361f8d6c62124" cid="ELEM002" name="movementSpeed" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-6280aca5-84a1-4b8c-8b5b-45d1b77f5487" />
+                </source-codes>
+              </attribute>
+              <attribute id="ae881a11f394d47fbbfda1637c9e7a192265" cid="ELEM003" name="textureSheet" creation-date="01/01/0001 00:00:00" type="Texture" type-id="Texture" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-0315a068-0652-4821-92da-5eb3296f3fff" />
+                </source-codes>
+              </attribute>
+              <attribute id="a72aca374ea5c496f9a8d924d695a4e0d826" cid="ELEM004" name="width" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-8b8e60fc-2bc1-4179-b101-f28a4c1d765b" />
+                </source-codes>
+              </attribute>
+              <attribute id="af6b9e0bffdb14d2293bc0079e21d39c0571" cid="ELEM005" name="height" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-47703aae-fe0d-4e21-994a-609f1a2846a3" />
+                </source-codes>
+              </attribute>
+              <attribute id="a2a47d641163c4d9db93f8149cf196f9a820" cid="ELEM006" name="stateTime" creation-date="01/01/0001 00:00:00" type="float" type-id="float" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-f57d1722-694a-43b0-946d-86d0f2ead53d" />
+                </source-codes>
+              </attribute>
+              <attribute id="a1048c9dce5f145ea95454f269166d02c313" cid="ELEM007" name="position" creation-date="01/01/0001 00:00:00" type="Vector2" type-id="Vector2" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-7f809d9e-03d0-4c45-b258-587d1b251533" />
+                </source-codes>
+              </attribute>
+              <attribute id="aaf85ebc9ffc54d969c2290cf1e2b2acf538" cid="ELEM008" name="boundingBox" creation-date="01/01/0001 00:00:00" type="Vector2" type-id="Vector2" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-f56997c1-a516-4e3b-85e4-ffaac325eee4" />
+                </source-codes>
+              </attribute>
+              <attribute id="a68ce3336537541f9a006b579972c03ed115" cid="ELEM009" name="map" creation-date="01/01/0001 00:00:00" type="GameMap" type-id="Class:di837706432891536701" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-ccc4da24-d46f-43d1-a02a-6a7c688a333c" />
+                </source-codes>
+              </attribute>
+              <attribute id="addff944ed64448908f6a9ee5961072fe755" cid="ELEM026" name="dead" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-e427f635-10d4-4158-bd30-71c745a4e66d" />
+                </source-codes>
+              </attribute>
+              <attribute id="a8da7678fc83d4acebf02db3ea8e5ee70105" cid="ELEM027" name="alpha" creation-date="01/01/0001 00:00:00" type="float" type-id="float" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-5697ac6a-e61b-4159-ab1c-44e84d86840d" />
+                </source-codes>
+              </attribute>
+              <attribute id="a777ea8da72cf4b2a9a88cf23ef5d8a05407" cid="ELEM028" name="currentFrame" creation-date="01/01/0001 00:00:00" type="TextureRegion" type-id="TextureRegion" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-53e7e3cd-a0db-462a-8dc2-7dc2ae9d9626" />
+                </source-codes>
+              </attribute>
+              <attribute id="aa6c82f82bb5040d6a6bcb9e9ccd7294c829" cid="ELEM040" name="boundingBoxWidth" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-a1b4dc3a-cf51-4f27-8e74-3e5aef2cca7b" />
+                </source-codes>
+              </attribute>
+              <attribute id="a11366b1259a24955bde88aa4639c83d239" cid="ELEM041" name="boundingBoxHeight" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-987bce6b-1115-4e0c-83d0-0f05df0a15c1" />
+                </source-codes>
+              </attribute>
+              <attribute id="aa290bce28d5047139798aea6efba7734716" cid="ELEM042" name="boundingBoxXOffset" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-68245ebd-0eb2-4516-9890-400def9cefd5" />
+                </source-codes>
+              </attribute>
+              <attribute id="a91df07c04133479fafe4294c93f1ac2f326" cid="ELEM043" name="boundingBoxYOffset" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-1f009ae7-99ef-4e15-a4b4-58e11c8c4fe8" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oe4ea3d7b676248bb9d385653634376e5590" cid="ELEM017" name="Create" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="of7bf6272542a4ed1895a29cdc57c10af692" cid="ELEM018" name="update" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6b61aa2deaa947f885b62d2c0410920f" name="batch" type="SpriteBatch" type-id="SpriteBatch" />
+                  <parameter id="pd57b09ccf5a2488c9b9ed4786e3647f8" name="delta" type="float" type-id="float" />
+                  <parameter id="pe9d79dec9a6d44cfad839e04d23ef4aa" name="camera" type="OrthographicCamera" type-id="OrthographicCamera" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oa55dccd4bdca44a9b089a60b48998a9685" cid="ELEM019" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5c6bfb2dae3e43508f734cd0830e0970" name="batch" type="SpriteBatch" type-id="SpriteBatch" />
+                  <parameter id="p505f8dc625294f04a133bd5d16f1e5f9" name="delta" type="float" type-id="float" />
+                  <parameter id="pa9b826c425da43c4964c2c2a0bb582d6" name="currentFrame" type="TextureRegion" type-id="TextureRegion" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oa077d75f77854b1a94284c116581f3e1388" cid="ELEM020" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o3ba9bb1b6a1e4c229312ce6cb15a6cbd811" cid="ELEM021" name="die" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public" abstract="true">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o389faabf3c05439e96cff56547f23c42491" cid="ELEM022" name="intersectsAt" creation-date="01/01/0001 00:00:00" type="Intersection" type-id="Intersection" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p87aaaba57ecb4e33b7f4f72e67810011" name="camera" type="OrthographicCamera" type-id="OrthographicCamera" />
+                  <parameter id="p11f1f536c3b84312a10dddd786b11519" name="r1" type="Rectangle" type-id="Rectangle" />
+                  <parameter id="p4e66343a509e493b8e9441c56ab033cc" name="r2" type="Rectangle" type-id="Rectangle" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o084b2759ecc245da9adc8349c225ad1e888" cid="ELEM023" name="getPosition" creation-date="01/01/0001 00:00:00" type="Vector2" type-id="Vector2" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oda0b484acc854c2db98226088097ea1c495" cid="ELEM024" name="getBoundingBox" creation-date="01/01/0001 00:00:00" type="Vector2" type-id="Vector2" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o784fa06f035c43efaf6f737d792940f4594" cid="ELEM025" name="isAlive" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di766522263911543441" cid="C002" type="class" name="DynamicObject" style-class="" owner="di916595135149404208" is-abstract="true" visibility="protected" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:55:14">
+            <style class="default" />
+            <attributes>
+              <attribute id="a59e3fc35cdd84e6ab3a79a38aa598937915" cid="ELEM029" name="gravity" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-6958b339-00c5-436b-8aa3-3df799f310e2" />
+                </source-codes>
+              </attribute>
+              <attribute id="ab88a5c7c7d5249e5b46f061157a2cd1f862" cid="ELEM030" name="health" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-eb8fd624-5c38-4574-ac2e-050d5c8318d2" />
+                </source-codes>
+              </attribute>
+              <attribute id="a3e0aa27add95462dbfdcccd0522141db242" cid="ELEM031" name="movementSpeed" creation-date="01/01/0001 00:00:00" type="int" type-id="int" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-aa48e3d2-17e0-4b88-86ad-27fdc6037327" />
+                </source-codes>
+              </attribute>
+              <attribute id="a623b4c20c2794ae5b512c01f0e6c73ed445" cid="ELEM032" name="grounded" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-9f1cdd50-63b4-46f6-85c7-e5c4ad60c393" />
+                </source-codes>
+              </attribute>
+              <attribute id="a283d9c42f13c439db8c3456c9850f6d9325" cid="ELEM033" name="flip" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-88d95b45-a02b-409a-9ae8-80fbdfd7aecf" />
+                </source-codes>
+              </attribute>
+              <attribute id="a80743fd000654f9faa63bbc5a4cc8c19440" cid="ELEM034" name="firstJump" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-2070d196-e780-4b9c-a70e-208109ba1c36" />
+                </source-codes>
+              </attribute>
+              <attribute id="a1a2e42191fb543358f2e5eb7e6606d41419" cid="ELEM035" name="doubleJump" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-d0118da1-3a64-4b56-a68f-4c9086dc872c" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oca4e611e151a442b9e08bf0508b637d8421" cid="ELEM036" name="moveLeft" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf37413d83c0540a68a0ce83a5beafa46" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o1f9b2c6b54ad43e09de09fbcc9648f82757" cid="ELEM037" name="moveRight" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6b1484a2932a46e98746186ab98e01c3" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="ob3f3b1d4d6194a80afe6a3eb1bd35e7b951" cid="ELEM038" name="updateGravity" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p804ceb74291844d8a6032af61a3d46aa" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o212746d489f14bb0a0776d312fdb667e566" cid="ELEM039" name="getsHit" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pbfa2e9998f5c4c0eb1239713700e3033" name="damage" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di755227705553522236" cid="C003" type="class" name="Enemy" style-class="" owner="di916595135149404208" visibility="protected" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:55:51">
+            <style class="default" />
+          </item>
+          <item id="di527155209635289213" cid="C004" type="class" name="Friendly" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:56:40">
+            <style class="default" />
+          </item>
+          <item id="di752081590643209364" cid="C005" type="class" name="Neutral" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:56:52">
+            <style class="default" />
+          </item>
+          <item id="di376369658557182224" cid="GNR001" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:57:10" from="di755227705553522236" to="di766522263911543441">
+            <style class="default" />
+          </item>
+          <item id="di417862509559960065" cid="GNR002" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:57:29" from="di527155209635289213" to="di766522263911543441">
+            <style class="default" />
+          </item>
+          <item id="di861581131845223276" cid="GNR003" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:57:36" from="di752081590643209364" to="di437969437369299720">
+            <style class="default" />
+          </item>
+          <item id="di465158000882014226" cid="GNR004" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:57:45" from="di766522263911543441" to="di437969437369299720">
+            <style class="default" />
+          </item>
+          <item id="di328273855453247204" cid="C006" type="class" name="Saw" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:58:22">
+            <style class="default" />
+          </item>
+          <item id="di818019773189112207" cid="C007" type="class" name="Wasp" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:58:24">
+            <style class="default" />
+          </item>
+          <item id="di569862052673317441" cid="C008" type="class" name="Totem" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:58:37">
+            <style class="default" />
+          </item>
+          <item id="di157784257406523926" cid="C010" type="class" name="Player" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:58:46">
+            <style class="default" />
+          </item>
+          <item id="di453237470244372853" cid="C011" type="class" name="Coin" style-class="" owner="di916595135149404208" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:58:50">
+            <style class="default" />
+          </item>
+          <item id="di752930654461726331" cid="GNR005" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:59:14" from="di328273855453247204" to="di755227705553522236">
+            <style class="default" />
+          </item>
+          <item id="di387887307454100230" cid="GNR006" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:59:22" from="di818019773189112207" to="di755227705553522236">
+            <style class="default" />
+          </item>
+          <item id="di803127466943418652" cid="GNR007" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:59:29" from="di569862052673317441" to="di755227705553522236">
+            <style class="default" />
+          </item>
+          <item id="di952470483647812580" cid="GNR008" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:59:39" from="di157784257406523926" to="di527155209635289213">
+            <style class="default" />
+          </item>
+          <item id="di583518663571982697" cid="GNR009" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 12:59:44" from="di453237470244372853" to="di752081590643209364">
+            <style class="default" />
+          </item>
+        </abstract-items>
+        <layer id="ad56c3d1f0a64d9183b182dd4cc5bb95" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di916595135149404208" iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:53:54" order-index="0" type="entity">
+            <layout ax="-52" ay="6" awidth="1029" aheight="1342" x="-52" y="6" width="1029" height="1342" />
+          </item>
+          <item id="di437969437369299720" iid="36d17029d2564aa8ae77f7224433000f" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:54:16" order-index="1" type="entity">
+            <layout ax="154" ay="45" awidth="588" aheight="463" x="154" y="45" width="588" height="463" />
+            <class />
+          </item>
+          <item id="di465158000882014226" iid="b64fddc2388d4b04900c96a85591f0a4" name-style="" creation-date="12/05/2017 12:57:45" order-index="9" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="366" y1="562" x2="374" y2="508" start-border-pos="0.0901785714285714" end-border-pos="0.65625" name-position="14,1">
+              <points>
+                <point x="366" y="562" />
+                <point x="374" y="508" />
+              </points>
+            </layout>
+            <relation from="di766522263911543441" from-iid="c98fcca985334c678ff33620e214832d" to="di437969437369299720" to-iid="36d17029d2564aa8ae77f7224433000f" />
+          </item>
+          <item id="di766522263911543441" iid="c98fcca985334c678ff33620e214832d" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:55:14" order-index="2" type="entity">
+            <layout ax="154" ay="562.5" awidth="588" aheight="229" x="154" y="562.5" width="588" height="229" />
+            <class />
+          </item>
+          <item id="di755227705553522236" iid="dfdd37c987954d43991cefe65d89118b" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:55:51" order-index="3" type="entity">
+            <layout ax="36" ay="826" awidth="140" aheight="160" x="36" y="826" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di527155209635289213" iid="e391517c90a94ae4bff6107a5408a02e" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:56:40" order-index="4" type="entity">
+            <layout ax="318" ay="902" awidth="140" aheight="160" x="318" y="902" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di752081590643209364" iid="a80dc421ba864c8e97a0c1a2d7411f06" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:56:52" order-index="5" type="entity">
+            <layout ax="554" ay="902" awidth="140" aheight="160" x="554" y="902" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di376369658557182224" iid="d7b6b933b6d74862959abd23c4ee4dfa" name-style="" creation-date="12/05/2017 12:57:10" order-index="6" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" auto-path="" x1="106" y1="826" x2="186" y2="792" start-border-pos="0.125" end-border-pos="0.736251882955331" name-position="0,0">
+              <points>
+                <point x="106" y="826" />
+                <point x="186" y="792" />
+              </points>
+            </layout>
+            <relation from="di755227705553522236" from-iid="dfdd37c987954d43991cefe65d89118b" to="di766522263911543441" to-iid="c98fcca985334c678ff33620e214832d" />
+          </item>
+          <item id="di417862509559960065" iid="b4f6143806634feb877408f85216e0b6" name-style="" creation-date="12/05/2017 12:57:29" order-index="7" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" auto-path="" x1="354" y1="902" x2="400" y2="792" start-border-pos="0.0642857142857143" end-border-pos="0.645249438123638" name-position="0,0">
+              <points>
+                <point x="354" y="902" />
+                <point x="400" y="792" />
+              </points>
+            </layout>
+            <relation from="di527155209635289213" from-iid="e391517c90a94ae4bff6107a5408a02e" to="di766522263911543441" to-iid="c98fcca985334c678ff33620e214832d" />
+          </item>
+          <item id="di861581131845223276" iid="d015d4f3f1164578b460ce9dc078d8e1" name-style="" creation-date="12/05/2017 12:57:36" order-index="8" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" auto-path="" x1="653" y1="902" x2="524" y2="508" start-border-pos="0.176785714285714" end-border-pos="0.592697948014655" name-position="0,0">
+              <points>
+                <point x="653" y="902" />
+                <point x="886" y="795" />
+                <point x="877" y="535" />
+                <point x="524" y="508" />
+              </points>
+            </layout>
+            <relation from="di752081590643209364" from-iid="a80dc421ba864c8e97a0c1a2d7411f06" to="di437969437369299720" to-iid="36d17029d2564aa8ae77f7224433000f" />
+          </item>
+          <item id="di328273855453247204" iid="125fef01c21d4215bf6fc06b4090f433" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:58:22" order-index="10" type="entity">
+            <layout ax="-35" ay="1142" awidth="140" aheight="160" x="-35" y="1142" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di818019773189112207" iid="787c746a3d524dd3a76e7cfa6e599bc1" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:58:24" order-index="11" type="entity">
+            <layout ax="150" ay="1142" awidth="140" aheight="160" x="150" y="1142" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di569862052673317441" iid="d300743d6fbe47b8a28181dca975f516" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:58:37" order-index="12" type="entity">
+            <layout ax="318" ay="1142" awidth="140" aheight="160" x="318" y="1142" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di157784257406523926" iid="2210701d90eb426c854f37ff752fe313" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:58:46" order-index="13" type="entity">
+            <layout ax="486" ay="1142" awidth="140" aheight="160" x="486" y="1142" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di453237470244372853" iid="efdadb28ddeb424889fe96cd92ec0052" container="di916595135149404208" container-iid="e633bfda8c5a48cc92e3f48ecaa8ce8b" name-style="" creation-date="12/05/2017 12:58:50" order-index="14" type="entity">
+            <layout ax="636" ay="1142" awidth="140" aheight="160" x="636" y="1142" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di752930654461726331" iid="dacfa4de28544f84899e7b9e6b895e3d" name-style="" creation-date="12/05/2017 12:59:14" order-index="15" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="53" y1="1142" x2="88" y2="986" start-border-pos="0.157097652980259" end-border-pos="0.657097652980259" name-position="0,0">
+              <points>
+                <point x="53" y="1142" />
+                <point x="88" y="986" />
+              </points>
+            </layout>
+            <relation from="di328273855453247204" from-iid="125fef01c21d4215bf6fc06b4090f433" to="di755227705553522236" to-iid="dfdd37c987954d43991cefe65d89118b" />
+          </item>
+          <item id="di387887307454100230" iid="64cdd036725d4ac9bd192acb5ae4e22d" name-style="" creation-date="12/05/2017 12:59:22" order-index="16" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" auto-path="" x1="196" y1="1142" x2="150" y2="986" start-border-pos="0.0826271057128906" end-border-pos="0.546428571428571" name-position="0,0">
+              <points>
+                <point x="196" y="1142" />
+                <point x="150" y="986" />
+              </points>
+            </layout>
+            <relation from="di818019773189112207" from-iid="787c746a3d524dd3a76e7cfa6e599bc1" to="di755227705553522236" to-iid="dfdd37c987954d43991cefe65d89118b" />
+          </item>
+          <item id="di803127466943418652" iid="ff45acce9d2e410aabb395a2e122fc10" name-style="" creation-date="12/05/2017 12:59:29" order-index="17" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" auto-path="" x1="318" y1="1144" x2="176" y2="986" start-border-pos="0.996757125854492" end-border-pos="0.5" name-position="0,0">
+              <points>
+                <point x="318" y="1144" />
+                <point x="176" y="986" />
+              </points>
+            </layout>
+            <relation from="di569862052673317441" from-iid="d300743d6fbe47b8a28181dca975f516" to="di755227705553522236" to-iid="dfdd37c987954d43991cefe65d89118b" />
+          </item>
+          <item id="di952470483647812580" iid="e059c9f6520d4bb28e275e97af9fd3cf" name-style="" creation-date="12/05/2017 12:59:39" order-index="18" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" auto-path="" x1="498" y1="1142" x2="441" y2="1062" start-border-pos="0.0223214285714286" end-border-pos="0.530357142857143" name-position="0,0">
+              <points>
+                <point x="498" y="1142" />
+                <point x="441" y="1062" />
+              </points>
+            </layout>
+            <relation from="di157784257406523926" from-iid="2210701d90eb426c854f37ff752fe313" to="di527155209635289213" to-iid="e391517c90a94ae4bff6107a5408a02e" />
+          </item>
+          <item id="di583518663571982697" iid="d6ca168f95bb46ee989e996049f408af" name-style="" creation-date="12/05/2017 12:59:44" order-index="19" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" auto-path="" x1="700" y1="1142" x2="694" y2="1062" start-border-pos="0.114285714285714" end-border-pos="0.5" name-position="0,0">
+              <points>
+                <point x="700" y="1142" />
+                <point x="694" y="1062" />
+              </points>
+            </layout>
+            <relation from="di453237470244372853" from-iid="efdadb28ddeb424889fe96cd92ec0052" to="di752081590643209364" to-iid="a80dc421ba864c8e97a0c1a2d7411f06" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="pd33290567f1341cb9c52570e35083237_991918469" name="App" order-index="2" overview-order-index="0" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-40,42" zoom="0.8">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/05/2017 13:11:22</creation-date>
+          <change-date>12/05/2017 13:21:23</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di681973787679730401" cid="PKG002" type="package" name="App" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:11:36">
+            <style class="default" />
+          </item>
+          <item id="di180688517835169480" cid="C014" type="class" name="SoundManager" style-class="" owner="di171653056944954231" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:13:10">
+            <style class="default" />
+          </item>
+          <item id="di171653056944954231" cid="PKG003" type="package" name="Controllers" style-class="" owner="di681973787679730401" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:12:57">
+            <style class="default" />
+          </item>
+          <item id="di633633190825120669" cid="C015" type="class" name="InputController" style-class="" owner="di171653056944954231" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:13:48">
+            <style class="default" />
+            <operations>
+              <operation id="o333cba1c1c0e441493f5181fb7e33aed741" cid="ELEM096" name="keyDown" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pe79b0a572d0d4dd4b9d09b999138b78c" name="keycode" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o03ac9575375a418492a507e78ac19e5d826" cid="ELEM097" name="keyUp" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf7393ed340214082a32921432dca5619" name="keycode" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="od5a7fd6779fa4363a6c7294fc1f50ea5324" cid="ELEM098" name="keyTyped" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p1142a0caf98344118db284764fb4e83f" name="character" type="char" type-id="char" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o7f675510af9447efa14b078b43ebf857674" cid="ELEM099" name="touchDown" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p152fd1bcdfdb46f09115a5abb6aebae8" name="screenX" type="int" type-id="int" />
+                  <parameter id="p8a82f2290d984773910c2ad4b37b5372" name="screenY" type="int" type-id="int" />
+                  <parameter id="pbfe198e21c824121adcfafb8150c5522" name="pointer" type="int" type-id="int" />
+                  <parameter id="p9794cbb70e624df5baadb3cf7cee6611" name="button" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oe8ef771017eb4b6380b6855695dda217620" cid="ELEM100" name="touchUp" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa7d03d1c354f40b2bda84b64f51266aa" name="screenX" type="int" type-id="int" />
+                  <parameter id="pb6176a053c4d4a33883b09cf10d5afda" name="screenY" type="int" type-id="int" />
+                  <parameter id="p4ecc217f7f6648ebb09293d5440c4c91" name="pointer" type="int" type-id="int" />
+                  <parameter id="pd2a41061da154d859594b5c3c74b6b60" name="button" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di163711452623930662" cid="C016" type="class" name="ScreenManager" style-class="" owner="di171653056944954231" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:14:05">
+            <style class="default" />
+            <attributes>
+              <attribute id="aba4814ac1f45435b8a9e11209c9f225841" cid="ELEM044" name="game" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-c3bf6c4b-bed9-4316-9098-e90eeacf8a50" />
+                </source-codes>
+              </attribute>
+              <attribute id="a0f012d9a573b4b8f9a3d44865d6b838d757" cid="ELEM045" name="gameScreens" creation-date="01/01/0001 00:00:00" type="HashMap&lt;STATE, Screen&gt;" type-id="HashMap&lt;STATE, Screen&gt;" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-cc9a7eee-1268-4d01-894c-32f60ccc647f" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oc399824d15504908b03713ca9bfdec60666" cid="ELEM046" name="initGameScreens" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o7463bf86475a4b74aea44e194b9f7ba1230" cid="ELEM047" name="setScreen" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p9849d6f84b9e45f8b2300cf58de57111" name="Screen" type="STATE" type-id="STATE" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o4c77cb2d16524a9a9b793828767e10f8112" cid="ELEM048" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di751716557139990356" cid="C017" type="class" name="AssetManager" style-class="" owner="di171653056944954231" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:14:13">
+            <style class="default" />
+          </item>
+          <item id="di963644802253289490" cid="PKG004" type="package" name="Screens" style-class="" owner="di681973787679730401" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:15:24">
+            <style class="default" />
+          </item>
+          <item id="di475096624240462838" cid="C018" type="class" name="MainMenuScreen" style-class="" owner="di963644802253289490" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:15:42">
+            <style class="default" />
+            <attributes>
+              <attribute id="aabeb78e312884ae5936a0eddb2b40872209" cid="ELEM049" name="mainMenu" creation-date="01/01/0001 00:00:00" type="MainMenuScene" type-id="MainMenuScene" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-4f60e13a-a80d-4dd4-bad7-da0fe9d352b7" />
+                </source-codes>
+              </attribute>
+              <attribute id="a5eb4b86eb69640e3819053c8536f785165" cid="ELEM050" name="stage" creation-date="01/01/0001 00:00:00" type="Stage" type-id="Stage" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-cc68cce8-c66a-4fe8-8a02-11395c8b0afe" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o07fcb0f37294467cae3735ed53bf9f8b817" cid="ELEM051" name="show" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o4e8f6f46f6864fe88434f5a5dd4bca69411" cid="ELEM052" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc4cca270388648b08bb0e8168d28c803" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o4a572de65b7448a68582bf3697d1f709876" cid="ELEM053" name="resize" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0ff07ddc16f94e5180be5892d27f81bc" name="x" type="int" type-id="int" />
+                  <parameter id="p8171f732a6854a78bbbf525db84452b4" name="y" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oad1a0b6af47c41cb8a6630dde2176356294" cid="ELEM054" name="pause" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="od88fe5182b544d8ab4740e52c91626b7325" cid="ELEM055" name="hide" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="of361870385aa4b199af9eef8176975d1332" cid="ELEM056" name="resume" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o51e1913ebf1b490ab44461aea53c68a6698" cid="ELEM057" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di516398886428767951" cid="C019" type="class" name="LevelSelectScreen" style-class="" owner="di963644802253289490" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:15:45">
+            <style class="default" />
+            <attributes>
+              <attribute id="a17326f0d94d94a368e74a6617ac244ec700" cid="ELEM058" name="levelSelect" creation-date="01/01/0001 00:00:00" type="LevelSelectScene" type-id="LevelSelectScene" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-be5e285c-f498-45ad-b35f-462defd98759" />
+                </source-codes>
+              </attribute>
+              <attribute id="a8ed789792e7b45e881e0e0c9f2e967fb246" cid="ELEM059" name="stage" creation-date="01/01/0001 00:00:00" type="Stage" type-id="Stage" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-0138f9bd-15ec-4d88-8797-4ffdf3110321" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oba2911831210462281b2f49fe2dc95f6971" cid="ELEM060" name="show" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o41dc7ad5bb7047e297420ecd198a1b0f147" cid="ELEM061" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p859bb4e1bb284b90bff3dbf1b1d25f0b" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o864de81cd5694857a7d1f40b566a6f3f294" cid="ELEM062" name="resize" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p29fe2d18a54e4b12a93a39980ce5d38c" name="x" type="int" type-id="int" />
+                  <parameter id="p3eed90b939e94ebaa094d78ff8c52a86" name="y" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o820f054e292a4c90a394e795ed25dcd5673" cid="ELEM063" name="pause" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o706f710855c5447180c0d2f4af61f430899" cid="ELEM064" name="hide" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oaf2bf4c7e6554bb8addb714e157bbff195" cid="ELEM065" name="resume" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o590135a9b08545698ad93da7825f506f372" cid="ELEM066" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di391745994918173736" cid="C020" type="class" name="PlayScreen" style-class="" owner="di963644802253289490" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:15:48">
+            <style class="default" />
+            <attributes>
+              <attribute id="a36f2c7d777d74274909888e5b7691936217" cid="ELEM067" name="inputMultiplexer" creation-date="01/01/0001 00:00:00" type="InputMultiplexer" type-id="InputMultiplexer" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-beeaa87b-c23b-4ef0-9eda-b378db1ab879" />
+                </source-codes>
+              </attribute>
+              <attribute id="a8c4b415b491a40deb48f3f7bf30a5a0e341" cid="ELEM068" name="inputController" creation-date="01/01/0001 00:00:00" type="InputController" type-id="Class:di633633190825120669" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-751a32da-6a3a-414a-80bf-2793df4391af" />
+                </source-codes>
+              </attribute>
+              <attribute id="a8e632ea3bc0e4562bcfb8f30a9fd72ca571" cid="ELEM069" name="game" creation-date="01/01/0001 00:00:00" type="Game" type-id="Game" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-4f66d547-b222-45e4-9882-0b923e6fe660" />
+                </source-codes>
+              </attribute>
+              <attribute id="adb4597876e374be7bf85db45e97d02d2984" cid="ELEM070" name="camera" creation-date="01/01/0001 00:00:00" type="OrthographicCamera" type-id="OrthographicCamera" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-d65d6ea2-5e88-4b6c-a0bc-fcce2efde170" />
+                </source-codes>
+              </attribute>
+              <attribute id="a966a82fa1c094a22ab4d44bd128f7c56886" cid="ELEM071" name="map" creation-date="01/01/0001 00:00:00" type="GameMap" type-id="Class:di837706432891536701" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-4bf41637-3288-4807-b4e7-1bf5cf70658f" />
+                </source-codes>
+              </attribute>
+              <attribute id="abab7e24b8f4d48a690b442f0a6dd802c142" cid="ELEM072" name="viewport" creation-date="01/01/0001 00:00:00" type="Viewport" type-id="Viewport" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-c784aad4-0f85-4c15-857f-17d287b8055a" />
+                </source-codes>
+              </attribute>
+              <attribute id="a477529dfdc834fa7bc9e46be3c4938ab348" cid="ELEM073" name="hud" creation-date="01/01/0001 00:00:00" type="Hud" type-id="Class:di509235891577847328" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-21960db9-7947-4e23-a5d9-7e487fed366b" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o87e5ce6bbb0942a4931ca2388f291894312" cid="ELEM074" name="loadLevel" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o7f0cc46653ca4cadba6213efdd5ec565127" cid="ELEM075" name="show" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o2d6d437510504f4eac9b5bb5d88b1980504" cid="ELEM076" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pf4402bfafec245e8aea3c21b4817de7f" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oc23700911d7b4f94a67eb6ad6aab15a965" cid="ELEM077" name="resize" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p0e194c868f57418383eca1543a010f6f" name="x" type="int" type-id="int" />
+                  <parameter id="pbb778b9171de438784d5973fceb37f34" name="y" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="of3de1bd957db4c2db4d4b4ab4a85699d863" cid="ELEM078" name="pause" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="offc4788313bf4c19a986a8c8502118f3992" cid="ELEM079" name="resume" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o3f49e25d08604da19946bf9290dbabfc205" cid="ELEM080" name="hide" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="od74fc7d098a845e5a21f8bb7e738631d69" cid="ELEM081" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di414351361146428185" cid="C021" type="class" name="SettingsScreen" style-class="" owner="di963644802253289490" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:15:51">
+            <style class="default" />
+            <attributes>
+              <attribute id="a1a3c346f2c094d1297426b41158719bb261" cid="ELEM082" name="settingsScene" creation-date="01/01/0001 00:00:00" type="SettingsScene" type-id="SettingsScene" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-779c5137-b770-4adb-b22f-e1bb314d691d" />
+                </source-codes>
+              </attribute>
+              <attribute id="ae3bd631929414457bb56f19760ae428f286" cid="ELEM083" name="stage" creation-date="01/01/0001 00:00:00" type="Stage" type-id="Stage" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-690b1aed-2bbb-4b24-b9cd-5448931b8803" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o5c26a92d5fb74ddba20fbacf313d8d8f51" cid="ELEM084" name="show" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o4a3bf702664f4b719a4187ad9121f666373" cid="ELEM085" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pc9fc97e10c984c3a82654240b0d0a304" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o85c2792da32c490b82248ac58d2b8c64308" cid="ELEM086" name="pause" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o50f516fd2ba34b139cdfc30ba3b3d752202" cid="ELEM087" name="hide" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o375061582ec4421480a88d5b8abf951e171" cid="ELEM088" name="resume" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oa3efa1b6504240dbbe3f4c0d48f3aa7c468" cid="ELEM089" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di335692337181003111" cid="REL003" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:16:52" from="di163711452623930662" to="di475096624240462838">
+            <style class="default" />
+            <relation from="di163711452623930662" to="di475096624240462838">
+              <start-role id="umlar-de207775-ef8c-4ce4-84ae-f574085758dd" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-3c95ff94-35a2-454b-a461-62ce796e09de" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di643082331968705446" cid="REL004" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:17:08" from="di163711452623930662" to="di516398886428767951">
+            <style class="default" />
+            <relation from="di163711452623930662" to="di516398886428767951">
+              <start-role id="umlar-04961331-91ca-4f22-b043-2f68c473b52f" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-05974b01-3fea-4d44-bb51-c073b23704c8" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di932488109736603341" cid="REL005" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:18:14" from="di163711452623930662" to="di391745994918173736">
+            <style class="default" />
+            <relation from="di163711452623930662" to="di391745994918173736">
+              <start-role id="umlar-37e302d1-3d71-4761-baa7-95e66c9dd77a" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-cca896e3-40d8-4608-82c1-d12dc5cedbaa" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di268203211388983237" cid="REL006" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:18:31" from="di163711452623930662" to="di414351361146428185">
+            <style class="default" />
+            <relation from="di163711452623930662" to="di414351361146428185">
+              <start-role id="umlar-64f23329-f6f1-4cf5-8072-720a8c5c18e7" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-3b40dd0f-529e-44bc-8a33-7bac8f5c49a8" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di123361211226980609" cid="PKG005" type="package" name="Scenes" style-class="" owner="di681973787679730401" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:18:59">
+            <style class="default" />
+          </item>
+          <item id="di671141662611714832" cid="C022" type="class" name="MainMenuScene" style-class="" owner="di123361211226980609" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:19:10">
+            <style class="default" />
+          </item>
+          <item id="di452278965985957750" cid="C023" type="class" name="LevelSelectScene" style-class="" owner="di123361211226980609" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:19:12">
+            <style class="default" />
+          </item>
+          <item id="di509235891577847328" cid="C024" type="class" name="Hud" style-class="" owner="di123361211226980609" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:19:15">
+            <style class="default" />
+            <attributes>
+              <attribute id="aab506531f7344aa082cd357defd722a4950" cid="ELEM090" name="touchpad" creation-date="01/01/0001 00:00:00" type="Touchpad" type-id="Touchpad" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-16ea3e87-2e62-46b4-9eb7-c89d6f254070" />
+                </source-codes>
+              </attribute>
+              <attribute id="a92565ac6fbdc44959cd408485feca1b8377" cid="ELEM091" name="viewport" creation-date="01/01/0001 00:00:00" type="Viewport" type-id="Viewport" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-36e665fb-b72a-45f4-b63d-c07d07ab577e" />
+                </source-codes>
+              </attribute>
+              <attribute id="ac8559bb73f2c4ea2bbf686174c999a58578" cid="ELEM092" name="settings" creation-date="01/01/0001 00:00:00" type="Preferences" type-id="Preferences" visibility="private">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" uid="scs-c63df3ad-d826-49af-88bc-cd83b704e79e" />
+                </source-codes>
+              </attribute>
+            </attributes>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di531841258706101776" cid="C025" type="class" name="SettingsScene" style-class="" owner="di123361211226980609" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:19:18">
+            <style class="default" />
+          </item>
+          <item id="di564750282696023843" cid="REL007" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:19:56" from="di475096624240462838" to="di671141662611714832">
+            <style class="default" />
+            <relation from="di475096624240462838" to="di671141662611714832">
+              <start-role id="umlar-77fca9a6-3b07-4955-b4f4-64930ee04474" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-5077d89f-c36e-4eee-a7ab-06a29c841047" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di896639811963053165" cid="REL008" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:20:09" from="di516398886428767951" to="di452278965985957750">
+            <style class="default" />
+            <relation from="di516398886428767951" to="di452278965985957750">
+              <start-role id="umlar-710957e7-2a61-4c66-9ba2-677e76fe5ba0" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-d5761741-62b0-4646-936d-41dd3be2bbbd" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di754508542246215970" cid="REL009" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:20:20" from="di391745994918173736" to="di509235891577847328">
+            <style class="default" />
+            <relation from="di391745994918173736" to="di509235891577847328">
+              <start-role id="umlar-df46117c-f3e5-4b0f-bb56-9e787f1caf3c" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-588863c1-49ee-44be-9d22-7116d5833793" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+          <item id="di633834578152239558" cid="REL010" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:20:27" from="di414351361146428185" to="di531841258706101776">
+            <style class="default" />
+            <relation from="di414351361146428185" to="di531841258706101776">
+              <start-role id="umlar-c1973cf3-93b8-4b9b-b7f3-2326c1e59b36" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="umlar-debf60c0-871b-4b84-9c1f-4f080cbda8ae" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
+          </item>
+        </abstract-items>
+        <layer id="5fb3850941a14768b5ccad3556c82e95" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di335692337181003111" iid="c50b8ba550264c059a3d40ea21eb7aa3" name-style="" creation-date="12/05/2017 13:16:52" order-index="13" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="50.7067,4.991719" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="715" y1="317" x2="236" y2="472" start-border-pos="0.775000000372529" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="715" y="317" />
+                <point x="236" y="472" />
+              </points>
+            </layout>
+            <relation from="di163711452623930662" from-iid="95ffcc19dc4842f0a594d545b6c8bbe4" to="di475096624240462838" to-iid="c75033aaf08147d8a51bbe630030d325" />
+          </item>
+          <item id="di643082331968705446" iid="bba9fc00c814446ebf678f1753d3631d" name-style="" creation-date="12/05/2017 13:17:08" order-index="14" type="relation">
+            <layout start-role-position="25,15" start-role-width="50" end-role-position="25,-15" end-role-width="50" start-multiplicity-position="25.00002,-14.99998" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="766" y1="333" x2="500" y2="472" start-border-pos="0.691071435809135" end-border-pos="0.123214285714286" name-position="0,0">
+              <points>
+                <point x="766" y="333" />
+                <point x="500" y="472" />
+              </points>
+            </layout>
+            <relation from="di163711452623930662" from-iid="95ffcc19dc4842f0a594d545b6c8bbe4" to="di516398886428767951" to-iid="b439ad79c655469ebf022cd19774d8a1" />
+          </item>
+          <item id="di932488109736603341" iid="5ffc547a21664f028d749f6594e16353" name-style="" creation-date="12/05/2017 13:18:14" order-index="15" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="823" y1="333" x2="777" y2="473" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="823" y="333" />
+                <point x="777" y="473" />
+              </points>
+            </layout>
+            <relation from="di163711452623930662" from-iid="95ffcc19dc4842f0a594d545b6c8bbe4" to="di391745994918173736" to-iid="9d695c98340a48c8b512e4c162f7f163" />
+          </item>
+          <item id="di268203211388983237" iid="633662d3e36a468e835ace6de9703b53" name-style="" creation-date="12/05/2017 13:18:31" order-index="16" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="881" y1="333" x2="1050" y2="472" start-border-pos="0.557142857142857" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="881" y="333" />
+                <point x="1050" y="472" />
+              </points>
+            </layout>
+            <relation from="di163711452623930662" from-iid="95ffcc19dc4842f0a594d545b6c8bbe4" to="di414351361146428185" to-iid="710db078a6664349b5f6a7a4fbccbfa0" />
+          </item>
+          <item id="di564750282696023843" iid="72eae36e9b2743279e3a1ab107bcca9a" name-style="" creation-date="12/05/2017 13:19:56" order-index="22" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="236" y1="687" x2="263" y2="893" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="236" y="687" />
+                <point x="263" y="893" />
+              </points>
+            </layout>
+            <relation from="di475096624240462838" from-iid="c75033aaf08147d8a51bbe630030d325" to="di671141662611714832" to-iid="cad3f76cda034a58b0eefbd1838a3e39" />
+          </item>
+          <item id="di896639811963053165" iid="2612d2b42dcf4b8ca1de5f0ae96086f7" name-style="" creation-date="12/05/2017 13:20:09" order-index="23" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="501" y1="687" x2="525" y2="891" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="501" y="687" />
+                <point x="525" y="891" />
+              </points>
+            </layout>
+            <relation from="di516398886428767951" from-iid="b439ad79c655469ebf022cd19774d8a1" to="di452278965985957750" to-iid="c4e1555c3b2f4a91af4557bd66441e03" />
+          </item>
+          <item id="di754508542246215970" iid="69268b04d3274563b920f0d1906927ab" name-style="" creation-date="12/05/2017 13:20:20" order-index="24" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="777" y1="777" x2="777" y2="895" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="777" y="777" />
+                <point x="777" y="895" />
+              </points>
+            </layout>
+            <relation from="di391745994918173736" from-iid="9d695c98340a48c8b512e4c162f7f163" to="di509235891577847328" to-iid="fabcf384d8ef4bbf8b53db0b14535720" />
+          </item>
+          <item id="di633834578152239558" iid="81c16944640e492a880f8368902403ec" name-style="" creation-date="12/05/2017 13:20:27" order-index="25" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" auto-path="" x1="1050" y1="687" x2="1038" y2="885" start-border-pos="0.625" end-border-pos="0.133548409598214" name-position="0,0">
+              <points>
+                <point x="1050" y="687" />
+                <point x="1038" y="885" />
+              </points>
+            </layout>
+            <relation from="di414351361146428185" from-iid="710db078a6664349b5f6a7a4fbccbfa0" to="di531841258706101776" to-iid="1d4dc16a91cd4c1cac8149267bb24188" />
+          </item>
+          <item id="di681973787679730401" iid="cd55684750834b87b0a3e66a8c0ba9e2" name-style="" creation-date="12/05/2017 13:11:36" order-index="0" type="entity">
+            <layout ax="53.19592" ay="43.94855" awidth="1183" aheight="1080" x="53.19592" y="43.94855" width="1183" height="1080" />
+          </item>
+          <item id="di171653056944954231" iid="ea602274f98c4acc92e7bd219c33a655" container="di681973787679730401" container-iid="cd55684750834b87b0a3e66a8c0ba9e2" name-style="" creation-date="12/05/2017 13:12:57" order-index="3" type="entity">
+            <layout ax="86.19592" ay="106.6273" awidth="1117" aheight="277" x="86.19592" y="106.6273" width="1117" height="277" />
+          </item>
+          <item id="di180688517835169480" iid="9e2208b711fe4fba8815d095f4ce8db9" container="di171653056944954231" container-iid="ea602274f98c4acc92e7bd219c33a655" name-style="" creation-date="12/05/2017 13:13:10" order-index="4" type="entity">
+            <layout ax="191.5841" ay="167.4826" awidth="140" aheight="160" x="191.5841" y="167.4826" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di633633190825120669" iid="516da1078fa648a9a82033b49bf0903c" container="di171653056944954231" container-iid="ea602274f98c4acc92e7bd219c33a655" name-style="" creation-date="12/05/2017 13:13:48" order-index="5" type="entity">
+            <layout ax="373.1738" ay="169.2903" awidth="252.5549" aheight="190.75" x="373.1738" y="169.2903" width="252.5549" height="190.75" />
+            <class />
+          </item>
+          <item id="di163711452623930662" iid="95ffcc19dc4842f0a594d545b6c8bbe4" container="di171653056944954231" container-iid="ea602274f98c4acc92e7bd219c33a655" name-style="" creation-date="12/05/2017 13:14:05" order-index="6" type="entity">
+            <layout ax="715.0608" ay="173.2573" awidth="215" aheight="160" x="715.0608" y="173.2573" width="215" height="160" />
+            <class />
+          </item>
+          <item id="di751716557139990356" iid="f57ee10b5e7341fa9f0a49293b538503" container="di171653056944954231" container-iid="ea602274f98c4acc92e7bd219c33a655" name-style="" creation-date="12/05/2017 13:14:13" order-index="7" type="entity">
+            <layout ax="992.3452" ay="173.2573" awidth="140" aheight="160" x="992.3452" y="173.2573" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di963644802253289490" iid="8f518a8c882d4895b1b4bde8f2a98b08" container="di681973787679730401" container-iid="cd55684750834b87b0a3e66a8c0ba9e2" name-style="" creation-date="12/05/2017 13:15:24" order-index="8" type="entity">
+            <layout ax="84.69592" ay="420.353" awidth="1120" aheight="379" x="84.69592" y="420.353" width="1120" height="379" />
+          </item>
+          <item id="di475096624240462838" iid="c75033aaf08147d8a51bbe630030d325" container="di963644802253289490" container-iid="8f518a8c882d4895b1b4bde8f2a98b08" name-style="" creation-date="12/05/2017 13:15:42" order-index="9" type="entity">
+            <layout ax="137.5273" ay="471.5179" awidth="196" aheight="215" x="137.5273" y="471.5179" width="196" height="215" />
+            <class />
+          </item>
+          <item id="di516398886428767951" iid="b439ad79c655469ebf022cd19774d8a1" container="di963644802253289490" container-iid="8f518a8c882d4895b1b4bde8f2a98b08" name-style="" creation-date="12/05/2017 13:15:45" order-index="10" type="entity">
+            <layout ax="400.7383" ay="471.7271" awidth="201" aheight="215" x="400.7383" y="471.7271" width="201" height="215" />
+            <class />
+          </item>
+          <item id="di391745994918173736" iid="9d695c98340a48c8b512e4c162f7f163" container="di963644802253289490" container-iid="8f518a8c882d4895b1b4bde8f2a98b08" name-style="" creation-date="12/05/2017 13:15:48" order-index="11" type="entity">
+            <layout ax="662.9265" ay="472.6643" awidth="228" aheight="304" x="662.9265" y="472.6643" width="228" height="304" />
+            <class />
+          </item>
+          <item id="di414351361146428185" iid="710db078a6664349b5f6a7a4fbccbfa0" container="di963644802253289490" container-iid="8f518a8c882d4895b1b4bde8f2a98b08" name-style="" creation-date="12/05/2017 13:15:51" order-index="12" type="entity">
+            <layout ax="952.1147" ay="471.7271" awidth="196" aheight="215" x="952.1147" y="471.7271" width="196" height="215" />
+            <class />
+          </item>
+          <item id="di123361211226980609" iid="b9c27846289944869b7fd1ea66894032" container="di681973787679730401" container-iid="cd55684750834b87b0a3e66a8c0ba9e2" name-style="" creation-date="12/05/2017 13:18:59" order-index="17" type="entity">
+            <layout ax="84.19592" ay="836.0787" awidth="1121" aheight="277" x="84.19592" y="836.0787" width="1121" height="277" />
+          </item>
+          <item id="di671141662611714832" iid="cad3f76cda034a58b0eefbd1838a3e39" container="di123361211226980609" container-iid="b9c27846289944869b7fd1ea66894032" name-style="" creation-date="12/05/2017 13:19:10" order-index="18" type="entity">
+            <layout ax="193.3878" ay="892.5148" awidth="140" aheight="160" x="193.3878" y="892.5148" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di452278965985957750" iid="c4e1555c3b2f4a91af4557bd66441e03" container="di123361211226980609" container-iid="b9c27846289944869b7fd1ea66894032" name-style="" creation-date="12/05/2017 13:19:12" order-index="19" type="entity">
+            <layout ax="455.2835" ay="890.783" awidth="140" aheight="160" x="455.2835" y="890.783" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di509235891577847328" iid="fabcf384d8ef4bbf8b53db0b14535720" container="di123361211226980609" container-iid="b9c27846289944869b7fd1ea66894032" name-style="" creation-date="12/05/2017 13:19:15" order-index="20" type="entity">
+            <layout ax="707.4207" ay="894.5787" awidth="140" aheight="160" x="707.4207" y="894.5787" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di531841258706101776" iid="1d4dc16a91cd4c1cac8149267bb24188" container="di123361211226980609" container-iid="b9c27846289944869b7fd1ea66894032" name-style="" creation-date="12/05/2017 13:19:18" order-index="21" type="entity">
+            <layout ax="963.105" ay="884.5979" awidth="140" aheight="160" x="963.105" y="884.5979" width="140" height="160" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-interaction-overview" id="p62c06f7f0cce4090a904ceed41422043_708973069" name="App_interaction" order-index="3" overview-order-index="1" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/05/2017 13:24:18</creation-date>
+          <change-date>12/05/2017 13:30:04</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di155187177160357159" cid="IN001" type="initial-node" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:24:39">
+            <style class="default" />
+          </item>
+          <item id="di285833298704700421" cid="ELEM001" type="interaction" name="Main menu screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:24:49">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di812537623995519314" cid="ELEM002" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:25:35" from="di155187177160357159" to="di285833298704700421">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di883516088702807567" cid="ELEM005" type="interaction" name="Settings screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:26:00">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di908206213896607280" cid="ELEM006" type="interaction" name="Level select screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:26:13">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di198781037540892301" cid="ELEM007" type="interaction" name="Play screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:26:25">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di198971626355365029" cid="ELEM008" type="interaction" name="In-game settings screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:26:41">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di415504770164902134" cid="ELEM003" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:27:28" from="di285833298704700421" to="di883516088702807567">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di222219216175451681" cid="ELEM004" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:27:33" from="di285833298704700421" to="di908206213896607280">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di280183293575906880" cid="ELEM009" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:27:40" from="di908206213896607280" to="di198781037540892301">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di915363756847962028" cid="ELEM010" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:27:50" from="di198781037540892301" to="di198971626355365029">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di226388733306542211" cid="ELEM011" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:27:54" from="di198971626355365029" to="di285833298704700421">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di268072173123792780" cid="AFN001" type="activity-final-node" name="Exit" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:28:29">
+            <style class="default" />
+          </item>
+          <item id="di684389940770090845" cid="ELEM012" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:28:41" from="di285833298704700421" to="di268072173123792780">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di763326259210614704" cid="ELEM013" type="interaction" name="Shop screen" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:29:14">
+            <style class="default" />
+            <interaction type="sd" />
+          </item>
+          <item id="di569224143127071357" cid="ELEM014" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:29:31" from="di763326259210614704" to="di908206213896607280">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+          <item id="di855206512509557594" cid="ELEM015" type="control-flow" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:30:04" from="di908206213896607280" to="di763326259210614704">
+            <style class="default" />
+            <control-flow guard="" />
+          </item>
+        </abstract-items>
+        <layer id="5dba2030666544de8bbb6aabda57aebe" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di155187177160357159" iid="afdc1c0bd50c40da9d9d372345387790" name-style="" creation-date="12/05/2017 13:24:39" order-index="0" type="entity">
+            <layout ax="150" ay="177" awidth="25" aheight="25" x="150" y="177" width="25" height="25" name-position="0,10" name-anchor="bottom" auto-anchor="true" label-attached="false" />
+          </item>
+          <item id="di285833298704700421" iid="60134e2ba4ca4481ae2b10f770324043" name-style="" creation-date="12/05/2017 13:24:49" order-index="1" type="entity">
+            <layout ax="264" ay="159.5" awidth="184" aheight="60" x="264" y="159.5" width="184" height="60" />
+          </item>
+          <item id="di812537623995519314" iid="2deb693cfebe41a99b47710882ae88f1" name-style="" creation-date="12/05/2017 13:25:35" order-index="2" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" auto-path="" x1="175" y1="190" x2="264" y2="190" start-border-pos="0.38" end-border-pos="0.875" name-position="0,0">
+              <points>
+                <point x="175" y="190" />
+                <point x="264" y="190" />
+              </points>
+            </layout>
+            <relation from="di155187177160357159" from-iid="afdc1c0bd50c40da9d9d372345387790" to="di285833298704700421" to-iid="60134e2ba4ca4481ae2b10f770324043" />
+          </item>
+          <item id="di883516088702807567" iid="3ca18c67ad22477994907bfeff48ff4d" name-style="" creation-date="12/05/2017 13:26:00" order-index="3" type="entity">
+            <layout ax="150" ay="279" awidth="184" aheight="60" x="150" y="279" width="184" height="60" />
+          </item>
+          <item id="di908206213896607280" iid="d2e57b81ca154914b0a2ca8b91ce5681" name-style="" creation-date="12/05/2017 13:26:13" order-index="4" type="entity">
+            <layout ax="366" ay="279" awidth="184" aheight="60" x="366" y="279" width="184" height="60" />
+          </item>
+          <item id="di198781037540892301" iid="d431f414a22045c395d2086194cd103d" name-style="" creation-date="12/05/2017 13:26:25" order-index="5" type="entity">
+            <layout ax="366" ay="387" awidth="184" aheight="60" x="366" y="387" width="184" height="60" />
+          </item>
+          <item id="di198971626355365029" iid="283a8b1705684dda87623df30ce8f4ed" name-style="" creation-date="12/05/2017 13:26:41" order-index="6" type="entity">
+            <layout ax="635" ay="387" awidth="218" aheight="60" x="635" y="387" width="218" height="60" />
+          </item>
+          <item id="di415504770164902134" iid="b9d2d43d9292477fba3dbac2d8dc93d7" name-style="" creation-date="12/05/2017 13:27:28" order-index="7" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="356" y1="220" x2="242" y2="279" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="356" y="220" />
+                <point x="242" y="279" />
+              </points>
+            </layout>
+            <relation from="di285833298704700421" from-iid="60134e2ba4ca4481ae2b10f770324043" to="di883516088702807567" to-iid="3ca18c67ad22477994907bfeff48ff4d" />
+          </item>
+          <item id="di222219216175451681" iid="fa022b45e0a04ca8a79661169dffa1f1" name-style="" creation-date="12/05/2017 13:27:33" order-index="8" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="356" y1="220" x2="458" y2="279" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="356" y="220" />
+                <point x="458" y="279" />
+              </points>
+            </layout>
+            <relation from="di285833298704700421" from-iid="60134e2ba4ca4481ae2b10f770324043" to="di908206213896607280" to-iid="d2e57b81ca154914b0a2ca8b91ce5681" />
+          </item>
+          <item id="di280183293575906880" iid="3bedad6a919b420b8569ae10437ae34c" name-style="" creation-date="12/05/2017 13:27:40" order-index="9" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="458" y1="339" x2="458" y2="387" start-border-pos="0.625" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="458" y="339" />
+                <point x="458" y="387" />
+              </points>
+            </layout>
+            <relation from="di908206213896607280" from-iid="d2e57b81ca154914b0a2ca8b91ce5681" to="di198781037540892301" to-iid="d431f414a22045c395d2086194cd103d" />
+          </item>
+          <item id="di915363756847962028" iid="f3067357370544d1aeabcea31e16c11b" name-style="" creation-date="12/05/2017 13:27:50" order-index="10" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="550" y1="417" x2="635" y2="417" start-border-pos="0.375" end-border-pos="0.875" name-position="0,0">
+              <points>
+                <point x="550" y="417" />
+                <point x="635" y="417" />
+              </points>
+            </layout>
+            <relation from="di198781037540892301" from-iid="d431f414a22045c395d2086194cd103d" to="di198971626355365029" to-iid="283a8b1705684dda87623df30ce8f4ed" />
+          </item>
+          <item id="di226388733306542211" iid="06746da7f4024dc1897d0c48f406e726" name-style="" creation-date="12/05/2017 13:27:54" order-index="11" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="744" y1="387" x2="448" y2="190" start-border-pos="0.125" end-border-pos="0.377083333333333" name-position="0,0">
+              <points>
+                <point x="744" y="387" />
+                <point x="448" y="190" />
+              </points>
+            </layout>
+            <relation from="di198971626355365029" from-iid="283a8b1705684dda87623df30ce8f4ed" to="di285833298704700421" to-iid="60134e2ba4ca4481ae2b10f770324043" />
+          </item>
+          <item id="di268072173123792780" iid="c1a95ce847e54842bc5e3653bcbd05de" name-style="" creation-date="12/05/2017 13:28:29" order-index="12" type="entity">
+            <layout ax="345" ay="57" awidth="22" aheight="22" x="345" y="57" width="22" height="22" name-position="-1,-2" auto-anchor="true" label-attached="false" />
+          </item>
+          <item id="di684389940770090845" iid="7e79748670fc4cdb9b883e4df0691482" name-style="" creation-date="12/05/2017 13:28:41" order-index="13" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="false" lock-to-fields="false" auto-path="" x1="356" y1="160" x2="356" y2="79" start-border-pos="0.125" end-border-pos="0.625" name-position="0,0">
+              <points>
+                <point x="356" y="160" />
+                <point x="356" y="79" />
+              </points>
+            </layout>
+            <relation from="di285833298704700421" from-iid="60134e2ba4ca4481ae2b10f770324043" to="di268072173123792780" to-iid="c1a95ce847e54842bc5e3653bcbd05de" />
+          </item>
+          <item id="di763326259210614704" iid="7aac55bcd30b41fd92f95cd328bbc31a" name-style="" creation-date="12/05/2017 13:29:14" order-index="14" type="entity">
+            <layout ax="711" ay="277.5" awidth="184" aheight="63" x="711" y="277.5" width="184" height="63" />
+          </item>
+          <item id="di569224143127071357" iid="0cc7906f7a8740a3a01df88468a28d70" name-style="" creation-date="12/05/2017 13:29:31" order-index="15" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="711" y1="309" x2="550" y2="309" start-border-pos="0.875" end-border-pos="0.375" name-position="0,0">
+              <points>
+                <point x="711" y="309" />
+                <point x="550" y="309" />
+              </points>
+            </layout>
+            <relation from="di763326259210614704" from-iid="7aac55bcd30b41fd92f95cd328bbc31a" to="di908206213896607280" to-iid="d2e57b81ca154914b0a2ca8b91ce5681" />
+          </item>
+          <item id="di855206512509557594" iid="790ddf4daef34d83a700492179adf111" name-style="" creation-date="12/05/2017 13:30:04" order-index="16" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="550" y1="328" x2="711" y2="329" start-border-pos="0.454166666666667" end-border-pos="0.795634920634921" name-position="0,0">
+              <points>
+                <point x="550" y="328" />
+                <point x="711" y="329" />
+              </points>
+            </layout>
+            <relation from="di908206213896607280" from-iid="d2e57b81ca154914b0a2ca8b91ce5681" to="di763326259210614704" to-iid="7aac55bcd30b41fd92f95cd328bbc31a" />
+          </item>
+        </layer>
+      </diagram>
+      <diagram type="uml-class" id="pb8581ec0f86b4a779916ebc50c0b60a5_600644802" name="World_map" order-index="4" overview-order-index="2" uid="" show-id="false" show-name="true" show-parent-name="false" name-style="local-auto-parents" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/05/2017 13:33:11</creation-date>
+          <change-date>12/05/2017 13:34:51</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di227651477378428706" cid="PKG006" type="package" name="World" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:33:22">
+            <style class="default" />
+          </item>
+          <item id="di837706432891536701" cid="C026" type="class" name="GameMap" style-class="" owner="di227651477378428706" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:34:02">
+            <style class="default" />
+            <operations>
+              <operation id="o5f38a478546d4b86b64c1cbbf19d9a60341" cid="ELEM010" name="load" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa0f216f0194f48dfbfd6ad1a521129cf" name="location" type="String" type-id="Uml.String" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o4cdf4c9ab69d4f538c11701d31d9988e294" cid="ELEM011" name="render" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pd0494907b830439b90896e5510881049" name="camera" type="OrthographicCamera" type-id="OrthographicCamera" />
+                  <parameter id="p9bd529ba4f594994bd3a534c06327568" name="batch" type="SpriteBatch" type-id="SpriteBatch" />
+                  <parameter id="pf19b994d18ac4c01badaae9533e2fc92" name="delta" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o84ae4e0ee4654282bba0f41b7191de17182" cid="ELEM012" name="dispose" creation-date="01/01/0001 00:00:00" type="" type-id="" visibility="protected" abstract="true">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o5551b60f061f4836b582ddc05bbd887a949" cid="ELEM013" name="getTileTypeByLocation" creation-date="01/01/0001 00:00:00" type="TileType" type-id="Class:di979663362306113206" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p6d84265fbe0e41fdb16d70d130c320bd" name="layer" type="int" type-id="int" />
+                  <parameter id="p38f7eded4a6346768742a4db35f58f96" name="x" type="float" type-id="float" />
+                  <parameter id="p3781aff4b86845cd82c953f35fc989ea" name="y" type="float" type-id="float" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o0e55ff6530534cda9c1cd7c0bf4cf2bf9" cid="ELEM014" name="getTileTypeByCoordinate" creation-date="01/01/0001 00:00:00" type="TileType" type-id="Class:di979663362306113206" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p2d4ca31df4fb4bd08fd38dbdc6d84dac" name="layer" type="int" type-id="int" />
+                  <parameter id="p3ecdc1285ace4f9aabc37f0dc7c33acf" name="col" type="int" type-id="int" />
+                  <parameter id="p8a68ad5ead24499fa0e6ba2500a4b9b8" name="row" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o5694c107f8cb4fe4950905b83655769a89" cid="ELEM015" name="doesRectCollideWithMap" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p732a0f6ae4304f159b5f107d2087fc4b" name="x" type="float" type-id="float" />
+                  <parameter id="pe167a85bbae94adb8868225f88806512" name="y" type="float" type-id="float" />
+                  <parameter id="paad8a854a45240f7a490072a129eb0df" name="width" type="int" type-id="int" />
+                  <parameter id="p1fd3cd0b28ea436384ed325073f44f21" name="height" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="oa1495b235939402b9e2f93aa1d324b9d895" cid="ELEM016" name="collideWithMapEdges" creation-date="01/01/0001 00:00:00" type="boolean" type-id="boolean" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p1825cfb207d642eda2a7dbf621357910" name="x" type="float" type-id="float" />
+                  <parameter id="p11ae278f6be34a8d893e245b890293ba" name="y" type="float" type-id="float" />
+                  <parameter id="p6926092e59aa48d788d9563dd7b40bb0" name="width" type="int" type-id="int" />
+                  <parameter id="p67b25960b8bd4ebfac2c47d2ab94f27f" name="height" type="int" type-id="int" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o0e85cf5ebf90487ab8ea94b04682e82f790" cid="ELEM093" name="getCoins" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Coin&gt;" type-id="ArrayList&lt;Coin&gt;" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="occ612f2dbc934ae1922ce45550c1ad8a322" cid="ELEM094" name="getEnemies" creation-date="01/01/0001 00:00:00" type="ArrayList&lt;Enemy&gt;" type-id="ArrayList&lt;Enemy&gt;" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="od4d51c1181f5404ca063a03e773e3172959" cid="ELEM095" name="getPlayer" creation-date="01/01/0001 00:00:00" type="Player" type-id="Class:di157784257406523926" visibility="protected">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di332355528169731921" cid="C027" type="class" name="Level" style-class="" owner="di227651477378428706" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:34:14">
+            <style class="default" />
+          </item>
+          <item id="di904705970282207151" cid="GNR010" type="generalization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:34:22" from="di332355528169731921" to="di837706432891536701">
+            <style class="default" />
+          </item>
+          <item id="di979663362306113206" cid="E001" type="enumeration" name="TileType" style-class="" owner="di227651477378428706" visibility="package" change-tracking-state="added" creator="Pe2834d48d3204932b8502a11f18d353f" creation-date="12/05/2017 13:34:51">
+            <stereotypes>
+              <stereotype name="enumeration" />
+            </stereotypes>
+            <style class="default" />
+            <enumeration-items />
+          </item>
+        </abstract-items>
+        <layer id="20532ca4fd514909a895f0220cdd1f5e" name="Default" visible="true" enabled="true" locked="false">
+          <item id="di227651477378428706" iid="deb768c4023e46f595b2cc08500ba169" name-style="" creation-date="12/05/2017 13:33:22" order-index="0" type="entity">
+            <layout ax="274" ay="98" awidth="641" aheight="574" x="274" y="98" width="641" height="574" />
+          </item>
+          <item id="di837706432891536701" iid="7bfbaa6f7e3841cba759c952cf038a1c" container="di227651477378428706" container-iid="deb768c4023e46f595b2cc08500ba169" name-style="" creation-date="12/05/2017 13:34:02" order-index="1" type="entity">
+            <layout ax="289" ay="157" awidth="414" aheight="259" x="289" y="157" width="414" height="259" />
+            <class />
+          </item>
+          <item id="di332355528169731921" iid="620e4570365a46d0b2616704d26524dd" container="di227651477378428706" container-iid="deb768c4023e46f595b2cc08500ba169" name-style="" creation-date="12/05/2017 13:34:14" order-index="2" type="entity">
+            <layout ax="426" ay="464" awidth="140" aheight="160" x="426" y="464" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di904705970282207151" iid="cc78955d1e03426580517b71d4bb54f4" name-style="" creation-date="12/05/2017 13:34:22" order-index="3" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="496" y1="464" x2="496" y2="416" start-border-pos="0.125" end-border-pos="0.625" name-position="0,0">
+              <points>
+                <point x="496" y="464" />
+                <point x="496" y="416" />
+              </points>
+            </layout>
+            <relation from="di332355528169731921" from-iid="620e4570365a46d0b2616704d26524dd" to="di837706432891536701" to-iid="7bfbaa6f7e3841cba759c952cf038a1c" />
+          </item>
+          <item id="di979663362306113206" iid="62aca166f44c4a3bb5c0ce660f319a1e" container="di227651477378428706" container-iid="deb768c4023e46f595b2cc08500ba169" name-style="" creation-date="12/05/2017 13:34:51" order-index="4" type="entity">
+            <layout ax="750" ay="157" awidth="140" aheight="160" x="750" y="157" width="140" height="160" />
+            <enumeration />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>

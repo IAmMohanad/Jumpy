@@ -1,0 +1,104 @@
+
+main_menu_skin.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+8bit-regular
+  rotate: false
+  xy: 1, 235
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+blue_boxCheckmark
+  rotate: false
+  xy: 707, 711
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+blue_boxCross
+  rotate: false
+  xy: 617, 664
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+blue_button05
+  rotate: false
+  xy: 1, 188
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+blue_panel
+  rotate: false
+  xy: 515, 600
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+blue_sliderRight
+  rotate: false
+  xy: 193, 202
+  size: 39, 31
+  orig: 39, 31
+  offset: 0, 0
+  index: -1
+green_boxCheckmark
+  rotate: false
+  xy: 1, 1
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+green_boxCross
+  rotate: false
+  xy: 103, 103
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+green_button05
+  rotate: false
+  xy: 515, 702
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+green_panel
+  rotate: false
+  xy: 1, 39
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+yellow_boxCheckmark
+  rotate: false
+  xy: 193, 164
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+yellow_boxCross
+  rotate: false
+  xy: 515, 460
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+yellow_button05
+  rotate: false
+  xy: 1, 141
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+yellow_panel
+  rotate: false
+  xy: 515, 498
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

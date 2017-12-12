@@ -1,0 +1,75 @@
+spinJump_fixed.png
+size: 320, 64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+spinjump22
+  rotate: false
+  xy: 0, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump33
+  rotate: false
+  xy: 32, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump44
+  rotate: false
+  xy: 64, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump55
+  rotate: false
+  xy: 96, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump66
+  rotate: false
+  xy: 128, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump77
+  rotate: false
+  xy: 160, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump88
+  rotate: false
+  xy: 192, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump99
+  rotate: false
+  xy: 224, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump1010
+  rotate: false
+  xy: 256, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+spinjump1111
+  rotate: false
+  xy: 288, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1

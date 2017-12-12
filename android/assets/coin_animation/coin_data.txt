@@ -1,0 +1,47 @@
+coin_animation.png
+size: 180, 30
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Coin1
+  rotate: false
+  xy: 0, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+Coin2
+  rotate: false
+  xy: 30, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+Coin3
+  rotate: false
+  xy: 60, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+Coin4
+  rotate: false
+  xy: 90, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+Coin5
+  rotate: false
+  xy: 120, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+Coin6
+  rotate: false
+  xy: 150, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

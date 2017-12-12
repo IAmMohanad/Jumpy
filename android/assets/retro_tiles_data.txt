@@ -1,0 +1,68 @@
+retro_game_tiles.png
+size: 288, 32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+block1-slope
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+block1
+  rotate: false
+  xy: 32, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+block2
+  rotate: false
+  xy: 64, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+block3
+  rotate: false
+  xy: 96, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+block4
+  rotate: false
+  xy: 128, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fauna1
+  rotate: false
+  xy: 160, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fauna2
+  rotate: false
+  xy: 192, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+fauna3
+  rotate: false
+  xy: 224, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+spikes1
+  rotate: false
+  xy: 256, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

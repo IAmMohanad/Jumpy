@@ -1,0 +1,182 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	bit-regular: {
+		file: 8bit-regular.fnt
+	}
+	bit-regular-smaller: {
+		file: 8bit-regular.fnt
+	}
+	bit8Large: {
+		file: 8bit8Large.fnt
+	}
+	bit8Medium: {
+		file: 8bit8Medium.fnt
+	}
+	bit8Small: {
+		file: 8bit8Small.fnt
+	}
+	bitLarge: {
+		file: 8bitLarge.fnt
+	}
+	bitMedium: {
+		file: 8bitMedium.fnt
+	}
+	bitSmall: {
+		file: 8bitSmall.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	RGBA_0_0_0_255: {
+		r: 0
+		g: 0
+		b: 0
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	yellow: {
+		up: yellow_button05
+		down: yellow_button05
+		over: yellow_button05
+	}
+	blue: {
+		up: blue_button05
+		down: blue_button05
+		over: blue_button05
+	}
+	green: {
+		up: green_button05
+		down: green_button05
+		over: green_button05
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+	default: {
+		checkboxOn: blue_checkmark
+		checkboxOff: blue_cross
+		font: bit8Medium
+	}
+	blue: {
+		checkboxOn: blue_checkmark
+		checkboxOff: blue_cross
+		font: bit8Small
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	default: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		imageCheckedOver: blue_sliderRight
+	}
+	settings32: {
+		imageUp: settings32
+	}
+	settings48: {
+		imageUp: settings1
+	}
+	jumpButton24: {
+		imageUp: jumpButton24
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+	default: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		font: bit8Medium
+		fontColor: RGBA_0_0_0_255
+	}
+	blue-start: {
+		imageUp: blue_sliderRight
+		imageDown: green_sliderRight
+		imageOver: green_sliderRight
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+	}
+	yellow-start: {
+		imageUp: blue_sliderRight
+		imageDown: blue_sliderRight
+		imageOver: blue_sliderRight
+		imageChecked: blue_sliderRight
+		imageCheckedOver: blue_sliderRight
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+	}
+	large: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+	}
+	medium: {
+		font: bit8Medium
+		fontColor: RGBA_0_0_0_255
+	}
+	small: {
+		font: bit8Small
+		fontColor: RGBA_0_0_0_255
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+	default-horizontal: {
+		background: grey_sliderHorizontal
+		knob: grey_sliderEnd
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+	}
+	blue: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+		up: blue_button05
+	}
+	yellow: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+		up: yellow_button05
+	}
+	green: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+		up: green_button05
+	}
+	blueGreen: {
+		font: bit8Large
+		fontColor: RGBA_0_0_0_255
+		up: blue_button05
+		down: green_button05
+		over: green_button05
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
+	touchPad2: {
+		background: touchBackground100
+		knob: touchKnob
+	}
+	touchPad3: {
+		background: touchBackgroundTransparent50
+		knob: touchKnob24
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+	default: {
+		titleFont: bit-regular
+		titleFontColor: RGBA_0_0_0_255
+	}
+}
+}

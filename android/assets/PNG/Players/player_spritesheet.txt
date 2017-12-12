@@ -1,0 +1,82 @@
+player_spritesheet.png
+size: 142, 1871
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+alienYellow_climb1
+  rotate: false
+  xy: 1, 1048
+  size: 132, 168
+  orig: 132, 168
+  offset: 0, 0
+  index: -1
+alienYellow_climb2
+  rotate: false
+  xy: 1, 1218
+  size: 132, 168
+  orig: 132, 168
+  offset: 0, 0
+  index: -1
+alienYellow_duck
+  rotate: false
+  xy: 1, 1724
+  size: 140, 146
+  orig: 140, 146
+  offset: 0, 0
+  index: -1
+alienYellow_front
+  rotate: false
+  xy: 1, 1388
+  size: 131, 168
+  orig: 131, 168
+  offset: 0, 0
+  index: -1
+alienYellow_hit
+  rotate: false
+  xy: 1, 878
+  size: 138, 168
+  orig: 138, 168
+  offset: 0, 0
+  index: -1
+alienYellow_jump
+  rotate: false
+  xy: 1, 533
+  size: 135, 171
+  orig: 135, 171
+  offset: 0, 0
+  index: -1
+alienYellow_stand
+  rotate: false
+  xy: 1, 1558
+  size: 133, 164
+  orig: 133, 164
+  offset: 0, 0
+  index: -1
+alienYellow_swim1
+  rotate: false
+  xy: 1, 357
+  size: 138, 174
+  orig: 138, 174
+  offset: 0, 0
+  index: -1
+alienYellow_swim2
+  rotate: false
+  xy: 1, 1
+  size: 140, 177
+  orig: 140, 177
+  offset: 0, 0
+  index: -1
+alienYellow_walk1
+  rotate: false
+  xy: 1, 706
+  size: 134, 170
+  orig: 134, 170
+  offset: 0, 0
+  index: -1
+alienYellow_walk2
+  rotate: false
+  xy: 1, 180
+  size: 140, 175
+  orig: 140, 175
+  offset: 0, 0
+  index: -1

@@ -33,6 +33,7 @@ public class PlayScreen implements Screen {
     private Hud hud;
 
     private Stage hudStage;
+    private String loadedLevel = "";
 
     private boolean loaded;
 
@@ -51,27 +52,11 @@ public class PlayScreen implements Screen {
        // load(game.getCurrentLevel());//commented out during screenManager changes
     }
 
-    public void load(String level){
-        hud = new Hud(game.batch, map);
-        if(level.equals("1-3")){
-            this.map = new LevelOne(hud);
-            map.load("retro_game_map2.tmx");
-            //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
-            //TODO add pause button and pause screen / scene
-            /*
-            pause screen has: 1. resume button. 2.mute/unmute button (maybe volume slider) 3. exit (return to main menu)
-            preferably should be stacked on top of  playScreen - change delta to 0?
-             */
-        }
-
-        hudStage = hud.getStage();
-        inputMultiplexer.addProcessor(hudStage);
-    }
-
     public void loadLevel(){
-        if(!loaded) {
+        if(!loadedLevel.equals(game.getCurrentLevel())) {
             hud = new Hud(game.batch, map);
-            if (game.getCurrentLevel().equals("1-3")) {
+            if(game.getCurrentLevel().equals("1-3")) {
+                this.loadedLevel = "1-3";
                 this.map = new LevelOne(hud);
                 map.load("retro_game_map2.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
@@ -93,7 +78,6 @@ public class PlayScreen implements Screen {
         loadLevel();
         //Gdx.input.setInputProcessor(inputController);
         Gdx.input.setInputProcessor(inputMultiplexer);
-
     }
 
     @Override
@@ -118,7 +102,6 @@ public class PlayScreen implements Screen {
         }*/
 
 
-        //System.out.println(player.getPosition().x+"   "+player.getBoundingBox().x);
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.render();
         map.cameraStop(camera);

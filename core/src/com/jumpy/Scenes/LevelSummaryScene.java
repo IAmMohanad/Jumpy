@@ -3,16 +3,16 @@ package com.jumpy.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Jumpy;
 import com.jumpy.Screens.ScreenManager;
+
 
 public class LevelSummaryScene {
 
@@ -24,11 +24,11 @@ public class LevelSummaryScene {
 
     private Sound click;
 
-    public LevelSelectScene(Jumpy game) {
-        this.game = game;
+    public LevelSummaryScene() {
+        //this.game = game;
         skin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
 
-        viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, new OrthographicCamera());
+        viewport = new FitViewport(Jumpy.V_WIDTH, Jumpy.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         // Make the stage consume events
 
@@ -37,59 +37,29 @@ public class LevelSummaryScene {
         //InputMultiplexer inputMultiplexer = new InputMultiplexer();
     }
 
-    public Stage create(){
+    public Stage create(int points, int numberOfStars){
         loadSound();
+        Texture texture = new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png"));
+        Image levelClearedBackground = new Image(texture);
 
-        Label title = new Label("CHOOSE YOUR LEVEL:", skin, "large");
-        Label oneOne = new Label("1-1", skin, "medium");
-        Label oneTwo = new Label("1-2", skin, "medium");
-        Label oneThree = new Label("1-3", skin, "medium");
+        Table outerTable = new Table();
+        outerTable.top();
+        outerTable.setFillParent(true);
 
-        oneOne.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if(!game.mute){
-                    click.play(game.volume);
-                }
-                System.out.println("Clicked 1-1!");
-            }
-        });
 
-        oneTwo.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if(!game.mute){
-                    click.play(game.volume);
-                    //GameMap level = new LevelOne();
-                }
-                System.out.println("Clicked 1-2!");
-            }
-        });
-
-        oneThree.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if(!game.mute){
-                    click.play(game.volume);
-                }
-                game.setCurrentLevel("1-3");
-                //game.setPlay(); //commented out during screenManager changes
-                game.screenManager.setScreen(ScreenManager.STATE.PLAY);
-                System.out.println("Clicked 1-3!");
-            }
-        });
 
         Table table = new Table();
-        table.top();
-        table.setFillParent(true);
+        //table.top();
+        //table.setFillParent(true);
+        table.add(levelClearedBackground);
+        Stack stack = new Stack();
 
-        table.add(title).padTop(50).colspan(3);//.padTop(15).padLeft(15);
-        table.row();
-        table.add(oneOne).expand();
-        table.add(oneTwo).expand();
-        table.add(oneThree).expand();
+        stack.add(table);
 
-        stage.addActor(table);
+        outerTable.add(stack).center();
+
+
+        stage.addActor(outerTable);
         return stage;
     }
 

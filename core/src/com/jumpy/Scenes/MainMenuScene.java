@@ -66,7 +66,7 @@ public class MainMenuScene {
                     click.play(game.volume);//game.volume);
                 }
                 //game.setLevel();//commented out during screenManager changes
-                game.screenManager.setScreen(ScreenManager.STATE.LEVEL_SELECT);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
                 //game.setPlay();
             }
         });
@@ -79,7 +79,7 @@ public class MainMenuScene {
                     click.play(game.volume);//game.volume);
                 }
                 //game.setSettings();//commented out during screenManager changes
-                game.screenManager.setScreen(ScreenManager.STATE.MAIN_SETTINGS);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_SETTINGS);
             }
         });
 

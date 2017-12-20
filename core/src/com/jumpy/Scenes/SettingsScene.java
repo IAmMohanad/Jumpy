@@ -132,7 +132,7 @@ public class SettingsScene {
                 settings.putBoolean("isTouchPad", isTouchPad);
                 settings.flush();
                 //game.setMenu();//commented out during screenManager changes
-                game.screenManager.setScreen(ScreenManager.STATE.MAIN_MENU);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
 
                 //SoundManager.disposeBackgroundMusic();
             }

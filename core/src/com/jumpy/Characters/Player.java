@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class Player extends DynamicObject {
 
+    private int points;
     private Hud hud;
     public static boolean left;
     public static boolean right;
@@ -72,6 +73,7 @@ public class Player extends DynamicObject {
         doubleJump = false;
         dead = false;
         this.weapon = weapon;
+        points = 0;
 
         create();
     }
@@ -257,7 +259,8 @@ public class Player extends DynamicObject {
 
             for(Coin coin : map.getCoins()){
                 if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
-                    hud.addScore(50);
+                    addScore(50);
+                    //hud.addScore(50);
                     coin.die();
                     //this.die(delta);
                 }
@@ -267,7 +270,7 @@ public class Player extends DynamicObject {
                 if(this.getBoundingBox().overlaps(e.getBoundingBox()) && this.isAlive() && e.isAlive()){
                     //Intersection result = intersectsAt(camera, this.getBoundingBox(), e.getBoundingBox());
                     //System.out.println(result);
-                    //this.die();
+                    this.die();
                 }
             }
 
@@ -297,11 +300,13 @@ public class Player extends DynamicObject {
                 }
             }
         } else{
-            //jump is continually applied
             //if(!dead) die(delta);
+
             currentFrame = deathAnimation.getKeyFrame(stateTime, true);
+            System.out.println("finito3");
             //velocityY += JUMP_VELOCITY;
-            if(dead && deathAnimation.isAnimationFinished(delta)){
+            if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
+                System.out.println("finito1111111111111111111111111");
                 deathComplete = true;
             }
         }
@@ -311,7 +316,6 @@ public class Player extends DynamicObject {
             left = false;
             up = false;
         }
-
 
         boundingBox.setPosition(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET);
         updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
@@ -323,6 +327,21 @@ public class Player extends DynamicObject {
         }
         batch.end();
 
+    }
+
+    private void addScore(int score){
+        points += score;
+    }
+
+    public boolean isDeathComplete(){
+        if(dead && deathComplete){
+            return true;
+        }
+        return false;
+    }
+
+    public int getPoints(){
+        return this.points;
     }
 
     public boolean overlaps(Rectangle boundingBox){

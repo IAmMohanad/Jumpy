@@ -9,9 +9,9 @@ public class ScreenManager{
 
     private Jumpy game;
 
-    private HashMap<STATE, Screen> gameScreens;
+    private HashMap<GAME_STATE, Screen> gameScreens;
 
-    public enum STATE{
+    public enum GAME_STATE{
         MAIN_MENU,
         PLAY,
         LEVEL_SELECT,
@@ -25,17 +25,26 @@ public class ScreenManager{
     }
 
     public void initGameScreens(){
-        this.gameScreens = new HashMap<STATE, Screen>();
-        this.gameScreens.put(STATE.MAIN_MENU, new MainMenuScreen(game));
-        this.gameScreens.put(STATE.PLAY, new PlayScreen(game));
-        this.gameScreens.put(STATE.LEVEL_SELECT, new LevelSelectScreen(game));
-        this.gameScreens.put(STATE.MAIN_SETTINGS, new SettingsScreen(game));
+        this.gameScreens = new HashMap<GAME_STATE, Screen>();
+        this.gameScreens.put(GAME_STATE.MAIN_MENU, new MainMenuScreen(game));
+        this.gameScreens.put(GAME_STATE.PLAY, new PlayScreen(game));
+        this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
+        this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game setting screen
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game pause screen
     }
 
-    public void setScreen(STATE screen){
+    public void setScreen(GAME_STATE screen){
         game.setScreen(gameScreens.get(screen));
+    }
+
+    public void diposeScreen(GAME_STATE st){
+        for(GAME_STATE state : gameScreens.keySet()){
+            if(state != null && state == st){
+                Screen screen = gameScreens.get(st);
+                screen.dispose();
+            }
+        }
     }
 
     public void dispose(){
@@ -43,7 +52,6 @@ public class ScreenManager{
             if(screen != null){
                 screen.dispose();
             }
-
         }
     }
 }

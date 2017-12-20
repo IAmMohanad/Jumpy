@@ -1,5 +1,6 @@
 package com.jumpy.World;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -8,10 +9,13 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Characters.*;
 import com.jumpy.Intersection;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Scenes.Hud;
+import com.jumpy.Scenes.LevelSelectScene;
+import com.jumpy.Scenes.LevelSummaryScene;
 
 import java.util.ArrayList;
 
@@ -30,6 +34,10 @@ public class LevelOne extends GameMap {
 
     private ArrayList<Coin> coinList = new ArrayList<Coin>();
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+
+    private LevelSummaryScene levelSummary;
+    private Stage stage;
+    private boolean firstTime = true;
 
     protected Hud hud;
 
@@ -54,10 +62,8 @@ public class LevelOne extends GameMap {
         player = new Player("boomerang", this, hud, 32, 64);//, 1, 100);
         //weapon = new Boomerang(this, 50, 125);
 
-        //player.create();
         chaserTwo = new Chaser(this, player,200,100, 16, 16);
-        //chaserTwo.create();
-        //coin = new Coin(this, 80, 100);
+
         coinList.add(new Coin(this, 80, 100));
         coinList.add(new Coin(this, 160, 100));
         coinList.add(new Coin(this, 240, 100));
@@ -67,37 +73,47 @@ public class LevelOne extends GameMap {
         enemiesList.add(new Totem(this, 100, 100));
 
         renderer = new OrthogonalTiledMapRenderer(map);
+
+        levelSummary = new LevelSummaryScene();
     }
 
     @Override
     public void render(OrthographicCamera camera, SpriteBatch batch, float delta) {
         renderer.setView(camera);
         renderer.render();
-        //batch.begin();
+
+        if(!player.isDeathComplete()){
+           // hud.render();
+            hud.setScore(player.getPoints());
+            chaserTwo.update(batch, delta, camera);
+            for(Coin coin : coinList){
+                coin.update(batch, delta, camera);
+            }
+
+            for(Enemy e : enemiesList){
+                e.update(batch, delta, camera);
+            }
+            player.update(batch, delta, camera);
+        } else{//level summary screen
+            createSummary();
 
 
-        //if(player.getBoundingBox().overlaps(chaserTwo.getBoundingBox())){
-        chaserTwo.update(batch, delta, camera);
-        for(Coin coin : coinList){
-            coin.update(batch, delta, camera);
+            System.out.println("finito");
         }
-        //bee.update(batch, delta, camera);
-        /*if(player.getBoundingBox().overlaps(bee.getBoundingBox())){
-            Intersection result = intersectsAt(camera, player.getBoundingBox(), bee.getBoundingBox());
-            System.out.println(result);
-        }*/
-        for(Enemy e : enemiesList){
-            e.update(batch, delta, camera);
+    }
+
+    private void createSummary(){
+        if(firstTime){
+            firstTime = false;
+            int numberOfStars = 0;
+            if(player.getPoints() > 50) numberOfStars++;
+            if(player.getPoints() > 100) numberOfStars++;
+            if(player.getPoints() > 150) numberOfStars++;
+            stage = levelSummary.create(player.getPoints(), numberOfStars);
+            Gdx.input.setInputProcessor(stage);
         }
-        player.update(batch, delta, camera);
-       // weapon.update(batch, delta, camera);
-        //batch.end();
 
-        //totem.update(batch, delta, camera);
-
-
-        //coin.update(batch, delta, camera);
-
+        levelSummary.render();
     }
 
     @Override

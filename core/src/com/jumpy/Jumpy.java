@@ -54,7 +54,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		levelScreen = new LevelSelectScreen(this);
 
 		setMenu();*/
-		screenManager.setScreen(ScreenManager.STATE.MAIN_MENU);
+		screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
 	}
 
 	/*public void setMenu(){

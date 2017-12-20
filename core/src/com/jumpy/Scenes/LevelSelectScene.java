@@ -77,7 +77,7 @@ public class LevelSelectScene {
                 }
                 game.setCurrentLevel("1-3");
                 //game.setPlay(); //commented out during screenManager changes
-                game.screenManager.setScreen(ScreenManager.STATE.PLAY);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
                 System.out.println("Clicked 1-3!");
             }
         });

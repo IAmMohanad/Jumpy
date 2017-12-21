@@ -24,6 +24,12 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	bitSmall: {
 		file: 8bitSmall.fnt
 	}
+	blocky_black_20: {
+		file: blocky_black_20.fnt
+	}
+	blocky_white_20: {
+		file: blocky_white_20.fnt
+	}
 }
 com.badlogic.gdx.graphics.Color: {
 	RGBA_0_0_0_255: {
@@ -49,6 +55,18 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		down: green_button05
 		over: green_button05
 	}
+	blue_bubble: {
+		up: blue_button_190x85
+		down: pink_button_190x85
+		over: green_button_190x85
+		disabled: locked_button_190x85
+	}
+	blue_continue: {
+		up: next_button_blue
+	}
+	blue_replay: {
+		up: replay_button_blue
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: {
@@ -59,7 +77,7 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	blue: {
 		checkboxOn: blue_checkmark
 		checkboxOff: blue_cross
-		font: bit8Small
+		font: bit8Medium
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
@@ -78,6 +96,9 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	}
 	jumpButton24: {
 		imageUp: jumpButton24
+	}
+	test: {
+		imageUp: button_1
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
@@ -122,6 +143,12 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	small: {
 		font: bit8Small
 		fontColor: RGBA_0_0_0_255
+	}
+	blocky_white: {
+		font: blocky_white_20
+	}
+	blocky_black: {
+		font: blocky_black_20
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {

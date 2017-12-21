@@ -109,7 +109,7 @@ public class LevelOne extends GameMap {
             if(player.getPoints() > 50) numberOfStars++;
             if(player.getPoints() > 100) numberOfStars++;
             if(player.getPoints() > 150) numberOfStars++;
-            stage = levelSummary.create(player.getPoints(), numberOfStars);
+            stage = levelSummary.create(player.getPoints(), numberOfStars, 10);
             Gdx.input.setInputProcessor(stage);
         }
 

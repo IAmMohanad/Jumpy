@@ -37,27 +37,64 @@ public class LevelSummaryScene {
         //InputMultiplexer inputMultiplexer = new InputMultiplexer();
     }
 
-    public Stage create(int points, int numberOfStars){
+    public Stage create(int points, int numberOfStars, int goldEarnedAmount){
         loadSound();
-        Texture texture = new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png"));
-        Image levelClearedBackground = new Image(texture);
+        Image levelClearedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png")));
+        Image activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_top.png")));
+        Image activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
+        Image activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
+        Image square = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_21060_no_opacity.png")));
+        Image moneyBase = new Image(new Texture(Gdx.files.internal("ui/new ui/money_base.png")));
+
+
 
         Table outerTable = new Table();
         outerTable.top();
         outerTable.setFillParent(true);
 
+        Table backgroundTable = new Table();
+        backgroundTable.add(levelClearedBackground);
 
+        Table innerInfoTable = new Table();
+        innerInfoTable.top();
+        innerInfoTable.setFillParent(true);
+        innerInfoTable.row();
+        innerInfoTable.add(square).left().colspan(3);
+        innerInfoTable.row();
+        innerInfoTable.add(activeStarSideLeft).colspan(1).center().right();
+        innerInfoTable.add(activeStarTop).colspan(1).center().padBottom(30);
+        innerInfoTable.add(activeStarSideRight).colspan(1).center().left();
+        innerInfoTable.row();
 
-        Table table = new Table();
-        //table.top();
-        //table.setFillParent(true);
-        table.add(levelClearedBackground);
+        Label goldEarnedLabel = new Label("Gold:", skin, "medium");
+        Label goldEarned = new Label(String.valueOf(goldEarnedAmount), skin, "medium");
+        Image goldBox = new Image(new Texture(Gdx.files.internal("ui/new ui/money_base.png")));
+
+        Table goldBoxTable = new Table();
+        goldBoxTable.top();
+        goldBoxTable.setFillParent(true);
+        goldBoxTable.add(goldEarned).center().padTop(15);
+
+        Stack goldBoxStack = new Stack();
+        goldBoxStack.add(goldBox);
+        goldBoxStack.add(goldBoxTable);
+
+        innerInfoTable.add(goldEarnedLabel).colspan(1).right().padTop(10);
+        innerInfoTable.add(goldBoxStack).colspan(2).center();
+
         Stack stack = new Stack();
+        stack.add(backgroundTable);
+        stack.add(innerInfoTable);
 
-        stack.add(table);
+        innerInfoTable.row();
+        Button replayButton  = new Button(skin, "blue_replay");
+        innerInfoTable.add(replayButton).colspan(1).center().padTop(20);
+
+        Button continueButton  = new Button(skin, "blue_continue");
+        innerInfoTable.add(continueButton).colspan(1).center().padTop(20);
+
 
         outerTable.add(stack).center();
-
 
         stage.addActor(outerTable);
         return stage;

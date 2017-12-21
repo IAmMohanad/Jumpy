@@ -84,190 +84,265 @@ filter: Linear,Linear
 repeat: none
 8bit8Small
   rotate: false
-  xy: 1, 330
+  xy: 1, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-blue_boxCheckmark
-  rotate: false
-  xy: 1, 35
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-blue_boxCross
-  rotate: false
-  xy: 617, 707
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-blue_button05
-  rotate: false
-  xy: 1, 283
-  size: 190, 45
-  orig: 190, 45
-  offset: 0, 0
-  index: -1
-blue_panel
-  rotate: false
-  xy: 515, 695
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-blue_sliderRight
-  rotate: false
-  xy: 707, 811
-  size: 39, 31
-  orig: 39, 31
-  offset: 0, 0
-  index: -1
-green_boxCheckmark
-  rotate: false
-  xy: 103, 189
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-green_boxCross
-  rotate: false
-  xy: 153, 239
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-green_button05
-  rotate: false
-  xy: 515, 797
-  size: 190, 45
-  orig: 190, 45
-  offset: 0, 0
-  index: -1
-green_panel
-  rotate: false
-  xy: 515, 593
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-green_sliderRight
-  rotate: false
-  xy: 385, 297
-  size: 39, 31
-  orig: 39, 31
-  offset: 0, 0
-  index: -1
-grey_sliderEnd
-  rotate: false
-  xy: 707, 799
-  size: 8, 10
-  orig: 8, 10
-  offset: 0, 0
-  index: -1
-grey_sliderHorizontal
-  rotate: false
-  xy: 1, 277
-  size: 190, 4
-  orig: 190, 4
-  offset: 0, 0
-  index: -1
-settings1
-  rotate: false
-  xy: 103, 227
-  size: 48, 48
-  orig: 48, 48
-  offset: 0, 0
-  index: -1
-settings32
-  rotate: false
-  xy: 669, 763
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-touchBackground100
-  rotate: false
-  xy: 1, 175
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-touchBackgroundTransparent50
-  rotate: false
-  xy: 617, 745
-  size: 50, 50
-  orig: 50, 50
-  offset: 0, 0
-  index: -1
-touchKnob
+
+main_menu8.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blocky_black_20
   rotate: false
   xy: 1, 1
-  size: 32, 32
-  orig: 32, 32
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
-touchKnob24
+
+main_menu9.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blocky_white_20
   rotate: false
-  xy: 426, 304
-  size: 24, 24
-  orig: 24, 24
-  offset: 0, 0
-  index: -1
-yellow_boxCheckmark
-  rotate: false
-  xy: 193, 245
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-yellow_boxCross
-  rotate: false
-  xy: 515, 522
-  size: 38, 36
-  orig: 38, 36
-  offset: 0, 0
-  index: -1
-yellow_button05
-  rotate: false
-  xy: 193, 283
-  size: 190, 45
-  orig: 190, 45
-  offset: 0, 0
-  index: -1
-yellow_panel
-  rotate: false
-  xy: 1, 73
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-yellow_sliderRight
-  rotate: false
-  xy: 515, 560
-  size: 39, 31
-  orig: 39, 31
+  xy: 1, 511
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: -1
 blue_checkmark
   rotate: false
-  xy: 556, 571
+  xy: 515, 614
   size: 21, 20
   orig: 21, 20
   offset: 0, 0
   index: -1
 blue_cross
   rotate: false
-  xy: 41, 53
+  xy: 565, 667
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 jumpButton24
   rotate: false
-  xy: 748, 818
+  xy: 385, 383
   size: 24, 24
   orig: 24, 24
+  offset: 0, 0
+  index: -1
+blue_boxCheckmark
+  rotate: false
+  xy: 951, 987
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+blue_boxCross
+  rotate: false
+  xy: 1, 181
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+blue_button05
+  rotate: false
+  xy: 1, 464
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+blue_panel
+  rotate: false
+  xy: 385, 409
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+blue_sliderRight
+  rotate: false
+  xy: 707, 905
+  size: 39, 31
+  orig: 39, 31
+  offset: 0, 0
+  index: -1
+green_boxCheckmark
+  rotate: false
+  xy: 51, 231
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+green_boxCross
+  rotate: false
+  xy: 103, 283
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+green_button05
+  rotate: false
+  xy: 515, 978
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+green_panel
+  rotate: false
+  xy: 1, 269
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+green_sliderRight
+  rotate: false
+  xy: 617, 766
+  size: 39, 31
+  orig: 39, 31
+  offset: 0, 0
+  index: -1
+grey_sliderEnd
+  rotate: false
+  xy: 707, 893
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
+grey_sliderHorizontal
+  rotate: false
+  xy: 1, 458
+  size: 190, 4
+  orig: 190, 4
+  offset: 0, 0
+  index: -1
+settings1
+  rotate: false
+  xy: 1, 219
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+settings32
+  rotate: false
+  xy: 991, 991
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+touchBackground100
+  rotate: false
+  xy: 515, 789
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+touchBackgroundTransparent50
+  rotate: false
+  xy: 899, 973
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+touchKnob
+  rotate: false
+  xy: 991, 957
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+touchKnob24
+  rotate: false
+  xy: 487, 485
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+yellow_boxCheckmark
+  rotate: false
+  xy: 153, 333
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+yellow_boxCross
+  rotate: false
+  xy: 193, 339
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+yellow_button05
+  rotate: false
+  xy: 193, 464
+  size: 190, 45
+  orig: 190, 45
+  offset: 0, 0
+  index: -1
+yellow_panel
+  rotate: false
+  xy: 515, 687
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+yellow_sliderRight
+  rotate: false
+  xy: 899, 940
+  size: 39, 31
+  orig: 39, 31
+  offset: 0, 0
+  index: -1
+blue_button_190x85
+  rotate: false
+  xy: 515, 891
+  size: 190, 85
+  orig: 190, 85
+  offset: 0, 0
+  index: -1
+button_1
+  rotate: false
+  xy: 617, 799
+  size: 82, 90
+  orig: 82, 90
+  offset: 0, 0
+  index: -1
+green_button_190x85
+  rotate: false
+  xy: 707, 938
+  size: 190, 85
+  orig: 190, 85
+  offset: 0, 0
+  index: -1
+locked_button_190x85
+  rotate: false
+  xy: 1, 371
+  size: 190, 85
+  orig: 190, 85
+  offset: 0, 0
+  index: -1
+next_button_blue
+  rotate: false
+  xy: 103, 321
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+pink_button_190x85
+  rotate: false
+  xy: 193, 377
+  size: 190, 85
+  orig: 190, 85
+  offset: 0, 0
+  index: -1
+replay_button_blue
+  rotate: false
+  xy: 515, 636
+  size: 48, 49
+  orig: 48, 49
   offset: 0, 0
   index: -1

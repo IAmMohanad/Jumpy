@@ -12,10 +12,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Characters.*;
 import com.jumpy.Intersection;
+import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.Scenes.LevelSelectScene;
 import com.jumpy.Scenes.LevelSummaryScene;
+import com.jumpy.Screens.PlayScreen;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,7 @@ public class LevelOne extends GameMap {
     private OrthogonalTiledMapRenderer renderer;
     private final String mapLocation = "retro_game_map2.tmx";//"newest_map.tmx";
 
+    private Jumpy game;
     private Player player;
     private Weapon weapon;
     private Chaser chaserTwo;
@@ -40,14 +43,17 @@ public class LevelOne extends GameMap {
     private boolean firstTime = true;
 
     protected Hud hud;
+    private PlayScreen playScreen;
 
     public Bee bee;
     public Totem totem;
 
     private final String currentLevel = "1-1";
 
-    public LevelOne(Hud hud){
+    public LevelOne(Jumpy game, Hud hud, PlayScreen playScreen){
         this.hud = hud;
+        this.game = game;
+        this.playScreen = playScreen;
     }
 
     public ArrayList<Coin> getCoins(){
@@ -74,7 +80,7 @@ public class LevelOne extends GameMap {
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
-        levelSummary = new LevelSummaryScene();
+        levelSummary = new LevelSummaryScene(game, playScreen);
     }
 
     @Override
@@ -103,12 +109,13 @@ public class LevelOne extends GameMap {
     }
 
     private void createSummary(){
+        //TODO save the points / time / score in new preferences file. different preferences file for each level. One main one to check if level is done.
         if(firstTime){
             firstTime = false;
             int numberOfStars = 0;
             if(player.getPoints() > 50) numberOfStars++;
             if(player.getPoints() > 100) numberOfStars++;
-            if(player.getPoints() > 150) numberOfStars++;
+            if(player.getPoints() > 149) numberOfStars++;
             stage = levelSummary.create(player.getPoints(), numberOfStars, 10);
             Gdx.input.setInputProcessor(stage);
         }

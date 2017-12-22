@@ -24,6 +24,7 @@ public class PlayScreen implements Screen {
     //create multiplexer here, make private
     //add multiplexer to inputProcessor in show method.
 
+    private boolean reload = false;
     private Jumpy game;
 
     private OrthographicCamera camera;
@@ -53,11 +54,12 @@ public class PlayScreen implements Screen {
     }
 
     public void loadLevel(){
-        if(!loadedLevel.equals(game.getCurrentLevel())) {
+        if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
+            reload = false;
             hud = new Hud(game.batch, map);
             if(game.getCurrentLevel().equals("1-3")) {
                 this.loadedLevel = "1-3";
-                this.map = new LevelOne(hud);
+                this.map = new LevelOne(game, hud, this);
                 map.load("retro_game_map2.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
                 //TODO add pause button and pause screen / scene
@@ -71,6 +73,11 @@ public class PlayScreen implements Screen {
             inputMultiplexer.addProcessor(inputController);
             loaded = true;
         }
+    }
+
+    public void reload(){
+        reload = true;
+        loadLevel();
     }
 
     @Override
@@ -130,8 +137,8 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-        game.dispose();
-        map.dispose();
-        player.dispose();
+        //game.dispose();
+        //map.dispose();
+        //player.dispose();
     }
 }

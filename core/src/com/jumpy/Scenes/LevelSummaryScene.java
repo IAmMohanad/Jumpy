@@ -11,12 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Jumpy;
+import com.jumpy.Screens.PlayScreen;
 import com.jumpy.Screens.ScreenManager;
 
 
 public class LevelSummaryScene {
 
     private Jumpy game;
+    private PlayScreen playScreen;
 
     private Stage stage;
     private Viewport viewport;
@@ -24,8 +26,9 @@ public class LevelSummaryScene {
 
     private Sound click;
 
-    public LevelSummaryScene() {
-        //this.game = game;
+    public LevelSummaryScene(Jumpy game, PlayScreen playScreen) {
+        this.game = game;
+        this.playScreen = playScreen;
         skin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
 
         viewport = new FitViewport(Jumpy.V_WIDTH, Jumpy.V_HEIGHT, new OrthographicCamera());
@@ -40,14 +43,26 @@ public class LevelSummaryScene {
     public Stage create(int points, int numberOfStars, int goldEarnedAmount){
         loadSound();
         Image levelClearedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png")));
-        Image activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_top.png")));
-        Image activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
-        Image activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
+        Image activeStarSideLeft;
+        Image activeStarSideRight;
+        Image activeStarTop;
+        if(numberOfStars >= 1){
+            activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
+        } else{
+            activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));
+        }
+        if(numberOfStars >= 2){
+            activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
+        } else{
+            activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));
+        }
+        if(numberOfStars == 3) {
+            activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_top.png")));
+        } else {
+            activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));//inactive_star_top_base
+        }
+
         Image square = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_21060_no_opacity.png")));
-        Image moneyBase = new Image(new Texture(Gdx.files.internal("ui/new ui/money_base.png")));
-
-
-
         Table outerTable = new Table();
         outerTable.top();
         outerTable.setFillParent(true);
@@ -90,9 +105,32 @@ public class LevelSummaryScene {
         Button replayButton  = new Button(skin, "blue_replay");
         innerInfoTable.add(replayButton).colspan(1).center().padTop(20);
 
+        replayButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(!game.mute){
+                    click.play(Jumpy.volume);
+                }
+                playScreen.reload();
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
+                System.out.println("Clicked 44444444444!");
+            }
+        });
+
         Button continueButton  = new Button(skin, "blue_continue");
         innerInfoTable.add(continueButton).colspan(1).center().padTop(20);
 
+        continueButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(!game.mute){
+                    click.play(Jumpy.volume);
+                }
+                game.setCurrentLevel("0");
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
+                System.out.println("Clicked 1-3333333333333333!");
+            }
+        });
 
         outerTable.add(stack).center();
 

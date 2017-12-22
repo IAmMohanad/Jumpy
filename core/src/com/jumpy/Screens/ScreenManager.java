@@ -35,6 +35,10 @@ public class ScreenManager{
     }
 
     public void setScreen(GAME_STATE screen){
+        if(screen == GAME_STATE.PLAY){
+            diposeScreen(GAME_STATE.PLAY);
+            this.gameScreens.put(GAME_STATE.PLAY, new PlayScreen(game));
+        }
         game.setScreen(gameScreens.get(screen));
     }
 

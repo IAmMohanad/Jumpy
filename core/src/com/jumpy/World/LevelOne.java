@@ -1,6 +1,7 @@
 package com.jumpy.World;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -39,6 +40,7 @@ public class LevelOne extends GameMap {
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 
     private LevelSummaryScene levelSummary;
+    private int goldEarned = 10;
     private Stage stage;
     private boolean firstTime = true;
 
@@ -116,7 +118,7 @@ public class LevelOne extends GameMap {
             if(player.getPoints() > 50) numberOfStars++;
             if(player.getPoints() > 100) numberOfStars++;
             if(player.getPoints() > 149) numberOfStars++;
-            stage = levelSummary.create(player.getPoints(), numberOfStars, 10);
+            stage = levelSummary.create(player.getPoints(), numberOfStars, goldEarned);
             Gdx.input.setInputProcessor(stage);
         }
 

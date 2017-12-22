@@ -1,23 +1,13 @@
 package com.jumpy;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Screens.*;
-import com.jumpy.World.GameMap;
-import com.jumpy.World.LevelOne;
-import com.jumpy.World.TileType;
+
+
+import java.util.Map;
 
 public class Jumpy extends Game {//ApplicationAdapter {
 	private Preferences settings;
@@ -27,11 +17,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static final int V_HEIGHT = 270;
 
 	private String currentLevel;
-
-	public MainMenuScreen mainMenuScreen;
-	public SettingsScreen settingsScreen;
-	public PlayScreen playScreen;
-	public LevelSelectScreen levelScreen;
 
 	public SpriteBatch batch;
 
@@ -48,32 +33,29 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		screenManager = new ScreenManager(this);
 
-		/*mainMenuScreen = new MainMenuScreen(this);
-		settingsScreen = new SettingsScreen(this);
+		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+		//different preference file for upgrades and weapons
+		//userPrefs.getInteger("upgrades");
+		//userPrefs.getInteger("weapons");
 
-		levelScreen = new LevelSelectScreen(this);
+		// RESET USER PREFS
+		/*userPrefs.putInteger("goldEarned", 0);
+		userPrefs.putInteger("pointsEarned", 0);
+		userPrefs.flush();*/
 
-		setMenu();*/
+		Map userPrefsKeys = userPrefs.get();
+
+		if(userPrefsKeys.isEmpty() == true){
+			//doesnt exist, so create it
+			userPrefs.putInteger("goldEarned", 0);
+			userPrefs.putInteger("pointsEarned", 0);
+		} else{
+			//does exist, no need to do anything
+		}
+
+
 		screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
 	}
-
-	/*public void setMenu(){
-		setScreen(mainMenuScreen);
-	}*/
-
-	/*public void setSettings(){
-		setScreen(settingsScreen);
-	}*/
-
-	/*public void setPlay(){
-		SoundManager.stopBackgroundMusic();
-		playScreen = new PlayScreen(this);
-		setScreen(playScreen);
-	}*/
-
-	/*public void setLevel(){
-		setScreen(levelScreen);
-	}*/
 
 	@Override
 	public void render () {

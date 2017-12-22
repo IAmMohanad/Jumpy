@@ -1,6 +1,7 @@
 package com.jumpy.Scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,8 @@ public class LevelSummaryScene {
 
     private Sound click;
 
+    private boolean newPersonalBestPoints = false;
+
     public LevelSummaryScene(Jumpy game, PlayScreen playScreen) {
         this.game = game;
         this.playScreen = playScreen;
@@ -33,11 +36,6 @@ public class LevelSummaryScene {
 
         viewport = new FitViewport(Jumpy.V_WIDTH, Jumpy.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
-        // Make the stage consume events
-
-        //InputProcessor inputProcessorOne = new CustomInputProcessorOne();
-        //InputProcessor inputProcessorTwo = new CustomInputProcessorTwo();
-        //InputMultiplexer inputMultiplexer = new InputMultiplexer();
     }
 
     public Stage create(int points, int numberOfStars, int goldEarnedAmount){
@@ -135,7 +133,54 @@ public class LevelSummaryScene {
         outerTable.add(stack).center();
 
         stage.addActor(outerTable);
+
+        saveLevelDetails(numberOfStars, goldEarnedAmount, points);
+
         return stage;
+    }
+
+    //check if prefs exists
+    /*Preferences tmprefs = Gdx.app.getPreferences ( prefname );
+
+    Map tmpmap = tmprefs.get();
+
+      if ( tmpmap.isEmpty() == true )
+              return false;
+      else
+              return true;*/
+    private void saveLevelDetails(int numberOfStars, int goldEarned, int points){
+        Preferences levelPrefs = Gdx.app.getPreferences("1-3");
+        Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+
+        levelPrefs.putBoolean("completed", true);
+
+        //save total gold/points earned by user
+        int userGoldEarned = userPrefs.getInteger("goldEarned");
+        int userPointsEarned = userPrefs.getInteger("pointsEarned");
+        userPrefs.putInteger("goldEarned", userGoldEarned + goldEarned);
+        userPrefs.putInteger("pointsEarned", userPointsEarned + points);
+
+        //current values
+        int currentNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
+        int currentGoldEarned = levelPrefs.getInteger("goldEarned", 0);
+        int currentPointsEarned = levelPrefs.getInteger("pointsEarned", 0);
+
+        if(numberOfStars > currentNumberOfStars){
+            levelPrefs.putInteger("numberOfStars", numberOfStars);
+        }
+        if(goldEarned > currentGoldEarned){
+            levelPrefs.putInteger("goldEarned", goldEarned);
+        }
+        if(points > currentPointsEarned){
+            levelPrefs.putInteger("pointsEarned", points);
+            newPersonalBestPoints = true;
+        }
+
+        //userPrefs.putInteger("goldEarned", 0);
+		//userPrefs.putInteger("pointsEarned", 0);
+
+        userPrefs.flush();
+        levelPrefs.flush();
     }
 
     public void loadSound(){

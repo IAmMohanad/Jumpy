@@ -8,8 +8,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.jumpy.Characters.Enemy;
+import com.jumpy.Characters.Player;
 import com.jumpy.Intersection;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Scenes.Hud;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +20,8 @@ import java.util.List;
 
 public abstract class GameMap {
     protected ShapeRenderer shapeRenderer = new ShapeRenderer();
+
+    protected Hud hud;
 
     //public int[] tiles = new int[25 * 15];
     public abstract void load(String location);
@@ -150,6 +154,10 @@ public abstract class GameMap {
         return false;
     }
 
+    public void setHud(Hud hud){
+        this.hud = hud;
+    }
+
     /*private boolean equals(Vector2 v1, Vector2 v2){
         //if(!(object instanceof Vector2)) return false;
         //Vector2 vec = (Vector2) object;
@@ -167,4 +175,5 @@ public abstract class GameMap {
 
     public abstract ArrayList<Coin> getCoins();
     public abstract ArrayList<Enemy> getEnemies();
+    public abstract Player getPlayer();
 }

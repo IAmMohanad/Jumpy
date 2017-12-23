@@ -38,8 +38,14 @@ public class LevelSummaryScene {
         stage = new Stage(viewport);
     }
 
+    public int getHighScore(){
+        Preferences levelPrefs = Gdx.app.getPreferences("1-3");
+        return levelPrefs.getInteger("pointsEarned", 0);
+    }
+
     public Stage create(int points, int numberOfStars, int goldEarnedAmount){
         loadSound();
+        saveLevelDetails(numberOfStars, goldEarnedAmount, points);
         Image levelClearedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png")));
         Image activeStarSideLeft;
         Image activeStarSideRight;
@@ -74,26 +80,39 @@ public class LevelSummaryScene {
         innerInfoTable.row();
         innerInfoTable.add(square).left().colspan(3);
         innerInfoTable.row();
-        innerInfoTable.add(activeStarSideLeft).colspan(1).center().right();
-        innerInfoTable.add(activeStarTop).colspan(1).center().padBottom(30);
-        innerInfoTable.add(activeStarSideRight).colspan(1).center().left();
+        innerInfoTable.add(activeStarSideLeft).colspan(1).center().right().padRight(10);
+        innerInfoTable.add(activeStarTop).colspan(1).center().padBottom(30).padRight(10);
+        innerInfoTable.add(activeStarSideRight).colspan(1).center().left().padRight(10);
         innerInfoTable.row();
 
         Label goldEarnedLabel = new Label("Gold:", skin, "medium");
         Label goldEarned = new Label(String.valueOf(goldEarnedAmount), skin, "medium");
         Image goldBox = new Image(new Texture(Gdx.files.internal("ui/new ui/money_base.png")));
 
-        Table goldBoxTable = new Table();
-        goldBoxTable.top();
-        goldBoxTable.setFillParent(true);
-        goldBoxTable.add(goldEarned).center().padTop(15);
+        if(newPersonalBestPoints){
+            Label newPersonalBestLabel = new Label("New High Score!", skin, "small");
+            innerInfoTable.add(newPersonalBestLabel).colspan(3).center();
+            innerInfoTable.row();
 
-        Stack goldBoxStack = new Stack();
-        goldBoxStack.add(goldBox);
-        goldBoxStack.add(goldBoxTable);
+            Label newPersonalBestValue = new Label(String.valueOf(getHighScore()), skin, "small");
+            innerInfoTable.add(newPersonalBestValue).colspan(3).center().padTop(10);
+            innerInfoTable.row();
+            //TODO add new ranking here
+            //TODO think about changing the layout so that gold earned isnt shown, only the current score, and best score. gold earned can be seen in-game + in shop
+            //TODO check mobile game GUI asset file for magnet, shield and multiplier upgrade assets.
+        } else{
+            Table goldBoxTable = new Table();
+            goldBoxTable.top();
+            goldBoxTable.setFillParent(true);
+            goldBoxTable.add(goldEarned).center().padTop(15);
 
-        innerInfoTable.add(goldEarnedLabel).colspan(1).right().padTop(10);
-        innerInfoTable.add(goldBoxStack).colspan(2).center();
+            Stack goldBoxStack = new Stack();
+            goldBoxStack.add(goldBox);
+            goldBoxStack.add(goldBoxTable);
+
+            innerInfoTable.add(goldEarnedLabel).colspan(1).right().padTop(10);
+            innerInfoTable.add(goldBoxStack).colspan(2).center();
+        }
 
         Stack stack = new Stack();
         stack.add(backgroundTable);
@@ -134,8 +153,6 @@ public class LevelSummaryScene {
 
         stage.addActor(outerTable);
 
-        saveLevelDetails(numberOfStars, goldEarnedAmount, points);
-
         return stage;
     }
 
@@ -157,21 +174,21 @@ public class LevelSummaryScene {
         //save total gold/points earned by user
         int userGoldEarned = userPrefs.getInteger("goldEarned");
         int userPointsEarned = userPrefs.getInteger("pointsEarned");
-        userPrefs.putInteger("goldEarned", userGoldEarned + goldEarned);
-        userPrefs.putInteger("pointsEarned", userPointsEarned + points);
+        userPrefs.putInteger("lifetimeGoldEarned", userGoldEarned + goldEarned);
+        userPrefs.putInteger("lifeTimepointsEarned", userPointsEarned + points);
 
         //current values
-        int currentNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
-        int currentGoldEarned = levelPrefs.getInteger("goldEarned", 0);
-        int currentPointsEarned = levelPrefs.getInteger("pointsEarned", 0);
+        int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
+        int highestGoldEarned = levelPrefs.getInteger("goldEarned", 0);
+        int highestPointsEarned = levelPrefs.getInteger("pointsEarned", 0);
 
-        if(numberOfStars > currentNumberOfStars){
+        if(numberOfStars > highestNumberOfStars){
             levelPrefs.putInteger("numberOfStars", numberOfStars);
         }
-        if(goldEarned > currentGoldEarned){
+        if(goldEarned > highestGoldEarned){
             levelPrefs.putInteger("goldEarned", goldEarned);
         }
-        if(points > currentPointsEarned){
+        if(points > highestPointsEarned){
             levelPrefs.putInteger("pointsEarned", points);
             newPersonalBestPoints = true;
         }

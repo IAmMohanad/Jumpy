@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class Player extends DynamicObject {
 
+    private int coinsCollected;
     private int points;
     private Hud hud;
     public static boolean left;
@@ -74,6 +75,7 @@ public class Player extends DynamicObject {
         dead = false;
         this.weapon = weapon;
         points = 0;
+        coinsCollected = 0;
 
         create();
     }
@@ -225,16 +227,13 @@ public class Player extends DynamicObject {
                 deleteMe = false;
             }
 
-            //System.out.println(velocityY +"   "+grounded);
             //update animation
             if (grounded) {
                 currentFrame = idleAnimation.getKeyFrame(stateTime, true);
                 if (right) {
                     currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-                    //flip = false;
                 } else if (left) {
                     currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-                    //flip = true;
                 }
             } else {
                 if(firstJump && doubleJump){
@@ -259,6 +258,7 @@ public class Player extends DynamicObject {
 
             for(Coin coin : map.getCoins()){
                 if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
+                    addCoin(1);
                     addScore(50);
                     //hud.addScore(50);
                     coin.die();
@@ -273,7 +273,6 @@ public class Player extends DynamicObject {
                     this.die();
                 }
             }
-
 
             //update position v2
             if(!down) {
@@ -319,7 +318,6 @@ public class Player extends DynamicObject {
 
         boundingBox.setPosition(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET);
         updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
-        //this.render(batch, delta, currentFrame);
         batch.begin();
 
         if(!deathComplete){
@@ -328,6 +326,15 @@ public class Player extends DynamicObject {
         batch.end();
 
     }
+
+    private void addCoin(int c){
+        coinsCollected++;
+    }
+
+    public int getCoinsCollected(){
+        return coinsCollected;
+    }
+
 
     private void addScore(int score){
         points += score;

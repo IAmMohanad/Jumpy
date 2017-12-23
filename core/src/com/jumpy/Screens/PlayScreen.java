@@ -56,10 +56,9 @@ public class PlayScreen implements Screen {
     public void loadLevel(){
         if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
             reload = false;
-            hud = new Hud(game.batch, map);
             if(game.getCurrentLevel().equals("1-3")) {
                 this.loadedLevel = "1-3";
-                this.map = new LevelOne(game, hud, this);
+                this.map = new LevelOne(game,/* hud,*/ this);
                 map.load("retro_game_map2.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
                 //TODO add pause button and pause screen / scene
@@ -68,7 +67,9 @@ public class PlayScreen implements Screen {
                 preferably should be stacked on top of  playScreen - change delta to 0?
                  */
             }
+            hud = new Hud(game.batch, map);
             hudStage = hud.getStage();
+            map.setHud(hud);
             inputMultiplexer.addProcessor(hudStage);
             inputMultiplexer.addProcessor(inputController);
             loaded = true;

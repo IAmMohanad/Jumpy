@@ -40,11 +40,10 @@ public class LevelOne extends GameMap {
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 
     private LevelSummaryScene levelSummary;
-    private int goldEarned = 10;
+    private int goldEarned = 0;
     private Stage stage;
     private boolean firstTime = true;
 
-    protected Hud hud;
     private PlayScreen playScreen;
 
     public Bee bee;
@@ -52,10 +51,14 @@ public class LevelOne extends GameMap {
 
     private final String currentLevel = "1-1";
 
-    public LevelOne(Jumpy game, Hud hud, PlayScreen playScreen){
-        this.hud = hud;
+    public LevelOne(Jumpy game, /*Hud hud,*/ PlayScreen playScreen){
+        //this.hud = hud;
         this.game = game;
         this.playScreen = playScreen;
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public ArrayList<Coin> getCoins(){
@@ -64,10 +67,11 @@ public class LevelOne extends GameMap {
 
     public ArrayList<Enemy> getEnemies() { return this.enemiesList; }
 
+
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
-        player = new Player("boomerang", this, hud, 32, 64);//, 1, 100);
+        player = new Player("boomerang", this, hud, 32, 64);
         //weapon = new Boomerang(this, 50, 125);
 
         chaserTwo = new Chaser(this, player,200,100, 16, 16);
@@ -91,8 +95,9 @@ public class LevelOne extends GameMap {
         renderer.render();
 
         if(!player.isDeathComplete()){
-           // hud.render();
-            hud.setScore(player.getPoints());
+            //hud.setScore(player.getPoints());
+            hud.setLife(player.getHealth());
+            hud.setCoinsCollected(player.getCoinsCollected());
             chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
                 coin.update(batch, delta, camera);
@@ -118,7 +123,7 @@ public class LevelOne extends GameMap {
             if(player.getPoints() > 50) numberOfStars++;
             if(player.getPoints() > 100) numberOfStars++;
             if(player.getPoints() > 149) numberOfStars++;
-            stage = levelSummary.create(player.getPoints(), numberOfStars, goldEarned);
+            stage = levelSummary.create(player.getPoints(), numberOfStars, player.getCoinsCollected());
             Gdx.input.setInputProcessor(stage);
         }
 

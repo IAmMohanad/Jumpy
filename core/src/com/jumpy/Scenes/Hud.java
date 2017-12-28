@@ -6,6 +6,8 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -45,23 +47,42 @@ public class Hud{
     private Label currentLife;
     private Label coinsCollectedLabel;
     private Image dollarSign;
+    private Label clockLabel;
+    private Image pauseButton;
+
+    private PlayScreen playScreen;
+
+    private Group pauseGroup;
+    private boolean isPause = false;
 
     Skin skin;
 
-    private void updateClock(){
-        timeCounter += Gdx.graphics.getDeltaTime();
+    private Stack pausedStack;
+
+    private void updateClock(float delta){
+        if(delta == 0){
+            System.out.println("here");
+        }
+        timeCounter += delta; //Gdx.graphics.getDeltaTime();
         if(timeCounter >= 1f){
             timeCounter -= 1;
             clock -= 1;
+            clockLabel.setText(String.format("%ds", clock));
         }
+
+    }
+
+    public boolean isGamePaused(){
+        return playScreen.isGamePaused();
     }
 
     public int getClockTime(){
         return clock;
     }
 
-    public Hud(SpriteBatch batch, GameMap level){
+    public Hud(SpriteBatch batch, GameMap level, final PlayScreen playScreen){
         //this.player = level.getPlayer();
+        this.playScreen = playScreen;
         clock = CLOCK_START_VALUE;
 
         settings = Gdx.app.getPreferences("settings");
@@ -81,9 +102,17 @@ public class Hud{
         viewport = new FitViewport(Jumpy.V_WIDTH, Jumpy.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
+        Table outerTable = new Table();
+        Stack outerStack = new Stack();
+
         Table table = new Table();
         table.top().left();//set table position to top of stage
         table.setFillParent(true);//table is size of stage
+
+
+        Table topRowTable = new Table();
+        topRowTable.bottom().left();
+        topRowTable.setFillParent(true);
 
         //create heart with current life inside it
         life = new Stack();
@@ -94,24 +123,49 @@ public class Hud{
         currentLife = new Label(String.valueOf("1"), skin, "small");
         healthAmountTable.add(currentLife).center().padTop(12);
         life.add(healthAmountTable);
-        table.add(life).colspan(1).left().padTop(10).padLeft(5);
+        topRowTable.add(life).colspan(1).left().padTop(5).padLeft(5).padRight(15);
 
+        //create gold earned counter
+        Table coinsCollectedTable = new Table();
         dollarSign = new Image(new Texture(Gdx.files.internal("ui/new ui/dollar_sign.png")));
-        table.add(dollarSign).colspan(1).padTop(10).left();
+        coinsCollectedTable.add(dollarSign).expandX().left();
         coinsCollectedLabel = new Label("0", skin, "small");
-        table.add(coinsCollectedLabel).colspan(1).left().padTop(20).padLeft(5);
+        coinsCollectedTable.add(coinsCollectedLabel).expandX().left().padTop(10);
+        topRowTable.add(coinsCollectedTable).colspan(1).left().padLeft(15).padRight(15);
         //scoreLabel = new Label(String.format("%06d", score), skin, "small");//%06d
         //table.add(scoreLabel).colspan(1).left().padTop(20).padLeft(5);//.expandX().left().padTop(20).padLeft(5);
+        //clock label
+        clockLabel = new Label(String.format("%ds", clock), skin, "small");
+        topRowTable.add(clockLabel).colspan(1).left().padTop(10).padLeft(15);
+
+        //pause button
+        pauseButton = new Image(new Texture("ui/new ui/pause_button_16.png"));
+        pauseButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(!isPause){
+                    //playScreen.pauseGame();
+                    pauseGame();
+                } else{
+                    //playScreen.resumeGame();
+                    resumeGame();
+                }
+
+            }
+        });
+        topRowTable.add(pauseButton).expandX().right().padRight(30);
+
+        table.add(topRowTable).expandX().left();
 
         //touch pad
         if(isTouchPad && android){
             touchpad = new Touchpad(10, skin, "touchPad3");
             table.row();
-            table.add(touchpad).expandY().bottom().left().padLeft(35).padBottom(35);
+            table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
 
             //jump button
             ImageButton jumpButton = new ImageButton(skin, "jumpButton24");
-            table.add(jumpButton).expandY().bottom().right().padBottom(45).padRight(20);
+            table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
 
             jumpButton.addListener(new ClickListener(){
                 @Override
@@ -122,6 +176,81 @@ public class Hud{
         }
 
         stage.addActor(table);
+    }
+
+    public void pauseGame(){
+        playScreen.pauseGame();
+        isPause = true;
+        //pauseGroup =  new Group();
+
+       /* Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background_102x143.png")));
+        Image restartSmallButton = new Image(new Texture(Gdx.files.internal("ui/new ui/blue_button_restart_46x21.png")));
+        Table pausedTable = new Table();
+        pausedTable.add(restartSmallButton).expandX().center();
+        pausedStack.add(levelPausedBackground);
+        pausedStack.add(pausedTable);*/
+
+/*
+        Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background.png")));
+        Image invisibleSquare = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_paused_screen.png")));
+        Image muteButton;
+        Image resumeButton;
+        Image restartButton;
+        Image exitButton;
+
+        Table outerTable = new Table();
+        outerTable.setFillParent(true);
+        outerTable.top();
+
+        //add backgrounds
+        Table backgroundTable = new Table();
+        backgroundTable.add(levelPausedBackground);
+
+        //add buttons
+        Table innerInfoTable = new Table();
+        innerInfoTable.top();
+        innerInfoTable.setFillParent(true);
+        innerInfoTable.row();
+        innerInfoTable.add(invisibleSquare).left().colspan(3);
+
+        innerInfoTable.row();
+        if(Jumpy.mute){
+            muteButton = new Image(new Texture("ui/new ui/volume_off_32x32.png"));
+        } else{
+            muteButton = new Image(new Texture("ui/new ui/volume_on_32x32.png"));
+        }
+        innerInfoTable.add(muteButton).expandX().left().padTop(20);
+        innerInfoTable.row();
+
+        resumeButton = new Image(new Texture("ui/new ui/blue_button_resume_92x42.png"));
+        innerInfoTable.add(resumeButton).expandX().center().padTop(20);
+        resumeButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                resumeGame();
+            }
+        });
+
+        Stack stack = new Stack();
+        stack.add(backgroundTable);
+        stack.add(innerInfoTable);
+
+
+        outerTable.add(stack).center();
+        //pauseGroup.addActor(outerTable);
+        //pauseGroup.addActor(stack);
+
+        stage.addActor(pauseGroup);*/
+    }
+
+    public void resumeGame(){
+        if(isPause){
+            playScreen.resumeGame();
+            isPause = false;
+         /*   pausedStack.removeActor(pausedTable);
+            pausedStack.removeActor(levelPausedBackground);
+            pauseGroup.remove();*/
+        }
     }
 
     private void getPhoneInput(){
@@ -159,12 +288,16 @@ public class Hud{
         }
     }
 
-    public void render(){
+    public void render(float delta){
         //scoreLabel.setText(String.format("%06d", score));
         stage.act();
         stage.draw();
-        updateClock();
+        updateClock(delta);
         getPhoneInput();
+    }
+
+    public void addToStage(Actor actor){
+        stage.addActor(actor);
     }
 
     public Stage getStage(){

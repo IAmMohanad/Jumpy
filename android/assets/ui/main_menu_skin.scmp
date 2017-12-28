@@ -548,6 +548,45 @@ atlasData: {
 			tintName: null
 			name: replay_button_blue
 		}
+		{
+			file: C:/Users/Seif/Desktop/vertical-scroll-bar.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: vertical-scroll-bar
+		}
+		{
+			file: C:/Users/Seif/Desktop/vertical-scroll-knob.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: vertical-scroll-knob
+		}
+		{
+			file: C:/Users/Seif/Desktop/window.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: window
+		}
 	]
 }
 jsonData: {
@@ -3377,7 +3416,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: background
 						optional: true
-						value: null
+						value: window
 					}
 					corner: {
 						class: com.ray3k.skincomposer.data.StyleProperty
@@ -3405,14 +3444,14 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: vScroll
 						optional: true
-						value: null
+						value: vertical-scroll-bar
 					}
 					vScrollKnob: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: vScrollKnob
 						optional: true
-						value: null
+						value: vertical-scroll-knob
 					}
 				}
 				deletable: false

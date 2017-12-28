@@ -1,7 +1,6 @@
 package com.jumpy.World;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -12,12 +11,10 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Characters.*;
-import com.jumpy.Intersection;
 import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
-import com.jumpy.Scenes.Hud;
-import com.jumpy.Scenes.LevelSelectScene;
 import com.jumpy.Scenes.LevelSummaryScene;
+import com.jumpy.Scenes.PauseScene;
 import com.jumpy.Screens.PlayScreen;
 
 import java.util.ArrayList;
@@ -40,6 +37,7 @@ public class LevelOne extends GameMap {
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 
     private LevelSummaryScene levelSummary;
+    private PauseScene pauseScene;
     private int goldEarned = 0;
     private Stage stage;
     private boolean firstTime = true;
@@ -71,7 +69,7 @@ public class LevelOne extends GameMap {
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
-        player = new Player("boomerang", this, hud, 32, 64);
+        player = new Player("boomerang", this, hud, 32, 64, playScreen);
         //weapon = new Boomerang(this, 50, 125);
 
         chaserTwo = new Chaser(this, player,200,100, 16, 16);
@@ -81,8 +79,8 @@ public class LevelOne extends GameMap {
         coinList.add(new Coin(this, 240, 100));
         coinList.add(new Coin(this, 360, 120));
         //bee = new Bee(this, 400, 100);
-        enemiesList.add(new Totem(this, 400, 150));
-        enemiesList.add(new Totem(this, 100, 100));
+       // enemiesList.add(new Totem(this, 400, 150));
+       // enemiesList.add(new Totem(this, 100, 100));
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
@@ -110,7 +108,6 @@ public class LevelOne extends GameMap {
         } else{//level summary screen
             createSummary();
 
-
             System.out.println("finito");
         }
     }
@@ -129,6 +126,8 @@ public class LevelOne extends GameMap {
 
         levelSummary.render();
     }
+
+
 
     @Override
     public void dispose(){

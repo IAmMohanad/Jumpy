@@ -13,6 +13,7 @@ import com.jumpy.Intersection;
 import com.jumpy.Move;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Scenes.Hud;
+import com.jumpy.Screens.PlayScreen;
 import com.jumpy.World.GameMap;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Player extends DynamicObject {
     private int coinsCollected;
     private int points;
     private Hud hud;
+    private PlayScreen playScreen;
     public static boolean left;
     public static boolean right;
     public static boolean up;
@@ -58,7 +60,8 @@ public class Player extends DynamicObject {
 
     private boolean deleteMe = true; //just used to force only one shot to be created. delete after demo.
 
-    public Player(String weapon, GameMap map, Hud h, float x, float y){
+    public Player(String weapon, GameMap map, Hud h, float x, float y, PlayScreen playScreen){
+        this.playScreen = playScreen;
         this.hud = h;
         super.health = 1;
         super.width = 32;
@@ -81,7 +84,7 @@ public class Player extends DynamicObject {
     }
 
     public Player(GameMap map, Hud h, float x, float y){
-        this(null, map, h, x, y);
+        this(null, map, h, x, y, null);
     }
 
     public void weaponShot(){
@@ -215,100 +218,103 @@ public class Player extends DynamicObject {
             }
         }
 
-        if(!dead){
-            if (right) {
-                flip = false;
-            } else if (left) {
-                flip = true;
-            }
-
-            if(deleteMe){
-                weaponShot();
-                deleteMe = false;
-            }
-
-            //update animation
-            if (grounded) {
-                currentFrame = idleAnimation.getKeyFrame(stateTime, true);
+        if(!playScreen.isGamePaused()){
+            if(!dead){
                 if (right) {
-                    currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+                    flip = false;
                 } else if (left) {
-                    currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+                    flip = true;
                 }
-            } else {
-                if(firstJump && doubleJump){
-                    if(!spinJumpAnimation.isAnimationFinished(stateTime)){
-                        currentFrame = spinJumpAnimation.getKeyFrame(stateTime, false);
+
+                if(deleteMe){
+                    weaponShot();
+                    deleteMe = false;
+                }
+
+                //update animation
+                if (grounded) {
+                    currentFrame = idleAnimation.getKeyFrame(stateTime, true);
+                    if (right) {
+                        currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+                    } else if (left) {
+                        currentFrame = walkAnimation.getKeyFrame(stateTime, true);
                     }
-                } else{
+                } else {
+                    if(firstJump && doubleJump){
+                        if(!spinJumpAnimation.isAnimationFinished(stateTime)){
+                            currentFrame = spinJumpAnimation.getKeyFrame(stateTime, false);
+                        }
+                    } else{
+                        currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
+                    }
+                }
+
+                if (down) {
+                    currentFrame = downAnimation.getKeyFrame(stateTime, true);
+                } else if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
                     currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
                 }
-            }
-
-            if (down) {
-                currentFrame = downAnimation.getKeyFrame(stateTime, true);
-            } else if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
-                currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
-            }
 
             /*if(walkAnimation.isAnimationFinished(stateTime)){
                 stateTime = 0f;
             }
             System.out.println(walkAnimation.isAnimationFinished(stateTime));*/
 
-            for(Coin coin : map.getCoins()){
-                if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
-                    addCoin(1);
-                    addScore(50);
-                    //hud.addScore(50);
-                    coin.die();
-                    //this.die(delta);
-                }
-            }
-
-            for(Enemy e : map.getEnemies()){
-                if(this.getBoundingBox().overlaps(e.getBoundingBox()) && this.isAlive() && e.isAlive()){
-                    //Intersection result = intersectsAt(camera, this.getBoundingBox(), e.getBoundingBox());
-                    //System.out.println(result);
-                    this.die();
-                }
-            }
-
-            //update position v2
-            if(!down) {
-                if (up) {
-                    if(timeSinceLastJump > 0.1){
-                        timeSinceLastJump = 0;
-                        jump();
-                        up = false;
-                    }
-
-                }
-                if (right) {
-                    float newX = boundingBox.x + movementSpeed * delta;
-                    if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                        moveRight(delta);
-                        //right = false;
-                    }
-                } else if (left) {
-                    float newX = boundingBox.x - movementSpeed * delta;
-                    if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                        moveLeft(delta);
-                        //left = false;
+                for(Coin coin : map.getCoins()){
+                    if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
+                        addCoin(1);
+                        addScore(50);
+                        //hud.addScore(50);
+                        coin.die();
+                        //this.die(delta);
                     }
                 }
-            }
-        } else{
-            //if(!dead) die(delta);
 
-            currentFrame = deathAnimation.getKeyFrame(stateTime, true);
-            System.out.println("finito3");
-            //velocityY += JUMP_VELOCITY;
-            if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
-                System.out.println("finito1111111111111111111111111");
-                deathComplete = true;
+                for(Enemy e : map.getEnemies()){
+                    if(this.getBoundingBox().overlaps(e.getBoundingBox()) && this.isAlive() && e.isAlive()){
+                        //Intersection result = intersectsAt(camera, this.getBoundingBox(), e.getBoundingBox());
+                        //System.out.println(result);
+                        this.die();
+                    }
+                }
+
+                //update position v2
+                if(!down) {
+                    if (up) {
+                        if(timeSinceLastJump > 0.1){
+                            timeSinceLastJump = 0;
+                            jump();
+                            up = false;
+                        }
+
+                    }
+                    if (right) {
+                        float newX = boundingBox.x + movementSpeed * delta;
+                        if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
+                            moveRight(delta);
+                            //right = false;
+                        }
+                    } else if (left) {
+                        float newX = boundingBox.x - movementSpeed * delta;
+                        if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
+                            moveLeft(delta);
+                            //left = false;
+                        }
+                    }
+                }
+            } else{
+                //if(!dead) die(delta);
+
+                currentFrame = deathAnimation.getKeyFrame(stateTime, true);
+                System.out.println("finito3");
+                //velocityY += JUMP_VELOCITY;
+                if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
+                    System.out.println("finito1111111111111111111111111");
+                    deathComplete = true;
+                }
             }
         }
+
 
         if(Gdx.app.getType() == Application.ApplicationType.Android ){
             right = false;
@@ -335,7 +341,6 @@ public class Player extends DynamicObject {
         return coinsCollected;
     }
 
-
     private void addScore(int score){
         points += score;
     }
@@ -349,14 +354,6 @@ public class Player extends DynamicObject {
 
     public int getPoints(){
         return this.points;
-    }
-
-    public boolean overlaps(Rectangle boundingBox){
-        if(this.boundingBox.overlaps(boundingBox)){
-            return true;
-        } else{
-            return false;
-        }
     }
 
     @Override

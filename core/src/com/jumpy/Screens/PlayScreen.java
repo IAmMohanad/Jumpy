@@ -5,8 +5,15 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Jumpy;
@@ -38,6 +45,10 @@ public class PlayScreen implements Screen {
 
     private boolean loaded;
 
+
+    private boolean isPause = false;
+    private Group pauseGroup;
+
     public PlayScreen(Jumpy game){
         this.game = game;
 
@@ -67,7 +78,7 @@ public class PlayScreen implements Screen {
                 preferably should be stacked on top of  playScreen - change delta to 0?
                  */
             }
-            hud = new Hud(game.batch, map);
+            hud = new Hud(game.batch, map, this);
             hudStage = hud.getStage();
             map.setHud(hud);
             inputMultiplexer.addProcessor(hudStage);
@@ -94,7 +105,15 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(camera.combined);
 
-        map.render(camera, game.batch, Gdx.graphics.getDeltaTime());
+        if(isGamePaused()){
+            delta = 0f;
+        }
+
+        map.render(camera, game.batch, delta);
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.render(delta);
+        map.cameraStop(camera);
+
 
         /*if(Gdx.input.isTouched()){
             camera.translate(Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
@@ -108,12 +127,6 @@ public class PlayScreen implements Screen {
                 System.out.println(tile.getId()+"  "+ tile.getName()+"  "+tile.isCollidable());
             }
         }*/
-
-
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.render();
-        map.cameraStop(camera);
-
     }
 
     @Override
@@ -141,5 +154,71 @@ public class PlayScreen implements Screen {
         //game.dispose();
         //map.dispose();
         //player.dispose();
+    }
+
+    public boolean isGamePaused(){
+        return isPause;
+    }
+
+    public void pauseGame(){
+        isPause = true;
+        /*pauseGroup =  new Group();
+
+        Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background.png")));
+        Image invisibleSquare = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_paused_screen.png")));
+        Image muteButton;
+        Image resumeButton;
+        Image restartButton;
+        Image exitButton;
+
+        Table outerTable = new Table();
+        outerTable.top();
+        outerTable.setFillParent(true);
+
+        //add backgrounds
+        Table backgroundTable = new Table();
+        backgroundTable.add(levelPausedBackground);
+
+        //add buttons
+        Table innerInfoTable = new Table();
+        innerInfoTable.top();
+        innerInfoTable.setFillParent(true);
+        innerInfoTable.row();
+        innerInfoTable.add(invisibleSquare).left().colspan(3);
+
+        innerInfoTable.row();
+        if(Jumpy.mute){
+            muteButton = new Image(new Texture("ui/new ui/volume_off_32x32.png"));
+        } else{
+            muteButton = new Image(new Texture("ui/new ui/volume_on_32x32.png"));
+        }
+        innerInfoTable.add(muteButton).expandX().left().padTop(20);
+        innerInfoTable.row();
+
+        resumeButton = new Image(new Texture("ui/new ui/blue_button_resume_92x42.png"));
+        innerInfoTable.add(resumeButton).expandX().center().padTop(20);
+        resumeButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                resumeGame();
+            }
+        });
+
+        Stack stack = new Stack();
+        stack.add(backgroundTable);
+        stack.add(innerInfoTable);
+
+
+        outerTable.add(stack).center();
+        pauseGroup.addActor(outerTable);
+
+        hud.stage.addActor(pauseGroup);*/
+    }
+
+    public void resumeGame(){
+        if(isPause){
+            isPause = false;
+           // pauseGroup.remove();
+        }
     }
 }

@@ -30,6 +30,12 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	blocky_white_20: {
 		file: blocky_white_20.fnt
 	}
+	skin-font-big-export: {
+		file: skin-font-big-export.fnt
+	}
+	skin-font-export: {
+		file: skin-font-export.fnt
+	}
 }
 com.badlogic.gdx.graphics.Color: {
 	RGBA_0_0_0_255: {
@@ -40,10 +46,9 @@ com.badlogic.gdx.graphics.Color: {
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
-	yellow: {
-		up: yellow_button05
-		down: yellow_button05
-		over: yellow_button05
+	default: {
+		up: button-small
+		down: button-small-down
 	}
 	blue: {
 		up: blue_button05
@@ -55,17 +60,19 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		down: green_button05
 		over: green_button05
 	}
-	blue_bubble: {
-		up: blue_button_190x85
-		down: pink_button_190x85
-		over: green_button_190x85
-		disabled: locked_button_190x85
-	}
 	blue_continue: {
 		up: next_button_blue
 	}
 	blue_replay: {
 		up: replay_button_blue
+	}
+	skin-blue: {
+		up: button-small
+		down: button-small-down
+	}
+	skin-blue-big: {
+		up: button
+		down: button-down
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
@@ -81,13 +88,6 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
-	default: {
-		imageUp: blue_sliderRight
-		imageDown: blue_sliderRight
-		imageOver: blue_sliderRight
-		imageChecked: blue_sliderRight
-		imageCheckedOver: blue_sliderRight
-	}
 	settings32: {
 		imageUp: settings32
 	}
@@ -103,26 +103,14 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {
-		imageUp: blue_sliderRight
-		imageDown: blue_sliderRight
-		imageOver: blue_sliderRight
-		imageChecked: blue_sliderRight
 		font: bit8Medium
 		fontColor: RGBA_0_0_0_255
 	}
 	blue-start: {
-		imageUp: blue_sliderRight
-		imageDown: green_sliderRight
-		imageOver: green_sliderRight
 		font: bit8Large
 		fontColor: RGBA_0_0_0_255
 	}
 	yellow-start: {
-		imageUp: blue_sliderRight
-		imageDown: blue_sliderRight
-		imageOver: blue_sliderRight
-		imageChecked: blue_sliderRight
-		imageCheckedOver: blue_sliderRight
 		font: bit8Large
 		fontColor: RGBA_0_0_0_255
 	}
@@ -151,10 +139,28 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		font: blocky_black_20
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+	default-horizontal: {
+		background: progress-bar
+		knob: progress-bar-knob
+		knobBefore: progress-bar-knob
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		background: window
+		vScroll: vertical-scroll-bar
+		vScrollKnob: vertical-scroll-knob
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default-horizontal: {
 		background: grey_sliderHorizontal
 		knob: grey_sliderEnd
+	}
+	horizontal-blue: {
+		background: slider
+		knob: slider-knob
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
@@ -170,7 +176,6 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	yellow: {
 		font: bit8Large
 		fontColor: RGBA_0_0_0_255
-		up: yellow_button05
 	}
 	green: {
 		font: bit8Large
@@ -183,6 +188,13 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		up: blue_button05
 		down: green_button05
 		over: green_button05
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: {
+		font: skin-font-export
+		fontColor: RGBA_0_0_0_255
+		background: textfield
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
@@ -202,7 +214,8 @@ com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
 	default: {
-		titleFont: bit-regular
+		background: window
+		titleFont: skin-font-export
 		titleFontColor: RGBA_0_0_0_255
 	}
 }

@@ -56,7 +56,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		Map userPrefsKeys = userPrefs.get();
 
 		if(userPrefsKeys.isEmpty() == true){
-			//doesnt exist, so create it
+			//doesn't exist, so create it
 			userPrefs.putInteger("goldEarned", 0);
 			userPrefs.putInteger("pointsEarned", 0);
 		} else{

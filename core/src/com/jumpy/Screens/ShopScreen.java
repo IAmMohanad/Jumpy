@@ -51,6 +51,6 @@ public class ShopScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

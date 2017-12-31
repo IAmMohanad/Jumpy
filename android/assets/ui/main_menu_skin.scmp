@@ -3358,6 +3358,56 @@ jsonData: {
 				}
 				deletable: false
 			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: default-no-slider
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ScrollPane
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: window
+					}
+					corner: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: corner
+						optional: true
+						value: null
+					}
+					hScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScroll
+						optional: true
+						value: null
+					}
+					hScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: hScrollKnob
+						optional: true
+						value: null
+					}
+					vScroll: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScroll
+						optional: true
+						value: null
+					}
+					vScrollKnob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: vScrollKnob
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.SelectBox: [
 			{

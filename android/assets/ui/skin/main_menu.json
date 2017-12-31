@@ -84,7 +84,8 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	blue: {
 		checkboxOn: blue_checkmark
 		checkboxOff: blue_cross
-		font: bit8Medium
+		font: skin-font-export
+		fontColor: RGBA_0_0_0_255
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
@@ -138,6 +139,10 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	blocky_black: {
 		font: blocky_black_20
 	}
+	skin-normal: {
+		font: skin-font-export
+		fontColor: RGBA_0_0_0_255
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 	default-horizontal: {
@@ -151,6 +156,9 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 		background: window
 		vScroll: vertical-scroll-bar
 		vScrollKnob: vertical-scroll-knob
+	}
+	default-no-slider: {
+		background: window
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {

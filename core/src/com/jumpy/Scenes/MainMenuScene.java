@@ -55,6 +55,8 @@ public class MainMenuScene {
         settingButton.getLabelCell().padTop(15);
         TextButton creditButton = new TextButton("CREDITS", mainMenuSkin, "blueGreen");
         creditButton.getLabelCell().padTop(15);
+        TextButton shopButton = new TextButton("SHOP", mainMenuSkin, "blueGreen");
+        shopButton.getLabelCell().padTop(15);
         TextButton exitButton = new TextButton("EXIT", mainMenuSkin, "blueGreen");
         exitButton.getLabelCell().padTop(15);
 
@@ -83,6 +85,17 @@ public class MainMenuScene {
             }
         });
 
+        shopButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Clicked settings!");
+                if(!game.mute){// game.soundOn){
+                    click.play(game.volume);//game.volume);
+                }
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.SHOP);
+            }
+        });
+
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -100,6 +113,8 @@ public class MainMenuScene {
         table.add(settingButton).padBottom(10);
         table.row();
         table.add(creditButton).padBottom(10);
+        table.row();
+        table.add(shopButton).padBottom(10);
         table.row();
         table.add(exitButton);
 

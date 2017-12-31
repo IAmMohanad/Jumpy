@@ -59,6 +59,9 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			//doesn't exist, so create it
 			userPrefs.putInteger("goldEarned", 0);
 			userPrefs.putInteger("pointsEarned", 0);
+			userPrefs.putString("equippedActive", Weapon.NONE.toString());
+			userPrefs.putString("equippedPassive", Passive.NONE.toString());
+			userPrefs.putString("equippedBoost", Boost.NONE.toString());
 		} else{
 			//does exist, no need to do anything
 		}

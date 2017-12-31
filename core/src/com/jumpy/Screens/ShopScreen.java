@@ -19,12 +19,13 @@ public class ShopScreen implements Screen {
 
     @Override
     public void show() {
+        System.out.println("ENTERED SHOP");
         Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(255/255f, 204/255f, 0, 1);
+        Gdx.gl.glClearColor(50/255f, 204/255f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shopScene.render();
     }

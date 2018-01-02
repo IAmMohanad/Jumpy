@@ -13,7 +13,7 @@ public class ShopScreen implements Screen {
     private Stage stage;
 
     public ShopScreen(){
-        shopScene = new ShopScene();
+        shopScene = new ShopScene(this);
         stage = shopScene.create();
     }
 
@@ -28,6 +28,14 @@ public class ShopScreen implements Screen {
         Gdx.gl.glClearColor(50/255f, 204/255f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shopScene.render();
+    }
+
+    public void reloadScene(){
+        stage.dispose();
+        shopScene = null;
+        stage = null;
+        shopScene = new ShopScene(this);
+        stage = shopScene.create();
     }
 
     @Override

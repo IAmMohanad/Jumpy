@@ -26,7 +26,7 @@ public class LevelOne extends GameMap {
      */
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private final String mapLocation = "retro_game_map2.tmx";//"newest_map.tmx";
+    private final String mapLocation = "retro_game_map3.tmx";//"newest_map.tmx";
 
     private Jumpy game;
     private Player player;
@@ -65,7 +65,7 @@ public class LevelOne extends GameMap {
 
     public ArrayList<Enemy> getEnemies() { return this.enemiesList; }
 
-
+//TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
@@ -79,8 +79,8 @@ public class LevelOne extends GameMap {
         coinList.add(new Coin(this, 240, 100));
         coinList.add(new Coin(this, 360, 120));
         //bee = new Bee(this, 400, 100);
-        //enemiesList.add(new Totem(this, 400, 150));
-        //enemiesList.add(new Totem(this, 400, 100));
+        enemiesList.add(new Totem(this, 400, 150));
+        enemiesList.add(new Totem(this, 400, 100));
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
@@ -94,7 +94,7 @@ public class LevelOne extends GameMap {
 
         if(!player.isDeathComplete()){
             //hud.setScore(player.getPoints());
-           /* hud.setLife(player.getHealth());
+            hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
             chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
@@ -103,7 +103,7 @@ public class LevelOne extends GameMap {
 
             for(Enemy e : enemiesList){
                 e.update(batch, delta, camera);
-            }*/
+            }
             player.update(batch, delta, camera);
         } else{//level summary screen
             createSummary();

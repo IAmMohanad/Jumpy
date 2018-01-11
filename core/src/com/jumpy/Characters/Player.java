@@ -201,8 +201,8 @@ public class Player extends DynamicObject {
         //simulate gravity
         //die(delta);
 
-        if(shootCounter >= 1){
-            shootCounter -= 1;
+        if(shootCounter >= 3){
+            shootCounter -= 3;
             weaponShot();
         }
 

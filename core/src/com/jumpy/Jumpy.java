@@ -26,7 +26,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	private Preferences upgradePrefs;
 
-	private boolean needsUpdate = true;
+	private boolean needsUpdate = false;
 	@Override
 	public void create () {
 		//SoundManager.init(this);
@@ -40,10 +40,10 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
 		upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
-		//if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
+		if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
 			upgradePrefs.clear();
 			updateUpgradePrefs("upgrades.xml");
-		//}
+		}
 		//different preference file for upgrades and weapons
 		//userPrefs.getInteger("upgrades");
 		//userPrefs.getInteger("weapons");

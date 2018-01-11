@@ -45,6 +45,8 @@ public class PlayScreen implements Screen {
 
     private boolean loaded;
 
+    private boolean loadComplete = false;
+
 
     private boolean isPause = false;
     private Group pauseGroup;
@@ -70,7 +72,7 @@ public class PlayScreen implements Screen {
             if(game.getCurrentLevel().equals("1-3")) {
                 this.loadedLevel = "1-3";
                 this.map = new LevelOne(game,/* hud,*/ this);
-                map.load("retro_game_map2.tmx");
+                map.load("retro_game_map3.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
                 //TODO add pause button and pause screen / scene
                 /*
@@ -84,11 +86,13 @@ public class PlayScreen implements Screen {
             inputMultiplexer.addProcessor(hudStage);
             inputMultiplexer.addProcessor(inputController);
             loaded = true;
+            loadComplete = true;
         }
     }
 
     public void reload(){
         reload = true;
+        loadComplete = false;
         loadLevel();
     }
 
@@ -101,18 +105,21 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.batch.setProjectionMatrix(camera.combined);
+        if(loadComplete){
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            game.batch.setProjectionMatrix(camera.combined);
 
-        if(isGamePaused()){
-            delta = 0f;
+            if(isGamePaused()){
+                delta = 0f;
+            }
+
+            map.render(camera, game.batch, delta);
+            game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+            hud.render(delta);
+            map.cameraStop(camera);
         }
 
-        map.render(camera, game.batch, delta);
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.render(delta);
-        map.cameraStop(camera);
 
 
         /*if(Gdx.input.isTouched()){

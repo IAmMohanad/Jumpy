@@ -68,8 +68,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			//does exist, no need to do anything
 	//	}
 
-		//magnet/armour/ size = 47x50
-		//4,100,000
 		screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
 	}
 

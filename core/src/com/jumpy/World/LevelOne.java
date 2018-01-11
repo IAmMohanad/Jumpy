@@ -69,7 +69,7 @@ public class LevelOne extends GameMap {
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
-        player = new Player("boomerang", this, hud, 32, 64, playScreen);
+        player = new Player("boomerang", this, 32, 64, playScreen);
         //weapon = new Boomerang(this, 50, 125);
 
         chaserTwo = new Chaser(this, player,200,100, 16, 16);
@@ -79,8 +79,8 @@ public class LevelOne extends GameMap {
         coinList.add(new Coin(this, 240, 100));
         coinList.add(new Coin(this, 360, 120));
         //bee = new Bee(this, 400, 100);
-       // enemiesList.add(new Totem(this, 400, 150));
-       // enemiesList.add(new Totem(this, 100, 100));
+        //enemiesList.add(new Totem(this, 400, 150));
+        //enemiesList.add(new Totem(this, 400, 100));
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
@@ -94,7 +94,7 @@ public class LevelOne extends GameMap {
 
         if(!player.isDeathComplete()){
             //hud.setScore(player.getPoints());
-            hud.setLife(player.getHealth());
+           /* hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
             chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
@@ -103,7 +103,7 @@ public class LevelOne extends GameMap {
 
             for(Enemy e : enemiesList){
                 e.update(batch, delta, camera);
-            }
+            }*/
             player.update(batch, delta, camera);
         } else{//level summary screen
             createSummary();

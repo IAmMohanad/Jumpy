@@ -12,7 +12,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.jumpy.Intersection;
 import com.jumpy.Move;
 import com.jumpy.Objects.Coin;
-import com.jumpy.Scenes.Hud;
 import com.jumpy.Screens.PlayScreen;
 import com.jumpy.World.GameMap;
 
@@ -22,7 +21,7 @@ public class Player extends DynamicObject {
 
     private int coinsCollected;
     private int points;
-    private Hud hud;
+    //private Hud hud;
     private PlayScreen playScreen;
     public static boolean left;
     public static boolean right;
@@ -59,10 +58,11 @@ public class Player extends DynamicObject {
     private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 
     private boolean deleteMe = true; //just used to force only one shot to be created. delete after demo.
+    private float shootCounter = 0;
 
-    public Player(String weapon, GameMap map, Hud h, float x, float y, PlayScreen playScreen){
+    public Player(String weapon, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
-        this.hud = h;
+        //this.hud = h;
         super.health = 1;
         super.width = 32;
         super.height = 64;
@@ -83,8 +83,8 @@ public class Player extends DynamicObject {
         create();
     }
 
-    public Player(GameMap map, Hud h, float x, float y){
-        this(null, map, h, x, y, null);
+    public Player(GameMap map, float x, float y){
+        this(null, map, x, y, null);
     }
 
     public void weaponShot(){
@@ -193,12 +193,18 @@ public class Player extends DynamicObject {
     @Override
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera)
     {
+        shootCounter += delta;
         timeSinceLastJump += delta;
-        //System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
+        System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
         this.stateTime += delta;
         updateGravity(delta);
         //simulate gravity
         //die(delta);
+
+        if(shootCounter >= 1){
+            shootCounter -= 1;
+            weaponShot();
+        }
 
         if(weaponList.size() > 0){
             for(int i = 0; i<weaponList.size(); i++){
@@ -325,12 +331,11 @@ public class Player extends DynamicObject {
         boundingBox.setPosition(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET);
         updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
         batch.begin();
-
+       // this.alpha = 1;
         if(!deathComplete){
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);
         }
         batch.end();
-
     }
 
     private void addCoin(int c){

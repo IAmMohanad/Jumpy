@@ -31,7 +31,7 @@ public class ScreenManager{
         this.gameScreens.put(GAME_STATE.PLAY, new PlayScreen(game));
         this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
         this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
-        this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen());
+        //this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen(game));
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game setting screen
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game pause screen
     }

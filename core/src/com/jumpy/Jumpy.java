@@ -26,7 +26,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	private Preferences upgradePrefs;
 
-	private boolean needsUpdate = false;
+	private boolean needsUpdate = true;
 	@Override
 	public void create () {
 		//SoundManager.init(this);
@@ -40,10 +40,10 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
 		upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
-		if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
+		//if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
 			upgradePrefs.clear();
 			updateUpgradePrefs("upgrades.xml");
-		}
+		//}
 		//different preference file for upgrades and weapons
 		//userPrefs.getInteger("upgrades");
 		//userPrefs.getInteger("weapons");
@@ -53,18 +53,20 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		userPrefs.putInteger("pointsEarned", 0);
 		userPrefs.flush();*/
 
-		Map userPrefsKeys = userPrefs.get();
+		boolean userPrefsKeys = userPrefs.getBoolean("created", false);
 
-		if(userPrefsKeys.isEmpty() == true){
+		if(userPrefsKeys == false){
 			//doesn't exist, so create it
-			userPrefs.putInteger("goldEarned", 0);
+			userPrefs.putBoolean("created", false);
+			userPrefs.putInteger("goldEarned", 999999);
 			userPrefs.putInteger("pointsEarned", 0);
 			userPrefs.putString("equippedActive", Weapon.NONE.toString());
 			userPrefs.putString("equippedPassive", Passive.NONE.toString());
 			userPrefs.putString("equippedBoost", Boost.NONE.toString());
-		} else{
+			userPrefs.flush();
+		}// else{
 			//does exist, no need to do anything
-		}
+	//	}
 
 		//magnet/armour/ size = 47x50
 		//4,100,000
@@ -102,6 +104,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		upgradePrefs.putFloat(Passive.valueOf("SPEED")+"Level-2-boost", speedBoots.getFloat("level-2-boost"));
 		upgradePrefs.putFloat(Passive.valueOf("SPEED")+"Level-3-boost", speedBoots.getFloat("level-3-boost"));
 		upgradePrefs.putString(Passive.valueOf("SPEED")+"Description", speedBoots.get("description"));
+		upgradePrefs.putInteger(Passive.valueOf("SPEED")+"Level-0-price", speedBoots.getInt("level-0-price"));
 		upgradePrefs.putInteger(Passive.valueOf("SPEED")+"Level-1-price", speedBoots.getInt("level-1-price"));
 		upgradePrefs.putInteger(Passive.valueOf("SPEED")+"Level-2-price", speedBoots.getInt("level-2-price"));
 		upgradePrefs.putInteger(Passive.valueOf("SPEED")+"Level-3-price", speedBoots.getInt("level-3-price"));
@@ -113,6 +116,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		upgradePrefs.putFloat(Passive.valueOf("ANTI_GRAVITY")+"Level-2-boost", antiGravityBoots.getFloat("level-2-boost"));
 		upgradePrefs.putFloat(Passive.valueOf("ANTI_GRAVITY")+"Level-3-boost", antiGravityBoots.getFloat("level-3-boost"));
 		upgradePrefs.putString(Passive.valueOf("ANTI_GRAVITY")+"Description", antiGravityBoots.get("description"));
+		upgradePrefs.putInteger(Passive.valueOf("ANTI_GRAVITY")+"Level-0-price", antiGravityBoots.getInt("level-0-price"));
 		upgradePrefs.putInteger(Passive.valueOf("ANTI_GRAVITY")+"Level-1-price", antiGravityBoots.getInt("level-1-price"));
 		upgradePrefs.putInteger(Passive.valueOf("ANTI_GRAVITY")+"Level-2-price", antiGravityBoots.getInt("level-2-price"));
 		upgradePrefs.putInteger(Passive.valueOf("ANTI_GRAVITY")+"Level-3-price", antiGravityBoots.getInt("level-3-price"));
@@ -126,6 +130,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		upgradePrefs.putFloat(Weapon.valueOf("LASER")+"Level-2-damage", laser.getFloat("level-2-damage"));
 		upgradePrefs.putFloat(Weapon.valueOf("LASER")+"Level-3-damage", laser.getFloat("level-3-damage"));
 		upgradePrefs.putString(Weapon.valueOf("LASER")+"Description", laser.get("description"));
+		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-0-price", laser.getInt("level-0-price"));
 		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-1-price", laser.getInt("level-1-price"));
 		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-2-price", laser.getInt("level-2-price"));
 		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-3-price", laser.getInt("level-3-price"));
@@ -139,6 +144,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		upgradePrefs.putFloat(Boost.valueOf("MAGNET")+"Level-2-duration", magnet.getFloat("level-2-duration"));
 		upgradePrefs.putFloat(Boost.valueOf("MAGNET")+"Level-3-duration", magnet.getFloat("level-3-duration"));
 		upgradePrefs.putString(Boost.valueOf("MAGNET")+"Description", magnet.get("description"));
+		upgradePrefs.putInteger(Boost.valueOf("MAGNET")+"Level-0-price", magnet.getInt("level-0-price"));
 		upgradePrefs.putInteger(Boost.valueOf("MAGNET")+"Level-1-price", magnet.getInt("level-1-price"));
 		upgradePrefs.putInteger(Boost.valueOf("MAGNET")+"Level-2-price", magnet.getInt("level-2-price"));
 		upgradePrefs.putInteger(Boost.valueOf("MAGNET")+"Level-3-price", magnet.getInt("level-3-price"));
@@ -150,6 +156,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		upgradePrefs.putFloat(Boost.valueOf("ARMOUR")+"Level-2-duration", armour.getFloat("level-2-duration"));
 		upgradePrefs.putFloat(Boost.valueOf("ARMOUR")+"Level-3-duration", armour.getFloat("level-3-duration"));
 		upgradePrefs.putString(Boost.valueOf("ARMOUR")+"Description", armour.get("description"));
+		upgradePrefs.putInteger(Boost.valueOf("ARMOUR")+"Level-0-price", armour.getInt("level-0-price"));
 		upgradePrefs.putInteger(Boost.valueOf("ARMOUR")+"Level-1-price", armour.getInt("level-1-price"));
 		upgradePrefs.putInteger(Boost.valueOf("ARMOUR")+"Level-2-price", armour.getInt("level-2-price"));
 		upgradePrefs.putInteger(Boost.valueOf("ARMOUR")+"Level-3-price", armour.getInt("level-3-price"));

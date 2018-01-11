@@ -12,14 +12,17 @@ public class ShopScreen implements Screen {
     private ShopScene shopScene;
     private Stage stage;
 
-    public ShopScreen(){
-        shopScene = new ShopScene(this);
-        stage = shopScene.create();
+    private Jumpy game;
+
+    public ShopScreen(Jumpy game){
+        this.game = game;
+        shopScene = new ShopScene(this, game);
     }
 
     @Override
     public void show() {
         System.out.println("ENTERED SHOP");
+        stage = shopScene.create();
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -34,7 +37,7 @@ public class ShopScreen implements Screen {
         stage.dispose();
         shopScene = null;
         stage = null;
-        shopScene = new ShopScene(this);
+        shopScene = new ShopScene(this, game);
         stage = shopScene.create();
     }
 
@@ -55,7 +58,7 @@ public class ShopScreen implements Screen {
 
     @Override
     public void hide() {
-
+        stage = null;
     }
 
     @Override

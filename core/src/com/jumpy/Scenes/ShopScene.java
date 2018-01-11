@@ -21,6 +21,7 @@ import com.jumpy.Weapon;
 
 public class ShopScene {
 
+    private Jumpy game;
     private Stage stage;
     private Viewport viewport;
     private Skin skin;
@@ -56,10 +57,13 @@ public class ShopScene {
     private final int ArmourBpgradeLevel;*/
 
     private Label currentGoldLabel;
+    private Label informationDescription;
     private Table scrollPaneTable;
     private Table gravityBootsContainer;
+    private Table magnetContainer;
 
-    public ShopScene(ShopScreen shopScreen){
+    public ShopScene(ShopScreen shopScreen, Jumpy game){
+        this.game = game;
         this.shopScreen = shopScreen;
         skin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
         viewport = new FitViewport(Jumpy.V_WIDTH, Jumpy.V_HEIGHT, new OrthographicCamera());
@@ -85,8 +89,11 @@ public class ShopScene {
         scrollPaneTable = new Table();
         //scrollPaneTable.setFillParent(true);
         scrollPaneTable.top();
+
         gravityBootsContainer = new Table();
+        magnetContainer = new Table();
         loadGravityBootsContainer();
+        loadMagnetContainer();
         //add table to the left and table to the right, left table has image, right table has two rows, row one has item name, spans two columns. row 2 has visual level and level 1/2/3 etc.
         /*String upgradeName = "Anti-Gravity";
         final String gravityUpgradeDescription = upgradePrefs.getString(Passive.ANTI_GRAVITY.name()+"Description", "LEL");
@@ -145,7 +152,13 @@ public class ShopScene {
         gravityBootsContainer.add(costGroup);
         gravityBootsContainer.add(gravityBuyUpgradeLabel).padLeft(5).expandX();*/
 
+        scrollPaneTable.add(new Label("PASSIVE ITEMS", skin, "skin-normal")).expandX().center();
+        scrollPaneTable.row();
         scrollPaneTable.add(gravityBootsContainer).expandX();
+        scrollPaneTable.row();
+        scrollPaneTable.add(new Label("BOOSTERS", skin, "skin-normal")).expandX().center();
+        scrollPaneTable.row();
+        scrollPaneTable.add(magnetContainer).expandX();
 
         ScrollPane upgradesPane = new ScrollPane(scrollPaneTable, skin, "default-no-slider");
         //upgradesPane.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 4);
@@ -186,26 +199,58 @@ public class ShopScene {
 */
         //RIGHT SIDE information table.
         Table informationTable = new Table();
-        informationTable.setFillParent(true);
-        informationTable.top();
+        //informationTable.setFillParent(true);
+        //informationTable.top();
 
 
         //add label to the information table
-        Label informationDescription = new Label("Choose a item from the left to see the description!", skin);
+        informationDescription = new Label("Choose a item from the left to see the description!", skin, "skin-normal");
+        informationDescription.setWidth(100);
         informationDescription.setWrap(true);
-        informationDescription.setWidth(informationTable.getWidth());//maybe remove this if any issues with compiling...
-        informationTable.add(informationDescription).top().left().expandX();
+        //informationDescription.setWidth(informationTable.getWidth());//maybe remove this if any issues with compiling...
+        informationTable.add(informationDescription).width(250f);
 
         //add both left and right sides to outertable, one in each column
         HorizontalGroup availableGoldGroup = new HorizontalGroup();
         Label availableGoldLabel = new Label("Available Gold: ", skin, "skin-normal");
-        currentGoldLabel = new Label(String.valueOf(userPrefs.getInteger("goldEarned", 0)), skin, "skin-normal");
+        currentGoldLabel = new Label(String.valueOf(userPrefs.getInteger("goldEarned", -2)), skin, "skin-normal");
         availableGoldGroup.addActor(availableGoldLabel);
         availableGoldGroup.addActor(currentGoldLabel);
         outerTable.add(availableGoldGroup);
         outerTable.row();
-        outerTable.add(upgradesPane).height(100);//scrollpane height must be explicitly set for scrolling to work
-        outerTable.add(informationTable).expandX();
+        outerTable.add(upgradesPane).height(150).left();//scrollpane height must be explicitly set for scrolling to work
+        outerTable.add(informationTable).expandX().left().padLeft(5);
+
+
+        outerTable.row();
+        Label resetLabel = new Label("reset", skin, "skin-normal");
+
+        resetLabel.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                upgradePrefs.putInteger(Passive.ANTI_GRAVITY+"Level", 0);
+                upgradePrefs.putInteger(Boost.MAGNET+"Level", 0);
+                upgradePrefs.flush();
+                informationDescription.setText("Choose a item from the left to see the description!");
+                loadGravityBootsContainer();
+                loadMagnetContainer();
+            }
+        });
+
+
+        outerTable.row();
+        outerTable.add(resetLabel);
+
+        //back button
+        Label backLabel = new Label("back", skin, "skin-normal");
+
+        backLabel.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+            }
+        });
+        outerTable.add(backLabel);
 
         stage.addActor(outerTable);
         return stage;
@@ -236,7 +281,7 @@ public class ShopScene {
         gravityBootsContainer.row();
 
         //buy or upgrade button
-        if(gravityUpgradeUnlocked){
+        if(gravityUpgradeUnlocked || gravityUpgradeLevel > 0){
             gravityBuyUpgradeLabel.setText("Upgrade");
         } else{
             gravityBuyUpgradeLabel.setText("Buy");
@@ -269,6 +314,89 @@ public class ShopScene {
 
         gravityBootsContainer.add(costGroup);
         gravityBootsContainer.add(gravityBuyUpgradeLabel).padLeft(5).expandX();
+        gravityBootsContainer.row();
+
+        //information button
+        Label informationButton = new Label("Info", skin, "skin-normal");
+        informationButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                informationDescription.setText(gravityUpgradeDescription);
+            }
+        });
+        gravityBootsContainer.add(informationButton).expandX().center();
+
+
+    }
+
+    public void loadMagnetContainer(){
+        magnetContainer.clear();
+        String upgradeName = "Magnet";
+        final String magnetUpgradeDescription = upgradePrefs.getString(Boost.MAGNET.name()+"Description", "LEL");
+        final Label magnetBuyUpgradeLabel = new Label("", skin, "skin-normal");
+        final int magnetUpgradeLevel = upgradePrefs.getInteger(Boost.MAGNET.name()+"Level", -1);
+        final int magnetUpgradeCost = upgradePrefs.getInteger(Boost.MAGNET.name()+"Level-"+String.valueOf(magnetUpgradeLevel)+"-price", 9999);
+        final boolean magnetUpgradeUnlocked = upgradePrefs.getBoolean(Boost.MAGNET.name()+"Unlocked", false);
+
+
+        Table upgradeImageTable = new Table();
+        Table upgradeLevelTable =  new Table();
+        upgradeImageTable.add(new Image(new Texture(("ui/new ui/Anti-gravity_boots.png"))));
+        upgradeLevelTable.add(new Label(upgradeName, skin, "skin-normal"));
+        upgradeLevelTable.row();
+        final Table horizontalGroup = new Table();
+        populateHorizontalGroup(horizontalGroup, magnetUpgradeLevel);
+
+        upgradeLevelTable.add(horizontalGroup).left();
+
+        magnetContainer.add(upgradeImageTable);
+        magnetContainer.add(upgradeLevelTable).padLeft(5);
+        magnetContainer.row();
+
+        //buy or upgrade button
+        if(magnetUpgradeUnlocked || magnetUpgradeLevel > 0){
+            magnetBuyUpgradeLabel.setText("Upgrade");
+        } else{
+            magnetBuyUpgradeLabel.setText("Buy");
+        }
+
+        //cost label
+        HorizontalGroup costGroup = new HorizontalGroup();
+        Image dollarSign = new Image(new Texture(Gdx.files.internal("ui/new ui/dollar_sign.png")));
+        Label costLabel = new Label(String.valueOf(magnetUpgradeCost), skin, "skin-normal");
+        costGroup.addActor(dollarSign);
+        costGroup.addActor(costLabel);
+
+        magnetBuyUpgradeLabel.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                int userCurrentGold = userPrefs.getInteger("goldEarned", 0);
+                if(userCurrentGold >= magnetUpgradeCost){
+                    int upgradeLevel = upgradePrefs.getInteger(Boost.MAGNET.name()+"Level");
+                    if(upgradePrefs.getInteger(Boost.MAGNET.name()+"Level") < 3){
+                        currentGoldLabel.setText(String.valueOf(userCurrentGold - magnetUpgradeCost));
+                        upgradePrefs.putInteger(Boost.MAGNET+"Level", upgradeLevel+1);
+                        userPrefs.putInteger("goldEarned", userCurrentGold - magnetUpgradeCost);
+                        upgradePrefs.flush();
+                        userPrefs.flush();
+                        loadMagnetContainer();
+                    }
+                }
+            }
+        });
+
+        magnetContainer.add(costGroup);
+        magnetContainer.add(magnetBuyUpgradeLabel).padLeft(5).expandX();
+        magnetContainer.row();
+        //information button
+        Label informationButton = new Label("Info", skin, "skin-normal");
+        informationButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                informationDescription.setText(magnetUpgradeDescription);
+            }
+        });
+        magnetContainer.add(informationButton).expandX().center();
     }
 
     private void populateScrollPane(){

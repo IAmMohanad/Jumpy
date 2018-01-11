@@ -2,15 +2,15 @@
 
 <upgrades>
   <passive>
-    <antiGravity level-1-price="20" level-2-price="40" level-3-price="80" unlocked="false" level="0" level-1-boost="0.10" level-2-boost="0.20" level-3-boost="0.30" description="These shoes have the ability to reduce the gravitional effect on the wearer. They can be upgraded to further increase their effect. Perhaps they can be used to explore hard to reach places?" />
-    <speed level-1-price="20" level-2-price="40" level-3-price="80" unlocked="false" level="0" level-1-boost="0.25" level-2-boost="0.5" level-3-boost="0.75" description="These shoes can increase your movement speed." />
+    <antiGravity level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.10" level-2-boost="0.20" level-3-boost="0.30" description="These shoes have the ability to reduce the gravitional effect on the wearer. They can be upgraded to further increase their effect. Perhaps they can be used to explore hard to reach places?" />
+    <speed level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.25" level-2-boost="0.5" level-3-boost="0.75" description="These shoes can increase your movement speed." />
   </passive>
   <active>
-    <laser level-1-price="20" level-2-price="40" level-3-price="80" unlocked="false" level="0" level-1-damage="1" level-2-damage="2" level-3-damage="3" level-1-speed="0.25" level-2-speed="0.5" level-3-speed="0.75" description="Every childs dream, your reality. The laser can be upgraded to be faster and do more damage." />
+    <laser level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-damage="1" level-2-damage="2" level-3-damage="3" level-1-speed="0.25" level-2-speed="0.5" level-3-speed="0.75" description="Every childs dream, your reality. The laser can be upgraded to be faster and do more damage." />
   </active>
   <boost>
-    <magnet level-1-price="20" level-2-price="40" level-3-price="80" unlocked="false" level="0" level-1-duration="10" level-2-duration="15" level-3-duration="20" description="The clue is in the name. The magnet can attract gold - or possibly other metal - to you." />
-    <armour level-1-price="20" level-2-price="40" level-3-price="80" unlocked="false" level="0" level-1-duration="7" level-2-duration="9" level-3-duration="11" description="Armour can deflect enemy attacks. It can only withstand several hits before breaking. Use it wisely." />
+    <magnet level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-duration="10" level-2-duration="15" level-3-duration="20" description="The clue is in the name. The magnet can attract gold - or possibly other metal - to you." />
+    <armour level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-duration="7" level-2-duration="9" level-3-duration="11" description="Armour can deflect enemy attacks. It can only withstand several hits before breaking. Use it wisely." />
   </boost>
 </upgrades>
 

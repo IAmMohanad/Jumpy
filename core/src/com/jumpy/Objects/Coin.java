@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jumpy.Jumpy;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
 
@@ -44,7 +45,7 @@ public class Coin extends Object{
 
     @Override
     public void create() {
-        Texture textureSheet = new Texture(Gdx.files.internal("coin_animation/coin_animation.png"));
+        Texture textureSheet = Jumpy.assetManager.get("coin_animation/coin_animation.png", Texture.class);//new Texture(Gdx.files.internal("coin_animation/coin_animation.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 6, textureSheet.getHeight());
 

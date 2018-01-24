@@ -3,6 +3,7 @@ package com.jumpy;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader;
 import com.jumpy.Screens.*;
@@ -23,6 +24,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public SpriteBatch batch;
 
 	public ScreenManager screenManager;
+	public static AssetManager assetManager;
 
 	private Preferences upgradePrefs;
 
@@ -36,6 +38,8 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		screenManager = new ScreenManager(this);
+		assetManager = new AssetManager();
+		setScreen(new LoadingScreen(this, screenManager));
 
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
@@ -68,7 +72,8 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			//does exist, no need to do anything
 	//	}
 
-		screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+		//screenManager.setScreen(ScreenManager.GAME_STATE.LOADING);
+
 	}
 
 	@Override
@@ -79,6 +84,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		assetManager.dispose();
 	}
 
 	public String getCurrentLevel(){

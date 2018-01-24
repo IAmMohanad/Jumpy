@@ -65,7 +65,7 @@ public class Hud{
         }
         timeCounter += delta; //Gdx.graphics.getDeltaTime();
         if(timeCounter >= 1f){
-            timeCounter -= 1;
+            timeCounter = 0;
             clock -= 1;
             clockLabel.setText(String.format("%ds", clock));
         }

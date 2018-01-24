@@ -78,7 +78,8 @@ public class LevelOne extends GameMap {
         coinList.add(new Coin(this, 160, 100));
         coinList.add(new Coin(this, 240, 100));
         coinList.add(new Coin(this, 360, 120));
-        //bee = new Bee(this, 400, 100);
+
+        enemiesList.add(new Bee(this, 400, 100));
         enemiesList.add(new Totem(this, 400, 150));
         enemiesList.add(new Totem(this, 400, 100));
 

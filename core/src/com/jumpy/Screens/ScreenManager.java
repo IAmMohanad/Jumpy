@@ -17,7 +17,8 @@ public class ScreenManager{
         LEVEL_SELECT,
         MAIN_SETTINGS,
         GAME_SETTINGS,
-        SHOP
+        SHOP,
+        LOADING
     }
 
     public ScreenManager(Jumpy g){
@@ -32,6 +33,7 @@ public class ScreenManager{
         this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
         this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
         this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen(game));
+
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game setting screen
         // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game pause screen
     }

@@ -58,6 +58,7 @@ public class ShopScreen implements Screen {
 
     @Override
     public void hide() {
+        stage.clear();
         stage = null;
     }
 

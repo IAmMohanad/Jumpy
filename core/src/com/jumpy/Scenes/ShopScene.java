@@ -210,6 +210,7 @@ public class ShopScene {
         //informationDescription.setWidth(informationTable.getWidth());//maybe remove this if any issues with compiling...
         informationTable.add(informationDescription).width(250f);
 
+
         //add both left and right sides to outertable, one in each column
         HorizontalGroup availableGoldGroup = new HorizontalGroup();
         Label availableGoldLabel = new Label("Available Gold: ", skin, "skin-normal");

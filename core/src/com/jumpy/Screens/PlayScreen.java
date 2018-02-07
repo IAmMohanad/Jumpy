@@ -114,6 +114,9 @@ public class PlayScreen implements Screen {
                 delta = 0f;
             }
 
+            if(game.exitPressed){
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+            }
             map.render(camera, game.batch, delta);
             game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
             hud.render(delta);

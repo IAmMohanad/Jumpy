@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jumpy.Move;
 import com.jumpy.World.GameMap;
+import com.jumpy.Characters.Weapon;
 
 public class Boomerang extends Weapon {
 

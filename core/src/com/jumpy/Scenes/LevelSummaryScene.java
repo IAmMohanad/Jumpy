@@ -128,8 +128,8 @@ public class LevelSummaryScene {
                 if(!game.mute){
                     click.play(Jumpy.volume);
                 }
-                playScreen.reload();
-                game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
+                //playScreen.reload();
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
                 System.out.println("Clicked 44444444444!");
             }
         });

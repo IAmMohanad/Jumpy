@@ -9,11 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jumpy.Active;
 import com.jumpy.Intersection;
 import com.jumpy.Move;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Screens.PlayScreen;
 import com.jumpy.World.GameMap;
+import com.jumpy.Characters.Weapon;
+import com.jumpy.Active;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,11 @@ public class Player extends DynamicObject {
     public static boolean right;
     public static boolean up;
     public static boolean down;
+    public static boolean shootPressed;
+    public static boolean boostPressed;
+    private Weapon equippedWeapon;
+    private int boostTimer;
+    private int boostMaxTime;
 
     private boolean doubleJump;
     private boolean firstJump;
@@ -54,13 +62,13 @@ public class Player extends DynamicObject {
     private int BBOX_X_OFFSET = 5;
     private int BBOX_Y_OFFSET = 1;
 
-    private String weapon;
+    private Active weapon;
     private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 
     private boolean deleteMe = true; //just used to force only one shot to be created. delete after demo.
     private float shootCounter = 0;
 
-    public Player(String weapon, GameMap map, float x, float y, PlayScreen playScreen){
+    public Player(Active weapon, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
         //this.hud = h;
         super.health = 1;
@@ -88,7 +96,11 @@ public class Player extends DynamicObject {
     }
 
     public void weaponShot(){
-        if(weapon.equals("boomerang")){
+        shootPressed = false;
+        if(weapon == Active.LASER){
+            weaponList.add(new Boomerang(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+        }
+        if(weapon == Active.NONE){
             weaponList.add(new Boomerang(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
         }
     }
@@ -195,14 +207,18 @@ public class Player extends DynamicObject {
     {
         shootCounter += delta;
         timeSinceLastJump += delta;
-        System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
+        //System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
+        System.out.println(shootPressed);
         this.stateTime += delta;
         updateGravity(delta);
         //simulate gravity
         //die(delta);
 
-        if(shootCounter >= 3){
+       /* if(shootCounter >= 3){
             shootCounter -= 3;
+            weaponShot();
+        }*/
+        if(shootPressed){
             weaponShot();
         }
 

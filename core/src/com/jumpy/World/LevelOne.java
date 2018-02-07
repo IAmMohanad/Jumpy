@@ -1,6 +1,7 @@
 package com.jumpy.World;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.jumpy.Active;
 import com.jumpy.Characters.*;
 import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
@@ -30,7 +32,7 @@ public class LevelOne extends GameMap {
 
     private Jumpy game;
     private Player player;
-    private Weapon weapon;
+    private Active active;
     private Chaser chaserTwo;
 
     private ArrayList<Coin> coinList = new ArrayList<Coin>();
@@ -69,8 +71,10 @@ public class LevelOne extends GameMap {
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
-        player = new Player("boomerang", this, 32, 64, playScreen);
-        //weapon = new Boomerang(this, 50, 125);
+        Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+        Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
+        player = new Player(equippedActive, this, 32, 64, playScreen);
+        //active = new Boomerang(this, 50, 125);
 
         chaserTwo = new Chaser(this, player,200,100, 16, 16);
 

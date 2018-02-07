@@ -46,6 +46,7 @@ public class LoadingScreen implements Screen {
 
         if(assetManager.update()) {
             // we are done loading, let's move to another screen!
+            //if name not chosen set screen as choose name else set screen as main menu
             screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
         }
 

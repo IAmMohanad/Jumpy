@@ -1,5 +1,6 @@
 package com.jumpy.Scenes;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
@@ -69,30 +70,34 @@ public class SettingsScene {
             }
         });
 
-        Label controlsLabel = new Label("CONTROLS:", skin, "large");
-        controlTypeLabel = new Label("", skin, "large");
-        isTouchPad = settings.getBoolean("isTouchPad", true);
-        if(isTouchPad){
-            controlTypeLabel.setText("PAD");
-        } else{
-            controlTypeLabel.setText("TILT");
-        }
-
-        controlTypeLabel.addListener(new ClickListener(){
-            public void clicked(InputEvent event, float x, float y){
-                System.out.println("Waht the fck " +settings.getBoolean("isTouchPad"));
-                if(isTouchPad){
-                //if(controlTypeLabel.getText().equals("TOUCH PAD")){
-                    controlTypeLabel.setText("TILT");
-                    isTouchPad = false;
-                    //settings.putBoolean("isTouchPad", false);
-                } else{
-                    controlTypeLabel.setText("PAD");
-                    isTouchPad = true;
-                    //settings.putBoolean("isTouchPad", true);
-                }
+        Label controlsLabel = new Label("", skin, "large");
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            controlsLabel.setText("CONTROLS:");
+            controlTypeLabel = new Label("", skin, "large");
+            isTouchPad = settings.getBoolean("isTouchPad", true);
+            if (isTouchPad) {
+                controlTypeLabel.setText("PAD");
+            } else {
+                controlTypeLabel.setText("TILT");
             }
-        });
+
+
+            controlTypeLabel.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    System.out.println("Waht the fck " + settings.getBoolean("isTouchPad"));
+                    if (isTouchPad) {
+                        //if(controlTypeLabel.getText().equals("TOUCH PAD")){
+                        controlTypeLabel.setText("TILT");
+                        isTouchPad = false;
+                        //settings.putBoolean("isTouchPad", false);
+                    } else {
+                        controlTypeLabel.setText("PAD");
+                        isTouchPad = true;
+                        //settings.putBoolean("isTouchPad", true);
+                    }
+                }
+            });
+        }
 
 /*
         Label touchPadLabel = new Label("PAD", skin, "large");
@@ -148,7 +153,9 @@ public class SettingsScene {
         table.add(touchPadCheckBox).expandX().padTop(25);
         table.add(accelLabel).expandX().padTop(25);
         table.add(accelCheckBox).expandX().padTop(25).padRight(10);*/
-        table.add(controlsLabel).expandX().padTop(25).colspan(1);
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            table.add(controlsLabel).expandX().padTop(25).colspan(1);
+        }
         table.add(controlTypeLabel).expandX().padTop(25).padRight(10);
         table.row();
         table.add(backLabel).expand().bottom().right().colspan(2).padRight(10).height(20);

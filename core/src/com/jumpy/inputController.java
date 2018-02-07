@@ -25,7 +25,11 @@ public class inputController extends InputAdapter {
         }
         if(keycode == Input.Keys.BACK){
             // Respond to the back button click here
-            Gdx.app.exit();
+            Jumpy.exitPressed = true;
+            //Gdx.app.exit();
+        }
+        if(keycode == Input.Keys.X){
+            Player.shootPressed = true;
         }
 
         return super.keyDown(keycode);

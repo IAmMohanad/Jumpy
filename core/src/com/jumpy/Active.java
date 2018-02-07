@@ -1,5 +1,5 @@
 package com.jumpy;
 
-public enum Weapon {
+public enum Active {
     NONE, LASER
 }

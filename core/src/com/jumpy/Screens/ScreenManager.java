@@ -10,6 +10,7 @@ public class ScreenManager{
     private Jumpy game;
 
     private HashMap<GAME_STATE, Screen> gameScreens;
+    private GAME_STATE currentGameState;
 
     public enum GAME_STATE{
         MAIN_MENU,
@@ -48,6 +49,7 @@ public class ScreenManager{
             this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen(game));
         }
 
+        currentGameState = screen;
         game.setScreen(gameScreens.get(screen));
     }
 
@@ -66,5 +68,9 @@ public class ScreenManager{
                 screen.dispose();
             }
         }
+    }
+
+    public GAME_STATE getGameState(){
+        return currentGameState;
     }
 }

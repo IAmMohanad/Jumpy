@@ -10,7 +10,6 @@ import com.jumpy.Screens.*;
 
 
 import java.io.IOException;
-import java.util.Map;
 
 public class Jumpy extends Game {//ApplicationAdapter {
 	private Preferences settings;
@@ -27,6 +26,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static AssetManager assetManager;
 
 	private Preferences upgradePrefs;
+	public static boolean exitPressed = false;
 
 	private boolean needsUpdate = false;
 	@Override
@@ -64,9 +64,10 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			userPrefs.putBoolean("created", false);
 			userPrefs.putInteger("goldEarned", 999999);
 			userPrefs.putInteger("pointsEarned", 0);
-			userPrefs.putString("equippedActive", Weapon.NONE.toString());
+			userPrefs.putString("equippedActive", Active.NONE.toString());
 			userPrefs.putString("equippedPassive", Passive.NONE.toString());
 			userPrefs.putString("equippedBoost", Boost.NONE.toString());
+			userPrefs.putString("username", "mo");
 			userPrefs.flush();
 		}// else{
 			//does exist, no need to do anything
@@ -74,6 +75,10 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		//screenManager.setScreen(ScreenManager.GAME_STATE.LOADING);
 
+	}
+
+	public ScreenManager.GAME_STATE getGameState(){
+		return screenManager.getGameState();
 	}
 
 	@Override
@@ -128,16 +133,16 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		//laser
 		XmlReader.Element activeUpgrades = root.getChildByName("active");
 		XmlReader.Element laser = activeUpgrades.getChildByName("laser");
-		upgradePrefs.putBoolean(Weapon.valueOf("LASER")+"Unlocked", laser.getBoolean("unlocked"));
-		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level", laser.getInt("level"));
-		upgradePrefs.putFloat(Weapon.valueOf("LASER")+"Level-1-damage", laser.getFloat("level-1-damage"));
-		upgradePrefs.putFloat(Weapon.valueOf("LASER")+"Level-2-damage", laser.getFloat("level-2-damage"));
-		upgradePrefs.putFloat(Weapon.valueOf("LASER")+"Level-3-damage", laser.getFloat("level-3-damage"));
-		upgradePrefs.putString(Weapon.valueOf("LASER")+"Description", laser.get("description"));
-		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-0-price", laser.getInt("level-0-price"));
-		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-1-price", laser.getInt("level-1-price"));
-		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-2-price", laser.getInt("level-2-price"));
-		upgradePrefs.putInteger(Weapon.valueOf("LASER")+"Level-3-price", laser.getInt("level-3-price"));
+		upgradePrefs.putBoolean(Active.valueOf("LASER")+"Unlocked", laser.getBoolean("unlocked"));
+		upgradePrefs.putInteger(Active.valueOf("LASER")+"Level", laser.getInt("level"));
+		upgradePrefs.putFloat(Active.valueOf("LASER")+"Level-1-damage", laser.getFloat("level-1-damage"));
+		upgradePrefs.putFloat(Active.valueOf("LASER")+"Level-2-damage", laser.getFloat("level-2-damage"));
+		upgradePrefs.putFloat(Active.valueOf("LASER")+"Level-3-damage", laser.getFloat("level-3-damage"));
+		upgradePrefs.putString(Active.valueOf("LASER")+"Description", laser.get("description"));
+		upgradePrefs.putInteger(Active.valueOf("LASER")+"Level-0-price", laser.getInt("level-0-price"));
+		upgradePrefs.putInteger(Active.valueOf("LASER")+"Level-1-price", laser.getInt("level-1-price"));
+		upgradePrefs.putInteger(Active.valueOf("LASER")+"Level-2-price", laser.getInt("level-2-price"));
+		upgradePrefs.putInteger(Active.valueOf("LASER")+"Level-3-price", laser.getInt("level-3-price"));
 		//boost
 		//magnet
 		XmlReader.Element boostUpgrades = root.getChildByName("boost");

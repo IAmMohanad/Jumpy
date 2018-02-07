@@ -5,7 +5,6 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -17,7 +16,6 @@ import com.jumpy.Jumpy;
 import com.jumpy.Passive;
 import com.jumpy.Screens.ScreenManager;
 import com.jumpy.Screens.ShopScreen;
-import com.jumpy.Weapon;
 
 public class ShopScene {
 
@@ -176,10 +174,10 @@ public class ShopScene {
         createUpgradeBox(upgradeName, upgradeLevel, upgradeCost, upgradeUnlocked);
 
         upgradeName = "Laser";
-        upgradeUnlocked = upgradePrefs.getBoolean(Weapon.LASER.name()+"Unlocked", false);
-        upgradeDescription = upgradePrefs.getString(Weapon.LASER.name()+"Description", "LEL");
-        upgradeLevel = upgradePrefs.getInteger(Weapon.LASER.name()+"Level", -1);
-        upgradeCost = upgradePrefs.getInteger(Weapon.LASER.name()+"Level-"+upgradeLevel+"-price", -1);
+        upgradeUnlocked = upgradePrefs.getBoolean(Active.LASER.name()+"Unlocked", false);
+        upgradeDescription = upgradePrefs.getString(Active.LASER.name()+"Description", "LEL");
+        upgradeLevel = upgradePrefs.getInteger(Active.LASER.name()+"Level", -1);
+        upgradeCost = upgradePrefs.getInteger(Active.LASER.name()+"Level-"+upgradeLevel+"-price", -1);
         createUpgradeBox(upgradeName, upgradeLevel, upgradeCost, upgradeUnlocked);
 
         upgradeName = "Magnet";

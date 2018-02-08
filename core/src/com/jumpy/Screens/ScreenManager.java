@@ -2,6 +2,7 @@ package com.jumpy.Screens;
 
 import com.badlogic.gdx.Screen;
 import com.jumpy.Jumpy;
+import com.jumpy.Scenes.HiscoreScene;
 
 import java.util.HashMap;
 
@@ -19,7 +20,8 @@ public class ScreenManager{
         MAIN_SETTINGS,
         GAME_SETTINGS,
         SHOP,
-        LOADING
+        LOADING,
+        HISCORE
     }
 
     public ScreenManager(Jumpy g){
@@ -47,6 +49,10 @@ public class ScreenManager{
         if(screen == GAME_STATE.PLAY){
             diposeScreen(GAME_STATE.SHOP);
             this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen(game));
+        }
+        if(screen == GAME_STATE.HISCORE){
+            diposeScreen(GAME_STATE.HISCORE);
+            this.gameScreens.put(GAME_STATE.HISCORE, new HiscoreScreen(game));
         }
 
         currentGameState = screen;

@@ -94,6 +94,17 @@ public class MainMenuScene {
             }
         });
 
+        creditButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Clicked settings!");
+                if(!game.mute){// game.soundOn){
+                    click.play(game.volume);//game.volume);
+                }
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.HISCORE);
+            }
+        });
+
         shopButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -148,7 +159,7 @@ public class MainMenuScene {
         });*/
 
         //get uesr scores
-        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/getPlayerScore/golden751").content("").build();
+       /* httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/getPlayerScore/golden751").content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 int statusCode = httpResponse.getStatus().getStatusCode();
@@ -199,9 +210,6 @@ public class MainMenuScene {
                 levelOneScoreMap.put("player_rank", array[1]);
                 levelOneScoreMap.put("fastest_time", array[2]);
                 levelOneScoreMap.put("max_points", array[3]);
-                /*for(String s : array){
-                    System.out.println(s);
-                }*/
 
             }
 
@@ -217,7 +225,7 @@ public class MainMenuScene {
                 //System.out.println(status);
                 someMethods(status);
             }
-        });
+        });*/
 
         //add Net. before all HttpResponse if error
         /*Gdx.net.sendHttpRequest (httpPost, new Net.HttpResponseListener() {

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -57,7 +58,6 @@ public class HiscoreScene {
 
     private Table noConnection(){
         Table table = new Table();
-        //table.setFillParent(true);
         Label message = new Label("Could not connect to internet,\ntry again in a few minutes...", skin, "skin-normal");
         table.add(message).left().expandX();
         table.row();
@@ -77,10 +77,132 @@ public class HiscoreScene {
         return table;
     }
 
-    private void isConnected(){
-        Table rankingsTable = new Table();
-        rankingsTable.setFillParent(true);
-        rankingsTable.add(new Label("PERSONAL RANKING", skin, "skin-normal")).right().expandX().colspan(2);
+    private void addRankingToTable(Table table, String labelText, String value){
+        Label totalGoldLabel = new Label(labelText, skin, "skin-normal");
+        Label totalGoldScore = new Label(value, skin, "skin-normal");
+        table.add(totalGoldLabel).expandX().left().padLeft(5);
+        table.add(totalGoldScore).expandX().left();
+    }
+
+    private Table isConnected(){
+        getPlayerRankings(playerPrefs.getString("username"));
+        Table table = new Table();
+        Table innerTable = new Table();
+
+        Label personalRankingTitle = new Label("PERSONAL RANKING - TOTAL PLAYERS: "+playerScoreMap.get("totalPlayers"), skin, "skin-normal");
+        innerTable.add(personalRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Total Points: ", playerScoreMap.get("totalPoints"));
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Total Gold: ", playerScoreMap.get("totalGold"));
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Total Stars:", playerScoreMap.get("totalStars"));
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Total Time Played:", playerScoreMap.get("totalTimePlayed"));
+
+        innerTable.row();//empty line for formatting
+        innerTable.add(new Label("", skin, "skin-normal"));
+
+        innerTable.row();
+        Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
+        innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+        String suffix;
+        if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 1){
+            suffix = "st";
+        } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 2){
+            suffix = "nd";
+        } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 3){
+            suffix = "rd";
+        } else{
+            suffix = "th";
+        }
+        innerTable.row();
+
+        addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Fastest Time: ", levelOneScoreMap.get("fastest_time")+"secs");
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Max Points Earned: ", levelOneScoreMap.get("max_points"));
+
+        innerTable.row();//empty line for formatting
+        innerTable.add(new Label("", skin, "skin-normal"));
+        innerTable.row();
+        Label levelTwoRankingTitle = new Label("LEVEL TWO RANKING", skin, "skin-normal");
+        innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+        if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 1){
+            suffix = "st";
+        } else if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 2){
+            suffix = "nd";
+        } else if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 3){
+            suffix = "rd";
+        } else{
+            suffix = "th";
+        }
+        innerTable.row();
+
+        addRankingToTable(innerTable, "Your Rank: ", levelTwoScoreMap.get("player_rank")+suffix);
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Fastest Time: ", levelTwoScoreMap.get("fastest_time")+"secs");
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Max Points Earned: ", levelTwoScoreMap.get("max_points"));
+
+        innerTable.row();//empty line for formatting
+        innerTable.add(new Label("", skin, "skin-normal"));
+        innerTable.row();
+        Label levelThreeRankingTitle = new Label("LEVEL THREE RANKING", skin, "skin-normal");
+        innerTable.add(levelThreeRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+        if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 1){
+            suffix = "st";
+        } else if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 2){
+            suffix = "nd";
+        } else if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 3){
+            suffix = "rd";
+        } else{
+            suffix = "th";
+        }
+        innerTable.row();
+
+        addRankingToTable(innerTable, "Your Rank: ", levelThreeScoreMap.get("player_rank")+suffix);
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Fastest Time: ", levelThreeScoreMap.get("fastest_time")+"secs");
+
+        innerTable.row();
+        addRankingToTable(innerTable, "Max Points Earned: ", levelThreeScoreMap.get("max_points"));
+
+        innerTable.row();
+
+        ScrollPane rankingsScrollPane = new ScrollPane(innerTable, skin, "default-no-slider");
+        table.add(rankingsScrollPane).height(200).left().padLeft(5).expandX();
+
+        table.row();
+        //add back button here
+        Label backButton = new Label("BACK", skin, "skin-normal");
+
+        backButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Clicked bacak in no connection scene!");
+                if(!game.mute){// game.soundOn){
+                    click.play(game.volume);//game.volume);
+                }
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+            }
+        });
+        table.add(backButton).left().expandX().bottom().padLeft(5).padTop(20);
+
+        return table;
     }
 
     private void setConnected(boolean isConn){
@@ -92,7 +214,6 @@ public class HiscoreScene {
     }
 
     private void checkConnection(){
-        float timer = 0f;
         httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/checkConnection").content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
@@ -118,61 +239,46 @@ public class HiscoreScene {
                 setConnected(false);
             }
         });
-        timer = timer + Gdx.graphics.getDeltaTime();
-        while(timer < 1f){
-            timer = timer + Gdx.graphics.getDeltaTime();
+        long startTime = System.currentTimeMillis();
+        int elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
+        while(elpasedTime < 0.5){
+            System.out.println(String.valueOf(elpasedTime));
+            elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
             //do nothing, 1sec delay to check for connection
         }
         return;
     }
 
+    private Table showLoading(){
+        Table rankingsTable = new Table();
+        rankingsTable.add(new Label("PERSONAL RANKING", skin, "skin-normal")).right().expandX().colspan(2);
+
+        Table table = new Table();
+        Label message = new Label("Connecting to ranking server...", skin, "skin-normal");
+        table.add(message).left().expandX();
+
+        return table;
+    }
+
     public Stage create(){
         loadSound();
 
-        Table innerTable = new Table();
+        Table innerTable;
         Table table = new Table();
         table.setFillParent(true);
 
         checkConnection();
-
         if(isConnected){
-            isConnected();
+            innerTable = isConnected();
         } else{
             innerTable = noConnection();
         }
 
-        table.add(innerTable);
+        table.add(innerTable).expandX().expandY().top().left();
 
         //rankings row with scrollpane, scrollpane has table inside with 3 columns.
         //buttons row
         //ScrollPane rankingsPane = new ScrollPane(rankingsTable, skin, "default-no-slider");
-
-        //check if connected
-        //update score
-        /*httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/update/golden751/1/60012/11/3/20").content("").build();
-        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                int statusCode = httpResponse.getStatus().getStatusCode();
-                if(statusCode != HttpStatus.SC_OK) {
-                    System.out.println("Request Failed");
-                    return;
-                }
-                String status = httpResponse.getResultAsString();
-                System.out.println(status);
-        }
-
-            public void failed(Throwable t) {
-                String status = "failed";
-                System.out.println(status + " " + t.getMessage());
-            }
-
-            @Override
-            public void cancelled() {
-                String status = "cancelled";
-                System.out.println(status);
-            }
-        });*/
-
         stage.addActor(table);
         return stage;
     }
@@ -211,6 +317,7 @@ public class HiscoreScene {
                 playerScoreMap.put("totalGold", array[2]);
                 playerScoreMap.put("totalStars", array[3]);
                 playerScoreMap.put("totalTimePlayed", array[4]);
+                playerScoreMap.put("totalPlayers", array[5]);
 
                 i=0;
                 //get player rankings for level one, copy paste for level 2/3
@@ -229,6 +336,7 @@ public class HiscoreScene {
                 levelOneScoreMap.put("player_rank", array[1]);
                 levelOneScoreMap.put("fastest_time", array[2]);
                 levelOneScoreMap.put("max_points", array[3]);
+                levelOneScoreMap.put("total_players", array[4]);
                 /*for(String s : array){
                     System.out.println(s);
                 }*/
@@ -250,6 +358,7 @@ public class HiscoreScene {
                 levelTwoScoreMap.put("player_rank", array[1]);
                 levelTwoScoreMap.put("fastest_time", array[2]);
                 levelTwoScoreMap.put("max_points", array[3]);
+                levelTwoScoreMap.put("total_players", array[4]);
 
                 i=0;
                 //get player rankings for level one, copy paste for level 2/3
@@ -268,6 +377,7 @@ public class HiscoreScene {
                 levelThreeScoreMap.put("player_rank", array[1]);
                 levelThreeScoreMap.put("fastest_time", array[2]);
                 levelThreeScoreMap.put("max_points", array[3]);
+                levelThreeScoreMap.put("total_players", array[4]);
             }
 
             public void failed(Throwable t) {
@@ -281,6 +391,14 @@ public class HiscoreScene {
                 //System.out.println(status);
             }
         });
+        long startTime = System.currentTimeMillis();
+        int elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
+        while(elpasedTime < 0.25){
+            System.out.println(String.valueOf(elpasedTime));
+            elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
+            //do nothing, 1sec delay to check for connection
+        }
+        return;
     }
 
     public void loadSound(){

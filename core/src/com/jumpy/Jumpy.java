@@ -59,7 +59,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		boolean userPrefsKeys = userPrefs.getBoolean("created", false);
 
-		if(userPrefsKeys == false){
+		//if(userPrefsKeys == false){
 			//doesn't exist, so create it
 			userPrefs.putBoolean("created", false);
 			userPrefs.putInteger("goldEarned", 999999);
@@ -67,9 +67,9 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			userPrefs.putString("equippedActive", Active.NONE.toString());
 			userPrefs.putString("equippedPassive", Passive.NONE.toString());
 			userPrefs.putString("equippedBoost", Boost.NONE.toString());
-			userPrefs.putString("username", "mo");
+			userPrefs.putString("username", "golden751");
 			userPrefs.flush();
-		}// else{
+		//}// else{
 			//does exist, no need to do anything
 	//	}
 

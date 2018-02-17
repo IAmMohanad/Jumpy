@@ -30,6 +30,8 @@ public class PlayScreen implements Screen {
     inputController inputController;
     //create multiplexer here, make private
     //add multiplexer to inputProcessor in show method.
+    private boolean firstStart = true;
+    private float firstStartTimer = 0f;
 
     private boolean reload = false;
     private Jumpy game;
@@ -110,21 +112,27 @@ public class PlayScreen implements Screen {
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             game.batch.setProjectionMatrix(camera.combined);
 
-            if(isGamePaused()){
-                delta = 0f;
+            if(firstStart && firstStartTimer < 1){
+                firstStartTimer += Gdx.graphics.getDeltaTime();
+                if(firstStartTimer > 1){
+                    firstStart = false;
+                }
+            } else{
+                if(delta > 1.2) delta = 1.2f;
+                if(isGamePaused()){
+                    delta = 0f;
+                }
+
+                if(game.exitPressed){
+                    game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+                }
+                map.render(camera, game.batch, delta);
+                game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+                hud.render(delta);
+                map.cameraStop(camera);
             }
 
-            if(game.exitPressed){
-                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
-            }
-            map.render(camera, game.batch, delta);
-            game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-            hud.render(delta);
-            map.cameraStop(camera);
         }
-
-
-
         /*if(Gdx.input.isTouched()){
             camera.translate(Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
             camera.update();

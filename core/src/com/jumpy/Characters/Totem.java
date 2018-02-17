@@ -161,6 +161,9 @@ public class Totem extends Enemy {
         float newY = position.y;
         velocityY += gravity * delta;
         newY += velocityY * delta;
+        if(newY < 0){
+            newY = position.y;
+        }
         if(map.doesRectCollideWithMap(boundingBox.x, newY, (int) boundingBox.width, (int) boundingBox.height)){
             if(velocityY < 0){//falling downwards
                 position.y = (float) Math.floor(position.y);

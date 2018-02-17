@@ -38,6 +38,9 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
             if(velocityY > 200){
                 velocityY = 200;
             }
+            if(newY < 0){
+                newY = position.y;
+            }
             position.y = newY;
             grounded = false;
         }

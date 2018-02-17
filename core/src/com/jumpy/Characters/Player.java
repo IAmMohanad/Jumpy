@@ -182,6 +182,7 @@ public class Player extends DynamicObject {
 
     public void updateGravity(float delta){
         //simulate gravity
+        float test = Gdx.graphics.getDeltaTime();
         float newY = position.y;
         velocityY += gravity * delta;
         newY += velocityY * delta;
@@ -197,6 +198,9 @@ public class Player extends DynamicObject {
             if(velocityY > 200){
                 velocityY = 200;
             }
+            if(newY < 0){
+                newY = position.y;
+            }
             position.y = newY;
             grounded = false;
         }
@@ -208,6 +212,7 @@ public class Player extends DynamicObject {
         shootCounter += delta;
         timeSinceLastJump += delta;
         //System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
+        System.out.println("x: "+this.position.x+" y: "+this.position.y);
         System.out.println(shootPressed);
         this.stateTime += delta;
         updateGravity(delta);

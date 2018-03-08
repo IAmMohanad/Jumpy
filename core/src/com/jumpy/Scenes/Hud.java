@@ -163,14 +163,27 @@ public class Hud{
             table.row();
             table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
 
+            Table controlButtonsTable = new Table();
             //jump button
             ImageButton jumpButton = new ImageButton(skin, "jumpButton24");
-            table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
+            //table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
+            ImageButton attackButton = new ImageButton(skin, "attackButton");
+            controlButtonsTable.add(attackButton).expandX().left();
+            controlButtonsTable.add(jumpButton).expandX().right();
+
+            table.add(controlButtonsTable).expandY().expandX().bottom().right().padBottom(45).padRight(20);
 
             jumpButton.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player.up = true;
+                }
+            });
+            attackButton.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    Player.shootPressed = true;
+                    System.out.println("------------------------------------------------------------");
                 }
             });
         }

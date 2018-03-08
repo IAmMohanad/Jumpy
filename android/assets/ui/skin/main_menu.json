@@ -101,6 +101,9 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	test: {
 		imageUp: button_1
 	}
+	attackButton: {
+		imageUp: attack_button_symbol_34x34
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {

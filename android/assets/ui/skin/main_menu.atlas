@@ -131,7 +131,7 @@ font-export
   index: -1
 blue_checkmark
   rotate: false
-  xy: 41, 23
+  xy: 300, 65
   size: 21, 20
   orig: 21, 20
   offset: 0, 0
@@ -145,7 +145,7 @@ blue_cross
   index: -1
 jumpButton24
   rotate: false
-  xy: 344, 228
+  xy: 436, 318
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -215,7 +215,7 @@ settings1
   index: -1
 settings32
   rotate: false
-  xy: 476, 477
+  xy: 772, 781
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -236,14 +236,14 @@ touchBackgroundTransparent50
   index: -1
 touchKnob
   rotate: false
-  xy: 772, 781
+  xy: 649, 575
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 touchKnob24
   rotate: false
-  xy: 436, 318
+  xy: 41, 19
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -260,6 +260,13 @@ yellow_boxCross
   xy: 599, 520
   size: 38, 36
   orig: 38, 36
+  offset: 0, 0
+  index: -1
+attack_button_symbol_34x34
+  rotate: false
+  xy: 476, 475
+  size: 34, 34
+  orig: 34, 34
   offset: 0, 0
   index: -1
 button
@@ -358,7 +365,7 @@ replay_button_blue
   index: -1
 slider
   rotate: false
-  xy: 300, 87
+  xy: 344, 220
   size: 25, 32
   split: 5, 5, 15, 14
   pad: 0, 0, 0, 0
@@ -367,7 +374,7 @@ slider
   index: -1
 slider-knob
   rotate: false
-  xy: 649, 575
+  xy: 300, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -383,7 +390,7 @@ textfield
   index: -1
 vertical-scroll-bar
   rotate: false
-  xy: 344, 174
+  xy: 344, 166
   size: 21, 52
   split: 9, 9, 14, 14
   pad: 5, 5, 8, 8

@@ -38,7 +38,8 @@ public class LoadingScene {
     public LoadingScene(Jumpy game){
         this.game = game;
 
-        loadingSkin = new Skin(Gdx.files.internal("ui/new ui/exported_progress_bar_skin/progress_bar_skin.json"));
+        //loadingSkin = new Skin(Gdx.files.internal("ui/new ui/exported_progress_bar_skin/progress_bar_skin.json"));
+        loadingSkin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         settings = Gdx.app.getPreferences("settings");

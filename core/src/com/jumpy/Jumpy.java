@@ -28,7 +28,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	private Preferences upgradePrefs;
 	public static boolean exitPressed = false;
 
-	private boolean needsUpdate = false;
+	private boolean needsUpdate = true;
 	@Override
 	public void create () {
 		//SoundManager.init(this);
@@ -59,7 +59,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		boolean userPrefsKeys = userPrefs.getBoolean("created", false);
 
-		//if(userPrefsKeys == false){
+		if(userPrefsKeys == false){
 			//doesn't exist, so create it
 			userPrefs.putBoolean("created", false);
 			userPrefs.putInteger("goldEarned", 999999);
@@ -69,7 +69,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 			userPrefs.putString("equippedBoost", Boost.NONE.toString());
 			userPrefs.putString("username", "golden751");
 			userPrefs.flush();
-		//}// else{
+		}// else{
 			//does exist, no need to do anything
 	//	}
 

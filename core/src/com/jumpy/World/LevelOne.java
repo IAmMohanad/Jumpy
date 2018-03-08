@@ -86,8 +86,14 @@ public class LevelOne extends GameMap {
 
 
         //enemiesList.add(new Bee(this, 400, 100));
-        enemiesList.add(new Totem(this, 450, 150));
+        //enemiesList.add(new Totem(this, 450, 150));
         enemiesList.add(new Totem(this, 400, 150 ));
+        enemiesList.add(new Goblin(this, 450, 150));
+
+        enemiesList.add(new Gargoyle(this, 350, 150));
+        enemiesList.add(new GargoyleFlying(this, 350, 150));
+        enemiesList.add(new Barbarian(this, 425, 150));
+
 
         renderer = new OrthogonalTiledMapRenderer(map);
 

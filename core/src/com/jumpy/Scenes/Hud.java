@@ -258,6 +258,8 @@ public class Hud{
         accelY = Gdx.input.getAccelerometerY();
         accelZ = Gdx.input.getAccelerometerZ();
 
+
+       // System.out.println("x: "+accelX+"    y: "+accelY+"      z: "+accelZ);
         if(android){
             if(isTouchPad){
                 if(touchpad.getKnobPercentX() > 0){
@@ -274,7 +276,7 @@ public class Hud{
                 }
                 if(accelZ > 1 || Gdx.input.isTouched(0)){
                     if(Gdx.input.isTouched(0) || Math.abs(originalZ) - Math.abs(accelZ) > 2.5){
-                        // Player.up = true;
+                         Player.up = true;
                     }
                 }
 

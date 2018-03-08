@@ -308,7 +308,7 @@ public class Player extends DynamicObject {
                 //update position v2
                 if(!down) {
                     if (up) {
-                        if(timeSinceLastJump > 0.1){
+                        if(timeSinceLastJump > 0.2){
                             timeSinceLastJump = 0;
                             jump();
                             up = false;

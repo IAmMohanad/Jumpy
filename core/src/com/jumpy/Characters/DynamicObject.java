@@ -24,9 +24,11 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     public void updateGravity(float delta){
         //simulate gravity
         float newY = position.y;
+        //how many pixels should be moved on Y axis. positive == moving up, negative == falling
         velocityY += gravity * delta;
         newY += velocityY * delta;
         if(map.doesRectCollideWithMap(boundingBox.x, newY, (int) boundingBox.width, (int) boundingBox.height)){
+            //if colliding with map & falling down hit ground
             if(velocityY < 0){//falling downwards
                 position.y = (float) Math.floor(position.y);
                 grounded = true;
@@ -34,7 +36,7 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
             velocityY = 0;
             firstJump = false;
             doubleJump = false;
-        } else{//moving upwards
+        } else{
             if(velocityY > 200){
                 velocityY = 200;
             }

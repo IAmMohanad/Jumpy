@@ -49,10 +49,8 @@ public abstract class GameMap {
     public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 
     public boolean doesRectCollideWithMap(float x, float y, int width, int height) {
-        /*if (x < 0 || y < 0 || x + width > getPixelWidth() || y + height > getPixelHeight()) {
-            return true;
-        }*/
-
+        //check tiles from bottom left to top right of given bounding box, if the bounding box collides
+        //with a collidable tile than a collision has occurred.
         for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
             for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
                 // for (int layer = 1; layer < getLayers(); layer++) {
@@ -99,11 +97,11 @@ public abstract class GameMap {
         openList.add(current);
 
         while(openList.size() > 0){
-            Collections.sort(openList, nodeSorter);//sort openList by lowest to highest fCost, lowest fCost = closest to goal
-            current = openList.get(0);//get first node
+            Collections.sort(openList, nodeSorter);//sort openList by lowest to highest fCost
+            current = openList.get(0);
             //found path
-            //if(equals(current.tile, goal)){
             if(current.tile.equals(goal)){
+                //reverse list, as goal is the first tile in closedList, should be last
                 List<Node> path = new ArrayList<Node>();
                 while(current.parent != null){
                     path.add(current);
@@ -116,27 +114,25 @@ public abstract class GameMap {
             //checked tile. so remove from open and add to closed
             openList.remove(current);
             closedList.add(current);
-            //check adjacent cells
+            //check adjacent tiles to current tile
             for(int i = 0; i<9; i++){
                 if(i == 4) continue; // skip current tile
                 int x = (int) current.tile.x;
                 int y = (int) current.tile.y;
                 int xi = (i % 3) - 1;
                 int yi = (i / 3) - 1;
-
-                //TileType at = getTileTypeByLocation(2, x + xi, y + yi);
+                //tile being considered
                 TileType at = getTileTypeByCoordinate(2, x + xi, y + yi);
-                //if(at == null) continue;
-                if(at != null) {
-                    if(at.isCollidable()) continue;
-                }
-                //if(at.isCollidable()) continue;
+                if(at == null) continue;
+                if(at.isCollidable()) continue;
+                //calculate costs of tile being considered
                 Vector2 a = new Vector2(x + xi, y + yi);
-                //https://www.youtube.com/watch?v=1OpLi7wWvyY&t=1653s
-                //reached 29:00
+                //cost of current tile to tile being considered
                 double gCost = current.gCost + getDistance(current.tile, a);
+                //cost of tile being considered to the goal
                 double hCost = getDistance(a, goal);
                 Node node = new Node(a, current, gCost, hCost);
+                //has this tile already been added to closedList
                 if(vecInList(closedList, a) && gCost >= node.gCost) continue;
                 if(!vecInList(openList, a) || gCost < node.gCost) openList.add(node);
             }
@@ -147,9 +143,7 @@ public abstract class GameMap {
 
     private boolean vecInList(List<Node> list, Vector2 vector){
         for(Node n : list){
-            //if(n.tile.equals(vector)) return true;
             if(n.tile.equals(vector)) return true;
-            //if(equals(n.tile, vector)) return true;
         }
         return false;
     }
@@ -157,15 +151,6 @@ public abstract class GameMap {
     public void setHud(Hud hud){
         this.hud = hud;
     }
-
-    /*private boolean equals(Vector2 v1, Vector2 v2){
-        //if(!(object instanceof Vector2)) return false;
-        //Vector2 vec = (Vector2) object;
-        if(!(v2 instanceof Vector2)) return false;
-        Vector2 vec = (Vector2) v2;
-        if(vec.x == v1.x && vec.y == v1.y) return true;
-        return false;
-    }*/
 
     private double getDistance(Vector2 tile, Vector2 goal){
         double dx = (int) tile.x - (int) goal.x;

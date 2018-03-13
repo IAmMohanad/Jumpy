@@ -181,20 +181,34 @@ public class Player extends DynamicObject {
     }
 
     public void updateGravity(float delta){
+        /*
+            float newY = y
+            velocityY += gravity * deltaTime
+            newY += velocityY * deltaTime
+            if collisionOccurs:
+              if velocityY < 0 // hit ground
+                y = floor(y)
+                grounded = true
+            else:
+              //falling
+              y = newY
+              grounded = false
+        */
         //simulate gravity
-        float test = Gdx.graphics.getDeltaTime();
         float newY = position.y;
+        //how many pixels should be moved on Y axis. positive == moving up, negative == falling
         velocityY += gravity * delta;
         newY += velocityY * delta;
         if(map.doesRectCollideWithMap(boundingBox.x, newY, (int) boundingBox.width, (int) boundingBox.height) && !dead){
-            if(velocityY < 0){//falling downwards
+            //if colliding with map & falling down hit ground
+            if(velocityY < 0){//snap position to ground
                 position.y = (float) Math.floor(position.y);
                 grounded = true;
             }
             firstJump = false;
             doubleJump = false;
             velocityY = 0;
-        } else{//moving upwards
+        } else{
             if(velocityY > 200){
                 velocityY = 200;
             }

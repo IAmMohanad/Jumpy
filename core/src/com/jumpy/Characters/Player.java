@@ -368,7 +368,7 @@ public class Player extends DynamicObject {
         batch.begin();
        // this.alpha = 1;
         if(!deathComplete){
-            batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);
+            batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y - 1, !flip ? width : -width, height);
         }
         batch.end();
     }

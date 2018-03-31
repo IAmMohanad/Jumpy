@@ -74,7 +74,7 @@ public class PlayScreen implements Screen {
             if(game.getCurrentLevel().equals("1-3")) {
                 this.loadedLevel = "1-3";
                 this.map = new LevelOne(game,/* hud,*/ this);
-                map.load("retro_game_map3.tmx");
+                map.load("retro_game_map3_collidable_objects.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
                 //TODO add pause button and pause screen / scene
                 /*
@@ -124,6 +124,7 @@ public class PlayScreen implements Screen {
                 }
 
                 if(game.exitPressed && isGamePaused()){
+                    game.exitPressed = false;
                     game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
                 }
                 map.render(camera, game.batch, delta);

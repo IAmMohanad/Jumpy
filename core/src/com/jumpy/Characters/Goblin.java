@@ -6,6 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -33,7 +40,10 @@ public class Goblin extends Enemy {
     private Move direction;
     private boolean deathComplete = false;
 
-    public Goblin(GameMap map, float x, float y){
+    TiledMap tiledMap;
+
+    public Goblin(TiledMap tiledMap, GameMap map, float x, float y){
+        this.tiledMap = tiledMap;
         health = 1;
         width = GOBLIN_WIDTH;
         height = GOBLIN_HEIGHT;
@@ -107,18 +117,18 @@ public class Goblin extends Enemy {
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
         this.stateTime += delta;
         updateGravity(delta);
-
+        //collidesWithCollidableObject();
         if(!dead){
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                } else{
+                //TODO changed this to OR and removed NOT, makes it easier to read, change all other objects...
+                if (collidesWithCollidableObject() || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                     direction = Move.LEFT;
                 }
             } else if(direction == Move.LEFT){
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
+                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                 } else{
                     direction = Move.RIGHT;
                 }
@@ -126,13 +136,13 @@ public class Goblin extends Enemy {
 
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
+                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                     position.x += movementSpeed * delta;
                 }
                 flip = false;
             } else if(direction == Move.LEFT) {
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
+                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                     position.x -= movementSpeed * delta;
                 }
                 flip = true;
@@ -158,6 +168,23 @@ public class Goblin extends Enemy {
             batch.end();
         }
      }
+
+    private boolean collidesWithCollidableObject(){
+        MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
+        MapObjects objects = tiledLayer.getObjects();
+        System.out.println(tiledLayer.getName()+"  objects count::: "+objects.getCount());
+        for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
+            if(object.getName().equals("goblin_collidable")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                if(this.boundingBox.overlaps(objectRect)){
+                    return true;
+
+                }
+
+            }
+        }
+        return false;
+    }
 
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame) {

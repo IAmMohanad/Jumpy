@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -28,7 +29,7 @@ public class LevelOne extends GameMap {
      */
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private final String mapLocation = "retro_game_map3.tmx";//"newest_map.tmx";
+    private final String mapLocation = "retro_game_map3_collidable_objects.tmx";//"newest_map.tmx";
 
     private Jumpy game;
     private Player player;
@@ -71,6 +72,7 @@ public class LevelOne extends GameMap {
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
+
         Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
         Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
         player = new Player(equippedActive, this, 32, 64, playScreen);
@@ -88,7 +90,7 @@ public class LevelOne extends GameMap {
         //enemiesList.add(new Bee(this, 400, 100));
         //enemiesList.add(new Totem(this, 450, 150));
         enemiesList.add(new Totem(this, 400, 150 ));
-        enemiesList.add(new Goblin(this, 450, 150));
+        enemiesList.add(new Goblin(map,this, 450, 150));
 
         enemiesList.add(new Gargoyle(this, 350, 150));
         enemiesList.add(new GargoyleFlying(this, 350, 150));
@@ -109,7 +111,7 @@ public class LevelOne extends GameMap {
             //hud.setScore(player.getPoints());
             hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
-            chaserTwo.update(batch, delta, camera);
+            //chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
                 coin.update(batch, delta, camera);
             }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -33,7 +34,9 @@ public class Barbarian extends Enemy {
     private Move direction;
     private boolean deathComplete = false;
 
-    public Barbarian(GameMap map, float x, float y){
+    public Barbarian(TiledMap tiledMap, GameMap map, float x, float y){
+        this.tiledMap = tiledMap;
+        this.name = "barbarian";
         health = 1;
         width = BARBARIAN_WIDTH;
         height = BARBARIAN_HEIGHT;

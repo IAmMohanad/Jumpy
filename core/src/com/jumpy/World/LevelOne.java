@@ -4,13 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Active;
 import com.jumpy.Characters.*;
@@ -89,17 +93,43 @@ public class LevelOne extends GameMap {
 
         //enemiesList.add(new Bee(this, 400, 100));
         //enemiesList.add(new Totem(this, 450, 150));
-        enemiesList.add(new Totem(this, 400, 150 ));
-        enemiesList.add(new Goblin(map,this, 450, 150));
+        //enemiesList.add(new Totem(this, 400, 150 ));
+        //enemiesList.add(new Goblin(map,this, 350, 150));
 
-        enemiesList.add(new Gargoyle(this, 350, 150));
-        enemiesList.add(new GargoyleFlying(this, 350, 150));
-        enemiesList.add(new Barbarian(this, 425, 150));
-
+       // enemiesList.add(new Gargoyle(this, 350, 150));
+        //enemiesList.add(new GargoyleFlying(this, 350, 150));
+        //enemiesList.add(new Barbarian(this, 425, 150));
+        spawnObjects();
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
         levelSummary = new LevelSummaryScene(game, playScreen);
+    }
+
+    private void spawnObjects(){
+        //spawn player, coins, enemies
+        spawnEnemies();
+    }
+
+    private void spawnEnemies(){
+        for(MapObject object : map.getLayers().get("spawn1").getObjects()) {
+            if(object.getName().toLowerCase().equals("gargoyle_flying")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                enemiesList.add(new GargoyleFlying(map, this, objectRect.x, objectRect.y));
+            } else if(object.getName().toLowerCase().equals("goblin")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                enemiesList.add(new Goblin(map, this, objectRect.x, objectRect.y));
+            } else if(object.getName().toLowerCase().equals("barbarian")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                enemiesList.add(new Barbarian(map, this, objectRect.x, objectRect.y));
+            } else if(object.getName().toLowerCase().equals("gargoyle")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                enemiesList.add(new Gargoyle(map, this, objectRect.x, objectRect.y));
+            } else if(object.getName().toLowerCase().equals("totem")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                enemiesList.add(new Totem(map, this, objectRect.x, objectRect.y));
+            }
+        }
     }
 
     @Override

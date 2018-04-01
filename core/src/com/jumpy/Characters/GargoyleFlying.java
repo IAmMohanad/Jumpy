@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -15,14 +16,14 @@ import com.jumpy.World.GameMap;
 
 public class GargoyleFlying extends Enemy {
 
-    private static int GARGOYLE_WIDTH = 32;
-    private static int GARGOYLE_HEIGHT = 32;
+    private final int GARGOYLE_WIDTH = 32;
+    private final int GARGOYLE_HEIGHT = 32;
 
-    private static int B_BOX_WIDTH = 24;
-    private static int B_BOX_HEIGHT = 25;
+    private final int B_BOX_WIDTH = 24;
+    private final int B_BOX_HEIGHT = 25;
 
-    private static int B_BOX_X_OFFSET = 8;
-    private static int B_BOX_Y_OFFSET = 0;
+    private final int B_BOX_X_OFFSET = 8;
+    private final int B_BOX_Y_OFFSET = 0;
 
     private Animation<TextureRegion> idleAnimation;
     private Animation<TextureRegion> walkAnimation;
@@ -33,7 +34,9 @@ public class GargoyleFlying extends Enemy {
     private Move direction;
     private boolean deathComplete = false;
 
-    public GargoyleFlying(GameMap map, float x, float y){
+    public GargoyleFlying(TiledMap tiledMap, GameMap map, float x, float y){
+        this.tiledMap = tiledMap;
+        this.name = "gargoyle_flying";
         health = 1;
         width = GARGOYLE_WIDTH;
         height = GARGOYLE_HEIGHT;

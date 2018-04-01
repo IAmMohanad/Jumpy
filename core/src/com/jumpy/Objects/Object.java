@@ -96,6 +96,7 @@ public abstract class Object extends Sprite {
     public boolean isAlive(){
         return !dead;
     }
+
         /*TODO
     You can use the method intersectRectangles provided in the Intersector class to determine if two rectangles are overlapping,
     and if so, where they overlap. You could use this info to determine if they overlap with the left, right, top, and/or bottom.

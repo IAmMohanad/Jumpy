@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -15,14 +16,14 @@ import com.jumpy.World.GameMap;
 
 public class Totem extends Enemy {
 
-    private static int TOTEM_WIDTH = 32;
-    private static int TOTEM_HEIGHT = 32;
+    private final int TOTEM_WIDTH = 32;
+    private final int TOTEM_HEIGHT = 32;
 
-    private static int B_BOX_WIDTH = 20;
-    private static int B_BOX_HEIGHT = 20;
+    private final int B_BOX_WIDTH = 20;
+    private final int B_BOX_HEIGHT = 20;
 
-    private static int B_BOX_X_OFFSET = 5;
-    private static int B_BOX_Y_OFFSET = 0;
+    private final int B_BOX_X_OFFSET = 5;
+    private final int B_BOX_Y_OFFSET = 0;
 
     private Animation<TextureRegion> walkAnimation;
     private Animation<TextureRegion> dieAnimation;
@@ -30,7 +31,9 @@ public class Totem extends Enemy {
     private Move direction;
     private boolean deathComplete = false;
 
-    public Totem(GameMap map, float x, float y){//REMOVE isDead ONLY THERE TO FORCE DEAD STATUS TO SHOW SUPERVISOR.
+    public Totem(TiledMap tiledMap, GameMap map, float x, float y){
+        this.tiledMap = tiledMap;
+        this.name = "totem";
         health = 1;
         width = TOTEM_WIDTH;
         height = TOTEM_HEIGHT;

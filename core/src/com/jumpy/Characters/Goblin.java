@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.*;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -22,14 +19,14 @@ import com.jumpy.World.GameMap;
 
 public class Goblin extends Enemy {
 
-    private static int GOBLIN_WIDTH = 32;
-    private static int GOBLIN_HEIGHT = 32;
+    private final int GOBLIN_WIDTH = 32;
+    private final int GOBLIN_HEIGHT = 32;
 
-    private static int B_BOX_WIDTH = 12;
-    private static int B_BOX_HEIGHT = 29;
+    private final int B_BOX_WIDTH = 12;
+    private final int B_BOX_HEIGHT = 29;
 
-    private static int B_BOX_X_OFFSET = 11;
-    private static int B_BOX_Y_OFFSET = 0;
+    private final int B_BOX_X_OFFSET = 11;
+    private final int B_BOX_Y_OFFSET = 0;
 
     private Animation<TextureRegion> idleAnimation;
     private Animation<TextureRegion> walkAnimation;
@@ -40,9 +37,8 @@ public class Goblin extends Enemy {
     private Move direction;
     private boolean deathComplete = false;
 
-    TiledMap tiledMap;
-
     public Goblin(TiledMap tiledMap, GameMap map, float x, float y){
+        this.name = "goblin";
         this.tiledMap = tiledMap;
         health = 1;
         width = GOBLIN_WIDTH;
@@ -123,13 +119,12 @@ public class Goblin extends Enemy {
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
                 //TODO changed this to OR and removed NOT, makes it easier to read, change all other objects...
-                if (collidesWithCollidableObject() || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                     direction = Move.LEFT;
                 }
             } else if(direction == Move.LEFT){
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
-                } else{
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
                     direction = Move.RIGHT;
                 }
             }
@@ -169,22 +164,24 @@ public class Goblin extends Enemy {
         }
      }
 
-    private boolean collidesWithCollidableObject(){
+    /*private boolean collidesWithCollidableObject(){
         MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
         MapObjects objects = tiledLayer.getObjects();
         System.out.println(tiledLayer.getName()+"  objects count::: "+objects.getCount());
         for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
-            if(object.getName().equals("goblin_collidable")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
-                if(this.boundingBox.overlaps(objectRect)){
-                    return true;
+            if(object.getName().equals("collidable")){
+                MapProperties objectProperties = object.getProperties();
+                if(objectProperties.containsKey("all") || objectProperties.containsKey(this.name)){//TODO update goblin to this.name
+                    Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                    if(this.boundingBox.overlaps(objectRect)){
+                        return true;
 
+                    }
                 }
-
             }
         }
         return false;
-    }
+    }*/
 
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame) {

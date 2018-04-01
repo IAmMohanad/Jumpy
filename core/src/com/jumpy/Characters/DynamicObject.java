@@ -1,5 +1,12 @@
 package com.jumpy.Characters;
 
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
 import com.jumpy.Objects.Object;
 
 public abstract class DynamicObject extends Object{//if any issues extend sprite
@@ -14,6 +21,9 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     protected boolean flip = false;
     protected boolean firstJump;
     protected boolean doubleJump;
+    //TODO add object name e.g. gargoyle_flying, same as TiledMap name
+    protected String name;
+    protected TiledMap tiledMap;
 
     public abstract void moveLeft(float delta);
 
@@ -46,5 +56,27 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
             position.y = newY;
             grounded = false;
         }
+    }
+
+    protected boolean collidesWithCollidableObject(float newX){
+        MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
+        MapObjects objects = tiledLayer.getObjects();
+        System.out.println(tiledLayer.getName()+"  objects count::: "+objects.getCount());
+        for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
+            if(object.getName().equals("collidable")){
+                MapProperties objectProperties = object.getProperties();
+                if(objectProperties.containsKey("all") || objectProperties.containsKey(this.name)){
+                    Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                    float oldX = boundingBox.x;
+                    boundingBox.setPosition(newX, boundingBox.y);
+                    if(this.boundingBox.overlaps(objectRect)){
+                        boundingBox.setPosition(oldX, boundingBox.y);
+                        return true;
+
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

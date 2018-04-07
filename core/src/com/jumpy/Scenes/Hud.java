@@ -50,7 +50,7 @@ public class Hud{
     private Image dollarSign;
     private Label clockLabel;
     private Image pauseButton;
-
+    private ImageButton attackButton;
     private PlayScreen playScreen;
 
     private Group pauseGroup;
@@ -169,15 +169,14 @@ public class Hud{
             //jump button
             ImageButton jumpButton = new ImageButton(skin, "jumpButton24");
             //table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
-            ImageButton attackButton = new ImageButton(skin, "attackButton");
+            attackButton = new ImageButton(skin, "attackButton");
 
             //boost button, bottom of stack is image, top is countdown text
             Stack boostButtonStack = new Stack();
             Image boostImage = new Image(new Texture(Gdx.files.internal("ui/new ui/boost_button_symbol_34x34.png")));
-            Label boostDurationLeft = new Label(String.valueOf("10"), skin, "small");//TODO add public method in player to get duration left in boost.
+            Label boostDurationLeft = new Label(String.valueOf(""), skin, "small");//TODO add public method in player to get duration left in boost.
             boostButtonStack.add(boostImage);//TODO lightning image when not clicked, replace with countdown when its clicked?
             boostButtonStack.add(boostDurationLeft);
-
             controlButtonsTable.add(attackButton).expandX().left().padRight(40);
             controlButtonsTable.add(boostButtonStack).expandX().padRight(40);
             controlButtonsTable.add(jumpButton).expandX().right();
@@ -198,6 +197,13 @@ public class Hud{
                     System.out.println("------------------------------------------------------------");
                 }
             });
+            boostButtonStack.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Player.boostPressed = true;
+                System.out.println("BOOOOOOOOOOOOOOOOOOST");
+            }
+        });
        // }
 
         stage.addActor(table);
@@ -321,6 +327,9 @@ public class Hud{
         stage.draw();
         updateClock(delta);
         getPhoneInput();
+        if(level.getIsLevelComplete()){
+            attackButton.remove();
+        }
     }
 
     public void addToStage(Actor actor){

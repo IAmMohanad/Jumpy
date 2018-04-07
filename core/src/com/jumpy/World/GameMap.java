@@ -22,6 +22,7 @@ public abstract class GameMap {
     protected ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     protected Hud hud;
+    protected boolean isLevelComplete;
 
     //public int[] tiles = new int[25 * 15];
     public abstract void load(String location);
@@ -161,4 +162,7 @@ public abstract class GameMap {
     public abstract ArrayList<Coin> getCoins();
     public abstract ArrayList<Enemy> getEnemies();
     public abstract Player getPlayer();
+    public boolean getIsLevelComplete(){
+        return isLevelComplete;
+    }
 }

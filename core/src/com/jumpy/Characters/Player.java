@@ -89,11 +89,10 @@ public class Player extends DynamicObject {
         this.equippedWeapon = equippedWeapon;
         this.equippedBoost = equippedBoost;
         this.equippedPassive = equippedPassive;
-        boostOn = false;
         points = 0;
         coinsCollected = 0;
 
-        resolveBoosts();
+        assignBoosts();
         create();
     }
 
@@ -101,7 +100,7 @@ public class Player extends DynamicObject {
         this(null, map, x, y, null);
     }*/
 
-    private void resolveBoosts(){
+    private void assignBoosts(){
         /*TODO
         Set boostMaxDuration to appropriate value based on it's level.
         set boostOn to false
@@ -119,8 +118,23 @@ public class Player extends DynamicObject {
                 //don't need to do anything else?
             }
         }
-        boostOn = true;
+        boostOn = false;
+    }
 
+    private void resolveBoost(float delta){
+        boostTimer += delta;
+        if(boostPressed){
+            boostPressed = false;
+            if(!boostOn){
+                boostTimer = 0;
+                boostOn = true;
+            }
+        }
+        if(boostOn && boostTimer >= boostMaxTime){
+            boostOn = false;
+            boostTimer = 0;
+        }
+        System.out.println("boostOn: "+boostOn+"     "+(int) boostTimer);
     }
 
     public void weaponShot(){
@@ -256,12 +270,15 @@ public class Player extends DynamicObject {
         shootCounter += delta;
         timeSinceLastJump += delta;
         //System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
-        System.out.println("x: "+this.position.x+" y: "+this.position.y);
-        System.out.println(shootPressed);
+        //System.out.println("x: "+this.position.x+" y: "+this.position.y);
+        //System.out.println(shootPressed);
         this.stateTime += delta;
         updateGravity(delta);
         //simulate gravity
         //die(delta);
+
+
+        resolveBoost(delta);
 
         if(shootPressed){
             weaponShot();

@@ -83,6 +83,8 @@ public class LevelOne extends GameMap {
         Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
         Passive equippedPassive = Passive.valueOf(userPrefs.getString("equippedPassive"));
         Boost equippedBoost = Boost.valueOf(userPrefs.getString("equippedBoost"));
+
+        isLevelComplete = false;
         //player = new Player(equippedActive, this, 32, 64, playScreen);
         //active = new Laser(this, 50, 125);
 
@@ -182,7 +184,7 @@ public class LevelOne extends GameMap {
             player.update(batch, delta, camera);
         } else{//level summary screen
             createSummary();
-
+            isLevelComplete = true;
             System.out.println("finito");
         }
     }
@@ -201,8 +203,6 @@ public class LevelOne extends GameMap {
 
         levelSummary.render();
     }
-
-
 
     @Override
     public void dispose(){

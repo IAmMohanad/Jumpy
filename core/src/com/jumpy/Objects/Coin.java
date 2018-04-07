@@ -1,6 +1,5 @@
 package com.jumpy.Objects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,7 +26,6 @@ public class Coin extends Object{
     private static Hud hud;
 
     private Animation<TextureRegion> idleAnimation;
-
 
     public Coin(GameMap map, float x, float y){
         width = COIN_WIDTH;
@@ -104,5 +102,21 @@ public class Coin extends Object{
 
     public boolean alive(){
         return !this.dead;
+    }
+
+    public void setPosition(float delta, float x, float y){
+       // boundingBox.setPosition(x, y);
+        if(position.x < (int) x){
+            position.x += 250 * delta;//TODO replace 250 with movement speed
+        }
+        if(position.x > (int) x){
+            position.x -= 250 * delta;
+        }
+        if(position.y < (int) y){
+            position.y += 250 * delta;
+        }
+        if(position.y > (int) y){
+            position.y -= 250 * delta;
+        }
     }
 }

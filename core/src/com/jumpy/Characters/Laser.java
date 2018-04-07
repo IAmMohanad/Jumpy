@@ -13,7 +13,7 @@ import com.jumpy.Move;
 import com.jumpy.World.GameMap;
 import com.jumpy.Characters.Weapon;
 
-public class Boomerang extends Weapon {
+public class Laser extends Weapon {
 
     private Animation<TextureRegion> animation;
 
@@ -29,7 +29,7 @@ public class Boomerang extends Weapon {
     private Move direction;
     private boolean flip;
 
-    public Boomerang(GameMap map, float x, float y, Move direction){//REMOVE isDead ONLY THERE TO FORCE DEAD STATUS TO SHOW SUPERVISOR.
+    public Laser(GameMap map, float x, float y, Move direction){//REMOVE isDead ONLY THERE TO FORCE DEAD STATUS TO SHOW SUPERVISOR.
         width = WIDTH;
         height = HEIGHT;
         super.map = map;

@@ -59,9 +59,8 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     }
 
     protected boolean collidesWithCollidableObject(float newX){
-        MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
-        MapObjects objects = tiledLayer.getObjects();
-        System.out.println(tiledLayer.getName()+"  objects count::: "+objects.getCount());
+        //MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
+        //MapObjects objects = tiledLayer.getObjects();
         for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
             if(object.getName().equals("collidable")){
                 MapProperties objectProperties = object.getProperties();

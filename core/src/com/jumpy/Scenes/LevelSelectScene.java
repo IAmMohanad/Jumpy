@@ -5,11 +5,14 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,6 +29,7 @@ public class LevelSelectScene {
     private Skin skin;
 
     private Sound click;
+    private boolean isHardMode;
 
     public LevelSelectScene(Jumpy game) {
         this.game = game;
@@ -33,6 +37,7 @@ public class LevelSelectScene {
 
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
+        isHardMode = false;
         // Make the stage consume events
 
         //InputProcessor inputProcessorOne = new CustomInputProcessorOne();
@@ -64,6 +69,7 @@ public class LevelSelectScene {
                 if(!game.mute){
                     click.play(game.volume);
                     //GameMap level = new LevelOne();
+                    //game.setIsHardMode(isHardMode);
                 }
                 System.out.println("Clicked 1-2!");
             }
@@ -76,9 +82,23 @@ public class LevelSelectScene {
                     click.play(game.volume);
                 }
                 game.setCurrentLevel("1-3");
+                game.setIsHardMode(isHardMode);
                 //game.setPlay(); //commented out during screenManager changes
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
                 System.out.println("Clicked 1-3!");
+            }
+        });
+
+        final CheckBox hardModeCheckBox = new CheckBox("   HARD MODE", skin, "blue");
+
+        hardModeCheckBox.addListener(new ChangeListener() {
+            @Override
+            public void changed (ChangeEvent event, Actor actor) {
+                if(hardModeCheckBox.isChecked()){
+                    isHardMode = true;
+                } else{
+                    isHardMode = false;
+                }
             }
         });
 
@@ -91,6 +111,8 @@ public class LevelSelectScene {
         table.add(oneOne).expand();
         table.add(oneTwo).expand();
         table.add(oneThree).expand();
+        table.row();
+        table.add(hardModeCheckBox).colspan(3).expandX().left().padLeft(60);
 
         stage.addActor(table);
         return stage;

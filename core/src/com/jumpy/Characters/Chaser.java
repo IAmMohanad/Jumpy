@@ -14,7 +14,7 @@ import com.jumpy.World.TileType;
 
 import java.util.List;
 
-public class Chaser extends DynamicObject {
+public class Chaser extends Enemy {
     private Animation<TextureRegion> moveAnimation;
     private Animation<TextureRegion> dissipateAnimation;
 

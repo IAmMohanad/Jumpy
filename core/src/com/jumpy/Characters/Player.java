@@ -2,6 +2,7 @@ package com.jumpy.Characters;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -9,13 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.jumpy.Active;
-import com.jumpy.Intersection;
-import com.jumpy.Move;
+import com.jumpy.*;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Screens.PlayScreen;
 import com.jumpy.World.GameMap;
-import com.jumpy.Characters.Weapon;
 import com.jumpy.Active;
 
 import java.util.ArrayList;
@@ -32,9 +30,7 @@ public class Player extends DynamicObject {
     public static boolean down;
     public static boolean shootPressed;
     public static boolean boostPressed;
-    private Weapon equippedWeapon;
-    private int boostTimer;
-    private int boostMaxTime;
+    //private Weapon equippedWeapon;
 
     private boolean doubleJump;
     private boolean firstJump;
@@ -62,13 +58,19 @@ public class Player extends DynamicObject {
     private int BBOX_X_OFFSET = 5;
     private int BBOX_Y_OFFSET = 1;
 
-    private Active weapon;
     private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
+    private Active equippedWeapon;
+    private Boost equippedBoost;
+    private Passive equippedPassive;
+    private float boostTimer;
+    private float boostMaxTime;
+    private boolean boostOn;
 
-    private boolean deleteMe = true; //just used to force only one shot to be created. delete after demo.
+
+    private float shootLimiter = 0.33f;
     private float shootCounter = 0;
 
-    public Player(Active weapon, GameMap map, float x, float y, PlayScreen playScreen){
+    public Player(Active equippedWeapon, Boost equippedBoost, Passive equippedPassive, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
         //this.hud = h;
         super.health = 1;
@@ -84,24 +86,53 @@ public class Player extends DynamicObject {
         firstJump = false;
         doubleJump = false;
         dead = false;
-        this.weapon = weapon;
+        this.equippedWeapon = equippedWeapon;
+        this.equippedBoost = equippedBoost;
+        this.equippedPassive = equippedPassive;
+        boostOn = false;
         points = 0;
         coinsCollected = 0;
 
+        resolveBoosts();
         create();
     }
 
-    public Player(GameMap map, float x, float y){
+    /*public Player(GameMap map, float x, float y){
         this(null, map, x, y, null);
+    }*/
+
+    private void resolveBoosts(){
+        /*TODO
+        Set boostMaxDuration to appropriate value based on it's level.
+        set boostOn to false
+        if magnet create the magnet bounding box
+         */
+        if(equippedBoost != Boost.NONE){
+            Preferences upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
+            int equippedBoostLevel = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level");
+            if(equippedBoost == Boost.MAGNET){
+                boostMaxTime = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
+                //create bounding box
+            }
+            if(equippedBoost == Boost.ARMOUR){
+                boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
+                //don't need to do anything else?
+            }
+        }
+        boostOn = true;
+
     }
 
     public void weaponShot(){
         shootPressed = false;
-        if(weapon == Active.LASER){
-            weaponList.add(new Boomerang(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
-        }
-        if(weapon == Active.NONE){
-            weaponList.add(new Boomerang(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+        if(shootCounter >= shootLimiter){
+            shootCounter = 0;
+            if(equippedWeapon == Active.NONE){
+                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+            }
+            if(equippedWeapon == Active.LASER){
+                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+            }
         }
     }
 
@@ -114,7 +145,6 @@ public class Player extends DynamicObject {
         TextureRegion[] idleFrames = new TextureRegion[1];
         idleFrames[0] = tmp[0][0];
         idleAnimation = new Animation<TextureRegion>(0.5f, idleFrames);
-
 
         textureSheet = new Texture(Gdx.files.internal("characters/player/run.png"));
         tmp = TextureRegion.split(textureSheet,
@@ -233,10 +263,6 @@ public class Player extends DynamicObject {
         //simulate gravity
         //die(delta);
 
-       /* if(shootCounter >= 3){
-            shootCounter -= 3;
-            weaponShot();
-        }*/
         if(shootPressed){
             weaponShot();
         }
@@ -265,11 +291,6 @@ public class Player extends DynamicObject {
                     flip = false;
                 } else if (left) {
                     flip = true;
-                }
-
-                if(deleteMe){
-                    weaponShot();
-                    deleteMe = false;
                 }
 
                 //update animation
@@ -450,7 +471,11 @@ public class Player extends DynamicObject {
         //currentFrame = deathAnimation.getKeyFrame(stateTime, false);
         //jump();
         if (health > 0) {
-            health--;
+            if(equippedBoost == Boost.ARMOUR && boostOn){
+                return;
+            } else{
+                health--;
+            }
         }
         if(health == 0 && !dead){
             dead = true;

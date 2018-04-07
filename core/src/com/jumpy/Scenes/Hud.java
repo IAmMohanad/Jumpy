@@ -21,6 +21,7 @@ import com.jumpy.World.GameMap;
 
 public class Hud{
     private Player player;
+    private GameMap level;
     private Preferences settings;
     private float timer = 0;
     private float originalZ =0;
@@ -83,6 +84,7 @@ public class Hud{
     public Hud(SpriteBatch batch, GameMap level, final PlayScreen playScreen){
         //this.player = level.getPlayer();
         this.playScreen = playScreen;
+        this.level = level;
         clock = CLOCK_START_VALUE;
 
         settings = Gdx.app.getPreferences("settings");
@@ -158,7 +160,7 @@ public class Hud{
         table.add(topRowTable).expandX().left();
 
         //touch pad
-        if(isTouchPad && android){
+       // if(isTouchPad && android){
             touchpad = new Touchpad(10, skin, "touchPad3");
             table.row();
             table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
@@ -168,7 +170,16 @@ public class Hud{
             ImageButton jumpButton = new ImageButton(skin, "jumpButton24");
             //table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
             ImageButton attackButton = new ImageButton(skin, "attackButton");
-            controlButtonsTable.add(attackButton).expandX().left();
+
+            //boost button, bottom of stack is image, top is countdown text
+            Stack boostButtonStack = new Stack();
+            Image boostImage = new Image(new Texture(Gdx.files.internal("ui/new ui/boost_button_symbol_34x34.png")));
+            Label boostDurationLeft = new Label(String.valueOf("10"), skin, "small");//TODO add public method in player to get duration left in boost.
+            boostButtonStack.add(boostImage);//TODO lightning image when not clicked, replace with countdown when its clicked?
+            boostButtonStack.add(boostDurationLeft);
+
+            controlButtonsTable.add(attackButton).expandX().left().padRight(40);
+            controlButtonsTable.add(boostButtonStack).expandX().padRight(40);
             controlButtonsTable.add(jumpButton).expandX().right();
 
             table.add(controlButtonsTable).expandY().expandX().bottom().right().padBottom(45).padRight(20);
@@ -177,6 +188,7 @@ public class Hud{
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player.up = true;
+                    System.out.println("########## clicked boost button");
                 }
             });
             attackButton.addListener(new ClickListener(){
@@ -186,7 +198,7 @@ public class Hud{
                     System.out.println("------------------------------------------------------------");
                 }
             });
-        }
+       // }
 
         stage.addActor(table);
     }

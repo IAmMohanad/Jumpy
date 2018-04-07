@@ -128,10 +128,14 @@ public class ShopScene {
         resetLabel.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                userPrefs.putString("equippedPassive", Passive.NONE.toString());
+                userPrefs.putString("equippedBoost", Boost.NONE.toString());
+                userPrefs.putString("equippedActive", Active.NONE.toString());
                 upgradePrefs.putInteger(Passive.ANTI_GRAVITY+"Level", 0);
                 upgradePrefs.putInteger(Passive.SPEED+"Level", 0);
                 upgradePrefs.putInteger(Boost.MAGNET+"Level", 0);
                 upgradePrefs.putInteger(Boost.ARMOUR+"Level", 0);
+                userPrefs.flush();
                 upgradePrefs.flush();
                 informationDescription.setText("Choose a item from the left to see the description!");
                 loadGravityBootsContainer();
@@ -435,11 +439,10 @@ public class ShopScene {
         final int armourUpgradeCost = upgradePrefs.getInteger(Boost.ARMOUR.name()+"Level-"+String.valueOf(armourUpgradeLevel)+"-price", 9999);
         final boolean armourUpgradeUnlocked = upgradePrefs.getBoolean(Boost.ARMOUR.name()+"Unlocked", false);
 
-
         Table upgradeImageTable = new Table();
         Table upgradeLevelTable =  new Table();
         upgradeImageTable.add(new Image(new Texture(("ui/new ui/Armour_48.png"))));
-        upgradeLevelTable.add(new Label(upgradeName, skin, "skin-normal"));
+        upgradeLevelTable.add(new Label("Disguise", skin, "skin-normal"));//TODO keep this as disguise because doesn't kill enemy on touch?
         upgradeLevelTable.row();
         final Table horizontalGroup = new Table();
         populateHorizontalGroup(horizontalGroup, armourUpgradeLevel);

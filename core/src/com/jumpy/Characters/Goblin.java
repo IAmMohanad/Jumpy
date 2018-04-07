@@ -164,25 +164,6 @@ public class Goblin extends Enemy {
         }
      }
 
-    /*private boolean collidesWithCollidableObject(){
-        MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
-        MapObjects objects = tiledLayer.getObjects();
-        System.out.println(tiledLayer.getName()+"  objects count::: "+objects.getCount());
-        for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
-            if(object.getName().equals("collidable")){
-                MapProperties objectProperties = object.getProperties();
-                if(objectProperties.containsKey("all") || objectProperties.containsKey(this.name)){//TODO update goblin to this.name
-                    Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
-                    if(this.boundingBox.overlaps(objectRect)){
-                        return true;
-
-                    }
-                }
-            }
-        }
-        return false;
-    }*/
-
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame) {
         batch.begin();

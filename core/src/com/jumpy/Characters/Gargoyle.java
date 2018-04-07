@@ -106,14 +106,12 @@ public class Gargoyle extends Enemy {
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                } else{
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
                     direction = Move.LEFT;
                 }
             } else if(direction == Move.LEFT){
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                } else{
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
                     direction = Move.RIGHT;
                 }
             }

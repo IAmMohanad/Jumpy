@@ -10,6 +10,7 @@ import com.jumpy.Screens.*;
 
 
 import java.io.IOException;
+import java.util.Random;
 
 public class Jumpy extends Game {//ApplicationAdapter {
 	private Preferences settings;
@@ -19,6 +20,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static final int V_HEIGHT = 270;
 
 	private String currentLevel;
+	private boolean isHardMode;
 
 	public SpriteBatch batch;
 
@@ -28,7 +30,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	private Preferences upgradePrefs;
 	public static boolean exitPressed = false;
 
-	private boolean needsUpdate = true;
+	private boolean needsUpdate = false;
 	@Override
 	public void create () {
 		//SoundManager.init(this);
@@ -61,20 +63,23 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		if(userPrefsKeys == false){
 			//doesn't exist, so create it
-			userPrefs.putBoolean("created", false);
-			userPrefs.putInteger("goldEarned", 999999);
-			userPrefs.putInteger("pointsEarned", 0);
-			userPrefs.putString("equippedActive", Active.NONE.toString());
-			userPrefs.putString("equippedPassive", Passive.NONE.toString());
-			userPrefs.putString("equippedBoost", Boost.NONE.toString());
-			userPrefs.putString("username", "golden751");
-			userPrefs.flush();
-		}// else{
-			//does exist, no need to do anything
-	//	}
+			if(!userPrefs.getBoolean("created", false)){
+				userPrefs.putInteger("goldEarned", 999999);
+				userPrefs.putInteger("pointsEarned", 0);
+				userPrefs.putString("equippedActive", Active.NONE.toString());
+				userPrefs.putString("equippedPassive", Passive.NONE.toString());
+				userPrefs.putString("equippedBoost", Boost.NONE.toString());
+				userPrefs.putString("username", "golden751");//TODO replace golden751 with CreatePlayerId()
+				userPrefs.putBoolean("created", true);
+				userPrefs.flush();
+			}
+		}
+	}
 
-		//screenManager.setScreen(ScreenManager.GAME_STATE.LOADING);
+	private int CreatePlayerId(){
+		Random rand = new Random();
 
+		return rand.nextInt(99999999) + 1;
 	}
 
 	public ScreenManager.GAME_STATE getGameState(){
@@ -98,6 +103,14 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	public void setCurrentLevel(String lvl){
 		this.currentLevel = lvl;
+	}
+
+	public void setIsHardMode(boolean mode){
+		this.isHardMode = mode;
+	}
+
+	public boolean getIsHardMode(){
+		return isHardMode;
 	}
 
 	private boolean updateUpgradePrefs(String upgradesUrl){

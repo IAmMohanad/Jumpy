@@ -176,6 +176,9 @@ public class LevelSummaryScene {
         int userPointsEarned = userPrefs.getInteger("pointsEarned");
         userPrefs.putInteger("lifetimeGoldEarned", userGoldEarned + goldEarned);
         userPrefs.putInteger("lifeTimepointsEarned", userPointsEarned + points);
+        userPrefs.putInteger("goldEarned", userGoldEarned + goldEarned);
+
+        userPrefs.flush();
 
         //current values
         int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);

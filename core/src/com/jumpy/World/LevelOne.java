@@ -17,9 +17,11 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Active;
+import com.jumpy.Boost;
 import com.jumpy.Characters.*;
 import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Passive;
 import com.jumpy.Scenes.LevelSummaryScene;
 import com.jumpy.Scenes.PauseScene;
 import com.jumpy.Screens.PlayScreen;
@@ -79,16 +81,20 @@ public class LevelOne extends GameMap {
 
         Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
         Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
-        player = new Player(equippedActive, this, 32, 64, playScreen);
-        //active = new Boomerang(this, 50, 125);
+        Passive equippedPassive = Passive.valueOf(userPrefs.getString("equippedPassive"));
+        Boost equippedBoost = Boost.valueOf(userPrefs.getString("equippedBoost"));
+        //player = new Player(equippedActive, this, 32, 64, playScreen);
+        //active = new Laser(this, 50, 125);
 
-        chaserTwo = new Chaser(this, player,200,100, 16, 16);
+        /*if(game.getIsHardMode()){
+            chaserTwo = new Chaser(this, player,200,100, 16, 16);
+        }*/
 
-        coinList.add(new Coin(this, 80, 100));
-        coinList.add(new Coin(this, 160, 100));
-        coinList.add(new Coin(this, 240, 100));
-        coinList.add(new Coin(this, 360, 120));
-        coinList.add(new Coin(this, 450, 150));
+        //coinList.add(new Coin(this, 80, 100));
+        //coinList.add(new Coin(this, 160, 100));
+        //coinList.add(new Coin(this, 240, 100));
+        //coinList.add(new Coin(this, 360, 120));
+        //coinList.add(new Coin(this, 450, 150));
 
 
         //enemiesList.add(new Bee(this, 400, 100));
@@ -99,19 +105,43 @@ public class LevelOne extends GameMap {
        // enemiesList.add(new Gargoyle(this, 350, 150));
         //enemiesList.add(new GargoyleFlying(this, 350, 150));
         //enemiesList.add(new Barbarian(this, 425, 150));
-        spawnObjects();
+        spawnObjects(equippedActive, equippedBoost, equippedPassive);
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
         levelSummary = new LevelSummaryScene(game, playScreen);
     }
 
-    private void spawnObjects(){
-        //spawn player, coins, enemies
-        spawnEnemies();
+    //Randomly choose the spawn points on a map.
+    private void spawnObjects(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
+        String spawnChoice = "spawn1";
+        spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
+        spawnCoins(spawnChoice);
+        spawnEnemies(spawnChoice);
     }
 
-    private void spawnEnemies(){
+    private void spawnPlayer(String spawnChoice, Active equippedActive, Boost equippedBoost, Passive equippedPassive){
+        for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
+            if (object.getName().toLowerCase().equals("player")) {
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                player = new Player(equippedActive, equippedBoost, equippedPassive, this, objectRect.x, objectRect.y, playScreen);
+            }
+        }
+    }
+
+    private void spawnCoins(String spawnChoice){
+        for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
+            if (object.getName().toLowerCase().equals("coin")) {
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                coinList.add(new Coin(this, objectRect.x, objectRect.y));
+            }
+        }
+    }
+
+    private void spawnEnemies(String spawnChoice){
+        if(game.getIsHardMode()) {
+            enemiesList.add(new Chaser(this, player, 200, 100, 16, 16));
+        }
         for(MapObject object : map.getLayers().get("spawn1").getObjects()) {
             if(object.getName().toLowerCase().equals("gargoyle_flying")){
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
@@ -231,3 +261,4 @@ public class LevelOne extends GameMap {
         return this.chaserTwo;
     }
 }
+

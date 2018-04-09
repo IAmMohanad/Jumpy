@@ -29,7 +29,11 @@ public class Laser extends Weapon {
     private Move direction;
     private boolean flip;
 
-    public Laser(GameMap map, float x, float y, Move direction){//REMOVE isDead ONLY THERE TO FORCE DEAD STATUS TO SHOW SUPERVISOR.
+    public Laser(GameMap map, float x, float y, Move direction){
+        this(1, map, x, y, direction);
+    }
+
+    public Laser(int damage, GameMap map, float x, float y, Move direction){//REMOVE isDead ONLY THERE TO FORCE DEAD STATUS TO SHOW SUPERVISOR.
         width = WIDTH;
         height = HEIGHT;
         super.map = map;
@@ -40,8 +44,7 @@ public class Laser extends Weapon {
         movementLimit = 1000;
         this.direction = direction;
         active = true;
-
-        damage = 1;
+        this.damage = damage;
 
         create();
     }

@@ -65,8 +65,9 @@ public class Player extends DynamicObject {
     private float boostTimer;
     private float boostMaxTime;
     private boolean boostOn;
+    private Rectangle magnetBoundingBox;
 
-
+    private int weaponDamage;
     private float shootLimiter = 0.33f;
     private float shootCounter = 0;
 
@@ -106,14 +107,28 @@ public class Player extends DynamicObject {
         set boostOn to false
         if magnet create the magnet bounding box
          */
+        Preferences upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
+        if(equippedWeapon != Active.NONE){
+            int equippedActiveLevel = upgradePrefs.getInteger(equippedWeapon.toString().toUpperCase()+"Level");
+            weaponDamage = (int) upgradePrefs.getFloat(equippedWeapon.toString().toUpperCase()+"Level-"+equippedActiveLevel+"-damage");
+        } else{
+            weaponDamage = 1;
+        }
+        if(equippedPassive != Passive.NONE){
+            int equippedPassiveLevel = upgradePrefs.getInteger(equippedPassive.toString().toUpperCase()+"Level");
+            if(equippedPassive == Passive.ANTI_GRAVITY){
+                gravity = gravity * (1 - upgradePrefs.getFloat(equippedPassive.toString().toUpperCase()+"Level-"+equippedPassiveLevel+"-boost"));
+            } else if(equippedPassive == Passive.SPEED){
+                movementSpeed *= 1 + upgradePrefs.getFloat(equippedPassive.toString().toUpperCase()+"Level-"+equippedPassiveLevel+"-boost");
+            }
+        }
         if(equippedBoost != Boost.NONE){
-            Preferences upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
             int equippedBoostLevel = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level");
             if(equippedBoost == Boost.MAGNET){
-                boostMaxTime = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
+                boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
+                magnetBoundingBox = new Rectangle(this.position.x - 32, this.position.y - 45, 96, 135);//width=96, height=135
                 //create bounding box
-            }
-            if(equippedBoost == Boost.ARMOUR){
+            } else if(equippedBoost == Boost.ARMOUR){
                 boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
                 //don't need to do anything else?
             }
@@ -134,6 +149,8 @@ public class Player extends DynamicObject {
             boostOn = false;
             boostTimer = 0;
         }
+
+        magnetBoundingBox.setPosition(this.position.x - 32, this.position.y - 45);
         System.out.println("boostOn: "+boostOn+"     "+(int) boostTimer);
     }
 
@@ -145,14 +162,14 @@ public class Player extends DynamicObject {
                 weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
             }
             if(equippedWeapon == Active.LASER){
-                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+                weaponList.add(new Laser(weaponDamage, map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
             }
         }
     }
 
     @Override
     public void create(){
-        textureSheet = new Texture(Gdx.files.internal("characters/player/idle.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/idle.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/idle.png"));
         TextureRegion[][] tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 1,
                 textureSheet.getHeight() / 1);
@@ -160,7 +177,7 @@ public class Player extends DynamicObject {
         idleFrames[0] = tmp[0][0];
         idleAnimation = new Animation<TextureRegion>(0.5f, idleFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/run.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/run.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/run.png"));
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 6,
                 textureSheet.getHeight() / 1);
@@ -170,7 +187,7 @@ public class Player extends DynamicObject {
         }
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/jump.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/jump.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/jump.png"));
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 3,
                 textureSheet.getHeight() / 1);
@@ -180,7 +197,7 @@ public class Player extends DynamicObject {
         }
         jumpAnimation = new Animation<TextureRegion>(0.2f, jumpFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/fall.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/fall.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/fall.png"));
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 3,
                 textureSheet.getHeight() / 1);
@@ -190,7 +207,7 @@ public class Player extends DynamicObject {
         }
         fallAnimation = new Animation<TextureRegion>(0.2f, fallFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/down.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/down.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/down.png"));
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 1,
                 textureSheet.getHeight() / 1);
@@ -198,7 +215,7 @@ public class Player extends DynamicObject {
         downFrames[0] = tmp[0][0];
         downAnimation = new Animation<TextureRegion>(0.5f, downFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/spinJump_fixed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/spinJump_fixed.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/spinJump_fixed.png"));
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 10,
                 textureSheet.getHeight() / 1);
@@ -215,7 +232,7 @@ public class Player extends DynamicObject {
         spinJumpFrames[9] = tmp[0][9];
         spinJumpAnimation = new Animation<TextureRegion>(0.1f, spinJumpFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/player/bonk.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/bonk.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/bonk.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 1, textureSheet.getHeight() / 1);
         TextureRegion[] deathFrames = new TextureRegion[1];
         deathFrames[0] = tmp[0][0];
@@ -276,7 +293,6 @@ public class Player extends DynamicObject {
         updateGravity(delta);
         //simulate gravity
         //die(delta);
-
 
         resolveBoost(delta);
 
@@ -340,6 +356,9 @@ public class Player extends DynamicObject {
             System.out.println(walkAnimation.isAnimationFinished(stateTime));*/
 
                 for(Coin coin : map.getCoins()){
+                    if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
+                        coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
+                    }
                     if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
                         addCoin(1);
                         addScore(50);
@@ -382,8 +401,6 @@ public class Player extends DynamicObject {
                     }
                 }
             } else{
-                //if(!dead) die(delta);
-
                 currentFrame = deathAnimation.getKeyFrame(stateTime, true);
                 System.out.println("finito3");
                 //velocityY += JUMP_VELOCITY;
@@ -394,7 +411,6 @@ public class Player extends DynamicObject {
             }
         }
 
-
         if(Gdx.app.getType() == Application.ApplicationType.Android ){
             right = false;
             left = false;
@@ -404,7 +420,6 @@ public class Player extends DynamicObject {
         boundingBox.setPosition(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET);
         updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
         batch.begin();
-       // this.alpha = 1;
         if(!deathComplete){
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y - 1, !flip ? width : -width, height);
         }
@@ -472,7 +487,7 @@ public class Player extends DynamicObject {
         } else{
             if(!grounded && !doubleJump && firstJump){
                 doubleJump = true;
-                velocityY += JUMP_VELOCITY;
+                velocityY += JUMP_VELOCITY / 1.5;
             }
         }
     }

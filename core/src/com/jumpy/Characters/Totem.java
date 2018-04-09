@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jumpy.Jumpy;
 import com.jumpy.Move;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
@@ -51,7 +52,7 @@ public class Totem extends Enemy {
 
     @Override
     public void create() {
-        Texture textureSheet = new Texture(Gdx.files.internal("characters/baddies/totem/totem_walk.png"));
+        Texture textureSheet = Jumpy.assetManager.get("characters/baddies/totem/totem_walk.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/totem/totem_walk.png"));
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 7, textureSheet.getHeight());
 
         TextureRegion[] walkFrames = new TextureRegion[7];
@@ -60,7 +61,7 @@ public class Totem extends Enemy {
         }
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
-        textureSheet = new Texture(Gdx.files.internal("characters/baddies/totem/totem_die.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/totem/totem_die.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/totem/totem_die.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 7, textureSheet.getHeight());
         TextureRegion[] dieFrames = new TextureRegion[7];
         for(int i=0; i<dieFrames.length; i++){
@@ -85,18 +86,17 @@ public class Totem extends Enemy {
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-            } else{
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
                     direction = Move.LEFT;
                 }
             } else if(direction == Move.LEFT){
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
-                } else{
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {
                     direction = Move.RIGHT;
                 }
             }
 
+            //if doesn't collide with an object keep moving
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
                 if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))) {

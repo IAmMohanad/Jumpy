@@ -62,6 +62,34 @@ public class LoadingScreen implements Screen {
         assetManager.load("chaser_updated.png", Texture.class);
         assetManager.load("ui/skin/main_menu.json", Skin.class);
         assetManager.load("coin_animation/coin_animation.png", Texture.class);
+
+        //load player assets
+        assetManager.load("characters/player/idle.png", Texture.class);
+        assetManager.load("characters/player/run.png", Texture.class);
+        assetManager.load("characters/player/jump.png", Texture.class);
+        assetManager.load("characters/player/fall.png", Texture.class);
+        assetManager.load("characters/player/down.png", Texture.class);
+        assetManager.load("characters/player/spinJump_fixed.png", Texture.class);
+        assetManager.load("characters/player/bonk.png", Texture.class);
+        //assetManager.load("", Texture.class);
+        //load gargoyle assets
+        assetManager.load("characters/baddies/gargoyle_32_32/gargoyle_fly_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/gargoyle_32_32/gargoyle_die_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/gargoyle_32_32/gargoyle_hit_trimmed.png", Texture.class);
+        //load barbarian assets
+        assetManager.load("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png", Texture.class);
+        //load goblin assets
+        assetManager.load("characters/baddies/goblin_32_32/goblin_idle_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/goblin_32_32/goblin_walk_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/goblin_32_32/goblin_run_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/goblin_32_32/goblin_die_trimmed.png", Texture.class);
+        assetManager.load("characters/baddies/goblin_32_32/goblin_hit_trimmed.png", Texture.class);
+        //load totem assets
+        assetManager.load("characters/baddies/totem/totem_walk.png", Texture.class);
+        assetManager.load("characters/baddies/totem/totem_die.png", Texture.class);
+        //assetManager.load("", Texture.class);
+        //Jumpy.assetManager.get("", Texture.class);//
     }
 
     public AssetManager getAssetManager(){

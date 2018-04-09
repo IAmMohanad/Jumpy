@@ -2,8 +2,8 @@
 
 <upgrades>
   <passive>
-    <antiGravity level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.10" level-2-boost="0.20" level-3-boost="0.30" description="These shoes have the ability to reduce the gravitional effect on the wearer. They can be upgraded to further increase their effect. Perhaps they can be used to explore hard to reach places?" />
-    <speed level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.25" level-2-boost="0.5" level-3-boost="0.75" description="These shoes can increase your movement speed." />
+    <antiGravity level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.05" level-2-boost="0.1" level-3-boost="0.15" description="These shoes have the ability to reduce the gravitional effect on the wearer. They can be upgraded to further increase their effect. Perhaps they can be used to explore hard to reach places?" />
+    <speed level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-boost="0.10" level-2-boost="0.2" level-3-boost="0.3" description="These shoes can increase your movement speed." />
   </passive>
   <active>
     <laser level-0-price="20" level-1-price="40" level-2-price="80" level-3-price="160" unlocked="false" level="0" level-1-damage="1" level-2-damage="2" level-3-damage="3" level-1-speed="0.25" level-2-speed="0.5" level-3-speed="0.75" description="Every childs dream, your reality. The laser can be upgraded to be faster and do more damage." />

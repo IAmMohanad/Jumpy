@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jumpy.Jumpy;
 import com.jumpy.Move;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
@@ -63,7 +64,7 @@ public class Barbarian extends Enemy {
         idleAnimation = new Animation<TextureRegion>(0.1f, idleFrames);*/
 
         //walk
-        Texture textureSheet = new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png"));
+        Texture textureSheet = Jumpy.assetManager.get("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png"));
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
         TextureRegion[] walkFrames = new TextureRegion[8];
         for(int i=0; i<walkFrames.length; i++){
@@ -81,7 +82,7 @@ public class Barbarian extends Enemy {
         runAnimation = new Animation<TextureRegion>(0.1f, runFrames);*/
 
         //die
-        textureSheet = new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 5, textureSheet.getHeight());
         TextureRegion[] dieFrames = new TextureRegion[5];
         for(int i=0; i<dieFrames.length; i++){

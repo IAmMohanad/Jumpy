@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jumpy.Jumpy;
 import com.jumpy.Move;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
@@ -54,16 +55,8 @@ public class Gargoyle extends Enemy {
 
     @Override
     public void create() {
-        //idle
-       // Texture textureSheet = new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_idle_trimmed.png"));
-        //TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth(), textureSheet.getHeight());
-
-      //  TextureRegion[] idleFrames = new TextureRegion[1];
-      //  idleFrames[0] = tmp[0][0];
-      //  idleAnimation = new Animation<TextureRegion>(0.1f, idleFrames);
-
         //walk
-        Texture textureSheet = new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_fly_trimmed.png"));
+        Texture textureSheet = Jumpy.assetManager.get("characters/baddies/gargoyle_32_32/gargoyle_fly_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_fly_trimmed.png"));
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 4, textureSheet.getHeight());
         TextureRegion[] walkFrames = new TextureRegion[4];
         for(int i=0; i<walkFrames.length; i++){
@@ -72,7 +65,7 @@ public class Gargoyle extends Enemy {
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
         //die
-        textureSheet = new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_die_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/gargoyle_32_32/gargoyle_die_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_die_trimmed.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
         TextureRegion[] dieFrames = new TextureRegion[8];
         for(int i=0; i<dieFrames.length; i++){
@@ -81,7 +74,7 @@ public class Gargoyle extends Enemy {
         dieAnimation = new Animation<TextureRegion>(0.2f, dieFrames);
 
         //hit
-        textureSheet = new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_hit_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/gargoyle_32_32/gargoyle_hit_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/gargoyle_32_32/gargoyle_hit_trimmed.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 2, textureSheet.getHeight());
         TextureRegion[] hitFrames = new TextureRegion[2];
         for(int i=0; i<hitFrames.length; i++){

@@ -104,19 +104,19 @@ public class Coin extends Object{
         return !this.dead;
     }
 
-    public void setPosition(float delta, float x, float y){
+    public void moveTowardsPlayer(float delta, float x, float y){
        // boundingBox.setPosition(x, y);
         if(position.x < (int) x){
-            position.x += 250 * delta;//TODO replace 250 with movement speed
+            position.x += 90 * delta;//TODO replace 250 with movement speed
         }
         if(position.x > (int) x){
-            position.x -= 250 * delta;
+            position.x -= 90 * delta;
         }
         if(position.y < (int) y){
-            position.y += 250 * delta;
+            position.y += 90 * delta;
         }
         if(position.y > (int) y){
-            position.y -= 250 * delta;
+            position.y -= 90 * delta;
         }
     }
 }

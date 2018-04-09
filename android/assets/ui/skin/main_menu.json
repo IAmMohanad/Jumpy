@@ -122,6 +122,9 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	yButton40Transparent64: {
 		imageUp: yButton40Transparent64
 	}
+	cButton40: {
+		imageUp: cButton40
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {

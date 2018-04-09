@@ -161,24 +161,25 @@ public class Hud{
 
         //touch pad
        // if(isTouchPad && android){
-            touchpad = new Touchpad(10, skin, "touchPad3");
+            touchpad = new Touchpad(10, skin, "touchPad48");
             table.row();
             table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
 
             Table controlButtonsTable = new Table();
             //jump button
-            ImageButton jumpButton = new ImageButton(skin, "jumpButton24");
+            ImageButton jumpButton = new ImageButton(skin, "cButton40");
             //table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
-            attackButton = new ImageButton(skin, "attackButton");
+            attackButton = new ImageButton(skin, "xButton40");
 
             //boost button, bottom of stack is image, top is countdown text
             Stack boostButtonStack = new Stack();
-            Image boostImage = new Image(new Texture(Gdx.files.internal("ui/new ui/boost_button_symbol_34x34.png")));
-            Label boostDurationLeft = new Label(String.valueOf(""), skin, "small");//TODO add public method in player to get duration left in boost.
-            boostButtonStack.add(boostImage);//TODO lightning image when not clicked, replace with countdown when its clicked?
-            boostButtonStack.add(boostDurationLeft);
-            controlButtonsTable.add(attackButton).expandX().left().padRight(40);
-            controlButtonsTable.add(boostButtonStack).expandX().padRight(40);
+            ImageButton boostButton = new ImageButton(skin, "zButton40");
+            //Image boostImage = new Image(new Texture(Gdx.files.internal("ui/new ui/boost_button_symbol_34x34.png")));
+            //Label boostDurationLeft = new Label(String.valueOf(""), skin, "small");//TODO add public method in player to get duration left in boost.
+            //boostButtonStack.add(boostImage);//TODO lightning image when not clicked, replace with countdown when its clicked?
+            //boostButtonStack.add(boostDurationLeft);
+            controlButtonsTable.add(boostButton).expandX().left().padRight(20);
+            controlButtonsTable.add(attackButton).expandX().padRight(20);
             controlButtonsTable.add(jumpButton).expandX().right();
 
             table.add(controlButtonsTable).expandY().expandX().bottom().right().padBottom(45).padRight(20);
@@ -197,7 +198,7 @@ public class Hud{
                     System.out.println("------------------------------------------------------------");
                 }
             });
-            boostButtonStack.addListener(new ClickListener(){
+            boostButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Player.boostPressed = true;

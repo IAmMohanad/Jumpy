@@ -23,13 +23,19 @@ public class inputController extends InputAdapter {
         } else if(keycode == Input.Keys.DOWN){
             Player.down = true;
         }
-        if(keycode == Input.Keys.BACK){
+        if(keycode == Input.Keys.BACK || keycode == Input.Keys.B){
             // Respond to the back button click here
             Jumpy.exitPressed = true;
             //Gdx.app.exit();
         }
         if(keycode == Input.Keys.X){
             Player.shootPressed = true;
+        }
+        if(keycode == Input.Keys.C){
+            Player.up = true;
+        }
+        if(keycode == Input.Keys.Z){
+            Player.boostPressed = true;
         }
 
         return super.keyDown(keycode);
@@ -57,7 +63,7 @@ public class inputController extends InputAdapter {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Player.up = true;
+        //Player.up = true;
        // System.out.println(screenX + "  "+ screenY+" width:"+Gdx.graphics.getWidth());
        /* if(screenX < Gdx.graphics.getWidth() / 2){
             Player.left = true;
@@ -70,7 +76,7 @@ public class inputController extends InputAdapter {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Player.up = false;
+        //Player.up = false;
         /*if(screenX < Gdx.graphics.getWidth() / 2){
             Player.left = false;
         }

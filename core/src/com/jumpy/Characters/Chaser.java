@@ -23,6 +23,7 @@ public class Chaser extends Enemy {
     private static int B_BOX_OFFSET_X = 3;
     private static int B_BOX_OFFSET_Y = 3;
     private Player player;
+    private float movementSpeedTimer;
 
     private TextureRegion currentFrame;
 
@@ -35,11 +36,11 @@ public class Chaser extends Enemy {
         position = new Vector2(x, y);
         this.width = width;
         this.height = height;
-        this.movementSpeed = 50;
+        this.movementSpeed = 0;
 
         boundingBox = new Rectangle();
         boundingBox.set(position.x, position.y, B_BOX_WIDTH, B_BOX_HEIGHT);
-
+        movementSpeedTimer = 0;
         create();
     }
 
@@ -65,7 +66,11 @@ public class Chaser extends Enemy {
     @Override
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
         stateTime += delta;
-
+        movementSpeedTimer += delta;
+        if(movementSpeedTimer >= 1){
+            movementSpeedTimer = 1;
+            movementSpeed += 0.05;
+        }
         if(player.isAlive()){
             int px = (int) player.getBoundingBox().x + (int) (player.getBoundingBox().width / 2);
             int py = (int) player.getBoundingBox().y + (int) (player.getBoundingBox().height / 2);

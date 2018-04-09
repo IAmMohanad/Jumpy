@@ -13,7 +13,7 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
 
     protected float gravity = -250;//-175;
     protected int health;
-    protected int movementSpeed;
+    protected float movementSpeed;
 
     protected float velocityY;
 

@@ -131,21 +131,28 @@ font-export
   index: -1
 blue_checkmark
   rotate: false
-  xy: 737, 599
+  xy: 713, 557
   size: 21, 20
   orig: 21, 20
   offset: 0, 0
   index: -1
 blue_cross
   rotate: false
-  xy: 760, 547
+  xy: 462, 163
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
+cButton40
+  rotate: false
+  xy: 300, 75
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
 jumpButton24
   rotate: false
-  xy: 464, 187
+  xy: 464, 183
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -215,14 +222,14 @@ zButton40Transparent64
   index: -1
 blue_boxCheckmark
   rotate: false
-  xy: 300, 79
+  xy: 43, 7
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 blue_boxCross
   rotate: false
-  xy: 43, 7
+  xy: 83, 7
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
@@ -236,14 +243,14 @@ blue_button05
   index: -1
 green_boxCheckmark
   rotate: false
-  xy: 83, 7
+  xy: 123, 7
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 green_boxCross
   rotate: false
-  xy: 123, 7
+  xy: 462, 321
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
@@ -278,7 +285,7 @@ settings1
   index: -1
 settings32
   rotate: false
-  xy: 300, 45
+  xy: 689, 509
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -299,35 +306,35 @@ touchBackgroundTransparent50
   index: -1
 touchKnob
   rotate: false
-  xy: 464, 213
+  xy: 300, 41
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 touchKnob24
   rotate: false
-  xy: 689, 517
+  xy: 412, 162
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 yellow_boxCheckmark
   rotate: false
-  xy: 462, 321
+  xy: 462, 283
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 yellow_boxCross
   rotate: false
-  xy: 462, 283
+  xy: 462, 245
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 attack_button_symbol_34x34
   rotate: false
-  xy: 462, 247
+  xy: 464, 209
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
@@ -403,7 +410,7 @@ pink_button_190x85
   index: -1
 progress-bar
   rotate: false
-  xy: 713, 587
+  xy: 438, 154
   size: 22, 32
   split: 7, 6, 6, 6
   pad: 3, 3, 3, 3
@@ -437,14 +444,14 @@ slider
   index: -1
 slider-knob
   rotate: false
-  xy: 293, 11
+  xy: 293, 7
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 textfield
   rotate: false
-  xy: 713, 545
+  xy: 713, 579
   size: 22, 40
   split: 6, 6, 5, 5
   pad: 8, 8, 7, 7
@@ -453,7 +460,7 @@ textfield
   index: -1
 vertical-scroll-bar
   rotate: false
-  xy: 737, 545
+  xy: 737, 567
   size: 21, 52
   split: 9, 9, 14, 14
   pad: 5, 5, 8, 8

@@ -52,6 +52,7 @@ public class LevelSelectScene {
         Label oneOne = new Label("1-1", skin, "medium");
         Label oneTwo = new Label("1-2", skin, "medium");
         Label oneThree = new Label("1-3", skin, "medium");
+        Label backButton = new Label("BACK", skin, "medium");
 
         oneOne.addListener(new ClickListener(){
             @Override
@@ -102,6 +103,15 @@ public class LevelSelectScene {
             }
         });
 
+        backButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+            }
+        });
+
+
+
         Table table = new Table();
         table.top();
         table.setFillParent(true);
@@ -112,7 +122,8 @@ public class LevelSelectScene {
         table.add(oneTwo).expand();
         table.add(oneThree).expand();
         table.row();
-        table.add(hardModeCheckBox).colspan(3).expandX().left().padLeft(60);
+        table.add(hardModeCheckBox).colspan(2).expandX().left().padLeft(50).padBottom(10);
+        table.add(backButton).colspan(1).expandX().right().padRight(60);
 
         stage.addActor(table);
         return stage;

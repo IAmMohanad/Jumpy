@@ -104,6 +104,24 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	attackButton: {
 		imageUp: attack_button_symbol_34x34
 	}
+	zButton40: {
+		imageUp: zButton40
+	}
+	zButton40Transparent64: {
+		imageUp: zButton40Transparent64
+	}
+	xButton40: {
+		imageUp: xButton40
+	}
+	xButton40Transparent64: {
+		imageUp: xButton40Transparent64
+	}
+	yButton40: {
+		imageUp: yButton40
+	}
+	yButton40Transparent64: {
+		imageUp: yButton40Transparent64
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {

@@ -214,6 +214,10 @@ com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
+	default: {
+		background: touchBackgroundTransparent150
+		knob: touchPad64
+	}
 	touchPad2: {
 		background: touchBackground100
 		knob: touchKnob
@@ -221,6 +225,14 @@ com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 	touchPad3: {
 		background: touchBackgroundTransparent50
 		knob: touchKnob24
+	}
+	touchPad64: {
+		background: touchBackgroundTransparent50
+		knob: touchPad64
+	}
+	touchPad48: {
+		background: touchBackgroundTransparent100
+		knob: touchKnob
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {

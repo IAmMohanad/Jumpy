@@ -124,14 +124,14 @@ font-big-export
   index: -1
 font-export
   rotate: false
-  xy: 344, 344
+  xy: 344, 240
   size: 116, 117
   orig: 116, 117
   offset: 0, 0
   index: -1
 blue_checkmark
   rotate: false
-  xy: 300, 65
+  xy: 137, 23
   size: 21, 20
   orig: 21, 20
   offset: 0, 0
@@ -145,9 +145,30 @@ blue_cross
   index: -1
 jumpButton24
   rotate: false
-  xy: 436, 318
+  xy: 300, 57
   size: 24, 24
   orig: 24, 24
+  offset: 0, 0
+  index: -1
+touchBackgroundTransparent100
+  rotate: false
+  xy: 707, 713
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+touchBackgroundTransparent150
+  rotate: false
+  xy: 344, 359
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+touchPad64
+  rotate: false
+  xy: 344, 174
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 blue_boxCheckmark
@@ -173,14 +194,14 @@ blue_button05
   index: -1
 green_boxCheckmark
   rotate: false
-  xy: 344, 254
+  xy: 647, 571
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 green_boxCross
   rotate: false
-  xy: 396, 306
+  xy: 1, 7
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
@@ -215,7 +236,7 @@ settings1
   index: -1
 settings32
   rotate: false
-  xy: 772, 781
+  xy: 462, 325
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -229,42 +250,42 @@ touchBackground100
   index: -1
 touchBackgroundTransparent50
   rotate: false
-  xy: 344, 292
+  xy: 410, 188
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 touchKnob
   rotate: false
-  xy: 649, 575
+  xy: 605, 527
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 touchKnob24
   rotate: false
-  xy: 41, 19
+  xy: 111, 19
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 yellow_boxCheckmark
   rotate: false
-  xy: 1, 7
+  xy: 565, 523
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 yellow_boxCross
   rotate: false
-  xy: 599, 520
+  xy: 300, 83
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 attack_button_symbol_34x34
   rotate: false
-  xy: 476, 475
+  xy: 41, 9
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
@@ -289,7 +310,7 @@ button-down
   index: -1
 button-small
   rotate: false
-  xy: 344, 463
+  xy: 814, 930
   size: 130, 46
   split: 21, 21, 22, 20
   orig: 130, 46
@@ -297,7 +318,7 @@ button-small
   index: -1
 button-small-down
   rotate: false
-  xy: 814, 930
+  xy: 515, 561
   size: 130, 46
   split: 21, 21, 22, 20
   orig: 130, 46
@@ -305,7 +326,7 @@ button-small-down
   index: -1
 button_1
   rotate: false
-  xy: 515, 517
+  xy: 707, 621
   size: 82, 90
   orig: 82, 90
   offset: 0, 0
@@ -340,7 +361,7 @@ pink_button_190x85
   index: -1
 progress-bar
   rotate: false
-  xy: 683, 575
+  xy: 462, 257
   size: 22, 32
   split: 7, 6, 6, 6
   pad: 3, 3, 3, 3
@@ -349,7 +370,7 @@ progress-bar
   index: -1
 progress-bar-knob
   rotate: false
-  xy: 462, 439
+  xy: 791, 689
   size: 1, 22
   split: 0, 0, 0, 21
   pad: 0, 0, 0, 0
@@ -358,14 +379,14 @@ progress-bar-knob
   index: -1
 replay_button_blue
   rotate: false
-  xy: 599, 558
+  xy: 515, 510
   size: 48, 49
   orig: 48, 49
   offset: 0, 0
   index: -1
 slider
   rotate: false
-  xy: 344, 220
+  xy: 462, 291
   size: 25, 32
   split: 5, 5, 15, 14
   pad: 0, 0, 0, 0
@@ -374,14 +395,14 @@ slider
   index: -1
 slider-knob
   rotate: false
-  xy: 300, 87
+  xy: 77, 11
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 textfield
   rotate: false
-  xy: 772, 739
+  xy: 462, 215
   size: 22, 40
   split: 6, 6, 5, 5
   pad: 8, 8, 7, 7
@@ -390,7 +411,7 @@ textfield
   index: -1
 vertical-scroll-bar
   rotate: false
-  xy: 344, 166
+  xy: 874, 876
   size: 21, 52
   split: 9, 9, 14, 14
   pad: 5, 5, 8, 8
@@ -399,7 +420,7 @@ vertical-scroll-bar
   index: -1
 vertical-scroll-knob
   rotate: false
-  xy: 772, 685
+  xy: 874, 822
   size: 21, 52
   split: 10, 9, 14, 14
   pad: 0, 0, 0, 0
@@ -408,7 +429,7 @@ vertical-scroll-knob
   index: -1
 window
   rotate: false
-  xy: 707, 586
+  xy: 809, 688
   size: 63, 227
   split: 10, 10, 5, 0
   pad: 7, 6, 7, 4

@@ -265,7 +265,8 @@ public class ShopScene {
 
         Table upgradeImageTable = new Table();
         Table upgradeLevelTable =  new Table();
-        upgradeImageTable.add(new Image(new Texture(("ui/new ui/speed_boots.png"))));
+        upgradeImageTable.add(new Image(Jumpy.assetManager.get("ui/new ui/Anti-gravity_boots2.png", Texture.class)));//new Texture("ui/new ui/speed_boots.png")));
+        //upgradeImageTable.add(new Image(new Texture("ui/new ui/Magnet_48.png")));
         upgradeLevelTable.add(new Label(upgradeName, skin, "skin-normal"));
         upgradeLevelTable.row();
         final Table speedHorizontalGroup = new Table();

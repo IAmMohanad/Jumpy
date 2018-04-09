@@ -639,6 +639,45 @@ atlasData: {
 			tintName: null
 			name: attack_button_symbol_34x34
 		}
+		{
+			file: C:/Users/Seif/Documents/Jumpy/android/assets/ui/controls/touchBackgroundTransparent100.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: touchBackgroundTransparent100
+		}
+		{
+			file: C:/Users/Seif/Documents/Jumpy/android/assets/ui/controls/touchBackgroundTransparent150.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: touchBackgroundTransparent150
+		}
+		{
+			file: C:/Users/Seif/Documents/Jumpy/android/assets/ui/controls/touchPad64.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: touchPad64
+		}
 	]
 }
 jsonData: {
@@ -4733,14 +4772,14 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: background
 						optional: true
-						value: null
+						value: touchBackgroundTransparent150
 					}
 					knob: {
 						class: com.ray3k.skincomposer.data.StyleProperty
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: knob
 						optional: true
-						value: null
+						value: touchPad64
 					}
 				}
 				deletable: false
@@ -4785,6 +4824,50 @@ jsonData: {
 						name: knob
 						optional: true
 						value: touchKnob24
+					}
+				}
+				deletable: true
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: touchPad64
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Touchpad
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: touchBackgroundTransparent50
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: touchPad64
+					}
+				}
+				deletable: true
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: touchPad48
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Touchpad
+				properties: {
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: touchBackgroundTransparent100
+					}
+					knob: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: knob
+						optional: true
+						value: touchKnob
 					}
 				}
 				deletable: true

@@ -163,7 +163,7 @@ public abstract class GameMap {
     public abstract ArrayList<Coin> getCoins();
     public abstract ArrayList<Enemy> getEnemies();
     public abstract Player getPlayer();
-    public abstract ArrayList<IceBallShooter> getObjects();
+    public abstract ArrayList<IceBallShooter> getProjectileShootersList();
     public boolean getIsLevelComplete(){
         return isLevelComplete;
     }

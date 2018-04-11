@@ -20,6 +20,8 @@ public class IceBallShooter extends Object{
     private int shootInterval;
     private Move direction;
 
+    private boolean canShootProjectiles = true;
+
     public IceBallShooter(TiledMap tiledMap, GameMap map, float x, float y, Move direction){
         this(tiledMap, map, x, y, direction, 1);
     }
@@ -35,6 +37,10 @@ public class IceBallShooter extends Object{
         this.shootInterval = shootInterval;
         this.direction = direction;
         iceBallList = new ArrayList<IceBall>();
+    }
+
+    public boolean canShootProjectiles(){
+        return canShootProjectiles;
     }
 
     @Override

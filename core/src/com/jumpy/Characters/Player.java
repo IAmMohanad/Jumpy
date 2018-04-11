@@ -288,10 +288,8 @@ public class Player extends DynamicObject {
                     Enemy e = enemies.get(j);
                     if(w.getBoundingBox().overlaps(e.getBoundingBox()) && e.isAlive()){
                         e.getsHit(w.getDamage());
-                        // enemies.remove(j);
                         w.die();
                         weaponList.remove(i);
-                        //e.die();
                     }
                 }
             }
@@ -350,7 +348,7 @@ public class Player extends DynamicObject {
                     }
                 }
 
-                for(IceBallShooter shooter : map.getObjects()){
+                for(IceBallShooter shooter : map.getProjectileShootersList()){
                     if(shooter.getIceBallList().size() > 0){
                         for(IceBall iceBall : shooter.getIceBallList()){
                             if(this.boundingBox.overlaps(iceBall.getBoundingBox())){

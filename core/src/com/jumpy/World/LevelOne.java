@@ -29,7 +29,6 @@ import com.jumpy.Screens.PlayScreen;
 import java.util.ArrayList;
 
 public class LevelOne extends GameMap {
-
     /*
     TODO instead of passing player around to chaser and other classes, make getPlayer in level class, then use that in chaser
      */
@@ -44,7 +43,7 @@ public class LevelOne extends GameMap {
 
     private ArrayList<Coin> coinList = new ArrayList<Coin>();
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-    private ArrayList<IceBallShooter> objectsList = new ArrayList<IceBallShooter>();
+    private ArrayList<IceBallShooter> projectileShootersList = new ArrayList<IceBallShooter>();
 
     private LevelSummaryScene levelSummary;
     private PauseScene pauseScene;
@@ -56,10 +55,6 @@ public class LevelOne extends GameMap {
 
     public Bee bee;
     public Totem totem;
-
-    private IceBall test;
-    private IceBallShooter test1;
-    private IceBallShooter test2;
 
     private final String currentLevel = "1-1";
 
@@ -79,8 +74,8 @@ public class LevelOne extends GameMap {
 
     public ArrayList<Enemy> getEnemies() { return this.enemiesList; }
 
-    public ArrayList<IceBallShooter> getObjects() {
-        return objectsList;
+    public ArrayList<IceBallShooter> getProjectileShootersList() {
+        return projectileShootersList;
     }
 
     //TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
@@ -96,9 +91,6 @@ public class LevelOne extends GameMap {
         isLevelComplete = false;
 
         spawnElements(equippedActive, equippedBoost, equippedPassive);
-        test = new IceBall(this, 200, 100 , Move.UP);
-       // test1 = new IceBallShooter(this, 200, 100 , Move.RIGHT);
-        //test2 = new IceBallShooter(this, 200, 100 , Move.LEFT);
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
@@ -111,15 +103,15 @@ public class LevelOne extends GameMap {
         spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
         spawnCoins(spawnChoice);
         spawnEnemies(spawnChoice);
-        spawnObjects(spawnChoice);
+        spawnProjectileShooters(spawnChoice);
     }
 
-    private void spawnObjects(String spawnChoice){
+    private void spawnProjectileShooters(String spawnChoice){
         for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
             if (object.getName().toLowerCase().equals("ice_ball_shooter")) {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 Move shootDirection = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
-                objectsList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
+                projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
             }
         }
     }
@@ -204,6 +196,9 @@ public class LevelOne extends GameMap {
 
             hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
+            if(hud.getLevelTimer() <= 0){
+                player.die();
+            }
             //chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
                 coin.update(batch, delta, camera);
@@ -213,15 +208,10 @@ public class LevelOne extends GameMap {
                 e.update(batch, delta, camera);
             }
 
-            for(IceBallShooter o : objectsList){
+            for(IceBallShooter o : projectileShootersList){
                 o.update(batch, delta, camera);
             }
             player.update(batch, delta, camera);
-
-            test.update(batch, delta, camera);
-           // test1.update(batch, delta, camera);
-           // test2.update(batch, delta, camera);
-
         } else{//level summary screen
             createSummary();
             isLevelComplete = true;

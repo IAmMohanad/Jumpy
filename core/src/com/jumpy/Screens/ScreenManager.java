@@ -32,13 +32,9 @@ public class ScreenManager{
     public void initGameScreens(){
         this.gameScreens = new HashMap<GAME_STATE, Screen>();
         this.gameScreens.put(GAME_STATE.MAIN_MENU, new MainMenuScreen(game));
-        //this.gameScreens.put(GAME_STATE.PLAY, new PlayScreen(game));
         this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
         this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
-       // this.gameScreens.put(GAME_STATE.SHOP, new ShopScreen(game));
 
-        // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game setting screen
-        // this.gameScreens.put(STATE.GAME_SETTINGS, new MainMenuScreen(game));// TODO create in-game pause screen
     }
 
     public void setScreen(GAME_STATE screen){

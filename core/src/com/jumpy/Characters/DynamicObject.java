@@ -24,6 +24,7 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     //TODO add object name e.g. gargoyle_flying, same as TiledMap name
     protected String name;
     protected TiledMap tiledMap;
+    protected boolean deathComplete;
 
     public abstract void moveLeft(float delta);
 

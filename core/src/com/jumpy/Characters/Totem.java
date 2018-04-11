@@ -30,7 +30,7 @@ public class Totem extends Enemy {
     private Animation<TextureRegion> dieAnimation;
 
     private Move direction;
-    private boolean deathComplete = false;
+    //private boolean deathComplete = false;
 
     public Totem(TiledMap tiledMap, GameMap map, float x, float y){
         this.tiledMap = tiledMap;
@@ -46,7 +46,7 @@ public class Totem extends Enemy {
         velocityY = 0;
         grounded = false;
         dead = false;
-
+        deathComplete = false;
         create();
     }
 

@@ -62,10 +62,10 @@ public class MainMenuScene {
         startButton.getLabelCell().padTop(15);
         TextButton settingButton = new TextButton("SETTINGS", mainMenuSkin, "blueGreen");
         settingButton.getLabelCell().padTop(15);
-        TextButton creditButton = new TextButton("CREDITS", mainMenuSkin, "blueGreen");
-        creditButton.getLabelCell().padTop(15);
-        TextButton shopButton = new TextButton("SHOP", mainMenuSkin, "blueGreen");
-        shopButton.getLabelCell().padTop(15);
+        TextButton hiscoreButton = new TextButton("HISCORE", mainMenuSkin, "blueGreen");
+        hiscoreButton.getLabelCell().padTop(15);
+        TextButton helpButton = new TextButton("HELP", mainMenuSkin, "blueGreen");
+        helpButton.getLabelCell().padTop(15);
         TextButton exitButton = new TextButton("EXIT", mainMenuSkin, "blueGreen");
         exitButton.getLabelCell().padTop(15);
 
@@ -94,7 +94,7 @@ public class MainMenuScene {
             }
         });
 
-        creditButton.addListener(new ClickListener(){
+        hiscoreButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked settings!");
@@ -105,7 +105,7 @@ public class MainMenuScene {
             }
         });
 
-        shopButton.addListener(new ClickListener(){
+        helpButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked settings!");
@@ -127,130 +127,13 @@ public class MainMenuScene {
             }
         });
 
-        String status1;
-        //update score
-        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
-        Net.HttpRequest httpRequest;
-        /*httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/update/golden751/1/60012/11/3/20").content("").build();
-        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                int statusCode = httpResponse.getStatus().getStatusCode();
-                if(statusCode != HttpStatus.SC_OK) {
-                    System.out.println("Request Failed");
-                    return;
-                }
-                String status = httpResponse.getResultAsString();
-                //System.out.println(status);
-                someMethods(status);
-        }
-
-            public void failed(Throwable t) {
-                String status = "failed";
-                //System.out.println(status);
-                someMethods(status);
-            }
-
-            @Override
-            public void cancelled() {
-                String status = "cancelled";
-                //System.out.println(status);
-                someMethods(status);
-            }
-        });*/
-
-        //get uesr scores
-       /* httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/getPlayerScore/golden751").content("").build();
-        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                int statusCode = httpResponse.getStatus().getStatusCode();
-                if(statusCode != HttpStatus.SC_OK) {
-                    System.out.println("Request Failed");
-                    return;
-                }
-                String status = httpResponse.getResultAsString();
-                //System.out.println(status);
-                someMethods(status);
-                JsonValue json = new JsonReader().parse(status);
-                JsonValue mess = json.get("message");//.get("player_rankings")
-                //Store player rankings into hash maps
-                JsonValue playerInfo = mess.get("player_rankings");
-                String[] array = new String[playerInfo.size];
-                int i=0;
-                for (JsonValue info : playerInfo.iterator()){ // iterator() returns a list of children
-                    //"total_points": 59696, "total_gold": 129, "total_stars": 17, "total_time_played": 584}, "level_one": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 6010}, "level_two": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 51}, "level_three": {"completed": false, "player_rank": 1, "fastest_time": 0, "max_points": 0}
-                    System.out.println(info.isString());
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
-                    }
-                    i++;
-                }
-                Map<String, String> playerScoreMap = new HashMap<String, String>();
-                playerScoreMap.put("username", array[0]);
-                playerScoreMap.put("totalPoints", array[1]);
-                playerScoreMap.put("totalGold", array[2]);
-                playerScoreMap.put("totalStars", array[3]);
-                playerScoreMap.put("totalTimePlayed", array[4]);
-
-                i=0;
-                //get player rankings for level one, copy paste for level 2/3
-                JsonValue levelOneInfo = mess.get("level_one");
-                array = new String[levelOneInfo.size];
-                for (JsonValue info : levelOneInfo){
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
-                    }
-                    i++;
-                }
-                Map<String, String> levelOneScoreMap = new HashMap<String, String>();
-                levelOneScoreMap.put("completed", array[0]);
-                levelOneScoreMap.put("player_rank", array[1]);
-                levelOneScoreMap.put("fastest_time", array[2]);
-                levelOneScoreMap.put("max_points", array[3]);
-
-            }
-
-            public void failed(Throwable t) {
-                String status = "failed " + t.getMessage();
-                //System.out.println(status);
-                someMethods(status);
-            }
-
-            @Override
-            public void cancelled() {
-                String status = "cancelled";
-                //System.out.println(status);
-                someMethods(status);
-            }
-        });*/
-
-        //add Net. before all HttpResponse if error
-        /*Gdx.net.sendHttpRequest (httpPost, new Net.HttpResponseListener() {
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                int statusCode = httpResponse.getStatus().getStatusCode();
-                if(statusCode != HttpStatus.SC_OK) {
-                    System.out.println("Request Failed");
-                    return;
-                }
-                status = httpResponse.getResultAsString();
-            }
-
-            public void failed(Throwable t) {
-                status = "failed";
-            }
-        });*/
-
-
         table.add(startButton).padBottom(10);
         table.row();
         table.add(settingButton).padBottom(10);
         table.row();
-        table.add(creditButton).padBottom(10);
+        table.add(hiscoreButton).padBottom(10);
         table.row();
-        table.add(shopButton).padBottom(10);
+        table.add(helpButton).padBottom(10);
         table.row();
         table.add(exitButton);
 
@@ -260,9 +143,6 @@ public class MainMenuScene {
         return stage;
     }
 
-    public void someMethods(String status){
-        System.out.println(status);
-    }
     public void loadSound(){
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));

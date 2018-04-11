@@ -33,7 +33,7 @@ public class Barbarian extends Enemy {
     private Animation<TextureRegion> hitAnimation;
 
     private Move direction;
-    private boolean deathComplete = false;
+    //private boolean deathComplete = false;
 
     public Barbarian(TiledMap tiledMap, GameMap map, float x, float y){
         this.tiledMap = tiledMap;
@@ -49,7 +49,7 @@ public class Barbarian extends Enemy {
         velocityY = 0;
         grounded = false;
         dead = false;
-
+        deathComplete = false;
         create();
     }
 

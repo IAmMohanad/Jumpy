@@ -61,7 +61,7 @@ public class Hud{
     private Stack pausedStack;
 
     public int getLevelTimer(){
-        return Integer.parseInt(clockLabel.getText().toString());
+        return Integer.parseInt(clockLabel.getText().toString().split("s")[0]);
     }
 
     private void updateClock(float delta){
@@ -217,75 +217,12 @@ public class Hud{
     public void pauseGame(){
         playScreen.pauseGame();
         isPause = true;
-        //pauseGroup =  new Group();
-
-       /* Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background_102x143.png")));
-        Image restartSmallButton = new Image(new Texture(Gdx.files.internal("ui/new ui/blue_button_restart_46x21.png")));
-        Table pausedTable = new Table();
-        pausedTable.add(restartSmallButton).expandX().center();
-        pausedStack.add(levelPausedBackground);
-        pausedStack.add(pausedTable);*/
-
-/*
-        Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background.png")));
-        Image invisibleSquare = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_paused_screen.png")));
-        Image muteButton;
-        Image resumeButton;
-        Image restartButton;
-        Image exitButton;
-
-        Table outerTable = new Table();
-        outerTable.setFillParent(true);
-        outerTable.top();
-
-        //add backgrounds
-        Table backgroundTable = new Table();
-        backgroundTable.add(levelPausedBackground);
-
-        //add buttons
-        Table innerInfoTable = new Table();
-        innerInfoTable.top();
-        innerInfoTable.setFillParent(true);
-        innerInfoTable.row();
-        innerInfoTable.add(invisibleSquare).left().colspan(3);
-
-        innerInfoTable.row();
-        if(Jumpy.mute){
-            muteButton = new Image(new Texture("ui/new ui/volume_off_32x32.png"));
-        } else{
-            muteButton = new Image(new Texture("ui/new ui/volume_on_32x32.png"));
-        }
-        innerInfoTable.add(muteButton).expandX().left().padTop(20);
-        innerInfoTable.row();
-
-        resumeButton = new Image(new Texture("ui/new ui/blue_button_resume_92x42.png"));
-        innerInfoTable.add(resumeButton).expandX().center().padTop(20);
-        resumeButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                resumeGame();
-            }
-        });
-
-        Stack stack = new Stack();
-        stack.add(backgroundTable);
-        stack.add(innerInfoTable);
-
-
-        outerTable.add(stack).center();
-        //pauseGroup.addActor(outerTable);
-        //pauseGroup.addActor(stack);
-
-        stage.addActor(pauseGroup);*/
     }
 
     public void resumeGame(){
         if(isPause){
             playScreen.resumeGame();
             isPause = false;
-         /*   pausedStack.removeActor(pausedTable);
-            pausedStack.removeActor(levelPausedBackground);
-            pauseGroup.remove();*/
         }
     }
 
@@ -330,11 +267,15 @@ public class Hud{
         //scoreLabel.setText(String.format("%06d", score));
         stage.act();
         stage.draw();
+        if(level.getIsLevelComplete()){
+            if(android){
+                attackButton.remove();
+            }
+            delta = 0;
+        }
         updateClock(delta);
         getPhoneInput();
-        if(level.getIsLevelComplete() && android){
-            attackButton.remove();
-        }
+
     }
 
     public void addToStage(Actor actor){

@@ -34,9 +34,9 @@ public class Player extends DynamicObject {
     private boolean doubleJump;
     private boolean firstJump;
 
-    private boolean deathComplete = false;
+    //private boolean c
 
-    private boolean dead;
+    //private boolean dead;
 
     private static final int JUMP_VELOCITY = 130;
 
@@ -48,7 +48,7 @@ public class Player extends DynamicObject {
     private Animation<TextureRegion> deathAnimation;
     private Animation<TextureRegion> spinJumpAnimation;
 
-    private TextureRegion currentFrame;
+    //private TextureRegion currentFrame;
 
     private float timeSinceLastJump = 0;
 
@@ -88,6 +88,7 @@ public class Player extends DynamicObject {
         this.equippedPassive = equippedPassive;
         points = 0;
         coinsCollected = 0;
+        deathComplete = false;
 
         assignBoosts();
         create();
@@ -474,16 +475,8 @@ public class Player extends DynamicObject {
         }
     }
 
-    public void tiltReading(){
-        float accZ = Gdx.input.getAccelerometerZ();
-        //if(accZ )
-    }
-
     @Override
     public void die(){
-        //if(!dead) dead = true;
-        //currentFrame = deathAnimation.getKeyFrame(stateTime, false);
-        //jump();
         if (health > 0) {
             if(equippedBoost == Boost.ARMOUR && boostOn){
                 return;
@@ -501,10 +494,6 @@ public class Player extends DynamicObject {
                 flip = false;
             }
         }
-    }
-
-    public static void shoot(){
-
     }
 
     public boolean isAlive(){

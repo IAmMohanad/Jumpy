@@ -23,7 +23,7 @@ public class IceBallShooter extends Object{
     private boolean canShootProjectiles = true;
 
     public IceBallShooter(TiledMap tiledMap, GameMap map, float x, float y, Move direction){
-        this(tiledMap, map, x, y, direction, 1);
+        this(tiledMap, map, x, y, direction, 3);
     }
 
     public IceBallShooter(TiledMap tiledMap, GameMap map, float x, float y, Move direction, int shootInterval){

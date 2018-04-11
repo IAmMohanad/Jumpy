@@ -111,7 +111,12 @@ public class LevelOne extends GameMap {
             if (object.getName().toLowerCase().equals("ice_ball_shooter")) {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 Move shootDirection = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
-                projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
+                if(object.getProperties().containsKey("shootInterval")){//TODO add new property shootInterval
+                    int shootInterval = Integer.parseInt(object.getProperties().get("direction").toString());
+                    projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection, shootInterval));
+                } else{
+                    projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
+                }
             }
         }
     }
@@ -196,9 +201,7 @@ public class LevelOne extends GameMap {
 
             hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
-            if(hud.getLevelTimer() <= 0){
-                player.die();
-            }
+
             //chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
                 coin.update(batch, delta, camera);
@@ -212,6 +215,9 @@ public class LevelOne extends GameMap {
                 o.update(batch, delta, camera);
             }
             player.update(batch, delta, camera);
+            if(hud.getLevelTimer() <= 0){
+                player.die();
+            }
         } else{//level summary screen
             createSummary();
             isLevelComplete = true;

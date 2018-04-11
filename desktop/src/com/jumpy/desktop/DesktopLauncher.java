@@ -7,7 +7,7 @@ import com.jumpy.Jumpy;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Super Wow! v2";
+		config.title = "Sunny Land";
 		config.width = 960;
 		config.height = 540;
 		new LwjglApplication(new Jumpy(), config);

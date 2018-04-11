@@ -90,9 +90,21 @@ public class LevelSelectScene {
             }
         });
 
-        final CheckBox hardModeCheckBox = new CheckBox("   HARD MODE", skin, "blue");
+        //final CheckBox hardModeCheckBox = new CheckBox("   HARD MODE", skin, "blue");
+        final Label shopLabel = new Label("SHOP", skin, "medium");
 
-        hardModeCheckBox.addListener(new ChangeListener() {
+        shopLabel.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(!game.mute){
+                    click.play(game.volume);
+                }
+                //game.setPlay(); //commented out during screenManager changes
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.SHOP);
+                System.out.println("Clicked SHOP!");
+            }
+        });
+        /*hardModeCheckBox.addListener(new ChangeListener() {
             @Override
             public void changed (ChangeEvent event, Actor actor) {
                 if(hardModeCheckBox.isChecked()){
@@ -101,7 +113,7 @@ public class LevelSelectScene {
                     isHardMode = false;
                 }
             }
-        });
+        });*/
 
         backButton.addListener(new ClickListener(){
             @Override
@@ -122,7 +134,7 @@ public class LevelSelectScene {
         table.add(oneTwo).expand();
         table.add(oneThree).expand();
         table.row();
-        table.add(hardModeCheckBox).colspan(2).expandX().left().padLeft(50).padBottom(10);
+        table.add(shopLabel).colspan(2).expandX().left().padLeft(50).padBottom(10);
         table.add(backButton).colspan(1).expandX().right().padRight(60);
 
         stage.addActor(table);

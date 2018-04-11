@@ -155,7 +155,7 @@ public class ShopScene {
         backLabel.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
             }
         });
         outerTable.add(backLabel);

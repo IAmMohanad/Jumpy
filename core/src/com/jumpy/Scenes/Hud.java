@@ -60,6 +60,10 @@ public class Hud{
 
     private Stack pausedStack;
 
+    public int getLevelTimer(){
+        return Integer.parseInt(clockLabel.getText().toString());
+    }
+
     private void updateClock(float delta){
         if(delta == 0){
             System.out.println("here");
@@ -160,7 +164,7 @@ public class Hud{
         table.add(topRowTable).expandX().left();
 
         //touch pad
-       // if(isTouchPad && android){
+        if(isTouchPad && android){
             touchpad = new Touchpad(10, skin, "touchPad48");
             table.row();
             table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
@@ -205,7 +209,7 @@ public class Hud{
                 System.out.println("BOOOOOOOOOOOOOOOOOOST");
             }
         });
-       // }
+        }
 
         stage.addActor(table);
     }
@@ -328,7 +332,7 @@ public class Hud{
         stage.draw();
         updateClock(delta);
         getPhoneInput();
-        if(level.getIsLevelComplete()){
+        if(level.getIsLevelComplete() && android){
             attackButton.remove();
         }
     }

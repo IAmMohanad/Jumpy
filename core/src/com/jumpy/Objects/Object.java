@@ -61,8 +61,6 @@ public abstract class Object extends Sprite {
         Intersector.intersectRectangles(r1, r2, intersection);
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        //shapeRenderer.setColor(1, 1, 0, 1);
-        //shapeRenderer.rect(x, y, boundingBox.width, boundingBox.height);//getPosition().x + 5, getPosition().y, boundingBox.width, boundingBox.height);
         shapeRenderer.setColor(0, 0, 0, 1);
 
         if(intersection.y > r1.y) {
@@ -96,22 +94,4 @@ public abstract class Object extends Sprite {
     public boolean isAlive(){
         return !dead;
     }
-
-        /*TODO
-    You can use the method intersectRectangles provided in the Intersector class to determine if two rectangles are overlapping,
-    and if so, where they overlap. You could use this info to determine if they overlap with the left, right, top, and/or bottom.
-
-    Rectangle r1 = new rect
-    Rectangle r2 = new rect;
-    Rectangle intersection = new Rectangle();
-    Intersector.intersectRectangles(r1, r2, intersection);//pass r1,r2 if they interlap, set overlap point to the intersection rect.
-    if(intersection.x > r1.x)
-        //Intersects with right side
-    if(intersection.y > r1.y)
-        //Intersects with top side
-    if(intersection.x + intersection.width < r1.x + r1.width)
-        //Intersects with left side
-    if(intersection.y + intersection.height < r1.y + r1.height)
-        //Intersects with bottom side
-     */
 }

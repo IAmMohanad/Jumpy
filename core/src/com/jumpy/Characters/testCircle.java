@@ -1,6 +1,5 @@
-package com.jumpy.Objects;
+package com.jumpy.Characters;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -12,7 +11,7 @@ import com.jumpy.Jumpy;
 import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
 
-public class Coin extends Object{
+public class testCircle extends DynamicObject {
 
     private static int COIN_WIDTH = 30;
     private static int COIN_HEIGHT = 30;
@@ -27,7 +26,7 @@ public class Coin extends Object{
 
     private Animation<TextureRegion> idleAnimation;
 
-    public Coin(GameMap map, float x, float y){
+    public testCircle(GameMap map, float x, float y){
         width = COIN_WIDTH;
         height = COIN_HEIGHT;
         super.map = map;
@@ -39,6 +38,15 @@ public class Coin extends Object{
 
         dead = false;
         create();
+    }
+    @Override
+    public void moveLeft(float delta) {
+
+    }
+
+    @Override
+    public void moveRight(float delta) {
+
     }
 
     @Override
@@ -54,69 +62,33 @@ public class Coin extends Object{
         idleAnimation = new Animation<TextureRegion>(0.1f, idleFrames);
     }
 
+    public void setPosition(float x, float y){
+        position.x = x;
+        position.y = y;
+    }
     @Override
-    public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
+    public void update(SpriteBatch batch, float delta, OrthographicCamera camera){
         this.stateTime += delta;
         currentFrame = idleAnimation.getKeyFrame(stateTime, true);
-
         boundingBox.setPosition(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET);
         updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_OFFSET, (int) getPosition().y + B_BOX_Y_OFFSET);
         batch.begin();
-        if((dead) && (alpha > 0)){//decrease alpha to make the coin invisible over time
-            position.y += velocityY * delta;
-            alpha -= 2f * delta;
-            this.setAlpha(alpha);
-            Color c = this.getColor();
-            batch.setColor(c.r, c.g, c.b, alpha);
-            batch.draw(currentFrame, position.x, position.y);
-            batch.setColor(c.r, c.g, c.b, 1f);
-        } else if(alpha <= 0){
-            //stop drawing the coin after it becomes invisible
-        } else{
-            batch.draw(currentFrame, position.x, position.y);
-        }
+        batch.draw(currentFrame, position.x, position.y);
         batch.end();
     }
 
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame) {
-       batch.begin();
-       batch.draw(currentFrame, position.x, position.y);
-       batch.end();
+
     }
 
     @Override
     public void dispose() {
-        textureSheet.dispose();
+
     }
 
     @Override
     public void die() {
-        if(!dead) {
-            dead = true;
-            //alpha += (1f * delta) / 2
-            //alpha -= 1 * delta;
-            //this.setAlpha(alpha);
-        }
-    }
 
-    public boolean alive(){
-        return !this.dead;
-    }
-
-    public void moveTowardsPlayer(float delta, float x, float y){
-        // boundingBox.setPosition(x, y);
-        if (position.x < (int) x) {
-            position.x += 90 * delta;//TODO replace 250 with movement speed
-        }
-        if (position.x > (int) x) {
-            position.x -= 90 * delta;
-        }
-        if (position.y < (int) y) {
-            position.y += 90 * delta;
-        }
-        if (position.y > (int) y) {
-            position.y -= 90 * delta;
-        }
     }
 }

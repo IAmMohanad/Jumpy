@@ -11,6 +11,7 @@ import com.jumpy.Characters.Enemy;
 import com.jumpy.Characters.Player;
 import com.jumpy.Intersection;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Objects.IceBallShooter;
 import com.jumpy.Scenes.Hud;
 
 import java.util.ArrayList;
@@ -162,6 +163,7 @@ public abstract class GameMap {
     public abstract ArrayList<Coin> getCoins();
     public abstract ArrayList<Enemy> getEnemies();
     public abstract Player getPlayer();
+    public abstract ArrayList<IceBallShooter> getObjects();
     public boolean getIsLevelComplete(){
         return isLevelComplete;
     }

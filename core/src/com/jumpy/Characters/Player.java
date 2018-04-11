@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jumpy.*;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Objects.IceBall;
+import com.jumpy.Objects.IceBallShooter;
 import com.jumpy.Screens.PlayScreen;
 import com.jumpy.World.GameMap;
 import com.jumpy.Active;
@@ -22,7 +24,6 @@ public class Player extends DynamicObject {
 
     private int coinsCollected;
     private int points;
-    //private Hud hud;
     private PlayScreen playScreen;
     public static boolean left;
     public static boolean right;
@@ -30,16 +31,12 @@ public class Player extends DynamicObject {
     public static boolean down;
     public static boolean shootPressed;
     public static boolean boostPressed;
-    //private Weapon equippedWeapon;
-
     private boolean doubleJump;
     private boolean firstJump;
 
     private boolean deathComplete = false;
 
     private boolean dead;
-
-    //private final float gravity = -100;
 
     private static final int JUMP_VELOCITY = 130;
 
@@ -73,7 +70,6 @@ public class Player extends DynamicObject {
 
     public Player(Active equippedWeapon, Boost equippedBoost, Passive equippedPassive, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
-        //this.hud = h;
         super.health = 1;
         super.width = 32;
         super.height = 64;
@@ -96,10 +92,6 @@ public class Player extends DynamicObject {
         assignBoosts();
         create();
     }
-
-    /*public Player(GameMap map, float x, float y){
-        this(null, map, x, y, null);
-    }*/
 
     private void assignBoosts(){
         /*TODO
@@ -244,19 +236,6 @@ public class Player extends DynamicObject {
     }
 
     public void updateGravity(float delta){
-        /*
-            float newY = y
-            velocityY += gravity * deltaTime
-            newY += velocityY * deltaTime
-            if collisionOccurs:
-              if velocityY < 0 // hit ground
-                y = floor(y)
-                grounded = true
-            else:
-              //falling
-              y = newY
-              grounded = false
-        */
         //simulate gravity
         float newY = position.y;
         //how many pixels should be moved on Y axis. positive == moving up, negative == falling
@@ -293,8 +272,6 @@ public class Player extends DynamicObject {
         //System.out.println(shootPressed);
         this.stateTime += delta;
         updateGravity(delta);
-        //simulate gravity
-        //die(delta);
 
         resolveBoost(delta);
 
@@ -352,11 +329,6 @@ public class Player extends DynamicObject {
                     currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
                 }
 
-            /*if(walkAnimation.isAnimationFinished(stateTime)){
-                stateTime = 0f;
-            }
-            System.out.println(walkAnimation.isAnimationFinished(stateTime));*/
-
                 for(Coin coin : map.getCoins()){
                     if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
                         coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
@@ -375,6 +347,16 @@ public class Player extends DynamicObject {
                         //Intersection result = intersectsAt(camera, this.getBoundingBox(), e.getBoundingBox());
                         //System.out.println(result);
                         this.die();
+                    }
+                }
+
+                for(IceBallShooter shooter : map.getObjects()){
+                    if(shooter.getIceBallList().size() > 0){
+                        for(IceBall iceBall : shooter.getIceBallList()){
+                            if(this.boundingBox.overlaps(iceBall.getBoundingBox())){
+                                this.die();
+                            }
+                        }
                     }
                 }
 

@@ -92,6 +92,10 @@ public class LoadingScreen implements Screen {
         //load speed boots test
         assetManager.load("ui/new ui/Anti-gravity_boots.png", Texture.class);
         assetManager.load("ui/new ui/Anti-gravity_boots2.png", Texture.class);
+
+        assetManager.load("characters/baddies/iceball_001_up.png", Texture.class);
+        assetManager.load("characters/baddies/iceball_001_right.png", Texture.class);
+
         //assetManager.load("ui/new ui/speed_boots.png", Texture.class);
         //assetManager.load("", Texture.class);
         //Jumpy.assetManager.get("", Texture.class);//

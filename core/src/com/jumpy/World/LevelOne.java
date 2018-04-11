@@ -15,13 +15,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.jumpy.Active;
-import com.jumpy.Boost;
+import com.jumpy.*;
 import com.jumpy.Characters.*;
-import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
-import com.jumpy.Passive;
+import com.jumpy.Objects.IceBall;
+import com.jumpy.Objects.IceBallShooter;
 import com.jumpy.Scenes.LevelSummaryScene;
 import com.jumpy.Scenes.PauseScene;
 import com.jumpy.Screens.PlayScreen;
@@ -44,6 +44,7 @@ public class LevelOne extends GameMap {
 
     private ArrayList<Coin> coinList = new ArrayList<Coin>();
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+    private ArrayList<IceBallShooter> objectsList = new ArrayList<IceBallShooter>();
 
     private LevelSummaryScene levelSummary;
     private PauseScene pauseScene;
@@ -55,6 +56,10 @@ public class LevelOne extends GameMap {
 
     public Bee bee;
     public Totem totem;
+
+    private IceBall test;
+    private IceBallShooter test1;
+    private IceBallShooter test2;
 
     private final String currentLevel = "1-1";
 
@@ -74,7 +79,11 @@ public class LevelOne extends GameMap {
 
     public ArrayList<Enemy> getEnemies() { return this.enemiesList; }
 
-//TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
+    public ArrayList<IceBallShooter> getObjects() {
+        return objectsList;
+    }
+
+    //TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
@@ -85,41 +94,34 @@ public class LevelOne extends GameMap {
         Boost equippedBoost = Boost.valueOf(userPrefs.getString("equippedBoost"));
 
         isLevelComplete = false;
-        //player = new Player(equippedActive, this, 32, 64, playScreen);
-        //active = new Laser(this, 50, 125);
 
-        /*if(game.getIsHardMode()){
-            chaserTwo = new Chaser(this, player,200,100, 16, 16);
-        }*/
-
-        //coinList.add(new Coin(this, 80, 100));
-        //coinList.add(new Coin(this, 160, 100));
-        //coinList.add(new Coin(this, 240, 100));
-        //coinList.add(new Coin(this, 360, 120));
-        //coinList.add(new Coin(this, 450, 150));
-
-
-        //enemiesList.add(new Bee(this, 400, 100));
-        //enemiesList.add(new Totem(this, 450, 150));
-        //enemiesList.add(new Totem(this, 400, 150 ));
-        //enemiesList.add(new Goblin(map,this, 350, 150));
-
-       // enemiesList.add(new Gargoyle(this, 350, 150));
-        //enemiesList.add(new GargoyleFlying(this, 350, 150));
-        //enemiesList.add(new Barbarian(this, 425, 150));
-        spawnObjects(equippedActive, equippedBoost, equippedPassive);
+        spawnElements(equippedActive, equippedBoost, equippedPassive);
+        test = new IceBall(this, 200, 100 , Move.UP);
+       // test1 = new IceBallShooter(this, 200, 100 , Move.RIGHT);
+        //test2 = new IceBallShooter(this, 200, 100 , Move.LEFT);
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
         levelSummary = new LevelSummaryScene(game, playScreen);
     }
 
-    //Randomly choose the spawn points on a map.
-    private void spawnObjects(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
+    //Randomly choose the spawn points on a map. //TODO throw dice to choose spawn1/2/3/ etc
+    private void spawnElements(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
         String spawnChoice = "spawn1";
         spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
         spawnCoins(spawnChoice);
         spawnEnemies(spawnChoice);
+        spawnObjects(spawnChoice);
+    }
+
+    private void spawnObjects(String spawnChoice){
+        for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
+            if (object.getName().toLowerCase().equals("ice_ball_shooter")) {
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                Move shootDirection = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
+                objectsList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
+            }
+        }
     }
 
     private void spawnPlayer(String spawnChoice, Active equippedActive, Boost equippedBoost, Passive equippedPassive){
@@ -164,6 +166,34 @@ public class LevelOne extends GameMap {
         }
     }
 
+    //private Vector2 rotatePoint(Vector2 position, Rectangle center, double angle){
+     //   angle = Math.toRadians(angle);
+    /*
+        double rotatedX = Math.cos(angle) * (position.x - center.x) - Math.sin(angle) * (position.y-center.y) + center.x;
+        double rotatedY = Math.sin(angle) * (position.x - center.x) + Math.cos(angle) * (position.y - center.y) + center.y;
+        return new Vector2((float) rotatedX, (float) rotatedY);*/
+        /*double x1 = position.x - center.x;
+        double y1 = position.y - center.y;
+
+        double x2 = x1 * Math.cos(angle) - y1 * Math.sin(angle);
+        double y2 = x1 * Math.sin(angle) + y1 * Math.cos(angle);
+
+        return new Vector2((float) x2 + center.x, (float) y2 + center.y);*/
+        /*double newX = center.x + (position.x-center.x)*Math.cos(angle) - (position.y-center.y)*Math.sin(angle);
+
+        double newY = center.y + (position.x-center.x)*Math.sin(angle) + (position.y-center.y)*Math.cos(angle);
+
+        return new Vector2((float) newX, (float) newY);*/
+
+
+        /*float rotateBy = 90 * delta;
+            Rectangle objectRect = new Rectangle(100, 100, 20, 20);
+            testCircle testCoin = new testCircle(this, 200, 200);
+            Vector2 rotatedPosition = rotatePoint(testCoin.getPosition(), objectRect, rotateBy);
+            testCoin.setPosition(rotatedPosition.x, rotatedPosition.y);
+            testCoin.update(batch, delta, camera);*/
+   // }
+
     @Override
     public void render(OrthographicCamera camera, SpriteBatch batch, float delta) {
         renderer.setView(camera);
@@ -171,6 +201,7 @@ public class LevelOne extends GameMap {
 
         if(!player.isDeathComplete()){
             //hud.setScore(player.getPoints());
+
             hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
             //chaserTwo.update(batch, delta, camera);
@@ -181,7 +212,16 @@ public class LevelOne extends GameMap {
             for(Enemy e : enemiesList){
                 e.update(batch, delta, camera);
             }
+
+            for(IceBallShooter o : objectsList){
+                o.update(batch, delta, camera);
+            }
             player.update(batch, delta, camera);
+
+            test.update(batch, delta, camera);
+           // test1.update(batch, delta, camera);
+           // test2.update(batch, delta, camera);
+
         } else{//level summary screen
             createSummary();
             isLevelComplete = true;

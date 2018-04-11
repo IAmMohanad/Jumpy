@@ -95,6 +95,10 @@ public class Laser extends Weapon {
         }
     }
 
+    public boolean isActive(){
+        return this.active;
+    }
+
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame) {
         batch.begin();

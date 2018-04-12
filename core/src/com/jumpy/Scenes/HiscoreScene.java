@@ -17,10 +17,17 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jumpy.Jumpy;
 import com.jumpy.Screens.ScreenManager;
 import com.jumpy.SoundManager;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +50,9 @@ public class HiscoreScene {
     private Map<String, String> levelOneScoreMap;
     private Map<String, String> levelTwoScoreMap;
     private Map<String, String> levelThreeScoreMap;
+    private boolean updatingPlayerRankingsFinished;
+    private boolean registeringNewPlayerFinished;
+    private boolean checkingConnectionFinished;
 
     private HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
     private Net.HttpRequest httpRequest;
@@ -87,6 +97,8 @@ public class HiscoreScene {
     }
 
     private Table isConnected(){
+        registerNewPlayer();
+        updatePlayerRankings(playerPrefs.getString("username"));
         getPlayerRankings(playerPrefs.getString("username"));
         Table table = new Table();
         Table innerTable = new Table();
@@ -112,7 +124,7 @@ public class HiscoreScene {
         innerTable.row();
         String suffix;
 
-       // if(levelOneScoreMap.get("completed").equals("true")){
+        if(levelOneScoreMap.get("completed").equals("true")){
             Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
             innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
@@ -138,7 +150,12 @@ public class HiscoreScene {
                 innerTable.row();//empty line for formatting
                 innerTable.add(new Label("", skin, "skin-normal"));
                 innerTable.row();
-    //    }
+        } else{
+            Label levelOneRankingTitle = new Label("LEVEL ONE NOT COMPLETE", skin, "skin-normal");
+            innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.add(new Label("", skin, "skin-normal")).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.row();
+        }
 
         if(levelTwoScoreMap.get("completed").equals("true")) {
             Label levelTwoRankingTitle = new Label("LEVEL TWO RANKING", skin, "skin-normal");
@@ -166,6 +183,11 @@ public class HiscoreScene {
             innerTable.row();//empty line for formatting
             innerTable.add(new Label("", skin, "skin-normal"));
             innerTable.row();
+        } else{
+            Label levelTwoRankingTitle = new Label("LEVEL TWO NOT COMPLETE", skin, "skin-normal");
+            innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.add(new Label("", skin, "skin-normal")).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.row();
         }
 
         if(levelThreeScoreMap.get("completed").equals("true")) {
@@ -190,6 +212,11 @@ public class HiscoreScene {
 
             innerTable.row();
             addRankingToTable(innerTable, "Max Points Earned: ", levelThreeScoreMap.get("max_points"));
+            innerTable.row();
+        } else{
+            Label levelThreeRankingTitle = new Label("LEVEL THREE NOT COMPLETE", skin, "skin-normal");
+            innerTable.add(levelThreeRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.add(new Label("", skin, "skin-normal")).expandX().expandY().center().padLeft(5).colspan(3);
             innerTable.row();
         }
 
@@ -235,11 +262,13 @@ public class HiscoreScene {
                 String status = httpResponse.getResultAsString();
                 System.out.println(status);
                 setConnected(true);
+                //checkConnection();
             }
 
             public void failed(Throwable t) {
                 String status = "failed";
                 setConnected(false);
+                //noConnection();
             }
 
             @Override
@@ -247,6 +276,7 @@ public class HiscoreScene {
                 String status = "cancelled";
                 System.out.println(status);
                 setConnected(false);
+                //noConnection();
             }
         });
         long startTime = System.currentTimeMillis();
@@ -286,11 +316,108 @@ public class HiscoreScene {
 
         table.add(innerTable).expandX().expandY().top().left();
 
-        //rankings row with scrollpane, scrollpane has table inside with 3 columns.
-        //buttons row
-        //ScrollPane rankingsPane = new ScrollPane(rankingsTable, skin, "default-no-slider");
         stage.addActor(table);
         return stage;
+    }
+
+    private void updatePlayerRankings(String playerName){
+        //path('update/<int:username>/<int:levelCompleted>/<int:pointsEarned>/<int:goldEarned>/<int:starsEarned>/<int:timeToComplete>'),
+        Preferences levelOnePrefs = Gdx.app.getPreferences("1-1");
+        Preferences levelTwoPrefs = Gdx.app.getPreferences("1-2");
+        Preferences levelThreePrefs = Gdx.app.getPreferences("1-3");
+
+        updatingPlayerRankingsFinished = false;
+        if(levelOnePrefs != null){
+            if(levelOnePrefs.getBoolean("needsUpdate", false)){
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/"+playerPrefs.getString(username)+"/1/"+levelOnePrefs.getInteger("pointsEarned")+"/"+levelOnePrefs.getInteger("goldEarned")+"/"+levelOnePrefs.getInteger("numberOfStars")+"/"+levelOnePrefs.getInteger("fastestCompletionTime"));
+            }
+        }
+        if(levelTwoPrefs != null) {
+            if (levelTwoPrefs.getBoolean("needsUpdate", false)) {
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString(username) + "/2/" + levelTwoPrefs.getInteger("pointsEarned") + "/" + levelTwoPrefs.getInteger("goldEarned") + "/" + levelTwoPrefs.getInteger("numberOfStars") + "/" + levelTwoPrefs.getInteger("fastestCompletionTime"));
+            }
+        }
+        if(levelThreePrefs != null) {
+            if (levelThreePrefs.getBoolean("needsUpdate", false)) {
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString(username) + "/3/" + levelThreePrefs.getInteger("pointsEarned") + "/" + levelThreePrefs.getInteger("goldEarned") + "/" + levelThreePrefs.getInteger("numberOfStars") + "/" + levelThreePrefs.getInteger("fastestCompletionTime"));
+
+            }
+        }
+
+        while(!updatingPlayerRankingsFinished){
+            //do nothing
+            System.out.println("waiting for updatePlayerRankings to finish");
+            if(updatingPlayerRankingsFinished){
+                break;
+            }
+        }
+        return;
+    }
+    //http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores/update/32796459/3/300/2/3/17
+    //http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores/getPlayerScore/32796459
+    private void sendUpdateHttpRequest(String url, String queryString){
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(url + queryString).content("").build();
+        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
+            @Override
+            public void handleHttpResponse(Net.HttpResponse httpResponse) {
+                int statusCode = httpResponse.getStatus().getStatusCode();
+                if(statusCode != HttpStatus.SC_OK) {
+                    System.out.println("Request Failed");
+                    updatingPlayerRankingsFinished = true;
+                    return;
+                } else{
+                    updatingPlayerRankingsFinished = true;
+                }
+            }
+
+            @Override
+            public void failed(Throwable t) {
+                String status = "failed " + t.getMessage();
+                System.out.println(status);
+                updatingPlayerRankingsFinished = true;
+            }
+
+            @Override
+            public void cancelled() {
+                updatingPlayerRankingsFinished = true;
+                //String status = "failed " + t.getMessage();
+                //System.out.println(status);
+            }
+        });
+    }
+
+    private void registerNewPlayer(){
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(Jumpy.HISCORE_SERVER_URL +"/"+playerPrefs.getString("username")).content("").build();
+        registeringNewPlayerFinished = false;
+        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
+            @Override
+            public void handleHttpResponse(Net.HttpResponse httpResponse) {
+                int statusCode = httpResponse.getStatus().getStatusCode();
+                if(statusCode != HttpStatus.SC_OK) {
+                    System.out.println("Request Failed");
+                    registeringNewPlayerFinished = true;
+                    return;
+                } else{
+                    registeringNewPlayerFinished = true;
+                }
+            }
+
+            @Override
+            public void failed(Throwable t) {
+                registeringNewPlayerFinished = true;
+            }
+
+            @Override
+            public void cancelled() {
+                registeringNewPlayerFinished = true;
+            }
+        });
+
+        while(!registeringNewPlayerFinished){
+            //do nothing
+            System.out.println("Waiting for registeringNewPlayerFinished");
+        }
+        return;
     }
 
     private void getPlayerRankings(String playerName){
@@ -309,85 +436,30 @@ public class HiscoreScene {
                 JsonValue mess = json.get("message");
                 //Store player rankings into hash maps
                 JsonValue playerInfo = mess.get("player_rankings");
-                String[] array = new String[playerInfo.size];
-                int i=0;
+
+                playerScoreMap = new HashMap<String, String>();
                 for (JsonValue info : playerInfo.iterator()){ // iterator() returns a list of children
                     //"total_points": 59696, "total_gold": 129, "total_stars": 17, "total_time_played": 584}, "level_one": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 6010}, "level_two": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 51}, "level_three": {"completed": false, "player_rank": 1, "fastest_time": 0, "max_points": 0}
                     System.out.println(info.isString());
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
+                    String nodeName = info.name;
+                    System.out.println(info.asString());
+                    if(nodeName.equals("total_players")){
+                        playerScoreMap.put("totalPlayers", info.asString());
+                    } else if(nodeName.equals("user_name")){
+                        playerScoreMap.put("username", info.asString());
+                    } else if(nodeName.equals("total_points")){
+                        playerScoreMap.put("totalPoints", info.asString());
+                    } else if(nodeName.equals("total_gold")){
+                        playerScoreMap.put("totalGold", info.asString());
+                    } else if(nodeName.equals("total_stars")){
+                        playerScoreMap.put("totalStars", info.asString());
+                    } else if(nodeName.equals("total_time_played")){
+                        playerScoreMap.put("totalTimePlayed", info.asString());
                     }
-                    i++;
                 }
-                playerScoreMap = new HashMap<String, String>();
-                playerScoreMap.put("username", array[1]);//username
-                playerScoreMap.put("totalPoints", array[3]);//totalPoints
-                playerScoreMap.put("totalGold", array[2]);//totalGold
-                playerScoreMap.put("totalStars", array[5]);//totalStars
-                playerScoreMap.put("totalTimePlayed", array[4]);//totalTimePlayed
-                playerScoreMap.put("totalPlayers", array[0]);//totalPlayers
-
-                i=0;
-                //get player rankings for level one, copy paste for level 2/3
-                JsonValue levelOneInfo = mess.get("level_one");
-                array = new String[levelOneInfo.size];
-                for (JsonValue info : levelOneInfo){
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
-                    }
-                    i++;
-                }
-                levelOneScoreMap = new HashMap<String, String>();
-                levelOneScoreMap.put("completed", array[0]);
-                levelOneScoreMap.put("player_rank", array[1]);
-                levelOneScoreMap.put("fastest_time", array[2]);
-                levelOneScoreMap.put("max_points", array[3]);
-                levelOneScoreMap.put("total_players", array[4]);
-                /*for(String s : array){
-                    System.out.println(s);
-                }*/
-
-                i=0;
-                //get player rankings for level one, copy paste for level 2/3
-                JsonValue levelTwoInfo = mess.get("level_two");
-                array = new String[levelTwoInfo.size];
-                for (JsonValue info : levelTwoInfo){
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
-                    }
-                    i++;
-                }
-                levelTwoScoreMap = new HashMap<String, String>();
-                levelTwoScoreMap.put("completed", array[0]);
-                levelTwoScoreMap.put("player_rank", array[1]);
-                levelTwoScoreMap.put("fastest_time", array[2]);
-                levelTwoScoreMap.put("max_points", array[3]);
-                levelTwoScoreMap.put("total_players", array[4]);
-
-                i=0;
-                //get player rankings for level one, copy paste for level 2/3
-                JsonValue levelThreeInfo = mess.get("level_three");
-                array = new String[levelTwoInfo.size];
-                for (JsonValue info : levelThreeInfo){
-                    if(!info.isString()){
-                        array[i] = String.valueOf(info.asInt()).replace("\n", "");
-                    } else{
-                        array[i] = info.asString().replace("\n", "");
-                    }
-                    i++;
-                }
-                levelThreeScoreMap = new HashMap<String, String>();
-                levelThreeScoreMap.put("completed", array[0]);
-                levelThreeScoreMap.put("player_rank", array[1]);
-                levelThreeScoreMap.put("fastest_time", array[2]);
-                levelThreeScoreMap.put("max_points", array[3]);
-                levelThreeScoreMap.put("total_players", array[4]);
+                levelOneScoreMap = getLevelRankingDetails(mess.get("level_one"));
+                levelTwoScoreMap = getLevelRankingDetails(mess.get("level_two"));
+                levelThreeScoreMap = getLevelRankingDetails(mess.get("level_three"));
             }
 
             public void failed(Throwable t) {
@@ -409,6 +481,26 @@ public class HiscoreScene {
             //do nothing, 1sec delay to check for connection
         }
         return;
+    }
+
+    private HashMap<String, String> getLevelRankingDetails(JsonValue levelInfo){
+        HashMap<String, String> levelScoreMap = new HashMap<String, String>();
+        for (JsonValue info : levelInfo){
+            String nodeName = info.name;
+            System.out.println(info.asString());
+            if(nodeName.equals("completed")){
+                levelScoreMap.put("completed", info.asString());
+            } else if(nodeName.equals("player_rank")){
+                levelScoreMap.put("player_rank", info.asString());
+            } else if(nodeName.equals("fastest_time")){
+                levelScoreMap.put("fastest_time", info.asString());
+            } else if(nodeName.equals("max_points")){
+                levelScoreMap.put("max_points", info.asString());
+            } else if(nodeName.equals("total_players")){
+                levelScoreMap.put("total_players", info.asString());
+            }
+        }
+        return levelScoreMap;
     }
 
     public void loadSound(){

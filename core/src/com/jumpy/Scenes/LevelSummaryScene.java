@@ -177,7 +177,6 @@ public class LevelSummaryScene {
     }
 
     private void saveLevelDetails(int coinsCollected, int enemiesKilled, int timePlayed, int totalScore, int totalStars){//int numberOfStars, int goldEarned, int points){
-
         Preferences levelPrefs = Gdx.app.getPreferences(game.getCurrentLevel());//"1-3");
         Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
@@ -198,19 +197,32 @@ public class LevelSummaryScene {
         int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
         int highestNumberOfEnemiesKilled = levelPrefs.getInteger("enemiesKilled", 0);
         int fastestCompletionTime = levelPrefs.getInteger("fastestCompletionTime", 0);
-        if(coinsCollected > highestGoldEarned || enemiesKilled > highestNumberOfEnemiesKilled || totalScore > highestPointsEarned || totalStars > highestNumberOfStars){
+        /*if(coinsCollected > highestGoldEarned || enemiesKilled > highestNumberOfEnemiesKilled || totalScore > highestPointsEarned || totalStars > highestNumberOfStars || timePlayed < fastestCompletionTime){
+            if(fastestCompletionTime != 0){
+                newPersonalBest = true;
+            }
+        }*/
+        
+        if(coinsCollected > highestGoldEarned){
             newPersonalBest = true;
-        }
-
-        if(newPersonalBest){
-            levelPrefs.putBoolean("needsUpdate", true);
             levelPrefs.putInteger("goldEarned", coinsCollected);
-            levelPrefs.putInteger("pointsEarned", totalScore);
-            levelPrefs.putInteger("numberOfStars", totalStars);
+        }
+        if(enemiesKilled > highestNumberOfEnemiesKilled){
+            newPersonalBest = true;
             levelPrefs.putInteger("enemiesKilled", enemiesKilled);
+        }
+        if(totalScore > highestPointsEarned){
+            newPersonalBest = true;
+            levelPrefs.putInteger("pointsEarned", totalScore);
+        }
+        if(totalStars > highestNumberOfStars){
+            newPersonalBest = true;
+            levelPrefs.putInteger("numberOfStars", totalStars);
+        }
+        if(timePlayed < fastestCompletionTime && fastestCompletionTime != 0){
+            newPersonalBest = true;
             levelPrefs.putInteger("fastestCompletionTime", timePlayed);
         }
-
         userPrefs.flush();
         levelPrefs.flush();
     }

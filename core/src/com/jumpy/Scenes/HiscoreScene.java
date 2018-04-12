@@ -281,7 +281,7 @@ public class HiscoreScene {
         });
         long startTime = System.currentTimeMillis();
         int elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
-        while(elpasedTime < 0.5){
+        while(elpasedTime < 0.5 || !isConnected){
             System.out.println(String.valueOf(elpasedTime));
             elpasedTime = (int) (System.currentTimeMillis() - startTime) / 1000;
             //do nothing, 1sec delay to check for connection
@@ -329,17 +329,17 @@ public class HiscoreScene {
         updatingPlayerRankingsFinished = false;
         if(levelOnePrefs != null){
             if(levelOnePrefs.getBoolean("needsUpdate", false)){
-                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/"+playerPrefs.getString(username)+"/1/"+levelOnePrefs.getInteger("pointsEarned")+"/"+levelOnePrefs.getInteger("goldEarned")+"/"+levelOnePrefs.getInteger("numberOfStars")+"/"+levelOnePrefs.getInteger("fastestCompletionTime"));
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/"+playerPrefs.getString("username")+"/1/"+levelOnePrefs.getInteger("pointsEarned")+"/"+levelOnePrefs.getInteger("goldEarned")+"/"+levelOnePrefs.getInteger("numberOfStars")+"/"+levelOnePrefs.getInteger("fastestCompletionTime"));
             }
         }
         if(levelTwoPrefs != null) {
             if (levelTwoPrefs.getBoolean("needsUpdate", false)) {
-                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString(username) + "/2/" + levelTwoPrefs.getInteger("pointsEarned") + "/" + levelTwoPrefs.getInteger("goldEarned") + "/" + levelTwoPrefs.getInteger("numberOfStars") + "/" + levelTwoPrefs.getInteger("fastestCompletionTime"));
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/2/" + levelTwoPrefs.getInteger("pointsEarned") + "/" + levelTwoPrefs.getInteger("goldEarned") + "/" + levelTwoPrefs.getInteger("numberOfStars") + "/" + levelTwoPrefs.getInteger("fastestCompletionTime"));
             }
         }
         if(levelThreePrefs != null) {
             if (levelThreePrefs.getBoolean("needsUpdate", false)) {
-                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString(username) + "/3/" + levelThreePrefs.getInteger("pointsEarned") + "/" + levelThreePrefs.getInteger("goldEarned") + "/" + levelThreePrefs.getInteger("numberOfStars") + "/" + levelThreePrefs.getInteger("fastestCompletionTime"));
+                sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/3/" + levelThreePrefs.getInteger("pointsEarned") + "/" + levelThreePrefs.getInteger("goldEarned") + "/" + levelThreePrefs.getInteger("numberOfStars") + "/" + levelThreePrefs.getInteger("fastestCompletionTime"));
 
             }
         }
@@ -385,14 +385,16 @@ public class HiscoreScene {
             }
         });
     }
-
+    String response;
     private void registerNewPlayer(){
-        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(Jumpy.HISCORE_SERVER_URL +"/"+playerPrefs.getString("username")).content("").build();
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(Jumpy.HISCORE_SERVER_URL +"/register/"+playerPrefs.getString("username")).content("").build();
         registeringNewPlayerFinished = false;
+
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             @Override
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 int statusCode = httpResponse.getStatus().getStatusCode();
+                response = httpResponse.getResultAsString();
                 if(statusCode != HttpStatus.SC_OK) {
                     System.out.println("Request Failed");
                     registeringNewPlayerFinished = true;

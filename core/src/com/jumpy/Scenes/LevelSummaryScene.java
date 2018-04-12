@@ -15,7 +15,6 @@ import com.jumpy.Jumpy;
 import com.jumpy.Screens.PlayScreen;
 import com.jumpy.Screens.ScreenManager;
 
-
 public class LevelSummaryScene {
 
     private Jumpy game;
@@ -27,7 +26,9 @@ public class LevelSummaryScene {
 
     private Sound click;
 
-    private boolean newPersonalBestPoints = false;
+    private int totalScoreEarned;
+    private int totalNumberOfStarsEarned;
+    private boolean newPersonalBest = false;
 
     public LevelSummaryScene(Jumpy game, PlayScreen playScreen) {
         this.game = game;
@@ -43,24 +44,43 @@ public class LevelSummaryScene {
         return levelPrefs.getInteger("pointsEarned", 0);
     }
 
-    public Stage create(int points, int numberOfStars, int goldEarnedAmount){
+    private int calculateTotalScoreEarned(int coinsCollected, int enemiesKilled, int timePlayed){
+        totalScoreEarned = ((coinsCollected * 50) + (enemiesKilled * 100)) * Math.max(1, (timePlayed / 10));
+
+        if(totalScoreEarned == 0) totalScoreEarned = 1;
+        return totalScoreEarned;
+    }
+
+    private int calculcateNumberOfStars(){
+        totalNumberOfStarsEarned = 0;
+        if(totalScoreEarned > 50) totalNumberOfStarsEarned++;
+        if(totalScoreEarned > 100) totalNumberOfStarsEarned++;
+        if(totalScoreEarned > 149) totalNumberOfStarsEarned++;
+        return totalNumberOfStarsEarned;
+    }
+
+    //player.getCoinsCollected(), player.getEnemiesKilled(), ((300 - hud.getLevelTimer()) / 10))
+    public Stage create(int coinsCollected, int enemiesKilled, int timeLeft){//(int points, int numberOfStars, int goldEarnedAmount){
         loadSound();
-        saveLevelDetails(numberOfStars, goldEarnedAmount, points);
+        int timePlayed = 300 - timeLeft;
+        calculateTotalScoreEarned(coinsCollected, enemiesKilled, timePlayed);
+        calculcateNumberOfStars();
+        saveLevelDetails(coinsCollected, enemiesKilled, timePlayed, totalScoreEarned, totalNumberOfStarsEarned);
         Image levelClearedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png")));
         Image activeStarSideLeft;
         Image activeStarSideRight;
         Image activeStarTop;
-        if(numberOfStars >= 1){
+        if(totalNumberOfStarsEarned >= 1){
             activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
         } else{
             activeStarSideLeft = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));
         }
-        if(numberOfStars >= 2){
+        if(totalNumberOfStarsEarned >= 2){
             activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_side.png")));
         } else{
             activeStarSideRight = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));
         }
-        if(numberOfStars == 3) {
+        if(totalNumberOfStarsEarned == 3) {
             activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/active_star_top.png")));
         } else {
             activeStarTop = new Image(new Texture(Gdx.files.internal("ui/new ui/inactive_star_top_base.png")));//inactive_star_top_base
@@ -86,10 +106,10 @@ public class LevelSummaryScene {
         innerInfoTable.row();
 
         Label goldEarnedLabel = new Label("Gold:", skin, "medium");
-        Label goldEarned = new Label(String.valueOf(goldEarnedAmount), skin, "medium");
+        Label goldEarned = new Label(String.valueOf(coinsCollected), skin, "medium");
         Image goldBox = new Image(new Texture(Gdx.files.internal("ui/new ui/money_base.png")));
 
-        if(newPersonalBestPoints){
+        if(newPersonalBest){
             Label newPersonalBestLabel = new Label("New High Score!", skin, "small");
             innerInfoTable.add(newPersonalBestLabel).colspan(3).center();
             innerInfoTable.row();
@@ -156,48 +176,40 @@ public class LevelSummaryScene {
         return stage;
     }
 
-    //check if prefs exists
-    /*Preferences tmprefs = Gdx.app.getPreferences ( prefname );
+    private void saveLevelDetails(int coinsCollected, int enemiesKilled, int timePlayed, int totalScore, int totalStars){//int numberOfStars, int goldEarned, int points){
 
-    Map tmpmap = tmprefs.get();
-
-      if ( tmpmap.isEmpty() == true )
-              return false;
-      else
-              return true;*/
-    private void saveLevelDetails(int numberOfStars, int goldEarned, int points){
-        Preferences levelPrefs = Gdx.app.getPreferences("1-3");
+        Preferences levelPrefs = Gdx.app.getPreferences(game.getCurrentLevel());//"1-3");
         Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
         levelPrefs.putBoolean("completed", true);
 
-        //save total gold/points earned by user
-        int userGoldEarned = userPrefs.getInteger("goldEarned");
-        int userPointsEarned = userPrefs.getInteger("pointsEarned");
-        userPrefs.putInteger("lifetimeGoldEarned", userGoldEarned + goldEarned);
-        userPrefs.putInteger("lifeTimepointsEarned", userPointsEarned + points);
-        userPrefs.putInteger("goldEarned", userGoldEarned + goldEarned);
+        //save user statistics
+        //update lifetime stats
+        userPrefs.putInteger("lifetimeGoldEarned", userPrefs.getInteger("goldEarned", 0) + coinsCollected);
+        userPrefs.putInteger("lifeTimepointsEarned", userPrefs.getInteger("lifeTimepointsEarned", 0) + totalScore);
+        userPrefs.putInteger("lifeTimeTimePlayed", userPrefs.getInteger("lifeTimeTimePlayed", 0) + timePlayed);
+        userPrefs.putInteger("lifeTimeEnemiesKilled", userPrefs.getInteger("lifeTimeEnemiesKilled", 0) + enemiesKilled);
+        //update current # of gold
+        userPrefs.putInteger("goldEarned", coinsCollected);
 
-        userPrefs.flush();
-
-        //current values
-        int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
+        //save level stats
         int highestGoldEarned = levelPrefs.getInteger("goldEarned", 0);
         int highestPointsEarned = levelPrefs.getInteger("pointsEarned", 0);
-
-        if(numberOfStars > highestNumberOfStars){
-            levelPrefs.putInteger("numberOfStars", numberOfStars);
-        }
-        if(goldEarned > highestGoldEarned){
-            levelPrefs.putInteger("goldEarned", goldEarned);
-        }
-        if(points > highestPointsEarned){
-            levelPrefs.putInteger("pointsEarned", points);
-            newPersonalBestPoints = true;
+        int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
+        int highestNumberOfEnemiesKilled = levelPrefs.getInteger("enemiesKilled", 0);
+        int fastestCompletionTime = levelPrefs.getInteger("fastestCompletionTime", 0);
+        if(coinsCollected > highestGoldEarned || enemiesKilled > highestNumberOfEnemiesKilled || totalScore > highestPointsEarned || totalStars > highestNumberOfStars){
+            newPersonalBest = true;
         }
 
-        //userPrefs.putInteger("goldEarned", 0);
-		//userPrefs.putInteger("pointsEarned", 0);
+        if(newPersonalBest){
+            levelPrefs.putBoolean("needsUpdate", true);
+            levelPrefs.putInteger("goldEarned", coinsCollected);
+            levelPrefs.putInteger("pointsEarned", totalScore);
+            levelPrefs.putInteger("numberOfStars", totalStars);
+            levelPrefs.putInteger("enemiesKilled", enemiesKilled);
+            levelPrefs.putInteger("fastestCompletionTime", timePlayed);
+        }
 
         userPrefs.flush();
         levelPrefs.flush();

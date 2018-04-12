@@ -24,6 +24,7 @@ public class Player extends DynamicObject {
 
     private int coinsCollected;
     private int points;
+    private int enemiesKilled;
     private PlayScreen playScreen;
     public static boolean left;
     public static boolean right;
@@ -88,7 +89,9 @@ public class Player extends DynamicObject {
         this.equippedPassive = equippedPassive;
         points = 0;
         coinsCollected = 0;
+        enemiesKilled = 0;
         deathComplete = false;
+
 
         assignBoosts();
         create();
@@ -268,9 +271,6 @@ public class Player extends DynamicObject {
     {
         shootCounter += delta;
         timeSinceLastJump += delta;
-        //System.out.println("left: "+left+" right: "+right+" up: "+up+" down: "+down);
-        //System.out.println("x: "+this.position.x+" y: "+this.position.y);
-        //System.out.println(shootPressed);
         this.stateTime += delta;
         updateGravity(delta);
 
@@ -289,6 +289,9 @@ public class Player extends DynamicObject {
                     Enemy e = enemies.get(j);
                     if(w.getBoundingBox().overlaps(e.getBoundingBox()) && e.isAlive()){
                         e.getsHit(w.getDamage());
+                        if(e.isDead()){
+                            enemiesKilled += 1;
+                        }
                         w.die();
                         weaponList.remove(i);
                     }
@@ -333,8 +336,9 @@ public class Player extends DynamicObject {
                         coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
                     }
                     if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
-                        addCoin(1);
-                        addScore(50);
+                        //addCoin(1);
+                        //addScore(50);
+                        coinsCollected += 1;
                         //hud.addScore(50);
                         coin.die();
                         //this.die(delta);
@@ -421,6 +425,14 @@ public class Player extends DynamicObject {
         points += score;
     }
 
+    public int getPoints(){
+        return this.points;
+    }
+
+    public int getEnemiesKilled(){
+        return this.enemiesKilled;
+    }
+
     public boolean isDeathComplete(){
         if(dead && deathComplete){
             return true;
@@ -428,9 +440,7 @@ public class Player extends DynamicObject {
         return false;
     }
 
-    public int getPoints(){
-        return this.points;
-    }
+
 
     @Override
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame){//camera only there to update boundingBoxPicture, can be removed

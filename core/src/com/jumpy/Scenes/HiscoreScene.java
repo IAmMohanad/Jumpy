@@ -24,6 +24,8 @@ import com.jumpy.SoundManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.jumpy.Jumpy.HISCORE_SERVER_URL;
+
 public class HiscoreScene {
     private Stage stage;
     private Jumpy game;
@@ -108,85 +110,93 @@ public class HiscoreScene {
         innerTable.add(new Label("", skin, "skin-normal"));
 
         innerTable.row();
-        Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
-        innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
-
         String suffix;
-        if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 1){
-            suffix = "st";
-        } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 2){
-            suffix = "nd";
-        } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 3){
-            suffix = "rd";
-        } else{
-            suffix = "th";
+
+       // if(levelOneScoreMap.get("completed").equals("true")){
+            Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
+            innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+            if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 1){
+                suffix = "st";
+                } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 2){
+                    suffix = "nd";
+                } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 3){
+                    suffix = "rd";
+                } else{
+                    suffix = "th";
+                }
+                innerTable.row();
+
+                addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
+
+                innerTable.row();
+                addRankingToTable(innerTable, "Fastest Time: ", levelOneScoreMap.get("fastest_time")+"secs");
+
+                innerTable.row();
+                addRankingToTable(innerTable, "Max Points Earned: ", levelOneScoreMap.get("max_points"));
+
+                innerTable.row();//empty line for formatting
+                innerTable.add(new Label("", skin, "skin-normal"));
+                innerTable.row();
+    //    }
+
+        if(levelTwoScoreMap.get("completed").equals("true")) {
+            Label levelTwoRankingTitle = new Label("LEVEL TWO RANKING", skin, "skin-normal");
+            innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+            if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 1) {
+                suffix = "st";
+            } else if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 2) {
+                suffix = "nd";
+            } else if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 3) {
+                suffix = "rd";
+            } else {
+                suffix = "th";
+            }
+            innerTable.row();
+
+            addRankingToTable(innerTable, "Your Rank: ", levelTwoScoreMap.get("player_rank") + suffix);
+
+            innerTable.row();
+            addRankingToTable(innerTable, "Fastest Time: ", levelTwoScoreMap.get("fastest_time") + "secs");
+
+            innerTable.row();
+            addRankingToTable(innerTable, "Max Points Earned: ", levelTwoScoreMap.get("max_points"));
+
+            innerTable.row();//empty line for formatting
+            innerTable.add(new Label("", skin, "skin-normal"));
+            innerTable.row();
         }
-        innerTable.row();
 
-        addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
+        if(levelThreeScoreMap.get("completed").equals("true")) {
+            Label levelThreeRankingTitle = new Label("LEVEL THREE RANKING", skin, "skin-normal");
+            innerTable.add(levelThreeRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
-        innerTable.row();
-        addRankingToTable(innerTable, "Fastest Time: ", levelOneScoreMap.get("fastest_time")+"secs");
+            if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 1) {
+                suffix = "st";
+            } else if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 2) {
+                suffix = "nd";
+            } else if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 3) {
+                suffix = "rd";
+            } else {
+                suffix = "th";
+            }
+            innerTable.row();
 
-        innerTable.row();
-        addRankingToTable(innerTable, "Max Points Earned: ", levelOneScoreMap.get("max_points"));
+            addRankingToTable(innerTable, "Your Rank: ", levelThreeScoreMap.get("player_rank") + suffix);
 
-        innerTable.row();//empty line for formatting
-        innerTable.add(new Label("", skin, "skin-normal"));
-        innerTable.row();
-        Label levelTwoRankingTitle = new Label("LEVEL TWO RANKING", skin, "skin-normal");
-        innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.row();
+            addRankingToTable(innerTable, "Fastest Time: ", levelThreeScoreMap.get("fastest_time") + "secs");
 
-        if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 1){
-            suffix = "st";
-        } else if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 2){
-            suffix = "nd";
-        } else if(Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 3){
-            suffix = "rd";
-        } else{
-            suffix = "th";
+            innerTable.row();
+            addRankingToTable(innerTable, "Max Points Earned: ", levelThreeScoreMap.get("max_points"));
+            innerTable.row();
         }
-        innerTable.row();
-
-        addRankingToTable(innerTable, "Your Rank: ", levelTwoScoreMap.get("player_rank")+suffix);
-
-        innerTable.row();
-        addRankingToTable(innerTable, "Fastest Time: ", levelTwoScoreMap.get("fastest_time")+"secs");
-
-        innerTable.row();
-        addRankingToTable(innerTable, "Max Points Earned: ", levelTwoScoreMap.get("max_points"));
-
-        innerTable.row();//empty line for formatting
-        innerTable.add(new Label("", skin, "skin-normal"));
-        innerTable.row();
-        Label levelThreeRankingTitle = new Label("LEVEL THREE RANKING", skin, "skin-normal");
-        innerTable.add(levelThreeRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
-
-        if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 1){
-            suffix = "st";
-        } else if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 2){
-            suffix = "nd";
-        } else if(Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 3){
-            suffix = "rd";
-        } else{
-            suffix = "th";
-        }
-        innerTable.row();
-
-        addRankingToTable(innerTable, "Your Rank: ", levelThreeScoreMap.get("player_rank")+suffix);
-
-        innerTable.row();
-        addRankingToTable(innerTable, "Fastest Time: ", levelThreeScoreMap.get("fastest_time")+"secs");
-
-        innerTable.row();
-        addRankingToTable(innerTable, "Max Points Earned: ", levelThreeScoreMap.get("max_points"));
-
-        innerTable.row();
 
         ScrollPane rankingsScrollPane = new ScrollPane(innerTable, skin, "default-no-slider");
         table.add(rankingsScrollPane).height(200).left().padLeft(5).expandX();
-
         table.row();
+
         //add back button here
         Label backButton = new Label("BACK", skin, "skin-normal");
 
@@ -214,7 +224,7 @@ public class HiscoreScene {
     }
 
     private void checkConnection(){
-        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/checkConnection").content("").build();
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(Jumpy.HISCORE_SERVER_URL+"/checkConnection").content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 int statusCode = httpResponse.getStatus().getStatusCode();
@@ -285,7 +295,7 @@ public class HiscoreScene {
 
     private void getPlayerRankings(String playerName){
         //get player scores
-        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url("http://127.0.0.1:8000/hiscores/getPlayerScore/"+playerName).content("").build();
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(game.HISCORE_SERVER_URL+"/getPlayerScore/"+playerName).content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 int statusCode = httpResponse.getStatus().getStatusCode();
@@ -312,12 +322,12 @@ public class HiscoreScene {
                     i++;
                 }
                 playerScoreMap = new HashMap<String, String>();
-                playerScoreMap.put("username", array[0]);
-                playerScoreMap.put("totalPoints", array[1]);
-                playerScoreMap.put("totalGold", array[2]);
-                playerScoreMap.put("totalStars", array[3]);
-                playerScoreMap.put("totalTimePlayed", array[4]);
-                playerScoreMap.put("totalPlayers", array[5]);
+                playerScoreMap.put("username", array[1]);//username
+                playerScoreMap.put("totalPoints", array[3]);//totalPoints
+                playerScoreMap.put("totalGold", array[2]);//totalGold
+                playerScoreMap.put("totalStars", array[5]);//totalStars
+                playerScoreMap.put("totalTimePlayed", array[4]);//totalTimePlayed
+                playerScoreMap.put("totalPlayers", array[0]);//totalPlayers
 
                 i=0;
                 //get player rankings for level one, copy paste for level 2/3

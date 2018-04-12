@@ -1,11 +1,12 @@
 apply plugin: "java"
-
 sourceCompatibility = 1.6
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-sourceSets.main.java.srcDirs = [ "src/" ]
-
-
+sourceSets.main.java.srcDirs = ["src/"]
 eclipse.project {
     name = appName + "-core"
+}
+dependencies {
+    compile files('build/libs/jackson-annotations-2.9.0.jar')
+    compile files('build/libs/jackson-core-2.9.2.jar')
+    compile files('build/libs/jackson-databind-2.9.0.jar')
 }

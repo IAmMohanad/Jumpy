@@ -18,6 +18,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static float volume;
 	public static final int V_WIDTH = 480;
 	public static final int V_HEIGHT = 270;
+	public static final String HISCORE_SERVER_URL = "http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores";
 
 	private String currentLevel;
 	private boolean isHardMode;
@@ -64,22 +65,26 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		if(userPrefsKeys == false){
 			//doesn't exist, so create it
 			if(!userPrefs.getBoolean("created", false)){
-				userPrefs.putInteger("goldEarned", 999999);
+				userPrefs.putInteger("goldEarned", 10000);
 				userPrefs.putInteger("pointsEarned", 0);
 				userPrefs.putString("equippedActive", Active.NONE.toString());
 				userPrefs.putString("equippedPassive", Passive.NONE.toString());
 				userPrefs.putString("equippedBoost", Boost.NONE.toString());
-				userPrefs.putString("username", "golden751");//TODO replace golden751 with CreatePlayerId()
+				userPrefs.putString("username", CreatePlayerId());//TODO replace golden751 with CreatePlayerId()
+				userPrefs.putInteger("lifeTimepointsEarned", 0);
+				userPrefs.putInteger("lifeTimeEnemiesKilled", 0);
+				userPrefs.putInteger("lifeTimeTimePlayed", 0);
+				userPrefs.putInteger("lifetimeGoldEarned", 0);
 				userPrefs.putBoolean("created", true);
 				userPrefs.flush();
 			}
 		}
 	}
 
-	private int CreatePlayerId(){
+	private String CreatePlayerId(){
 		Random rand = new Random();
 
-		return rand.nextInt(99999999) + 1;
+		return String.valueOf(rand.nextInt(99999999) + 1);
 	}
 
 	public ScreenManager.GAME_STATE getGameState(){

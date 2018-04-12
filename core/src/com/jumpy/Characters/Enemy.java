@@ -18,4 +18,11 @@ public abstract class Enemy extends DynamicObject {
             this.die();
         }
     }
+
+    public boolean isDead(){
+        if(health <= 0){
+            return true;
+        }
+        return false;
+    }
 }

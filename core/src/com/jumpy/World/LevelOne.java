@@ -221,7 +221,6 @@ public class LevelOne extends GameMap {
         } else{//level summary screen
             createSummary();
             isLevelComplete = true;
-            System.out.println("finito");
         }
     }
 
@@ -229,11 +228,7 @@ public class LevelOne extends GameMap {
         //TODO save the points / time / score in new preferences file. different preferences file for each level. One main one to check if level is done.
         if(firstTime){
             firstTime = false;
-            int numberOfStars = 0;
-            if(player.getPoints() > 50) numberOfStars++;
-            if(player.getPoints() > 100) numberOfStars++;
-            if(player.getPoints() > 149) numberOfStars++;
-            stage = levelSummary.create(player.getPoints(), numberOfStars, player.getCoinsCollected());
+            stage = levelSummary.create(player.getCoinsCollected(), player.getEnemiesKilled(), hud.getLevelTimer());//player.getPoints(), numberOfStars, player.getCoinsCollected());
             Gdx.input.setInputProcessor(stage);
         }
 

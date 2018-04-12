@@ -3,6 +3,7 @@ package com.jumpy.Characters;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -68,6 +69,8 @@ public class Player extends DynamicObject {
     private int weaponDamage;
     private float shootLimiter = 0.33f;
     private float shootCounter = 0;
+    private Sound jumpSound;
+    private Sound shootSound;
 
     public Player(Active equippedWeapon, Boost equippedBoost, Passive equippedPassive, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
@@ -92,7 +95,9 @@ public class Player extends DynamicObject {
         enemiesKilled = 0;
         deathComplete = false;
 
-
+        if(equippedWeapon == Active.LASER){
+            Jumpy.assetManager.load("sound/laser_shot.mp3", Sound.class);
+        }
         assignBoosts();
         create();
     }

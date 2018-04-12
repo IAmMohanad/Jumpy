@@ -47,6 +47,7 @@ public class LoadingScene {
 
     public Stage create(){
         loadSound();
+//        Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
 
         Table table = new Table();
         table.setFillParent(true);
@@ -62,7 +63,7 @@ public class LoadingScene {
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
         //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
-        SoundManager.loadBackgroundMusic();
+        //SoundManager.loadBackgroundMusic();
     }
 
     public void render() {

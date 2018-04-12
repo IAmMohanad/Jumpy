@@ -25,8 +25,9 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	public SpriteBatch batch;
 
-	public ScreenManager screenManager;
+	public static ScreenManager screenManager;
 	public static AssetManager assetManager;
+	public static SoundManager soundManager;
 
 	private Preferences upgradePrefs;
 	public static boolean exitPressed = false;
@@ -42,7 +43,9 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 		screenManager = new ScreenManager(this);
 		assetManager = new AssetManager();
+
 		setScreen(new LoadingScreen(this, screenManager));
+		soundManager = new SoundManager();
 
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
@@ -100,6 +103,10 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		assetManager.dispose();
+	}
+
+	public SoundManager getSoundManager(){
+		return soundManager;
 	}
 
 	public String getCurrentLevel(){

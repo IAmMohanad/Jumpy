@@ -40,7 +40,7 @@ public class Laser extends Weapon {
         position = new Vector2(x, y);
         boundingBox = new Rectangle();
         boundingBox.set(position.x, position.y, B_BOX_WIDTH, B_BOX_HEIGHT);
-        movementSpeed = 160;
+        movementSpeed = 200;
         movementLimit = 1000;
         this.direction = direction;
         active = true;

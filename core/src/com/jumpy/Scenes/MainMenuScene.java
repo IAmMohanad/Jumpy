@@ -46,13 +46,8 @@ public class MainMenuScene {
     }
 
     public Stage create(){
-        loadSound();
-        if(!game.mute){// game.soundOn){
-           /* backgroundMusic.setVolume(game.volume);
-            backgroundMusic.setLooping(true);
-            backgroundMusic.play();*/
-            SoundManager.playBackgroundMusic();
-        }
+        //loadSound();
+        // game.soundManager.playMusic(Jumpy.screenManager.getGameState());
         //System.out.println(settings.getBoolean("mute")+" playing? "+backgroundMusic.isPlaying());
 
         Table table = new Table();
@@ -112,7 +107,7 @@ public class MainMenuScene {
                 if(!game.mute){// game.soundOn){
                     click.play(game.volume);//game.volume);
                 }
-                game.screenManager.setScreen(ScreenManager.GAME_STATE.SHOP);
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.HELP);
             }
         });
 
@@ -143,12 +138,12 @@ public class MainMenuScene {
         return stage;
     }
 
-    public void loadSound(){
+    /*public void loadSound(){
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
         //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
         SoundManager.loadBackgroundMusic();
-    }
+    }*/
 
     public void render() {
         /*if(game.mute){

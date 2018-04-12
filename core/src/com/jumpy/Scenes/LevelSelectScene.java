@@ -46,8 +46,8 @@ public class LevelSelectScene {
     }
 
     public Stage create(){
-        loadSound();
-
+        //loadSound();
+       // Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
         Label title = new Label("CHOOSE YOUR LEVEL:", skin, "large");
         Label oneOne = new Label("1-1", skin, "medium");
         Label oneTwo = new Label("1-2", skin, "medium");

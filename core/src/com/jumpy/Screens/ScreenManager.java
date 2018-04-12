@@ -21,7 +21,8 @@ public class ScreenManager{
         GAME_SETTINGS,
         SHOP,
         LOADING,
-        HISCORE
+        HISCORE,
+        HELP
     }
 
     public ScreenManager(Jumpy g){
@@ -34,6 +35,7 @@ public class ScreenManager{
         this.gameScreens.put(GAME_STATE.MAIN_MENU, new MainMenuScreen(game));
         this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
         this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
+        this.gameScreens.put(GAME_STATE.HELP, new HelpScreen(game));
 
     }
 

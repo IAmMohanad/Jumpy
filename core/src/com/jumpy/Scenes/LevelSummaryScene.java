@@ -202,7 +202,7 @@ public class LevelSummaryScene {
                 newPersonalBest = true;
             }
         }*/
-        
+
         if(coinsCollected > highestGoldEarned){
             newPersonalBest = true;
             levelPrefs.putInteger("goldEarned", coinsCollected);

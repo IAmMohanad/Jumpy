@@ -301,8 +301,8 @@ public class HiscoreScene {
     }
 
     public Stage create(){
-        loadSound();
-
+        //loadSound();
+        Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
         Table innerTable;
         Table table = new Table();
         table.setFillParent(true);
@@ -505,12 +505,12 @@ public class HiscoreScene {
         return levelScoreMap;
     }
 
-    public void loadSound(){
+   /* public void loadSound(){
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
         //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
         SoundManager.loadBackgroundMusic();
-    }
+    }*/
 
     public void render() {
         /*if(game.mute){

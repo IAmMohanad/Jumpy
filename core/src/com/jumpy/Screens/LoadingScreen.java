@@ -3,6 +3,7 @@ package com.jumpy.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -96,6 +97,8 @@ public class LoadingScreen implements Screen {
         assetManager.load("characters/baddies/iceball_001_up.png", Texture.class);
         assetManager.load("characters/baddies/iceball_001_right.png", Texture.class);
 
+        //load laser sound
+        assetManager.load("sound/laser_shot.mp3", Sound.class);
         //assetManager.load("ui/new ui/speed_boots.png", Texture.class);
         //assetManager.load("", Texture.class);
         //Jumpy.assetManager.get("", Texture.class);//

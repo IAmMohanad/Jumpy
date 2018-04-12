@@ -65,7 +65,8 @@ public class SettingsScene {
 
                 }
                 game.volume = volumeSlider.getValue() / 100;
-                SoundManager.updateBackgroundMusicVolume(game.volume);
+                //SoundManager.updateBackgroundMusicVolume(game.volume);
+              //  Jumpy.soundManager.updateMusicVolume(game.volume);
                 //settings.flush();
             }
         });
@@ -98,33 +99,6 @@ public class SettingsScene {
                 }
             });
         }
-
-/*
-        Label touchPadLabel = new Label("PAD", skin, "large");
-        touchPadCheckBox = new CheckBox("", skin, "blue");
-        touchPadCheckBox.setChecked(settings.getBoolean("isTouchPad", true));
-
-
-        Label accelLabel = new Label("TILT", skin, "large");
-        accelCheckBox = new CheckBox("", skin, "blue");
-        if(touchPadCheckBox.isChecked()){
-            accelCheckBox.setChecked(false);
-        } else{
-            accelCheckBox.setChecked(true);
-        }
-        //accelCheckBox.setChecked(!settings.getBoolean("isTouchPad", false));
-        accelCheckBox.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                touchPadCheckBox.toggle();
-                settings.putBoolean("isTouchPad", touchPadCheckBox.isChecked());
-            }
-        });
-        touchPadCheckBox.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                accelCheckBox.toggle();
-                settings.putBoolean("isTouchPad", touchPadCheckBox.isChecked());
-            }
-        });*/
 
         backLabel.addListener(new ClickListener(){
             public void clicked(InputEvent event, float x, float y) {

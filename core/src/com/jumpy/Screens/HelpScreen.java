@@ -2,23 +2,23 @@ package com.jumpy.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.Jumpy;
+import com.jumpy.Scenes.HelpScene;
+import com.jumpy.Scenes.LevelSelectScene;
 import com.jumpy.Scenes.MainMenuScene;
-import com.jumpy.SoundManager;
 
-public class MainMenuScreen implements Screen {
+public class HelpScreen implements Screen {
 
-    private final Jumpy game;
-    private MainMenuScene mainMenu;
-    private Stage stage;
+    private Jumpy game;
+    private HelpScene help;
+    Stage stage;
 
-    public MainMenuScreen(Jumpy game){
+    public HelpScreen(Jumpy game){
         this.game = game;
-        mainMenu = new MainMenuScene(game);
-        stage = mainMenu.create();
+        help = new HelpScene(game);
+        stage = help.create();
     }
 
     @Override
@@ -28,13 +28,14 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(255/255f, 204/255f, 0, 1);
+        Gdx.gl.glClearColor(115/255f, 205/255f, 75/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        mainMenu.render();
+        help.render();
     }
 
     @Override
     public void resize(int width, int height) {
+
     }
 
     @Override
@@ -54,5 +55,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
+
     }
 }

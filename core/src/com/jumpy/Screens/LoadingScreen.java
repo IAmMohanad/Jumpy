@@ -89,6 +89,9 @@ public class LoadingScreen implements Screen {
         //load Spike assets
         assetManager.load("characters/baddies/Spike_Down.png", Texture.class);
         assetManager.load("characters/baddies/Spike_Up.png", Texture.class);
+
+        assetManager.load("characters/baddies/metal_spike_up.png", Texture.class);
+        assetManager.load("characters/baddies/metal_spike_down.png", Texture.class);
         //load totem assets
         assetManager.load("characters/baddies/totem/totem_walk.png", Texture.class);
         assetManager.load("characters/baddies/totem/totem_die.png", Texture.class);
@@ -107,6 +110,8 @@ public class LoadingScreen implements Screen {
         assetManager.load("sound/jump_2.wav", Sound.class);
 
         assetManager.load("sound/goblin_death.wav", Sound.class);
+
+
         //assetManager.load("ui/new ui/speed_boots.png", Texture.class);
         //assetManager.load("", Texture.class);
         //Jumpy.assetManager.get("", Texture.class);//

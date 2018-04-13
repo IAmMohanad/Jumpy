@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="../../retro_tiled_tileset.tsx"/>
  <tileset firstgid="10" source="../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
-  <image source="tutorialBackground.png" width="1120" height="640"/>
+  <image source="tutorialBackgrounAndroid.png" width="1120" height="640"/>
  </imagelayer>
  <layer name="Tile Layer 1" width="35" height="20">
   <data encoding="csv">

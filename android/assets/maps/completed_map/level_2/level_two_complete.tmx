@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="38" height="29" tilewidth="32" tileheight="32" nextobjectid="561">
- <tileset firstgid="1" source="../../retro_tiled_tileset.tsx"/>
- <tileset firstgid="10" source="../../tilesets/door_tileset.tsx"/>
+ <tileset firstgid="1" source="../../../retro_tiled_tileset.tsx"/>
+ <tileset firstgid="10" source="../../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
-  <image source="level_2/map2_background.png" width="1200" height="920"/>
+  <image source="map2_background.png" width="1200" height="920"/>
  </imagelayer>
  <layer name="Tile Layer 1" width="38" height="29">
   <data encoding="csv">

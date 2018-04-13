@@ -315,18 +315,18 @@ public class Player extends DynamicObject {
 
         if(!playScreen.isGamePaused()){
             if(!dead){
-                if (right) {
+                if (right){
                     flip = false;
-                } else if (left) {
+                } else if (left){
                     flip = true;
                 }
 
                 //update animation
-                if (grounded) {
+                if(grounded){
                     currentFrame = idleAnimation.getKeyFrame(stateTime, true);
-                    if (right) {
+                    if(right){
                         currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-                    } else if (left) {
+                    } else if(left){
                         currentFrame = walkAnimation.getKeyFrame(stateTime, true);
                     }
                 } else {
@@ -339,9 +339,9 @@ public class Player extends DynamicObject {
                     }
                 }
 
-                if (down) {
+                /*if (down) {
                     currentFrame = downAnimation.getKeyFrame(stateTime, true);
-                } else if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
+                } else */if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
                     currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
                 }
 
@@ -377,7 +377,6 @@ public class Player extends DynamicObject {
                 } else{
                     currentFrame = deathAnimation.getKeyFrame(stateTime, true);
                     System.out.println("finito3");
-                    //velocityY += JUMP_VELOCITY;
                 }
                 if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
                     System.out.println("finito1111111111111111111111111");

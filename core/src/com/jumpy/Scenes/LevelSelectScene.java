@@ -66,7 +66,8 @@ public class LevelSelectScene {
             public void clicked(InputEvent event, float x, float y) {
                 if(!game.mute){
                     click.play(game.volume);
-                    //GameMap level = new LevelOne();
+                    game.setCurrentLevel("1-2");
+                    game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
                     //game.setIsHardMode(isHardMode);
                 }
                 System.out.println("Clicked 1-2!");

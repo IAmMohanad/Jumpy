@@ -58,12 +58,14 @@ public class PlayScreen implements Screen {
             } else{
                 mapLocation = "maps/tutorialMap/tutorialMapAndroid.tmx";
             }
+        } else if(game.getCurrentLevel().equals("1-2")){
+            mapLocation = "maps/completed_map/level_2/level_two_complete.tmx";
         } else if(game.getCurrentLevel().equals("1-3")){
             mapLocation = "retro_game_map3_collidable_objects.tmx";
         }
         //if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
             reload = false;
-            if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-1")) {
+            if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
                 this.loadedLevel = "1-3";
                 this.map = new LevelOne(game,/* hud,*/ this);
                 map.load(mapLocation);//"retro_game_map3_collidable_objects.tmx");

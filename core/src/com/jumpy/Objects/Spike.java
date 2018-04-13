@@ -13,17 +13,17 @@ import com.jumpy.Move;
 import com.jumpy.World.GameMap;
 
 public class Spike extends Enemy {
-    private static int WIDTH = 32;
+    private static int WIDTH = 16;
     private static int HEIGHT = 32;
 
-    private static int B_BOX_WIDTH = 8;
-    private static int B_BOX_HEIGHT = 25;
+    private static int B_BOX_WIDTH = 10;//8;
+    private static int B_BOX_HEIGHT = 27;//25;
 
-    private static int B_BOX_X_UP_OFFSET = 12;
+    private static int B_BOX_X_UP_OFFSET = 3;//12;
     private static int B_BOX_Y_UP_OFFSET = 0;
 
-    private static int B_BOX_X_DOWN_OFFSET = 12;
-    private static int B_BOX_Y_DOWN_OFFSET = 7;
+    private static int B_BOX_X_DOWN_OFFSET = 3;//12;
+    private static int B_BOX_Y_DOWN_OFFSET = 5;//7;
 
     private Animation<TextureRegion> idleAnimation;
 
@@ -47,9 +47,9 @@ public class Spike extends Enemy {
     @Override
     public void create() {
         if(direction == Move.UP){
-            textureSheet = Jumpy.assetManager.get("characters/baddies/Spike_Up.png", Texture.class);
+            textureSheet = Jumpy.assetManager.get("characters/baddies/metal_spike_up.png", Texture.class);
         } else{
-            textureSheet = Jumpy.assetManager.get("characters/baddies/Spike_Down.png", Texture.class);
+            textureSheet = Jumpy.assetManager.get("characters/baddies/metal_spike_down.png", Texture.class);
         }
 
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth(), textureSheet.getHeight());
@@ -64,7 +64,11 @@ public class Spike extends Enemy {
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
         this.stateTime += delta;
         currentFrame = idleAnimation.getKeyFrame(stateTime, true);
-
+        if(direction == Move.UP){
+            updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_UP_OFFSET, (int) position.y + B_BOX_Y_UP_OFFSET);
+        } else{
+            updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_DOWN_OFFSET, (int) position.y + B_BOX_Y_DOWN_OFFSET);
+        }
         batch.begin();
         batch.draw(currentFrame, position.x,position.y, width, height);
         batch.end();

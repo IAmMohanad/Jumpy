@@ -39,15 +39,10 @@ public class LevelSelectScene {
         stage = new Stage(viewport);
         isHardMode = false;
         // Make the stage consume events
-
-        //InputProcessor inputProcessorOne = new CustomInputProcessorOne();
-        //InputProcessor inputProcessorTwo = new CustomInputProcessorTwo();
-        //InputMultiplexer inputMultiplexer = new InputMultiplexer();
     }
 
     public Stage create(){
-        //loadSound();
-       // Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
+        loadSound();
         Label title = new Label("CHOOSE YOUR LEVEL:", skin, "large");
         Label oneOne = new Label("1-1", skin, "medium");
         Label oneTwo = new Label("1-2", skin, "medium");
@@ -60,6 +55,8 @@ public class LevelSelectScene {
                 if(!game.mute){
                     click.play(game.volume);
                 }
+                game.setCurrentLevel("1-1");
+                game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
                 System.out.println("Clicked 1-1!");
             }
         });

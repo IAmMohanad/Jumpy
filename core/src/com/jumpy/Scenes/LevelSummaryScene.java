@@ -139,7 +139,7 @@ public class LevelSummaryScene {
         stack.add(innerInfoTable);
 
         innerInfoTable.row();
-        Button replayButton  = new Button(skin, "blue_replay");
+        /*Button replayButton  = new Button(skin, "blue_replay");
         innerInfoTable.add(replayButton).colspan(1).center().padTop(20);
 
         replayButton.addListener(new ClickListener(){
@@ -152,7 +152,7 @@ public class LevelSummaryScene {
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
                 System.out.println("Clicked 44444444444!");
             }
-        });
+        });*/
 
         Button continueButton  = new Button(skin, "blue_continue");
         innerInfoTable.add(continueButton).colspan(1).center().padTop(20);

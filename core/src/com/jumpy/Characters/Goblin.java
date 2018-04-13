@@ -1,6 +1,7 @@
 package com.jumpy.Characters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -52,7 +53,7 @@ public class Goblin extends Enemy {
         velocityY = 0;
         grounded = false;
         dead = false;
-
+        deathSound = Jumpy.assetManager.get("sound/goblin_death.wav", Sound.class);
         create();
     }
 
@@ -190,6 +191,7 @@ public class Goblin extends Enemy {
     public void die() {
         if(health <= 0 && !dead){
             dead = true;
+            deathSound.play(Jumpy.volume);
             stateTime = 0f;
         }
     }

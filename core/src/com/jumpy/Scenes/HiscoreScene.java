@@ -50,7 +50,8 @@ public class HiscoreScene {
     private Map<String, String> levelOneScoreMap;
     private Map<String, String> levelTwoScoreMap;
     private Map<String, String> levelThreeScoreMap;
-    private boolean updatingPlayerRankingsFinished;
+    private boolean httpRequestFinished;
+    private boolean updatingPlayerLevelssFinished;
     private boolean registeringNewPlayerFinished;
     private boolean checkingConnectionFinished;
 
@@ -98,7 +99,8 @@ public class HiscoreScene {
 
     private Table isConnected(){
         registerNewPlayer();
-        updatePlayerRankings(playerPrefs.getString("username"));
+        updatePlayerRankings();
+        updateLevelRankings(playerPrefs.getString("username"));
         getPlayerRankings(playerPrefs.getString("username"));
         Table table = new Table();
         Table innerTable = new Table();
@@ -301,7 +303,7 @@ public class HiscoreScene {
     }
 
     public Stage create(){
-        //loadSound();
+        loadSound();
         Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
         Table innerTable;
         Table table = new Table();
@@ -320,36 +322,54 @@ public class HiscoreScene {
         return stage;
     }
 
-    private void updatePlayerRankings(String playerName){
+    private void updatePlayerRankings(){
+        //path('update/<int:username>/<int:levelCompleted>/<int:pointsEarned>/<int:goldEarned>/<int:starsEarned>/<int:timeToComplete>'),
+        httpRequestFinished = false;
+
+        sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/updatePlayer/"+playerPrefs.getString("username")+"/"+playerPrefs.getInteger("lifetimeGoldEarned")+"/"+playerPrefs.getInteger("lifeTimeTimePlayed")+"/"+playerPrefs.getInteger("lifeTimeEnemiesKilled")+"/"+playerPrefs.getInteger("lifeTimepointsEarned"));
+
+        while(!httpRequestFinished){
+            //do nothing
+            System.out.println("waiting for updatePlayerRankings to finish");
+            if(httpRequestFinished){
+                break;
+            }
+        }
+        return;
+    }
+
+    private void updateLevelRankings(String playerName){
         //path('update/<int:username>/<int:levelCompleted>/<int:pointsEarned>/<int:goldEarned>/<int:starsEarned>/<int:timeToComplete>'),
         Preferences levelOnePrefs = Gdx.app.getPreferences("1-1");
         Preferences levelTwoPrefs = Gdx.app.getPreferences("1-2");
         Preferences levelThreePrefs = Gdx.app.getPreferences("1-3");
 
-        updatingPlayerRankingsFinished = false;
+        httpRequestFinished = false;
         if(levelOnePrefs != null){
-            if(levelOnePrefs.getBoolean("needsUpdate", false)){
+           // if(levelOnePrefs.getBoolean("needsUpdate", false)){
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/"+playerPrefs.getString("username")+"/1/"+levelOnePrefs.getInteger("pointsEarned")+"/"+levelOnePrefs.getInteger("goldEarned")+"/"+levelOnePrefs.getInteger("numberOfStars")+"/"+levelOnePrefs.getInteger("fastestCompletionTime"));
-            }
+                levelOnePrefs.putBoolean("needsUpdate", false);
+                levelOnePrefs.flush();
+           // }
         }
         if(levelTwoPrefs != null) {
-            if (levelTwoPrefs.getBoolean("needsUpdate", false)) {
+           // if (levelTwoPrefs.getBoolean("needsUpdate", false)) {
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/2/" + levelTwoPrefs.getInteger("pointsEarned") + "/" + levelTwoPrefs.getInteger("goldEarned") + "/" + levelTwoPrefs.getInteger("numberOfStars") + "/" + levelTwoPrefs.getInteger("fastestCompletionTime"));
-            }
+                levelTwoPrefs.putBoolean("needsUpdate", false);
+                levelTwoPrefs.flush();
+           // }
         }
         if(levelThreePrefs != null) {
-            if (levelThreePrefs.getBoolean("needsUpdate", false)) {
+            //if (levelThreePrefs.getBoolean("needsUpdate", false)) {
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/3/" + levelThreePrefs.getInteger("pointsEarned") + "/" + levelThreePrefs.getInteger("goldEarned") + "/" + levelThreePrefs.getInteger("numberOfStars") + "/" + levelThreePrefs.getInteger("fastestCompletionTime"));
-
-            }
+                levelThreePrefs.putBoolean("needsUpdate", false);
+                levelThreePrefs.flush();
+           // }
         }
 
-        while(!updatingPlayerRankingsFinished){
+        while(!httpRequestFinished){
             //do nothing
-            System.out.println("waiting for updatePlayerRankings to finish");
-            if(updatingPlayerRankingsFinished){
-                break;
-            }
+            System.out.println("waiting for updateLevelRankings to finish");
         }
         return;
     }
@@ -363,10 +383,10 @@ public class HiscoreScene {
                 int statusCode = httpResponse.getStatus().getStatusCode();
                 if(statusCode != HttpStatus.SC_OK) {
                     System.out.println("Request Failed");
-                    updatingPlayerRankingsFinished = true;
+                    httpRequestFinished = true;
                     return;
                 } else{
-                    updatingPlayerRankingsFinished = true;
+                    httpRequestFinished = true;
                 }
             }
 
@@ -374,12 +394,12 @@ public class HiscoreScene {
             public void failed(Throwable t) {
                 String status = "failed " + t.getMessage();
                 System.out.println(status);
-                updatingPlayerRankingsFinished = true;
+                httpRequestFinished = true;
             }
 
             @Override
             public void cancelled() {
-                updatingPlayerRankingsFinished = true;
+                httpRequestFinished = true;
                 //String status = "failed " + t.getMessage();
                 //System.out.println(status);
             }
@@ -505,12 +525,11 @@ public class HiscoreScene {
         return levelScoreMap;
     }
 
-   /* public void loadSound(){
+    public void loadSound(){
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
         //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
-        SoundManager.loadBackgroundMusic();
-    }*/
+    }
 
     public void render() {
         /*if(game.mute){

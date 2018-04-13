@@ -66,7 +66,7 @@ public class SettingsScene {
                 }
                 game.volume = volumeSlider.getValue() / 100;
                 //SoundManager.updateBackgroundMusicVolume(game.volume);
-              //  Jumpy.soundManager.updateMusicVolume(game.volume);
+                Jumpy.soundManager.updateMusicVolume(game.volume);
                 //settings.flush();
             }
         });
@@ -123,10 +123,6 @@ public class SettingsScene {
         table.add(volumeLabel).expandX().padTop(25);
         table.add(volumeSlider).expandX().padTop(25);
         table.row();
-        /*table.add(touchPadLabel).width(10).left().padTop(25);
-        table.add(touchPadCheckBox).expandX().padTop(25);
-        table.add(accelLabel).expandX().padTop(25);
-        table.add(accelCheckBox).expandX().padTop(25).padRight(10);*/
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             table.add(controlsLabel).expandX().padTop(25).colspan(1);
         }
@@ -140,6 +136,7 @@ public class SettingsScene {
 
     public void loadSound(){
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
+        game.soundManager.playMusic(ScreenManager.GAME_STATE.MAIN_MENU);
     }
 
     public void render(){

@@ -5,15 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Jumpy;
@@ -25,11 +17,8 @@ import com.jumpy.World.TileType;
 import com.jumpy.inputController;
 
 public class PlayScreen implements Screen {
-    //test multiplexer
     InputMultiplexer inputMultiplexer = new InputMultiplexer();
     inputController inputController;
-    //create multiplexer here, make private
-    //add multiplexer to inputProcessor in show method.
     private boolean firstStart = true;
     private float firstStartTimer = 0f;
 
@@ -45,17 +34,13 @@ public class PlayScreen implements Screen {
     private Stage hudStage;
     private String loadedLevel = "";
 
-    private boolean loaded;
-
     private boolean loadComplete = false;
+    private String mapLocation;
 
 
     private boolean isPause = false;
-    private Group pauseGroup;
-
     public PlayScreen(Jumpy game){
         this.game = game;
-
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 960, 540);//960, 540);//Gdx.graphics.getWidth(), Gdx.graphics.getHeight());//800, 480
 
@@ -63,31 +48,32 @@ public class PlayScreen implements Screen {
 
         inputController = new inputController();
         //inputMultiplexer.addProcessor(inputController);
-        loaded = false;
-
-       // load(game.getCurrentLevel());//commented out during screenManager changes
     }
 
     public void loadLevel(){
-        if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
+        if(game.getCurrentLevel().equals("1-1")){
+            mapLocation = "maps/tutorialMap/tutorialMap.tmx";
+        } else if(game.getCurrentLevel().equals("1-3")){
+            mapLocation = "retro_game_map3_collidable_objects.tmx";
+        }
+        //if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
             reload = false;
-            if(game.getCurrentLevel().equals("1-3")) {
+            if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-1")) {
                 this.loadedLevel = "1-3";
                 this.map = new LevelOne(game,/* hud,*/ this);
-                map.load("retro_game_map3_collidable_objects.tmx");
+                map.load(mapLocation);//"retro_game_map3_collidable_objects.tmx");
                 //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
                 //TODO add pause button and pause screen / scene
                 /*
                 pause screen has: 1. resume button. 2.mute/unmute button (maybe volume slider) 3. exit (return to main menu)
                 preferably should be stacked on top of  playScreen - change delta to 0?
                  */
-            }
+         //   }
             hud = new Hud(game.batch, map, this);
             hudStage = hud.getStage();
             map.setHud(hud);
             inputMultiplexer.addProcessor(hudStage);
             inputMultiplexer.addProcessor(inputController);
-            loaded = true;
             loadComplete = true;
         }
     }
@@ -101,7 +87,6 @@ public class PlayScreen implements Screen {
     @Override
     public void show() {
         loadLevel();
-        //Gdx.input.setInputProcessor(inputController);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
@@ -137,18 +122,6 @@ public class PlayScreen implements Screen {
             }
 
         }
-        /*if(Gdx.input.isTouched()){
-            camera.translate(Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
-            camera.update();
-        }
-
-        if(Gdx.input.isTouched()){
-            Vector3 pos = camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            TileType tile = map.getTileTypeByLocation(0, pos.x, pos.y);
-            if(tile != null){
-                System.out.println(tile.getId()+"  "+ tile.getName()+"  "+tile.isCollidable());
-            }
-        }*/
     }
 
     @Override

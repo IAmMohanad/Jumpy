@@ -36,7 +36,6 @@ public class ScreenManager{
         this.gameScreens.put(GAME_STATE.LEVEL_SELECT, new LevelSelectScreen(game));
         this.gameScreens.put(GAME_STATE.MAIN_SETTINGS, new SettingsScreen(game));
         this.gameScreens.put(GAME_STATE.HELP, new HelpScreen(game));
-
     }
 
     public void setScreen(GAME_STATE screen){
@@ -54,6 +53,7 @@ public class ScreenManager{
         }
 
         currentGameState = screen;
+        game.gameState = screen;
         game.setScreen(gameScreens.get(screen));
     }
 

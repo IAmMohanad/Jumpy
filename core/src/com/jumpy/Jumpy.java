@@ -19,6 +19,8 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static final int V_WIDTH = 480;
 	public static final int V_HEIGHT = 270;
 	public static final String HISCORE_SERVER_URL = "http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores";
+	public static boolean exitPressed = false;
+	public static ScreenManager.GAME_STATE gameState;
 
 	private String currentLevel;
 	private boolean isHardMode;
@@ -30,7 +32,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static SoundManager soundManager;
 
 	private Preferences upgradePrefs;
-	public static boolean exitPressed = false;
 
 	private boolean needsUpdate = false;
 	@Override
@@ -41,19 +42,21 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		Jumpy.volume = this.settings.getFloat("volume", 1.0f);
 		batch = new SpriteBatch();
 
+		soundManager = new SoundManager();
 		screenManager = new ScreenManager(this);
 		assetManager = new AssetManager();
-
-		setScreen(new LoadingScreen(this, screenManager));
-		soundManager = new SoundManager();
-
-		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
 		upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
 		if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
 			upgradePrefs.clear();
 			updateUpgradePrefs("upgrades.xml");
 		}
+
+		setScreen(new LoadingScreen(this, screenManager));
+		soundManager.playMusic(screenManager.getGameState());
+		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+
+
 		//different preference file for upgrades and weapons
 		//userPrefs.getInteger("upgrades");
 		//userPrefs.getInteger("weapons");

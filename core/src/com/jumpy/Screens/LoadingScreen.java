@@ -72,7 +72,6 @@ public class LoadingScreen implements Screen {
         assetManager.load("characters/player/down.png", Texture.class);
         assetManager.load("characters/player/spinJump_fixed.png", Texture.class);
         assetManager.load("characters/player/bonk.png", Texture.class);
-        //assetManager.load("", Texture.class);
         //load gargoyle assets
         assetManager.load("characters/baddies/gargoyle_32_32/gargoyle_fly_trimmed.png", Texture.class);
         assetManager.load("characters/baddies/gargoyle_32_32/gargoyle_die_trimmed.png", Texture.class);
@@ -86,6 +85,10 @@ public class LoadingScreen implements Screen {
         assetManager.load("characters/baddies/goblin_32_32/goblin_run_trimmed.png", Texture.class);
         assetManager.load("characters/baddies/goblin_32_32/goblin_die_trimmed.png", Texture.class);
         assetManager.load("characters/baddies/goblin_32_32/goblin_hit_trimmed.png", Texture.class);
+
+        //load Spike assets
+        assetManager.load("characters/baddies/Spike_Down.png", Texture.class);
+        assetManager.load("characters/baddies/Spike_Up.png", Texture.class);
         //load totem assets
         assetManager.load("characters/baddies/totem/totem_walk.png", Texture.class);
         assetManager.load("characters/baddies/totem/totem_die.png", Texture.class);
@@ -99,6 +102,11 @@ public class LoadingScreen implements Screen {
 
         //load laser sound
         assetManager.load("sound/laser_shot.mp3", Sound.class);
+        //load jumping sound
+        assetManager.load("sound/jump_1.wav", Sound.class);
+        assetManager.load("sound/jump_2.wav", Sound.class);
+
+        assetManager.load("sound/goblin_death.wav", Sound.class);
         //assetManager.load("ui/new ui/speed_boots.png", Texture.class);
         //assetManager.load("", Texture.class);
         //Jumpy.assetManager.get("", Texture.class);//

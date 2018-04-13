@@ -1,5 +1,6 @@
 package com.jumpy.Characters;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -25,6 +26,7 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     protected String name;
     protected TiledMap tiledMap;
     protected boolean deathComplete;
+    protected Sound deathSound;
 
     public abstract void moveLeft(float delta);
 

@@ -86,6 +86,8 @@ public class Hud{
     }
 
     public Hud(SpriteBatch batch, GameMap level, final PlayScreen playScreen){
+        Jumpy.soundManager.stopMusic(Jumpy.screenManager.getGameState());
+        System.out.println(Jumpy.soundManager.music.isPlaying());
         //this.player = level.getPlayer();
         this.playScreen = playScreen;
         this.level = level;

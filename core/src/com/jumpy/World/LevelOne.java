@@ -19,9 +19,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jumpy.*;
 import com.jumpy.Characters.*;
-import com.jumpy.Objects.Coin;
-import com.jumpy.Objects.IceBall;
-import com.jumpy.Objects.IceBallShooter;
+import com.jumpy.Objects.*;
 import com.jumpy.Scenes.LevelSummaryScene;
 import com.jumpy.Scenes.PauseScene;
 import com.jumpy.Screens.PlayScreen;
@@ -29,39 +27,35 @@ import com.jumpy.Screens.PlayScreen;
 import java.util.ArrayList;
 
 public class LevelOne extends GameMap {
-    /*
-    TODO instead of passing player around to chaser and other classes, make getPlayer in level class, then use that in chaser
-     */
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private final String mapLocation = "retro_game_map3_collidable_objects.tmx";//"newest_map.tmx";
+    //private final String mapLocation = "retro_game_map3_collidable_objects.tmx";
 
     private Jumpy game;
     private Player player;
-    private Active active;
-    private Chaser chaserTwo;
 
     private ArrayList<Coin> coinList = new ArrayList<Coin>();
     private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
     private ArrayList<IceBallShooter> projectileShootersList = new ArrayList<IceBallShooter>();
+    private ArrayList<Exit> exitList = new ArrayList<Exit>();
 
     private LevelSummaryScene levelSummary;
-    private PauseScene pauseScene;
-    private int goldEarned = 0;
     private Stage stage;
     private boolean firstTime = true;
+    private boolean exitReached;
 
     private PlayScreen playScreen;
 
-    public Bee bee;
-    public Totem totem;
-
     private final String currentLevel = "1-1";
 
-    public LevelOne(Jumpy game, /*Hud hud,*/ PlayScreen playScreen){
-        //this.hud = hud;
+    public LevelOne(Jumpy game, PlayScreen playScreen){
         this.game = game;
         this.playScreen = playScreen;
+        exitReached = false;
+    }
+
+    public void setExitReached(boolean status){
+        exitReached = status;
     }
 
     public Player getPlayer(){
@@ -78,7 +72,9 @@ public class LevelOne extends GameMap {
         return projectileShootersList;
     }
 
-    //TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
+    public ArrayList<Exit> getExits() { return this.exitList; }
+
+        //TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
@@ -97,7 +93,7 @@ public class LevelOne extends GameMap {
         levelSummary = new LevelSummaryScene(game, playScreen);
     }
 
-    //Randomly choose the spawn points on a map. //TODO throw dice to choose spawn1/2/3/ etc
+    //Randomly choose the spawn points on a map. //TODO throw dice to choose spawn1/2/3/ etc also change collision layer if needed
     private void spawnElements(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
         String spawnChoice = "spawn1";
         spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
@@ -112,7 +108,7 @@ public class LevelOne extends GameMap {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 Move shootDirection = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
                 if(object.getProperties().containsKey("shootInterval")){//TODO add new property shootInterval
-                    int shootInterval = Integer.parseInt(object.getProperties().get("direction").toString());
+                    int shootInterval = Integer.parseInt(object.getProperties().get("shootInterval").toString());
                     projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection, shootInterval));
                 } else{
                     projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection));
@@ -126,6 +122,10 @@ public class LevelOne extends GameMap {
             if (object.getName().toLowerCase().equals("player")) {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 player = new Player(equippedActive, equippedBoost, equippedPassive, this, objectRect.x, objectRect.y, playScreen);
+            }
+            if(object.getName().toLowerCase().equals("exit")){
+                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                exitList.add(new Exit(this, objectRect.x, objectRect.y, (int) objectRect.width, (int) objectRect.height));
             }
         }
     }
@@ -143,22 +143,31 @@ public class LevelOne extends GameMap {
         if(game.getIsHardMode()) {
             enemiesList.add(new Chaser(this, player, 200, 100, 16, 16));
         }
-        for(MapObject object : map.getLayers().get("spawn1").getObjects()) {
+        for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
+            Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
             if(object.getName().toLowerCase().equals("gargoyle_flying")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new GargoyleFlying(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("goblin")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Goblin(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("barbarian")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Barbarian(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("gargoyle")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Gargoyle(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("totem")){
-                Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
+                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Totem(map, this, objectRect.x, objectRect.y));
+            } else if(object.getName().toLowerCase().equals("spike")){
+                Move direction;
+                if(object.getProperties().containsKey("direction")){
+                    direction = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
+                } else{
+                    direction = Move.UP;
+                }
+                enemiesList.add(new Spike(this, objectRect.x, objectRect.y, direction));
             }
         }
     }
@@ -214,6 +223,9 @@ public class LevelOne extends GameMap {
             for(IceBallShooter o : projectileShootersList){
                 o.update(batch, delta, camera);
             }
+            for(Exit exit : exitList){
+                exit.update(batch, delta, camera);
+            }
             player.update(batch, delta, camera);
             if(hud.getLevelTimer() <= 0){
                 player.die();
@@ -255,12 +267,12 @@ public class LevelOne extends GameMap {
 
     @Override
     public int getWidth() {
-        return ((TiledMapTileLayer) map.getLayers().get(0)).getWidth();
+        return ((TiledMapTileLayer) map.getLayers().get(1)).getWidth();
     }
 
     @Override
     public int getHeight() {
-        return ((TiledMapTileLayer) map.getLayers().get(0)).getHeight();
+        return ((TiledMapTileLayer) map.getLayers().get(1)).getHeight();
     }
 
     @Override
@@ -286,10 +298,6 @@ public class LevelOne extends GameMap {
 
     public String getLevel(){
         return this.currentLevel;
-    }
-
-    public Chaser getChaser(){
-        return this.chaserTwo;
     }
 }
 

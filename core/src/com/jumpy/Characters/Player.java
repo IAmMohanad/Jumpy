@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jumpy.*;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Objects.Exit;
 import com.jumpy.Objects.IceBall;
 import com.jumpy.Objects.IceBallShooter;
 import com.jumpy.Screens.PlayScreen;
@@ -35,6 +36,7 @@ public class Player extends DynamicObject {
     public static boolean boostPressed;
     private boolean doubleJump;
     private boolean firstJump;
+    private boolean exitReached;
 
     //private boolean c
 
@@ -69,7 +71,8 @@ public class Player extends DynamicObject {
     private int weaponDamage;
     private float shootLimiter = 0.33f;
     private float shootCounter = 0;
-    private Sound jumpSound;
+    private Sound jumpSound1;
+    private Sound jumpSound2;
     private Sound shootSound;
 
     public Player(Active equippedWeapon, Boost equippedBoost, Passive equippedPassive, GameMap map, float x, float y, PlayScreen playScreen){
@@ -94,10 +97,22 @@ public class Player extends DynamicObject {
         coinsCollected = 0;
         enemiesKilled = 0;
         deathComplete = false;
+        exitReached = false;
+        shootSound = Jumpy.assetManager.get("sound/laser_shot.mp3", Sound.class);
+        jumpSound1 = Jumpy.assetManager.get("sound/jump_1.wav", Sound.class);
+        jumpSound2 = Jumpy.assetManager.get("sound/jump_2.wav", Sound.class);
 
         if(equippedWeapon == Active.LASER){
             Jumpy.assetManager.load("sound/laser_shot.mp3", Sound.class);
         }
+
+        left = false;
+        right = false;
+        up = false;
+        down = false;
+        shootPressed = false;
+        boostPressed = false;
+
         assignBoosts();
         create();
     }
@@ -160,9 +175,10 @@ public class Player extends DynamicObject {
     public void weaponShot(){
         shootPressed = false;
         if(shootCounter >= shootLimiter){
+            shootSound.play(Jumpy.volume);
             shootCounter = 0;
             if(equippedWeapon == Active.NONE){
-                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));//TODO remove this!!!
             }
             if(equippedWeapon == Active.LASER){
                 weaponList.add(new Laser(weaponDamage, map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
@@ -260,14 +276,17 @@ public class Player extends DynamicObject {
             doubleJump = false;
             velocityY = 0;
         } else{
-            if(velocityY > 200){
-                velocityY = 200;
+            if(!exitReached){
+                if(velocityY > 200){
+                    velocityY = 200;
+                }
+                if(newY < 0){
+                    newY = position.y;
+                }
+                position.y = newY;
+                grounded = false;
             }
-            if(newY < 0){
-                newY = position.y;
-            }
-            position.y = newY;
-            grounded = false;
+
         }
     }
 
@@ -283,25 +302,6 @@ public class Player extends DynamicObject {
 
         if(shootPressed){
             weaponShot();
-        }
-
-        if(weaponList.size() > 0){
-            for(int i = 0; i<weaponList.size(); i++){
-                Weapon w = weaponList.get(i);
-                w.update(batch, delta, camera);
-                ArrayList<Enemy> enemies = map.getEnemies();
-                for(int j = 0; j<enemies.size(); j++){//for(Enemy e : map.getEnemies()){
-                    Enemy e = enemies.get(j);
-                    if(w.getBoundingBox().overlaps(e.getBoundingBox()) && e.isAlive()){
-                        e.getsHit(w.getDamage());
-                        if(e.isDead()){
-                            enemiesKilled += 1;
-                        }
-                        w.die();
-                        weaponList.remove(i);
-                    }
-                }
-            }
         }
 
         if(!playScreen.isGamePaused()){
@@ -336,37 +336,7 @@ public class Player extends DynamicObject {
                     currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
                 }
 
-                for(Coin coin : map.getCoins()){
-                    if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
-                        coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
-                    }
-                    if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
-                        //addCoin(1);
-                        //addScore(50);
-                        coinsCollected += 1;
-                        //hud.addScore(50);
-                        coin.die();
-                        //this.die(delta);
-                    }
-                }
-
-                for(Enemy e : map.getEnemies()){
-                    if(this.getBoundingBox().overlaps(e.getBoundingBox()) && this.isAlive() && e.isAlive()){
-                        //Intersection result = intersectsAt(camera, this.getBoundingBox(), e.getBoundingBox());
-                        //System.out.println(result);
-                        this.die();
-                    }
-                }
-
-                for(IceBallShooter shooter : map.getProjectileShootersList()){
-                    if(shooter.getIceBallList().size() > 0){
-                        for(IceBall iceBall : shooter.getIceBallList()){
-                            if(this.boundingBox.overlaps(iceBall.getBoundingBox())){
-                                this.die();
-                            }
-                        }
-                    }
-                }
+                resolveObjectInteraction(delta, batch, camera);
 
                 //update position v2
                 if(!down) {
@@ -393,9 +363,13 @@ public class Player extends DynamicObject {
                     }
                 }
             } else{
-                currentFrame = deathAnimation.getKeyFrame(stateTime, true);
-                System.out.println("finito3");
-                //velocityY += JUMP_VELOCITY;
+                if(exitReached){
+                    currentFrame = idleAnimation.getKeyFrame(stateTime, true);
+                } else{
+                    currentFrame = deathAnimation.getKeyFrame(stateTime, true);
+                    System.out.println("finito3");
+                    //velocityY += JUMP_VELOCITY;
+                }
                 if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
                     System.out.println("finito1111111111111111111111111");
                     deathComplete = true;
@@ -416,6 +390,61 @@ public class Player extends DynamicObject {
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y - 1, !flip ? width : -width, height);
         }
         batch.end();
+    }
+
+    private void resolveObjectInteraction(float delta, SpriteBatch batch, OrthographicCamera camera){
+        if(weaponList.size() > 0){
+            for(int i = 0; i<weaponList.size(); i++){
+                Weapon w = weaponList.get(i);
+                w.update(batch, delta, camera);
+                ArrayList<Enemy> enemies = map.getEnemies();
+                for(int j = 0; j<enemies.size(); j++){//for(Enemy e : map.getEnemies()){
+                    Enemy e = enemies.get(j);
+                    if(w.getBoundingBox().overlaps(e.getBoundingBox()) && e.isAlive()){
+                        e.getsHit(w.getDamage());
+                        if(e.isDead()){
+                            enemiesKilled += 1;
+                        }
+                        w.die();
+                        weaponList.remove(i);
+                    }
+                }
+            }
+        }
+
+        for(Coin coin : map.getCoins()){
+            if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
+                coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
+            }
+            if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
+                coinsCollected += 1;
+                coin.die();
+            }
+        }
+
+        for(Enemy e : map.getEnemies()){
+            if(this.getBoundingBox().overlaps(e.getBoundingBox()) && this.isAlive() && e.isAlive()){
+                this.die();
+            }
+        }
+
+        for(IceBallShooter shooter : map.getProjectileShootersList()){
+            if(shooter.getIceBallList().size() > 0){
+                for(IceBall iceBall : shooter.getIceBallList()){
+                    if(this.boundingBox.overlaps(iceBall.getBoundingBox())){
+                        this.die();
+                    }
+                }
+            }
+        }
+
+        for(Exit exit : map.getExits()){
+            if(this.boundingBox.overlaps(exit.getBoundingBox())){
+                exitReached = true;
+                this.die();
+
+            }
+        }
     }
 
     private void addCoin(int c){
@@ -481,10 +510,12 @@ public class Player extends DynamicObject {
     public void jump(){
         if(grounded && !firstJump){
             firstJump = true;
+            jumpSound1.play(Jumpy.volume);
             velocityY += JUMP_VELOCITY;
         } else{
             if(!grounded && !doubleJump && firstJump){
                 doubleJump = true;
+                jumpSound2.play(Jumpy.volume);
                 velocityY += JUMP_VELOCITY / 1.5;
             }
         }
@@ -492,16 +523,21 @@ public class Player extends DynamicObject {
 
     @Override
     public void die(){
-        if (health > 0) {
+        if (health > 0 && !exitReached) {
             if(equippedBoost == Boost.ARMOUR && boostOn){
                 return;
             } else{
                 health--;
             }
         }
+        if(exitReached){
+            health = 0;
+        }
         if(health == 0 && !dead){
             dead = true;
-            velocityY += JUMP_VELOCITY;
+            if(!exitReached){
+                velocityY += JUMP_VELOCITY;
+            }
             stateTime = 0f;
             if(left){
                 flip = true;

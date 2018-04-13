@@ -11,6 +11,7 @@ import com.jumpy.Characters.Enemy;
 import com.jumpy.Characters.Player;
 import com.jumpy.Intersection;
 import com.jumpy.Objects.Coin;
+import com.jumpy.Objects.Exit;
 import com.jumpy.Objects.IceBallShooter;
 import com.jumpy.Scenes.Hud;
 
@@ -56,7 +57,7 @@ public abstract class GameMap {
         for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
             for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
                 // for (int layer = 1; layer < getLayers(); layer++) {
-                TileType type = getTileTypeByCoordinate(2, col, row);
+                TileType type = getTileTypeByCoordinate(1, col, row);
                 if (type != null && type.isCollidable()) {
                     return true;
                 }
@@ -164,6 +165,8 @@ public abstract class GameMap {
     public abstract ArrayList<Enemy> getEnemies();
     public abstract Player getPlayer();
     public abstract ArrayList<IceBallShooter> getProjectileShootersList();
+    public abstract ArrayList<Exit> getExits();
+    public abstract void setExitReached(boolean status);
     public boolean getIsLevelComplete(){
         return isLevelComplete;
     }

@@ -56,7 +56,6 @@ public class IceBall extends Object{
 
     @Override
     public void create() {
-        Texture textureSheet;
         if(direction == Move.UP || direction == Move.DOWN){
             textureSheet = Jumpy.assetManager.get("characters/baddies/iceball_001_up.png", Texture.class);
         } else{//direction == Move.RIGHT or Move.LEFT

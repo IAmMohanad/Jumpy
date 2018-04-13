@@ -60,8 +60,8 @@ public class HelpScene {
         Label attackButtonLabel = new Label("C", skin, "medium");
         Label boostLabel = new Label("Boost (When bought)", skin, "medium");
         Label boostButtonLabel = new Label("Z", skin, "medium");
-        innerTable.add(jumpLabel).left().expandX();//.padTop(10);
-        innerTable.add(jumpButtonLabel).left().expandX();//.padTop(10);
+        innerTable.add(jumpLabel).left().expandX().padTop(15);
+        innerTable.add(jumpButtonLabel).left().expandX().padTop(15);
         innerTable.row();
         innerTable.add(attackLabel).left().expandX().padTop(10);
         innerTable.add(attackButtonLabel).left().expandX().padTop(10);

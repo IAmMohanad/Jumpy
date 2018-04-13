@@ -1,5 +1,6 @@
 package com.jumpy.Screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
@@ -52,7 +53,11 @@ public class PlayScreen implements Screen {
 
     public void loadLevel(){
         if(game.getCurrentLevel().equals("1-1")){
-            mapLocation = "maps/tutorialMap/tutorialMap.tmx";
+            if(Gdx.app.getType() == Application.ApplicationType.Desktop){
+                mapLocation = "maps/tutorialMap/tutorialMapDesktop.tmx";
+            } else{
+                mapLocation = "maps/tutorialMap/tutorialMapAndroid.tmx";
+            }
         } else if(game.getCurrentLevel().equals("1-3")){
             mapLocation = "retro_game_map3_collidable_objects.tmx";
         }

@@ -52,12 +52,16 @@ public class Player extends DynamicObject {
     private Animation<TextureRegion> deathAnimation;
     private Animation<TextureRegion> spinJumpAnimation;
 
-    //private TextureRegion currentFrame;
-
     private float timeSinceLastJump = 0;
 
-    private int BBOX_X_OFFSET = 5;
-    private int BBOX_Y_OFFSET = 1;
+    private final int BBOX_X_OFFSET = 13;
+    private final int BBOX_Y_OFFSET = 1;
+
+    private final int BBOX_WIDTH_STANDING = 9;//was 20
+    private final int BBOX_HEIGHT_STANDING = 40;
+
+    private final int BBOX_WIDTH_CROUCH = 20;
+    private final int BBOX_HEIGHT_CROUCH= 25;
 
     private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
     private Active equippedWeapon;
@@ -83,7 +87,7 @@ public class Player extends DynamicObject {
         super.map = map;
         position = new Vector2(x, y);
         boundingBox = new Rectangle();
-        boundingBox.set(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET, 20, 40);
+        boundingBox.set(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET, BBOX_WIDTH_STANDING, BBOX_HEIGHT_STANDING);
         movementSpeed = 150;
         velocityY = 0;
         grounded = false;
@@ -293,6 +297,11 @@ public class Player extends DynamicObject {
     @Override
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera)
     {
+        if(down){
+            boundingBox.height = BBOX_HEIGHT_CROUCH;
+        } else{
+            boundingBox.height = BBOX_HEIGHT_STANDING;
+        }
         shootCounter += delta;
         timeSinceLastJump += delta;
         this.stateTime += delta;

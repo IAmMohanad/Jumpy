@@ -84,7 +84,7 @@ public abstract class GameMap {
 
     public abstract void cameraStop(OrthographicCamera camera);
 
-    private Comparator<Node> nodeSorter = new Comparator<Node>(){
+    private Comparator<Node> sortNodes = new Comparator<Node>(){
         @Override
         public int compare(Node n0, Node n1) {
             if(n1.fCost < n0.fCost) return +1;
@@ -96,57 +96,70 @@ public abstract class GameMap {
     public List<Node> findPath(Vector2 start, Vector2 goal){
         List<Node> openList = new ArrayList<Node>();
         List<Node> closedList = new ArrayList<Node>();
-        Node current = new Node(start, null, 0, getDistance(start, goal));
-        openList.add(current);
+        Node currentNode = new Node(start, null, 0, getEuclideanDistance(start, goal));
+        openList.add(currentNode);
 
         while(openList.size() > 0){
-            Collections.sort(openList, nodeSorter);//sort openList by lowest to highest fCost
-            current = openList.get(0);
+            Collections.sort(openList, sortNodes);//sort openList by lowest to highest fCost
+            currentNode = openList.get(0);
             //found path
-            if(current.tile.equals(goal)){
+            if(currentNode.tile.equals(goal)){
                 //reverse list, as goal is the first tile in closedList, should be last
-                List<Node> path = new ArrayList<Node>();
-                while(current.parent != null){
-                    path.add(current);
-                    current = current.parent;
+                List<Node> ShortestPath = new ArrayList<Node>();
+                while(currentNode.parent != null){
+                    ShortestPath.add(currentNode);
+                    currentNode = currentNode.parent;
                 }
                 openList.clear();
                 closedList.clear();
-                return path;
+                return ShortestPath;
             }
             //checked tile. so remove from open and add to closed
-            openList.remove(current);
-            closedList.add(current);
-            //check adjacent tiles to current tile
+            openList.remove(currentNode);
+            closedList.add(currentNode);
+            //check tiles surrounding to current tile
             for(int i = 0; i<9; i++){
-                if(i == 4) continue; // skip current tile
-                int x = (int) current.tile.x;
-                int y = (int) current.tile.y;
-                int xi = (i % 3) - 1;
-                int yi = (i / 3) - 1;
+                if(i == 4) {
+                    // skip current tile
+                    continue;
+                }
+                int currentTileX = (int) currentNode.tile.x;
+                int currentTileY = (int) currentNode.tile.y;
+                int offsetX = (i % 3) - 1;
+                int offsetY = (i / 3) - 1;
                 //tile being considered
-                TileType at = getTileTypeByCoordinate(2, x + xi, y + yi);
-                if(at == null) continue;
-                if(at.isCollidable()) continue;
+                TileType at = getTileTypeByCoordinate(2, currentTileX + offsetX, currentTileY + offsetY);
+                if(at == null){
+                    continue;
+                }
+                if(at.isCollidable()){
+                    continue;
+                }
                 //calculate costs of tile being considered
-                Vector2 a = new Vector2(x + xi, y + yi);
-                //cost of current tile to tile being considered
-                double gCost = current.gCost + getDistance(current.tile, a);
-                //cost of tile being considered to the goal
-                double hCost = getDistance(a, goal);
-                Node node = new Node(a, current, gCost, hCost);
+                Vector2 consideredTile = new Vector2(currentTileX + offsetX, currentTileY + offsetY);
+                //cost from current tile to tile being considered
+                double gCost = currentNode.gCost + getEuclideanDistance(currentNode.tile, consideredTile);
+                //cost from tile being considered to the goal
+                double hCost = getEuclideanDistance(consideredTile, goal);
+                Node consideredNode = new Node(consideredTile, currentNode, gCost, hCost);
                 //has this tile already been added to closedList
-                if(vecInList(closedList, a) && gCost >= node.gCost) continue;
-                if(!vecInList(openList, a) || gCost < node.gCost) openList.add(node);
+                if(nodeInList(closedList, consideredTile) && gCost >= consideredNode.gCost) {
+                    continue;
+                }
+                if(!nodeInList(openList, consideredTile) || gCost < consideredNode.gCost) {
+                    openList.add(consideredNode);
+                }
             }
         }
         closedList.clear();
         return null;
     }
 
-    private boolean vecInList(List<Node> list, Vector2 vector){
+    private boolean nodeInList(List<Node> list, Vector2 vector){
         for(Node n : list){
-            if(n.tile.equals(vector)) return true;
+            if(n.tile.equals(vector)) {
+                return true;
+            }
         }
         return false;
     }
@@ -155,7 +168,7 @@ public abstract class GameMap {
         this.hud = hud;
     }
 
-    private double getDistance(Vector2 tile, Vector2 goal){
+    private double getEuclideanDistance(Vector2 tile, Vector2 goal){
         double dx = (int) tile.x - (int) goal.x;
         double dy = (int) tile.y - (int) goal.y;
         return Math.sqrt(dx * dx + dy * dy);

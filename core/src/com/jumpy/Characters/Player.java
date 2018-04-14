@@ -70,6 +70,7 @@ public class Player extends DynamicObject {
     private float boostTimer;
     private float boostMaxTime;
     private boolean boostOn;
+    private boolean playedPowerWarning;
     private Rectangle magnetBoundingBox;
 
     private int weaponDamage;
@@ -78,6 +79,9 @@ public class Player extends DynamicObject {
     private Sound jumpSound1;
     private Sound jumpSound2;
     private Sound shootSound;
+    private Sound powerUpOnSound;
+    private Sound powerUpOffSound;
+    private Sound collectCoinSound;
 
     public Player(Active equippedWeapon, Boost equippedBoost, Passive equippedPassive, GameMap map, float x, float y, PlayScreen playScreen){
         this.playScreen = playScreen;
@@ -94,6 +98,7 @@ public class Player extends DynamicObject {
         firstJump = false;
         doubleJump = false;
         dead = false;
+        playedPowerWarning = false;
         this.equippedWeapon = equippedWeapon;
         this.equippedBoost = equippedBoost;
         this.equippedPassive = equippedPassive;
@@ -105,6 +110,9 @@ public class Player extends DynamicObject {
         shootSound = Jumpy.assetManager.get("sound/laser_shot.mp3", Sound.class);
         jumpSound1 = Jumpy.assetManager.get("sound/jump_1.wav", Sound.class);
         jumpSound2 = Jumpy.assetManager.get("sound/jump_2.wav", Sound.class);
+        powerUpOnSound = Jumpy.assetManager.get("sound/power_up_on.mp3", Sound.class);
+        powerUpOffSound = Jumpy.assetManager.get("sound/powerup_off.mp3", Sound.class);
+        collectCoinSound = Jumpy.assetManager.get("sound/collect_coin.wav", Sound.class);
 
         if(equippedWeapon == Active.LASER){
             Jumpy.assetManager.load("sound/laser_shot.mp3", Sound.class);
@@ -163,11 +171,18 @@ public class Player extends DynamicObject {
             if(!boostOn){
                 boostTimer = 0;
                 boostOn = true;
+                powerUpOnSound.play(Jumpy.volume);
             }
         }
-        if(boostOn && boostTimer >= boostMaxTime){
-            boostOn = false;
-            boostTimer = 0;
+        if(boostOn){
+            if((boostTimer >= (boostMaxTime - 2)) && !playedPowerWarning){
+                playedPowerWarning = true;
+                powerUpOffSound.play(Jumpy.volume);
+            }
+            if(boostTimer >= boostMaxTime){
+                boostOn = false;
+                boostTimer = 0;
+            }
         }
 
         if(equippedBoost == Boost.MAGNET){
@@ -425,6 +440,7 @@ public class Player extends DynamicObject {
                 coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
             }
             if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
+                collectCoinSound.play(Jumpy.volume);
                 coinsCollected += 1;
                 coin.die();
             }

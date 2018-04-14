@@ -29,7 +29,7 @@
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 </data>
  </layer>
- <objectgroup name="collisions">
+ <objectgroup name="spawn">
   <object id="1" name="collidable" x="602.5" y="126.333" width="11" height="86.3333">
    <properties>
     <property name="all" type="bool" value="false"/>
@@ -44,6 +44,9 @@
   </object>
  </objectgroup>
  <objectgroup name="spawn1">
+  <properties>
+   <property name="numberOfSpawns" value="1"/>
+  </properties>
   <object id="3" name="coin" x="1053.33" y="289.333"/>
   <object id="4" name="coin" x="744" y="200"/>
   <object id="5" name="coin" x="588" y="125.333"/>

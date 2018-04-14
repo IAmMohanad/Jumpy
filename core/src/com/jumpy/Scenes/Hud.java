@@ -166,11 +166,12 @@ public class Hud{
         table.add(topRowTable).expandX().left();
 
         //touch pad
-        if(isTouchPad && android){
-            touchpad = new Touchpad(10, skin, "touchPad48");
-            table.row();
-            table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
-
+        if(android){
+            if(isTouchPad){
+                touchpad = new Touchpad(10, skin, "touchPad48");
+                table.row();
+                table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
+            }
             Table controlButtonsTable = new Table();
             //jump button
             ImageButton jumpButton = new ImageButton(skin, "cButton40");

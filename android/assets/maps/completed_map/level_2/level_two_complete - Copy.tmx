@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="38" height="29" tilewidth="32" tileheight="32" nextobjectid="652">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="38" height="29" tilewidth="32" tileheight="32" nextobjectid="561">
  <tileset firstgid="1" source="../../../retro_tiled_tileset.tsx"/>
  <tileset firstgid="10" source="../../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
@@ -14,7 +14,7 @@
 2,13,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
 2,10,11,0,0,2,0,0,0,2,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,15,2,
 2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,11,2,
-2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,2,0,0,0,2,0,0,0,2,2,2,2,2,
+2,2,2,2,2,2,2,2,4,4,4,4,4,4,2,2,2,2,2,2,0,2,0,0,0,2,0,0,0,2,0,0,0,2,2,2,2,2,
 2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,
 2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
 2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
@@ -32,54 +32,14 @@
 2,2,2,2,2,2,2,2,2,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,2,
-2,12,14,0,0,0,0,0,0,0,0,0,2,2,0,2,0,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,12,14,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
 2,10,11,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 2,2,2,2,2,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 </data>
  </layer>
- <objectgroup name="spawn">
-  <object id="640" name="collidable" x="341.917" y="265.833" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="true"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="641" name="collidable" x="597.75" y="462.166" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="false"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="642" name="collidable" x="703.25" y="242.916" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="true"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="643" name="collidable" x="798.455" y="451.098" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="false"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="644" name="collidable" x="671.167" y="812.125" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="false"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="645" name="collidable" x="437.75" y="818.667" width="11" height="109.667">
-   <properties>
-    <property name="all" type="bool" value="false"/>
-    <property name="goblin" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="collisions"/>
  <objectgroup name="spawn1">
-  <properties>
-   <property name="numberOfSpawns" value="2"/>
-  </properties>
   <object id="15" name="spike" x="96.0652" y="191.957" width="16" height="32">
    <properties>
     <property name="direction" value="up"/>
@@ -98,17 +58,32 @@
   <object id="55" name="coin" x="1101" y="708"/>
   <object id="56" name="coin" x="1001" y="733"/>
   <object id="57" name="coin" x="874" y="729"/>
-  <object id="58" name="coin" x="483" y="754.5"/>
-  <object id="59" name="coin" x="495" y="784.5"/>
+  <object id="58" name="coin" x="608" y="834"/>
+  <object id="59" name="coin" x="514" y="836"/>
   <object id="60" name="coin" x="334" y="699"/>
-  <object id="63" name="player" x="61.3333" y="175.667"/>
+  <object id="61" name="exit" x="51.6591" y="826" width="8.13636" height="30.1818"/>
+  <object id="63" name="player" x="58" y="175"/>
+  <object id="64" name="goblin" x="506" y="875"/>
   <object id="65" name="goblin" x="502" y="324"/>
+  <object id="66" name="collidable" x="347.5" y="261.333" width="11" height="109.667">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="67" name="goblin" x="724" y="521.333"/>
+  <object id="68" name="collidable" x="599.833" y="459.833" width="11" height="109.667">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="197" name="coin" x="594.667" y="296"/>
   <object id="198" name="coin" x="432" y="300"/>
   <object id="199" name="coin" x="514.667" y="296"/>
   <object id="200" name="coin" x="626.667" y="289.333"/>
   <object id="201" name="coin" x="401.333" y="294.667"/>
+  <object id="205" name="goblin" x="604" y="884"/>
   <object id="210" name="coin" x="645.333" y="673.333"/>
   <object id="211" name="coin" x="761.333" y="660"/>
   <object id="215" name="ice_ball_shooter" x="942" y="586.667">
@@ -117,7 +92,7 @@
     <property name="shootInterval" value="4"/>
    </properties>
   </object>
-  <object id="216" name="ice_ball_shooter" x="1037.67" y="587.333">
+  <object id="216" name="ice_ball_shooter" x="1038.67" y="590.333">
    <properties>
     <property name="direction" value="down"/>
     <property name="shootInterval" value="3"/>
@@ -824,17 +799,11 @@
     <property name="direction" value="up"/>
    </properties>
   </object>
-  <object id="629" name="coin" x="472" y="783.75"/>
-  <object id="630" name="coin" x="508" y="754.75"/>
-  <object id="631" name="coin" x="517.25" y="784.75"/>
-  <object id="632" name="coin" x="619" y="781.25"/>
-  <object id="647" name="exit" x="49.5985" y="829.409" width="8.13636" height="30.1818"/>
-  <object id="648" name="exit" x="917.265" y="507.242" width="8.13636" height="30.1818"/>
  </objectgroup>
- <objectgroup name="spawn2">
+ <objectgroup name="spawn2" visible="0">
   <object id="145" name="coin" x="1000.92" y="734.292"/>
-  <object id="175" name="exit" x="917.598" y="507.409" width="8.13636" height="30.1818"/>
-  <object id="176" name="player" x="1153" y="207.667"/>
+  <object id="175" name="exit" x="918.598" y="504.909" width="8.13636" height="30.1818"/>
+  <object id="176" name="player" x="1150.33" y="203.667"/>
   <object id="177" name="coin" x="1104" y="702.667"/>
   <object id="178" name="coin" x="1097.33" y="561.333"/>
   <object id="179" name="coin" x="1169.33" y="622.667"/>
@@ -852,9 +821,15 @@
   <object id="195" name="coin" x="1048" y="330.667"/>
   <object id="196" name="coin" x="873.333" y="404"/>
   <object id="202" name="goblin" x="636" y="329.333"/>
-  <object id="206" name="coin" x="479.583" y="870.083"/>
-  <object id="207" name="coin" x="546.25" y="868.417"/>
-  <object id="208" name="coin" x="618.25" y="867.583"/>
+  <object id="204" name="collidable" x="345.5" y="260.166" width="11" height="109.667">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="206" name="coin" x="475.333" y="831.333"/>
+  <object id="207" name="coin" x="552" y="836.667"/>
+  <object id="208" name="coin" x="636" y="837.333"/>
   <object id="209" name="coin" x="516" y="676"/>
   <object id="212" name="coin" x="742.667" y="665.333"/>
   <object id="213" name="coin" x="881.333" y="721.333"/>
@@ -868,7 +843,7 @@
   <object id="219" name="ice_ball_shooter" x="299.333" y="886.667">
    <properties>
     <property name="direction" value="up"/>
-    <property name="shootInterval" value="3"/>
+    <property name="shootInterval" value="2"/>
    </properties>
   </object>
   <object id="295" name="spike" x="448.316" y="191.53" width="16" height="32">
@@ -951,6 +926,11 @@
     <property name="direction" value="up"/>
    </properties>
   </object>
+  <object id="311" name="spike" x="592.573" y="191.688" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
   <object id="312" name="spike" x="208.122" y="191.747" width="16" height="32">
    <properties>
     <property name="direction" value="up"/>
@@ -967,6 +947,11 @@
    </properties>
   </object>
   <object id="315" name="spike" x="224.332" y="191.665" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="316" name="spike" x="608.543" y="191.767" width="16" height="32">
    <properties>
     <property name="direction" value="up"/>
    </properties>
@@ -1022,6 +1007,81 @@
    </properties>
   </object>
   <object id="327" name="spike" x="496.489" y="191.839" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="328" name="spike" x="623.634" y="191.949" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="329" name="spike" x="494.987" y="863.779" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="330" name="spike" x="607.094" y="863.985" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="331" name="spike" x="623.169" y="863.961" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="332" name="spike" x="511.11" y="864.12" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="333" name="spike" x="591.26" y="863.993" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="334" name="spike" x="447.103" y="863.819" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="335" name="spike" x="463.078" y="863.811" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="336" name="spike" x="542.919" y="864.104" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="337" name="spike" x="654.23" y="864.222" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="338" name="spike" x="639.139" y="864.04" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="339" name="spike" x="575.285" y="864.001" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="340" name="spike" x="527.085" y="864.111" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="341" name="spike" x="478.912" y="863.803" width="16" height="32">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="342" name="spike" x="558.994" y="864.08" width="16" height="32">
    <properties>
     <property name="direction" value="up"/>
    </properties>
@@ -1486,11 +1546,5 @@
     <property name="direction" value="up"/>
    </properties>
   </object>
-  <object id="633" name="coin" x="584" y="868.5"/>
-  <object id="634" name="coin" x="511" y="870"/>
-  <object id="635" name="coin" x="652.25" y="868"/>
-  <object id="636" name="goblin" x="528" y="874.667"/>
-  <object id="649" name="exit" x="183.432" y="693.409" width="8.13636" height="30.1818"/>
-  <object id="651" name="exit" x="48.4318" y="829.909" width="8.13636" height="30.1818"/>
  </objectgroup>
 </map>

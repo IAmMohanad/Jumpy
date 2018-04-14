@@ -25,8 +25,9 @@ import com.jumpy.Scenes.PauseScene;
 import com.jumpy.Screens.PlayScreen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class LevelOne extends GameMap {
+public class Level extends GameMap {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     //private final String mapLocation = "retro_game_map3_collidable_objects.tmx";
@@ -48,7 +49,7 @@ public class LevelOne extends GameMap {
 
     private final String currentLevel = "1-1";
 
-    public LevelOne(Jumpy game, PlayScreen playScreen){
+    public Level(Jumpy game, PlayScreen playScreen){
         this.game = game;
         this.playScreen = playScreen;
         exitReached = false;
@@ -95,11 +96,24 @@ public class LevelOne extends GameMap {
 
     //Randomly choose the spawn points on a map. //TODO throw dice to choose spawn1/2/3/ etc also change collision layer if needed
     private void spawnElements(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
-        String spawnChoice = "spawn1";
+        int numberOfSpawns = 1;
+        if(map.getLayers().get("spawn1").getProperties().containsKey("numberOfSpawns")){
+            numberOfSpawns = (Integer.parseInt(map.getLayers().get("spawn1").getProperties().get("numberOfSpawns").toString()));
+        }
+
+        int spawnToUse = generateRandom(numberOfSpawns);
+
+        String spawnChoice = "spawn"+String.valueOf(spawnToUse);
         spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
         spawnCoins(spawnChoice);
         spawnEnemies(spawnChoice);
         spawnProjectileShooters(spawnChoice);
+    }
+
+    private int generateRandom(int numberOfSpawns) {
+        int min = 1;
+        Random r = new Random();
+        return r.nextInt(numberOfSpawns-min+1) + min;
     }
 
     private void spawnProjectileShooters(String spawnChoice){

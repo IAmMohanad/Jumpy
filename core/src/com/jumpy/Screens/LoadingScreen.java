@@ -108,6 +108,9 @@ public class LoadingScreen implements Screen {
         //load jumping sound
         assetManager.load("sound/jump_1.wav", Sound.class);
         assetManager.load("sound/jump_2.wav", Sound.class);
+        assetManager.load("sound/power_up_on.mp3", Sound.class);
+        assetManager.load("sound/powerup_off.mp3", Sound.class);
+        assetManager.load("sound/collect_coin.wav", Sound.class);
 
         assetManager.load("sound/goblin_death.wav", Sound.class);
 

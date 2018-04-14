@@ -85,7 +85,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="collisions">
+ <objectgroup name="spawn">
+  <properties>
+   <property name="numberOfSpawns" value="1"/>
+  </properties>
   <object id="2" name="collidable" x="192" y="944" width="11" height="158">
    <properties>
     <property name="all" type="bool" value="false"/>

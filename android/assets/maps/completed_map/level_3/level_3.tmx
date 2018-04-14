@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="27" height="15" tilewidth="32" tileheight="32" nextobjectid="54">
+ <properties>
+  <property name="numberOfSpawns" value="1"/>
+ </properties>
+ <tileset firstgid="1" source="../../../retro_tiled_tileset.tsx"/>
+ <tileset firstgid="10" source="../../../tilesets/door_tileset.tsx"/>
+ <imagelayer name="Image Layer 1">
+  <image source="level_3_background.png" width="860" height="484"/>
+ </imagelayer>
+ <layer name="Tile Layer 1" width="27" height="15">
+  <data encoding="csv">
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,0,0,0,0,0,0,5,5,5,5,5,5,5,5,5,5,5,5,5,0,0,0,0,0,0,5,
+5,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,12,14,0,0,5,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,11,0,0,5,
+5,5,0,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,5,0,0,5,
+5,0,0,0,0,5,5,0,0,0,0,5,5,5,5,5,0,0,0,0,5,5,0,0,0,0,5,
+5,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,5,
+5,0,0,0,0,0,0,0,5,5,0,0,0,0,0,0,0,5,5,0,0,0,0,0,0,0,5,
+5,5,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,5,5,
+5,0,0,0,0,5,5,5,0,0,0,5,5,5,5,5,0,0,0,5,5,5,0,0,0,0,5,
+5,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,5,
+5,13,15,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,5,0,0,5,
+5,10,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+5,5,5,5,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+</data>
+ </layer>
+ <objectgroup name="spawn">
+  <properties>
+   <property name="numberOfSpawns" value="1"/>
+  </properties>
+  <object id="25" name="collidable" x="247.227" y="375.106" width="11" height="86.3333">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="26" name="collidable" x="605.955" y="403.561" width="11" height="51.0606">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="27" name="collidable" x="511" y="232.833" width="11" height="86.3333">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="28" name="collidable" x="342.5" y="232.833" width="11" height="86.3333">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="29" name="collidable" x="342.5" y="95.8333" width="11" height="86.3333">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="30" name="collidable" x="508.5" y="99.3333" width="11" height="86.3333">
+   <properties>
+    <property name="all" type="bool" value="false"/>
+    <property name="goblin" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="spawn1">
+  <object id="1" name="player" x="55" y="399"/>
+  <object id="2" name="exit" x="742.75" y="91.5" width="6.5" height="23"/>
+  <object id="3" name="goblin" x="340" y="429"/>
+  <object id="4" name="goblin" x="530" y="429"/>
+  <object id="5" name="goblin" x="433" y="266"/>
+  <object id="6" name="goblin" x="425" y="131"/>
+  <object id="31" name="coin" x="45" y="78"/>
+  <object id="32" name="coin" x="179" y="94"/>
+  <object id="33" name="coin" x="44" y="228"/>
+  <object id="34" name="coin" x="113" y="336"/>
+  <object id="35" name="coin" x="174" y="420"/>
+  <object id="36" name="coin" x="761" y="315"/>
+  <object id="37" name="coin" x="811" y="227"/>
+  <object id="38" name="coin" x="814" y="159"/>
+  <object id="39" name="coin" x="814" y="102"/>
+  <object id="40" name="coin" x="812" y="50"/>
+  <object id="41" name="coin" x="616" y="187"/>
+  <object id="42" name="coin" x="682" y="122"/>
+  <object id="43" name="coin" x="485" y="138"/>
+  <object id="44" name="coin" x="378" y="138"/>
+  <object id="45" name="coin" x="379" y="256"/>
+  <object id="46" name="coin" x="489" y="270"/>
+  <object id="47" name="coin" x="198" y="230"/>
+  <object id="48" name="coin" x="273" y="125"/>
+  <object id="49" name="coin" x="434" y="424"/>
+  <object id="50" name="coin" x="290" y="421"/>
+  <object id="51" name="coin" x="573" y="416"/>
+  <object id="52" name="coin" x="352" y="359"/>
+  <object id="53" name="coin" x="530" y="353"/>
+ </objectgroup>
+</map>

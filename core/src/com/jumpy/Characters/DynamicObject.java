@@ -1,18 +1,16 @@
 package com.jumpy.Characters;
 
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.jumpy.Objects.Object;
 
-public abstract class DynamicObject extends Object{//if any issues extend sprite
+public abstract class DynamicObject extends Object{
 
-    protected float gravity = -250;//-175;
+    protected float gravity = -250;
     protected int health;
     protected float movementSpeed;
 
@@ -22,7 +20,6 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     protected boolean flip = false;
     protected boolean firstJump;
     protected boolean doubleJump;
-    //TODO add object name e.g. gargoyle_flying, same as TiledMap name
     protected String name;
     protected TiledMap tiledMap;
     protected boolean deathComplete;
@@ -35,13 +32,12 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     public abstract void die();//float delta);
 
     public void updateGravity(float delta){
-        //simulate gravity
         float newY = position.y;
         //how many pixels should be moved on Y axis. positive == moving up, negative == falling
         velocityY += gravity * delta;
         newY += velocityY * delta;
         if(map.doesRectCollideWithMap(boundingBox.x, newY, (int) boundingBox.width, (int) boundingBox.height)){
-            //if colliding with map & falling down hit ground
+            //if colliding with map & falling down
             if(velocityY < 0){//falling downwards
                 position.y = (float) Math.floor(position.y);
                 grounded = true;
@@ -62,9 +58,7 @@ public abstract class DynamicObject extends Object{//if any issues extend sprite
     }
 
     protected boolean collidesWithCollidableObject(float newX){
-        //MapLayer tiledLayer = tiledMap.getLayers().get("collisions");
-        //MapObjects objects = tiledLayer.getObjects();
-        for(MapObject object : tiledMap.getLayers().get("collisions").getObjects()) {
+        for(MapObject object : tiledMap.getLayers().get("spawn").getObjects()) {
             if(object.getName().equals("collidable")){
                 MapProperties objectProperties = object.getProperties();
                 if(objectProperties.containsKey("all") || objectProperties.containsKey(this.name)){

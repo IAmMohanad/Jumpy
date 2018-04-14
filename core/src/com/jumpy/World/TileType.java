@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public enum TileType {
 
-    NORMAL_BLOCK(1, true, "NORMAL_BLOCK"),
+    TRIANGLE_BLOCK(1, false, "NORMAL_BLOCK"),
     BROWN_BLOCK(2, true, "BROWN_BLOCK"),
     BROWN_GRASS_BLOCK(3, true, "BROWN_GRASS_BLOCK"),
     BROWN_BROKEN_BLOCK(4, true, "BROWN_BROKEN_BLOCK"),

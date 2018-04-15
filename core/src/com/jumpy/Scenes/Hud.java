@@ -25,6 +25,7 @@ public class Hud{
     private Preferences settings;
     private float timer = 0;
     private float originalZ =0;
+    private float originalX =0;
 
     private double runThreshold = 1.5;
     private boolean isTouchPad;
@@ -158,6 +159,9 @@ public class Hud{
                 touchpad = new Touchpad(10, skin, "touchPad48");
                 table.row();
                 table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
+            } else{
+                table.row();
+                table.add(new Image(new Texture("ui/new ui/format_holder_48.png"))).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
             }
             Table controlButtonsTable = new Table();
             //jump button
@@ -222,16 +226,16 @@ public class Hud{
                     Player.left = true;
                 }
             } else{
+                System.out.println("x - "+accelX+" y - "+accelY+ " z - "+accelZ);
                 //delay to test if the phone has been flicked
                 timer += Gdx.graphics.getDeltaTime();
                 if(timer > 0.125){
-                    originalZ = accelZ;
                     timer = 0;
+                    originalX = accelX;
                 }
-                if(accelZ > 1 || Gdx.input.isTouched(0)){
-                    if(Gdx.input.isTouched(0) || Math.abs(originalZ) - Math.abs(accelZ) > 2.5){
-                         Player.up = true;
-                    }
+
+                if(Math.abs(originalX) - Math.abs(accelX) > 1.5){
+                    Player.up = true;
                 }
 
                 if(accelY > runThreshold){

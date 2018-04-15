@@ -188,7 +188,7 @@ public class Player extends DynamicObject {
         if(equippedBoost == Boost.MAGNET){
             magnetBoundingBox.setPosition(this.position.x - 32, this.position.y - 45);
         }
-        System.out.println("boostOn: "+boostOn+"     "+(int) boostTimer);
+        //System.out.println("boostOn: "+boostOn+"     "+(int) boostTimer);
     }
 
     public void weaponShot(){

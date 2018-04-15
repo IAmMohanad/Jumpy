@@ -1,6 +1,5 @@
 package com.jumpy.World;
 
-
 import java.util.HashMap;
 
 public enum TileType {

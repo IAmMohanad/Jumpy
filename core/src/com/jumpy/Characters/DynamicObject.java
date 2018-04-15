@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.jumpy.Objects.Object;
+import com.jumpy.World.TileType;
 
 public abstract class DynamicObject extends Object{
 
@@ -55,6 +56,24 @@ public abstract class DynamicObject extends Object{
             position.y = newY;
             grounded = false;
         }
+    }
+
+    protected boolean collidesWithCollidable(float newX, float newY, float x, float y, int width, int height){
+        for (int row = (int) newY / TileType.TILE_SIZE; row < Math.ceil((newY + height) / TileType.TILE_SIZE); row++) {
+            for (int col = (int) newX / TileType.TILE_SIZE; col < Math.ceil((newX + width) / TileType.TILE_SIZE); col++) {
+                TileType type = map.getTileTypeByCoordinate(1, col, row);
+                if (type != null && type.isCollidable()) {
+                    return true;
+                }
+            }
+        }
+        for (int col = (int) newX / TileType.TILE_SIZE; col < Math.ceil((newX + width) / TileType.TILE_SIZE); col++) {
+            TileType type = map.getTileTypeByCoordinate(1, col - 1, ((int) newY / TileType.TILE_SIZE) - 1);
+            if (type != null && type.isCollidable()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected boolean collidesWithCollidableObject(float newX){

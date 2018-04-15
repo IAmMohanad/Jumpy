@@ -107,7 +107,7 @@ public class Coin extends Object{
     public void moveTowardsPlayer(float delta, float x, float y){
         // boundingBox.setPosition(x, y);
         if (position.x < (int) x) {
-            position.x += 90 * delta;//TODO replace 250 with movement speed
+            position.x += 90 * delta;
         }
         if (position.x > (int) x) {
             position.x -= 90 * delta;

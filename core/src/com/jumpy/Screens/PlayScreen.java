@@ -62,19 +62,11 @@ public class PlayScreen implements Screen {
         } else if(game.getCurrentLevel().equals("1-3")){
             mapLocation = "retro_game_map3_collidable_objects.tmx";
         }
-        //if(!loadedLevel.equals(game.getCurrentLevel()) || reload) {
             reload = false;
             if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
                 this.loadedLevel = "1-3";
                 this.map = new Level(game,/* hud,*/ this);
-                map.load(mapLocation);//"retro_game_map3_collidable_objects.tmx");
-                //TODO create inputProcessor in Hud for a jump button at bottom right, return the inputProcessor here and add to multiplexer.
-                //TODO add pause button and pause screen / scene
-                /*
-                pause screen has: 1. resume button. 2.mute/unmute button (maybe volume slider) 3. exit (return to main menu)
-                preferably should be stacked on top of  playScreen - change delta to 0?
-                 */
-         //   }
+                map.load(mapLocation);
             hud = new Hud(game.batch, map, this);
             hudStage = hud.getStage();
             map.setHud(hud);

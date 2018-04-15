@@ -117,9 +117,6 @@ public class LevelSummaryScene {
             Label newPersonalBestValue = new Label(String.valueOf(getHighScore()), skin, "small");
             innerInfoTable.add(newPersonalBestValue).colspan(3).center().padTop(10);
             innerInfoTable.row();
-            //TODO add new ranking here
-            //TODO think about changing the layout so that gold earned isnt shown, only the current score, and best score. gold earned can be seen in-game + in shop
-            //TODO check mobile game GUI asset file for magnet, shield and multiplier upgrade assets.
         } else{
             Table goldBoxTable = new Table();
             goldBoxTable.top();
@@ -139,20 +136,6 @@ public class LevelSummaryScene {
         stack.add(innerInfoTable);
 
         innerInfoTable.row();
-        /*Button replayButton  = new Button(skin, "blue_replay");
-        innerInfoTable.add(replayButton).colspan(1).center().padTop(20);
-
-        replayButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if(!game.mute){
-                    click.play(Jumpy.volume);
-                }
-                //playScreen.reload();
-                game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);
-                System.out.println("Clicked 44444444444!");
-            }
-        });*/
 
         Button continueButton  = new Button(skin, "blue_continue");
         innerInfoTable.add(continueButton).colspan(1).center().padTop(20);
@@ -189,7 +172,7 @@ public class LevelSummaryScene {
         userPrefs.putInteger("lifeTimeTimePlayed", userPrefs.getInteger("lifeTimeTimePlayed", 0) + timePlayed);
         userPrefs.putInteger("lifeTimeEnemiesKilled", userPrefs.getInteger("lifeTimeEnemiesKilled", 0) + enemiesKilled);
         //update current # of gold
-        userPrefs.putInteger("goldEarned", coinsCollected);
+        userPrefs.putInteger("goldEarned", userPrefs.getInteger("goldEarned") + coinsCollected);
 
         //save level stats
         int highestGoldEarned = levelPrefs.getInteger("goldEarned", 0);
@@ -197,11 +180,6 @@ public class LevelSummaryScene {
         int highestNumberOfStars = levelPrefs.getInteger("numberOfStars", 0);
         int highestNumberOfEnemiesKilled = levelPrefs.getInteger("enemiesKilled", 0);
         int fastestCompletionTime = levelPrefs.getInteger("fastestCompletionTime", 0);
-        /*if(coinsCollected > highestGoldEarned || enemiesKilled > highestNumberOfEnemiesKilled || totalScore > highestPointsEarned || totalStars > highestNumberOfStars || timePlayed < fastestCompletionTime){
-            if(fastestCompletionTime != 0){
-                newPersonalBest = true;
-            }
-        }*/
 
         if(coinsCollected > highestGoldEarned){
             newPersonalBest = true;

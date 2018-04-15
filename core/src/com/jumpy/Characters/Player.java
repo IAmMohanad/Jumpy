@@ -130,11 +130,6 @@ public class Player extends DynamicObject {
     }
 
     private void assignBoosts(){
-        /*TODO
-        Set boostMaxDuration to appropriate value based on it's level.
-        set boostOn to false
-        if magnet create the magnet bounding box
-         */
         Preferences upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
         if(equippedWeapon != Active.NONE){
             int equippedActiveLevel = upgradePrefs.getInteger(equippedWeapon.toString().toUpperCase()+"Level");
@@ -158,7 +153,7 @@ public class Player extends DynamicObject {
                 //create bounding box
             } else if(equippedBoost == Boost.ARMOUR){
                 boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
-                //don't need to do anything else?
+                //don't need to do anything else
             }
         }
         boostOn = false;
@@ -354,9 +349,7 @@ public class Player extends DynamicObject {
                     }
                 }
 
-                /*if (down) {
-                    currentFrame = downAnimation.getKeyFrame(stateTime, true);
-                } else */if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
+                if ((up) && (grounded) && (timeSinceLastJump > 0.1)) {
                     currentFrame = jumpAnimation.getKeyFrame(stateTime, true);
                 }
 
@@ -391,10 +384,8 @@ public class Player extends DynamicObject {
                     currentFrame = idleAnimation.getKeyFrame(stateTime, true);
                 } else{
                     currentFrame = deathAnimation.getKeyFrame(stateTime, true);
-                    System.out.println("finito3");
                 }
                 if(dead && stateTime > 2f){// deathAnimation.isAnimationFinished(delta)){
-                    System.out.println("finito1111111111111111111111111");
                     deathComplete = true;
                 }
             }
@@ -504,7 +495,6 @@ public class Player extends DynamicObject {
     public void render(SpriteBatch batch, float delta, TextureRegion currentFrame){//camera only there to update boundingBoxPicture, can be removed
         batch.begin();
         batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);
-        //batch.draw(currentFrame, position.x, position.y);
         batch.end();
     }
 

@@ -89,39 +89,6 @@ public class Chaser extends Enemy {
             }
         }
 
-
-        //begin astar
-        //time++;
-        /*Vector2 start = new Vector2((int) (position.x / TileType.TILE_SIZE), (int)(position.y / TileType.TILE_SIZE));
-        Vector2 destination = new Vector2( (px / TileType.TILE_SIZE), (py / TileType.TILE_SIZE));
-        if(time % 60 == 0){
-            path = map.findPath(start, destination);
-            System.out.println(path.size() + "   x:" + path.get(path.size() - 1).tile.x+"     y:"+path.get(path.size() - 1).tile.y);
-        }
-        if(path != null){
-            if(path.size() > 0){
-                //path is stored in reverse order
-                Vector2 vec = path.get(path.size() - 1).tile;
-                if(position.x < (vec.x * 32)) {
-                    position.x += movementSpeed * delta;
-                } else if(position.x > (vec.x * 32)){
-                    position.x -= movementSpeed * delta;
-                }
-                if(position.y < (vec.y * 32)){
-                    position.y += movementSpeed * delta;
-                } else if(position.x > (vec.x * 32)){
-                    position.y -= movementSpeed * delta;
-                }
-            }
-        } else{
-           // System.out.println("there is no path");
-        }
-        //  System.out.println("start:"+start.getX() +  "  " + start.getY());
-        //  System.out.println("destination: "+destination.getX() +  "  " + destination.getY());
-        //end astar*/
-
-
-
         if(moveAnimation.isAnimationFinished(stateTime)){
             stateTime = 0;
         }

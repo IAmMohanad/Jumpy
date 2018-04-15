@@ -3,6 +3,8 @@ package com.jumpy.World;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -10,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.jumpy.Characters.Enemy;
 import com.jumpy.Characters.Player;
 import com.jumpy.Intersection;
+import com.jumpy.Jumpy;
 import com.jumpy.Objects.Coin;
 import com.jumpy.Objects.Exit;
 import com.jumpy.Objects.IceBallShooter;
@@ -23,13 +26,21 @@ import java.util.List;
 public abstract class GameMap {
     protected ShapeRenderer shapeRenderer = new ShapeRenderer();
 
+    protected TiledMap map;
+    protected OrthogonalTiledMapRenderer renderer;
+
+    protected Jumpy game;
+    protected Player player;
+    protected ArrayList<Coin> coinList = new ArrayList<Coin>();
+    protected ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+    protected ArrayList<IceBallShooter> projectileShootersList = new ArrayList<IceBallShooter>();
+    protected ArrayList<Exit> exitList = new ArrayList<Exit>();
+
     protected Hud hud;
     protected boolean isLevelComplete;
 
-    //public int[] tiles = new int[25 * 15];
     public abstract void load(String location);
     public abstract void render(OrthographicCamera camera, SpriteBatch batch, float delta);
-    //public abstract void update(float delta);
     public abstract void dispose();
     /**
      * Gets a tile by pixel position whithin the game world at a specified layer.
@@ -56,12 +67,10 @@ public abstract class GameMap {
         //with a collidable tile than a collision has occurred.
         for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
             for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
-                // for (int layer = 1; layer < getLayers(); layer++) {
                 TileType type = getTileTypeByCoordinate(1, col, row);
                 if (type != null && type.isCollidable()) {
                     return true;
                 }
-                //}
             }
         }
         return false;
@@ -82,6 +91,7 @@ public abstract class GameMap {
 
     public abstract int getLayers();
 
+    //snaps camera to player
     public abstract void cameraStop(OrthographicCamera camera);
 
     private Comparator<Node> sortNodes = new Comparator<Node>(){
@@ -135,6 +145,7 @@ public abstract class GameMap {
                 if(at.isCollidable()){
                     continue;
                 }
+
                 //calculate costs of tile being considered
                 Vector2 consideredTile = new Vector2(currentTileX + offsetX, currentTileY + offsetY);
                 //cost from current tile to tile being considered

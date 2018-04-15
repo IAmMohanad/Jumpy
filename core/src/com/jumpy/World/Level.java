@@ -28,17 +28,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Level extends GameMap {
-    private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
-    //private final String mapLocation = "retro_game_map3_collidable_objects.tmx";
-
-    private Jumpy game;
-    private Player player;
-
-    private ArrayList<Coin> coinList = new ArrayList<Coin>();
-    private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-    private ArrayList<IceBallShooter> projectileShootersList = new ArrayList<IceBallShooter>();
-    private ArrayList<Exit> exitList = new ArrayList<Exit>();
 
     private LevelSummaryScene levelSummary;
     private Stage stage;
@@ -75,42 +64,36 @@ public class Level extends GameMap {
 
     public ArrayList<Exit> getExits() { return this.exitList; }
 
-        //TODO create summary screen after 10 secs, then rest the game and see if player still doesn't appear.....
     @Override
     public void load(String location){
         map = new TmxMapLoader().load(location);
 
-        Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
-        Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
-        Passive equippedPassive = Passive.valueOf(userPrefs.getString("equippedPassive"));
-        Boost equippedBoost = Boost.valueOf(userPrefs.getString("equippedBoost"));
-
         isLevelComplete = false;
 
-        spawnElements(equippedActive, equippedBoost, equippedPassive);
+        spawnElements();
 
         renderer = new OrthogonalTiledMapRenderer(map);
 
         levelSummary = new LevelSummaryScene(game, playScreen);
     }
 
-    //Randomly choose the spawn points on a map. //TODO throw dice to choose spawn1/2/3/ etc also change collision layer if needed
-    private void spawnElements(Active equippedActive, Boost equippedBoost, Passive equippedPassive){
+    //Randomly choose the spawn points on a map.
+    private void spawnElements(){
         int numberOfSpawns = 1;
         if(map.getLayers().get("spawn1").getProperties().containsKey("numberOfSpawns")){
             numberOfSpawns = (Integer.parseInt(map.getLayers().get("spawn1").getProperties().get("numberOfSpawns").toString()));
         }
 
-        int spawnToUse = generateRandom(numberOfSpawns);
+        int spawnToUse = getRandomSpawnPoint(numberOfSpawns);
 
         String spawnChoice = "spawn"+String.valueOf(spawnToUse);
-        spawnPlayer(spawnChoice, equippedActive, equippedBoost, equippedPassive);
+        spawnPlayer(spawnChoice);
         spawnCoins(spawnChoice);
         spawnEnemies(spawnChoice);
         spawnProjectileShooters(spawnChoice);
     }
 
-    private int generateRandom(int numberOfSpawns) {
+    private int getRandomSpawnPoint(int numberOfSpawns) {
         int min = 1;
         Random r = new Random();
         return r.nextInt(numberOfSpawns-min+1) + min;
@@ -121,7 +104,7 @@ public class Level extends GameMap {
             if (object.getName().toLowerCase().equals("ice_ball_shooter")) {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 Move shootDirection = Move.valueOf(object.getProperties().get("direction").toString().toUpperCase());
-                if(object.getProperties().containsKey("shootInterval")){//TODO add new property shootInterval
+                if(object.getProperties().containsKey("shootInterval")){
                     int shootInterval = Integer.parseInt(object.getProperties().get("shootInterval").toString());
                     projectileShootersList.add(new IceBallShooter(map,this, objectRect.x, objectRect.y, shootDirection, shootInterval));
                 } else{
@@ -131,7 +114,11 @@ public class Level extends GameMap {
         }
     }
 
-    private void spawnPlayer(String spawnChoice, Active equippedActive, Boost equippedBoost, Passive equippedPassive){
+    private void spawnPlayer(String spawnChoice){
+        Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+        Active equippedActive = Active.valueOf(userPrefs.getString("equippedActive"));
+        Passive equippedPassive = Passive.valueOf(userPrefs.getString("equippedPassive"));
+        Boost equippedBoost = Boost.valueOf(userPrefs.getString("equippedBoost"));
         for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
             if (object.getName().toLowerCase().equals("player")) {
                 Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
@@ -154,25 +141,17 @@ public class Level extends GameMap {
     }
 
     private void spawnEnemies(String spawnChoice){
-        if(game.getIsHardMode()) {
-            enemiesList.add(new Chaser(this, player, 200, 100, 16, 16));
-        }
         for(MapObject object : map.getLayers().get(spawnChoice).getObjects()) {
             Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
             if(object.getName().toLowerCase().equals("gargoyle_flying")){
-                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new GargoyleFlying(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("goblin")){
-                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Goblin(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("barbarian")){
-                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Barbarian(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("gargoyle")){
-                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Gargoyle(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("totem")){
-                //Rectangle objectRect = ((RectangleMapObject) object).getRectangle();
                 enemiesList.add(new Totem(map, this, objectRect.x, objectRect.y));
             } else if(object.getName().toLowerCase().equals("spike")){
                 Move direction;
@@ -186,33 +165,14 @@ public class Level extends GameMap {
         }
     }
 
-    //private Vector2 rotatePoint(Vector2 position, Rectangle center, double angle){
-     //   angle = Math.toRadians(angle);
-    /*
-        double rotatedX = Math.cos(angle) * (position.x - center.x) - Math.sin(angle) * (position.y-center.y) + center.x;
-        double rotatedY = Math.sin(angle) * (position.x - center.x) + Math.cos(angle) * (position.y - center.y) + center.y;
-        return new Vector2((float) rotatedX, (float) rotatedY);*/
-        /*double x1 = position.x - center.x;
-        double y1 = position.y - center.y;
-
-        double x2 = x1 * Math.cos(angle) - y1 * Math.sin(angle);
-        double y2 = x1 * Math.sin(angle) + y1 * Math.cos(angle);
-
-        return new Vector2((float) x2 + center.x, (float) y2 + center.y);*/
-        /*double newX = center.x + (position.x-center.x)*Math.cos(angle) - (position.y-center.y)*Math.sin(angle);
+    private Vector2 rotatePoint(Vector2 position, Rectangle center, double angle){
+        angle = Math.toRadians(angle);
+        double newX = center.x + (position.x-center.x)*Math.cos(angle) - (position.y-center.y)*Math.sin(angle);
 
         double newY = center.y + (position.x-center.x)*Math.sin(angle) + (position.y-center.y)*Math.cos(angle);
 
-        return new Vector2((float) newX, (float) newY);*/
-
-
-        /*float rotateBy = 90 * delta;
-            Rectangle objectRect = new Rectangle(100, 100, 20, 20);
-            testCircle testCoin = new testCircle(this, 200, 200);
-            Vector2 rotatedPosition = rotatePoint(testCoin.getPosition(), objectRect, rotateBy);
-            testCoin.setPosition(rotatedPosition.x, rotatedPosition.y);
-            testCoin.update(batch, delta, camera);*/
-   // }
+        return new Vector2((float) newX, (float) newY);
+    }
 
     @Override
     public void render(OrthographicCamera camera, SpriteBatch batch, float delta) {
@@ -220,12 +180,9 @@ public class Level extends GameMap {
         renderer.render();
 
         if(!player.isDeathComplete()){
-            //hud.setScore(player.getPoints());
-
             hud.setLife(player.getHealth());
             hud.setCoinsCollected(player.getCoinsCollected());
 
-            //chaserTwo.update(batch, delta, camera);
             for(Coin coin : coinList){
                 coin.update(batch, delta, camera);
             }
@@ -244,17 +201,16 @@ public class Level extends GameMap {
             if(hud.getLevelTimer() <= 0){
                 player.die();
             }
-        } else{//level summary screen
+        } else{
             createSummary();
             isLevelComplete = true;
         }
     }
 
     private void createSummary(){
-        //TODO save the points / time / score in new preferences file. different preferences file for each level. One main one to check if level is done.
         if(firstTime){
             firstTime = false;
-            stage = levelSummary.create(player.getCoinsCollected(), player.getEnemiesKilled(), hud.getLevelTimer());//player.getPoints(), numberOfStars, player.getCoinsCollected());
+            stage = levelSummary.create(player.getCoinsCollected(), player.getEnemiesKilled(), hud.getLevelTimer());
             Gdx.input.setInputProcessor(stage);
         }
 
@@ -294,9 +250,9 @@ public class Level extends GameMap {
         return map.getLayers().getCount();
     }
 
-    public int getPixelWidth() { return getWidth() * TileType.TILE_SIZE;}// TileType.TILE_SIZE; }
+    public int getPixelWidth() { return getWidth() * TileType.TILE_SIZE;}
 
-    public int getPixelHeight() { return getHeight() * TileType.TILE_SIZE;}// TileType.TILE_SIZE; }
+    public int getPixelHeight() { return getHeight() * TileType.TILE_SIZE;}
 
     public void cameraStop(OrthographicCamera camera){
         //Stops camera moving out off the edge of the game world
@@ -310,7 +266,7 @@ public class Level extends GameMap {
         camera.update();
     }
 
-    public String getLevel(){
+    public String getCurrentLevel(){
         return this.currentLevel;
     }
 }

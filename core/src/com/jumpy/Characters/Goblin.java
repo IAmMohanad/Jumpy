@@ -1,22 +1,17 @@
 package com.jumpy.Characters;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.*;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jumpy.Jumpy;
 import com.jumpy.Move;
-import com.jumpy.Scenes.Hud;
 import com.jumpy.World.GameMap;
 
 public class Goblin extends Enemy {
@@ -60,7 +55,7 @@ public class Goblin extends Enemy {
     @Override
     public void create() {
         //idle
-        Texture textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_idle_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/goblin_32_32/goblin_idle_trimmed.png"));
+        Texture textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_idle_trimmed.png", Texture.class);
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth(), textureSheet.getHeight());
 
         TextureRegion[] idleFrames = new TextureRegion[1];
@@ -68,7 +63,7 @@ public class Goblin extends Enemy {
         idleAnimation = new Animation<TextureRegion>(0.1f, idleFrames);
 
         //walk
-        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_walk_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/goblin_32_32/goblin_walk_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_walk_trimmed.png", Texture.class);
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
         TextureRegion[] walkFrames = new TextureRegion[8];
         for(int i=0; i<walkFrames.length; i++){
@@ -77,7 +72,7 @@ public class Goblin extends Enemy {
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
         //run
-        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_run_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/goblin_32_32/goblin_run_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_run_trimmed.png", Texture.class);
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
         TextureRegion[] runFrames = new TextureRegion[8];
         for(int i=0; i<runFrames.length; i++){
@@ -86,7 +81,7 @@ public class Goblin extends Enemy {
         runAnimation = new Animation<TextureRegion>(0.1f, runFrames);
 
         //die
-        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_die_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/goblin_32_32/goblin_die_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_die_trimmed.png", Texture.class);
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 5, textureSheet.getHeight());
         TextureRegion[] dieFrames = new TextureRegion[5];
         for(int i=0; i<dieFrames.length; i++){
@@ -95,7 +90,7 @@ public class Goblin extends Enemy {
         dieAnimation = new Animation<TextureRegion>(0.2f, dieFrames);
 
         //hit
-        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_hit_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/goblin_32_32/goblin_hit_trimmed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/baddies/goblin_32_32/goblin_hit_trimmed.png", Texture.class);
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 2, textureSheet.getHeight());
         TextureRegion[] hitFrames = new TextureRegion[2];
         for(int i=0; i<hitFrames.length; i++){
@@ -110,38 +105,48 @@ public class Goblin extends Enemy {
         }
     }
 
+    private void isPlayerNearby(Player player){
+        Move currentDirection = direction;
+        if((Math.abs(position.x - player.getBoundingBox().x) < 50) && (Math.abs(position.y - player.getBoundingBox().y)) < 50){
+            if(position.x - player.getBoundingBox().x < 0){
+                direction = Move.RIGHT;
+            } else{
+                direction = Move.LEFT;
+            }
+        } else{
+            if(direction != currentDirection){
+                direction = currentDirection;
+            }
+        }
+    }
 
     @Override
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
         this.stateTime += delta;
         updateGravity(delta);
-        //collidesWithCollidableObject();
         if(!dead){
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                //TODO changed this to OR and removed NOT, makes it easier to read, change all other objects...
-                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))){
                     direction = Move.LEFT;
                 }
             } else if(direction == Move.LEFT){
                 float newX = boundingBox.x - movementSpeed * delta;
-                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
+                if (collidesWithCollidableObject(newX) || map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) || (map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))){
                     direction = Move.RIGHT;
                 }
             }
 
             if(direction == Move.RIGHT){
                 float newX = boundingBox.x + movementSpeed * delta;
-                //TODO can take out the bottom if statement from ALL objects as its repeating the check done line 119
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
+                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))){
                     position.x += movementSpeed * delta;
                 }
                 flip = false;
             } else if(direction == Move.LEFT) {
                 float newX = boundingBox.x - movementSpeed * delta;
-                //TODO can take out the bottom if statement from ALL objects as its repeating the check done line 119
-                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))/* && (!collidesWithCollidableObject())*/) {
+                if (!map.collideWithMapEdges(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height) && (!map.doesRectCollideWithMap(newX, boundingBox.y, (int) boundingBox.width, (int) boundingBox.height))){
                     position.x -= movementSpeed * delta;
                 }
                 flip = true;
@@ -161,7 +166,7 @@ public class Goblin extends Enemy {
 
         boundingBox.setPosition(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET);
         updateBoundingBoxPicture(camera,(int) position.x + B_BOX_X_OFFSET, (int) position.y + B_BOX_Y_OFFSET);
-        if(!deathComplete){//!dieAnimation.isAnimationFinished(stateTime) || !dead){
+        if(!deathComplete){
             batch.begin();
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);
             batch.end();

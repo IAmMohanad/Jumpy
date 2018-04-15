@@ -55,14 +55,6 @@ public class Barbarian extends Enemy {
 
     @Override
     public void create() {
-        //idle
-       /* Texture textureSheet = new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_idle_trimmed.png"));
-        TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth(), textureSheet.getHeight());
-
-        TextureRegion[] idleFrames = new TextureRegion[1];
-        idleFrames[0] = tmp[0][0];
-        idleAnimation = new Animation<TextureRegion>(0.1f, idleFrames);*/
-
         //walk
         Texture textureSheet = Jumpy.assetManager.get("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_walk_trimmed.png"));
         TextureRegion[][] tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
@@ -72,15 +64,6 @@ public class Barbarian extends Enemy {
         }
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
-        //run
-        /*textureSheet = new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_run_trimmed.png"));
-        tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 8, textureSheet.getHeight());
-        TextureRegion[] runFrames = new TextureRegion[8];
-        for(int i=0; i<runFrames.length; i++){
-            runFrames[i] = tmp[0][i];
-        }
-        runAnimation = new Animation<TextureRegion>(0.1f, runFrames);*/
-
         //die
         textureSheet = Jumpy.assetManager.get("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png", Texture.class);//new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_die_trimmed.png"));
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 5, textureSheet.getHeight());
@@ -89,15 +72,6 @@ public class Barbarian extends Enemy {
             dieFrames[i] = tmp[0][i];
         }
         dieAnimation = new Animation<TextureRegion>(0.2f, dieFrames);
-
-        //hit
-        /*textureSheet = new Texture(Gdx.files.internal("characters/baddies/barbarian_32_32/barbarian_hit_trimmed.png"));
-        tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 2, textureSheet.getHeight());
-        TextureRegion[] hitFrames = new TextureRegion[2];
-        for(int i=0; i<hitFrames.length; i++){
-            hitFrames[i] = tmp[0][i];
-        }
-        hitAnimation = new Animation<TextureRegion>(0.2f, hitFrames);*/
 
         if(MathUtils.random(10) > 5){
             direction = Move.RIGHT;

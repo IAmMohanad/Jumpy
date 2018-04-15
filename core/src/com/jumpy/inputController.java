@@ -63,7 +63,6 @@ public class inputController extends InputAdapter {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        //Player.up = true;
        // System.out.println(screenX + "  "+ screenY+" width:"+Gdx.graphics.getWidth());
        /* if(screenX < Gdx.graphics.getWidth() / 2){
             Player.left = true;
@@ -76,7 +75,6 @@ public class inputController extends InputAdapter {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        //Player.up = false;
         /*if(screenX < Gdx.graphics.getWidth() / 2){
             Player.left = false;
         }

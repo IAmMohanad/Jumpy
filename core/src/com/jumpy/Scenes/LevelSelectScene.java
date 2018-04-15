@@ -23,7 +23,6 @@ public class LevelSelectScene {
     private Skin skin;
 
     private Sound click;
-    private boolean isHardMode;
 
     public LevelSelectScene(Jumpy game) {
         this.game = game;
@@ -31,7 +30,6 @@ public class LevelSelectScene {
 
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
-        isHardMode = false;
         // Make the stage consume events
     }
 
@@ -62,7 +60,6 @@ public class LevelSelectScene {
                     click.play(game.volume);
                     game.setCurrentLevel("1-2");
                     game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
-                    //game.setIsHardMode(isHardMode);
                 }
                 System.out.println("Clicked 1-2!");
             }
@@ -75,8 +72,6 @@ public class LevelSelectScene {
                     click.play(game.volume);
                 }
                 game.setCurrentLevel("1-3");
-                game.setIsHardMode(isHardMode);
-                //game.setPlay(); //commented out during screenManager changes
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.PLAY);
                 System.out.println("Clicked 1-3!");
             }
@@ -91,21 +86,10 @@ public class LevelSelectScene {
                 if(!game.mute){
                     click.play(game.volume);
                 }
-                //game.setPlay(); //commented out during screenManager changes
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.SHOP);
                 System.out.println("Clicked SHOP!");
             }
         });
-        /*hardModeCheckBox.addListener(new ChangeListener() {
-            @Override
-            public void changed (ChangeEvent event, Actor actor) {
-                if(hardModeCheckBox.isChecked()){
-                    isHardMode = true;
-                } else{
-                    isHardMode = false;
-                }
-            }
-        });*/
 
         backButton.addListener(new ClickListener(){
             @Override
@@ -113,8 +97,6 @@ public class LevelSelectScene {
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
             }
         });
-
-
 
         Table table = new Table();
         table.top();

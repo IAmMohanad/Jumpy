@@ -23,7 +23,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	public static ScreenManager.GAME_STATE gameState;
 
 	private String currentLevel;
-	private boolean isHardMode;
 
 	public SpriteBatch batch;
 
@@ -53,7 +52,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		}
 
 		setScreen(new LoadingScreen(this, screenManager));
-		soundManager.playMusic(screenManager.getGameState());
+		//soundManager.playMusic(screenManager.getGameState());
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
 
@@ -76,7 +75,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 				userPrefs.putString("equippedActive", Active.NONE.toString());
 				userPrefs.putString("equippedPassive", Passive.NONE.toString());
 				userPrefs.putString("equippedBoost", Boost.NONE.toString());
-				userPrefs.putString("username", CreatePlayerId());//TODO replace golden751 with CreatePlayerId()
+				userPrefs.putString("username", CreatePlayerId());
 				userPrefs.putInteger("lifeTimepointsEarned", 0);
 				userPrefs.putInteger("lifeTimeEnemiesKilled", 0);
 				userPrefs.putInteger("lifeTimeTimePlayed", 0);
@@ -99,6 +98,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	@Override
 	public void render () {
+		//Gdx.graphics.setTitle(String.valueOf(Gdx.graphics.getFramesPerSecond()));
 		super.render();
 	}
 	
@@ -118,14 +118,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	public void setCurrentLevel(String lvl){
 		this.currentLevel = lvl;
-	}
-
-	public void setIsHardMode(boolean mode){
-		this.isHardMode = mode;
-	}
-
-	public boolean getIsHardMode(){
-		return isHardMode;
 	}
 
 	private boolean updateUpgradePrefs(String upgradesUrl){

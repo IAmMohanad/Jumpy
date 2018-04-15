@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="38" height="29" tilewidth="32" tileheight="32" nextobjectid="652">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="38" height="29" tilewidth="32" tileheight="32" nextobjectid="653">
  <tileset firstgid="1" source="../../../retro_tiled_tileset.tsx"/>
  <tileset firstgid="10" source="../../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
@@ -1492,5 +1492,6 @@
   <object id="636" name="goblin" x="528" y="874.667"/>
   <object id="649" name="exit" x="183.432" y="693.409" width="8.13636" height="30.1818"/>
   <object id="651" name="exit" x="48.4318" y="829.909" width="8.13636" height="30.1818"/>
+  <object id="652" name="goblin" x="663.333" y="523"/>
  </objectgroup>
 </map>

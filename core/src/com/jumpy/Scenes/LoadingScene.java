@@ -67,10 +67,6 @@ public class LoadingScene {
     }
 
     public void render() {
-        /*if(game.mute){
-            backgroundMusic.pause();
-        }*/
-        //backgroundMusic.setVolume(game.volume);
         stage.act();
         stage.draw();
     }

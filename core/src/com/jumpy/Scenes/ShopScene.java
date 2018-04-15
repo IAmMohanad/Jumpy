@@ -64,7 +64,6 @@ public class ShopScene {
 
         //create the table that goes inside the scroll pane
         scrollPaneTable = new Table();
-        //scrollPaneTable.setFillParent(true);
         scrollPaneTable.top();
 
         gravityBootsContainer = new Table();
@@ -95,18 +94,14 @@ public class ShopScene {
         scrollPaneTable.add(laserContainer).expandX();
 
         ScrollPane upgradesPane = new ScrollPane(scrollPaneTable, skin, "default-no-slider");
-        //upgradesPane.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / 4);
 
         //RIGHT SIDE information table.
         Table informationTable = new Table();
-        //informationTable.setFillParent(true);
-        //informationTable.top();
 
         //add label to the information table
         informationDescription = new Label("Choose a item from the left to see the description!", skin, "skin-normal");
         informationDescription.setWidth(100);
         informationDescription.setWrap(true);
-        //informationDescription.setWidth(informationTable.getWidth());//maybe remove this if any issues with compiling...
         informationTable.add(informationDescription).width(250f);
 
 
@@ -443,7 +438,7 @@ public class ShopScene {
         Table upgradeImageTable = new Table();
         Table upgradeLevelTable =  new Table();
         upgradeImageTable.add(new Image(new Texture(("ui/new ui/Armour_48.png"))));
-        upgradeLevelTable.add(new Label("Disguise", skin, "skin-normal"));//TODO keep this as disguise because doesn't kill enemy on touch?
+        upgradeLevelTable.add(new Label("Disguise", skin, "skin-normal"));
         upgradeLevelTable.row();
         final Table horizontalGroup = new Table();
         populateHorizontalGroup(horizontalGroup, armourUpgradeLevel);

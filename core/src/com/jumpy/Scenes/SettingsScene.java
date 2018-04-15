@@ -66,7 +66,7 @@ public class SettingsScene {
                 }
                 game.volume = volumeSlider.getValue() / 100;
                 //SoundManager.updateBackgroundMusicVolume(game.volume);
-                Jumpy.soundManager.updateMusicVolume(game.volume);
+                //Jumpy.soundManager.updateMusicVolume(game.volume);
                 //settings.flush();
             }
         });
@@ -136,7 +136,7 @@ public class SettingsScene {
 
     public void loadSound(){
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
-        game.soundManager.playMusic(ScreenManager.GAME_STATE.MAIN_MENU);
+        //game.soundManager.playMusic(ScreenManager.GAME_STATE.MAIN_MENU);
     }
 
     public void render(){

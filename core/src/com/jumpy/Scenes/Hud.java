@@ -68,7 +68,7 @@ public class Hud{
         if(delta == 0){
             System.out.println("here");
         }
-        timeCounter += delta; //Gdx.graphics.getDeltaTime();
+        timeCounter += delta;
         if(timeCounter >= 1f){
             timeCounter = 0;
             clock -= 1;
@@ -86,24 +86,17 @@ public class Hud{
     }
 
     public Hud(SpriteBatch batch, GameMap level, final PlayScreen playScreen){
-        Jumpy.soundManager.stopMusic(Jumpy.screenManager.getGameState());
-        System.out.println(Jumpy.soundManager.music.isPlaying());
-        //this.player = level.getPlayer();
         this.playScreen = playScreen;
         this.level = level;
         clock = CLOCK_START_VALUE;
 
         settings = Gdx.app.getPreferences("settings");
         isTouchPad = settings.getBoolean("isTouchPad", true);
-        //make this global in jumpy
         if(Gdx.app.getType() == Application.ApplicationType.Android){
             android = true;
         } else{
             android = false;
         }
-
-        //TODO Finish adding score, level label, lives. Add getter/setter methods for relevant labels.
-
         skin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
         score = 0;
 
@@ -122,7 +115,6 @@ public class Hud{
         topRowTable.bottom().left();
         topRowTable.setFillParent(true);
 
-        //create heart with current life inside it
         life = new Stack();
         life.add(new Image(new Texture(Gdx.files.internal("ui/new ui/heart_resized.png"))));
         Table healthAmountTable = new Table();
@@ -133,15 +125,12 @@ public class Hud{
         life.add(healthAmountTable);
         topRowTable.add(life).colspan(1).left().padTop(5).padLeft(5).padRight(15);
 
-        //create gold earned counter
         Table coinsCollectedTable = new Table();
         dollarSign = new Image(new Texture(Gdx.files.internal("ui/new ui/dollar_sign.png")));
         coinsCollectedTable.add(dollarSign).expandX().left();
         coinsCollectedLabel = new Label("0", skin, "small");
         coinsCollectedTable.add(coinsCollectedLabel).expandX().left().padTop(10);
         topRowTable.add(coinsCollectedTable).colspan(1).left().padLeft(15).padRight(15);
-        //scoreLabel = new Label(String.format("%06d", score), skin, "small");//%06d
-        //table.add(scoreLabel).colspan(1).left().padTop(20).padLeft(5);//.expandX().left().padTop(20).padLeft(5);
         //clock label
         clockLabel = new Label(String.format("%ds", clock), skin, "small");
         topRowTable.add(clockLabel).colspan(1).left().padTop(10).padLeft(15);
@@ -152,10 +141,8 @@ public class Hud{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(!isPause){
-                    //playScreen.pauseGame();
                     pauseGame();
                 } else{
-                    //playScreen.resumeGame();
                     resumeGame();
                 }
 
@@ -175,16 +162,9 @@ public class Hud{
             Table controlButtonsTable = new Table();
             //jump button
             ImageButton jumpButton = new ImageButton(skin, "cButton40");
-            //table.add(jumpButton).expandY().expandX().bottom().right().padBottom(45).padRight(20);
             attackButton = new ImageButton(skin, "xButton40");
 
-            //boost button, bottom of stack is image, top is countdown text
-            Stack boostButtonStack = new Stack();
             ImageButton boostButton = new ImageButton(skin, "zButton40");
-            //Image boostImage = new Image(new Texture(Gdx.files.internal("ui/new ui/boost_button_symbol_34x34.png")));
-            //Label boostDurationLeft = new Label(String.valueOf(""), skin, "small");//TODO add public method in player to get duration left in boost.
-            //boostButtonStack.add(boostImage);//TODO lightning image when not clicked, replace with countdown when its clicked?
-            //boostButtonStack.add(boostDurationLeft);
             controlButtonsTable.add(boostButton).expandX().left().padRight(20);
             controlButtonsTable.add(attackButton).expandX().padRight(20);
             controlButtonsTable.add(jumpButton).expandX().right();
@@ -234,8 +214,6 @@ public class Hud{
         accelY = Gdx.input.getAccelerometerY();
         accelZ = Gdx.input.getAccelerometerZ();
 
-
-       // System.out.println("x: "+accelX+"    y: "+accelY+"      z: "+accelZ);
         if(android){
             if(isTouchPad){
                 if(touchpad.getKnobPercentX() > 0){
@@ -267,7 +245,6 @@ public class Hud{
     }
 
     public void render(float delta){
-        //scoreLabel.setText(String.format("%06d", score));
         stage.act();
         stage.draw();
         if(level.getIsLevelComplete()){

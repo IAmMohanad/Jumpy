@@ -115,9 +115,6 @@ public class HiscoreScene {
         addRankingToTable(innerTable, "Total Gold: ", playerScoreMap.get("totalGold"));
 
         innerTable.row();
-        addRankingToTable(innerTable, "Total Stars:", playerScoreMap.get("totalStars"));
-
-        innerTable.row();
         addRankingToTable(innerTable, "Total Time Played:", playerScoreMap.get("totalTimePlayed"));
 
         innerTable.row();//empty line for formatting
@@ -304,7 +301,7 @@ public class HiscoreScene {
 
     public Stage create(){
         loadSound();
-        Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
+       //Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
         Table innerTable;
         Table table = new Table();
         table.setFillParent(true);
@@ -453,7 +450,6 @@ public class HiscoreScene {
                     return;
                 }
                 String status = httpResponse.getResultAsString();
-                //System.out.println(status);
                 JsonValue json = new JsonReader().parse(status);
                 JsonValue mess = json.get("message");
                 //Store player rankings into hash maps
@@ -461,7 +457,6 @@ public class HiscoreScene {
 
                 playerScoreMap = new HashMap<String, String>();
                 for (JsonValue info : playerInfo.iterator()){ // iterator() returns a list of children
-                    //"total_points": 59696, "total_gold": 129, "total_stars": 17, "total_time_played": 584}, "level_one": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 6010}, "level_two": {"completed": true, "player_rank": 2, "fastest_time": 0, "max_points": 51}, "level_three": {"completed": false, "player_rank": 1, "fastest_time": 0, "max_points": 0}
                     System.out.println(info.isString());
                     String nodeName = info.name;
                     System.out.println(info.asString());
@@ -526,16 +521,10 @@ public class HiscoreScene {
     }
 
     public void loadSound(){
-
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
-        //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
     }
 
     public void render() {
-        /*if(game.mute){
-            backgroundMusic.pause();
-        }*/
-        //backgroundMusic.setVolume(game.volume);
         stage.act();
         stage.draw();
     }

@@ -139,17 +139,10 @@ public class MainMenuScene {
     }
 
     public void loadSound(){
-        game.soundManager.playMusic(ScreenManager.GAME_STATE.MAIN_MENU);
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
-        //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
-        //SoundManager.loadBackgroundMusic();
     }
 
     public void render() {
-        /*if(game.mute){
-            backgroundMusic.pause();
-        }*/
-        //backgroundMusic.setVolume(game.volume);
         stage.act();
         stage.draw();
     }

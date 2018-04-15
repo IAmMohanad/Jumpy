@@ -228,6 +228,8 @@ public class ShopScene {
                     gravityEquipLabel.setText("EQUIPPED");
                     userPrefs.putString("equippedPassive", Passive.ANTI_GRAVITY.name());
                     userPrefs.flush();
+                    loadGravityBootsContainer();
+                    loadSpeedBootsContainer();
                 }
             }
         });
@@ -299,6 +301,7 @@ public class ShopScene {
                         userPrefs.putInteger("goldEarned", userCurrentGold - speedUpgradeCost);
                         upgradePrefs.flush();
                         userPrefs.flush();
+                        loadGravityBootsContainer();
                         loadSpeedBootsContainer();
                     }
                 }
@@ -318,6 +321,7 @@ public class ShopScene {
                     speedEquipLabel.setText("EQUIPPED");
                     userPrefs.putString("equippedPassive", Passive.SPEED.name());
                     userPrefs.flush();
+                    loadSpeedBootsContainer();
                 }
             }
         });
@@ -407,6 +411,8 @@ public class ShopScene {
                     magnetEquipLabel.setText("EQUIPPED");
                     userPrefs.putString("equippedBoost", Boost.MAGNET.name());
                     userPrefs.flush();
+                    loadMagnetContainer();
+                    loadArmourContainer();
                 }
             }
         });
@@ -494,6 +500,8 @@ public class ShopScene {
                     armourEquipLabel.setText("EQUIPPED");
                     userPrefs.putString("equippedBoost", Boost.ARMOUR.name());
                     userPrefs.flush();
+                    loadMagnetContainer();
+                    loadArmourContainer();
                 }
             }
         });
@@ -526,7 +534,7 @@ public class ShopScene {
 
         Table upgradeImageTable = new Table();
         Table upgradeLevelTable =  new Table();
-        upgradeImageTable.add(new Image(new Texture(("ui/new ui/Armour_48.png"))));
+        upgradeImageTable.add(new Image(new Texture(("ui/new ui/crossed_swords_48.png"))));
         upgradeLevelTable.add(new Label(upgradeName, skin, "skin-normal"));
         upgradeLevelTable.row();
         final Table horizontalGroup = new Table();
@@ -564,7 +572,7 @@ public class ShopScene {
                         userPrefs.putInteger("goldEarned", userCurrentGold - laserUpgradeCost);
                         upgradePrefs.flush();
                         userPrefs.flush();
-                        loadArmourContainer();
+                        loadLaserContainer();
                     }
                 }
             }
@@ -583,6 +591,7 @@ public class ShopScene {
                     laserEquipLabel.setText("EQUIPPED");
                     userPrefs.putString("equippedBoost", Active.LASER.name());
                     userPrefs.flush();
+                    loadLaserContainer();
                 }
             }
         });
@@ -602,13 +611,7 @@ public class ShopScene {
         laserContainer.add(laserEquipLabel).padLeft(5).expandX();
     }
 
-
-    private void createUpgradeBox(String upgradeName, int upgradeLevel, int upgradeCost, boolean upgradeUnlocked){
-
-    }
-
     public void render(){
-        //if((settings.getFloat("volume") > 0) && settings.getBoolean("soundOn"))
         stage.act();
         stage.draw();
     }

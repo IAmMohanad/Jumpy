@@ -35,7 +35,7 @@
   </properties>
   <object id="1" name="collidable" x="602.5" y="126.333" width="11" height="86.3333">
    <properties>
-    <property name="all" type="bool" value="false"/>
+    <property name="all" type="bool" value="true"/>
     <property name="goblin" type="bool" value="true"/>
    </properties>
   </object>

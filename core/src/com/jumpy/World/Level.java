@@ -210,7 +210,7 @@ public class Level extends GameMap {
     private void createSummary(){
         if(firstTime){
             firstTime = false;
-            stage = levelSummary.create(player.getCoinsCollected(), player.getEnemiesKilled(), hud.getLevelTimer());
+            stage = levelSummary.create(player.getCoinsCollected(), player.getEnemiesKilled(), hud.getLevelTimer(), player.getExitReached());
             Gdx.input.setInputProcessor(stage);
         }
 

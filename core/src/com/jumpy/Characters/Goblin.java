@@ -44,7 +44,7 @@ public class Goblin extends Enemy {
         position = new Vector2(x, y);
         boundingBox = new Rectangle();
         boundingBox.set(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET, B_BOX_WIDTH, B_BOX_HEIGHT);
-        movementSpeed = 125;
+        movementSpeed = 175;
         velocityY = 0;
         grounded = false;
         dead = false;

@@ -60,12 +60,12 @@ public class LevelSummaryScene {
     }
 
     //player.getCoinsCollected(), player.getEnemiesKilled(), ((300 - hud.getLevelTimer()) / 10))
-    public Stage create(int coinsCollected, int enemiesKilled, int timeLeft){//(int points, int numberOfStars, int goldEarnedAmount){
+    public Stage create(int coinsCollected, int enemiesKilled, int timeLeft, boolean ExitReached){//(int points, int numberOfStars, int goldEarnedAmount){
         loadSound();
         int timePlayed = 300 - timeLeft;
         calculateTotalScoreEarned(coinsCollected, enemiesKilled, timePlayed);
         calculcateNumberOfStars();
-        saveLevelDetails(coinsCollected, enemiesKilled, timePlayed, totalScoreEarned, totalNumberOfStarsEarned);
+        saveLevelDetails(coinsCollected, enemiesKilled, timePlayed, totalScoreEarned, totalNumberOfStarsEarned, ExitReached);
         Image levelClearedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/level_complete_generic.png")));
         Image activeStarSideLeft;
         Image activeStarSideRight;
@@ -159,7 +159,7 @@ public class LevelSummaryScene {
         return stage;
     }
 
-    private void saveLevelDetails(int coinsCollected, int enemiesKilled, int timePlayed, int totalScore, int totalStars){//int numberOfStars, int goldEarned, int points){
+    private void saveLevelDetails(int coinsCollected, int enemiesKilled, int timePlayed, int totalScore, int totalStars, boolean exitReached){
         Preferences levelPrefs = Gdx.app.getPreferences(game.getCurrentLevel());//"1-3");
         Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
@@ -181,26 +181,31 @@ public class LevelSummaryScene {
         int highestNumberOfEnemiesKilled = levelPrefs.getInteger("enemiesKilled", 0);
         int fastestCompletionTime = levelPrefs.getInteger("fastestCompletionTime", 0);
 
-        if(coinsCollected > highestGoldEarned){
-            newPersonalBest = true;
-            levelPrefs.putInteger("goldEarned", coinsCollected);
-        }
-        if(enemiesKilled > highestNumberOfEnemiesKilled){
-            newPersonalBest = true;
-            levelPrefs.putInteger("enemiesKilled", enemiesKilled);
-        }
-        if(totalScore > highestPointsEarned){
-            newPersonalBest = true;
-            levelPrefs.putInteger("pointsEarned", totalScore);
-        }
-        if(totalStars > highestNumberOfStars){
-            newPersonalBest = true;
-            levelPrefs.putInteger("numberOfStars", totalStars);
-        }
-        if(timePlayed < fastestCompletionTime && fastestCompletionTime != 0){
-            newPersonalBest = true;
-            levelPrefs.putInteger("fastestCompletionTime", timePlayed);
-        }
+        //if(exitReached){
+            if(coinsCollected > highestGoldEarned){
+                newPersonalBest = true;
+                levelPrefs.putInteger("goldEarned", coinsCollected);
+            }
+            if(enemiesKilled > highestNumberOfEnemiesKilled){
+                newPersonalBest = true;
+                levelPrefs.putInteger("enemiesKilled", enemiesKilled);
+            }
+            if(totalScore > highestPointsEarned){
+                newPersonalBest = true;
+                levelPrefs.putInteger("pointsEarned", totalScore);
+            }
+            if(totalStars > highestNumberOfStars){
+                newPersonalBest = true;
+                levelPrefs.putInteger("numberOfStars", totalStars);
+            }
+            if(exitReached){
+                if((timePlayed < fastestCompletionTime || fastestCompletionTime == 0)){
+                    newPersonalBest = true;
+                    levelPrefs.putInteger("fastestCompletionTime", timePlayed);
+                }
+            }
+        //}
+
         userPrefs.flush();
         levelPrefs.flush();
     }

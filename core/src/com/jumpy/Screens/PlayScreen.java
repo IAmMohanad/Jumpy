@@ -27,7 +27,6 @@ public class PlayScreen implements Screen {
 
     private OrthographicCamera camera;
     private GameMap map;
-    public Player player;
     private Viewport gamePort;
     private Hud hud;
 
@@ -42,7 +41,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(Jumpy game){
         this.game = game;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 960, 540);//960, 540);//Gdx.graphics.getWidth(), Gdx.graphics.getHeight());//800, 480
+        camera.setToOrtho(false, 960, 540);
 
         gamePort = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
 
@@ -60,12 +59,12 @@ public class PlayScreen implements Screen {
         } else if(game.getCurrentLevel().equals("1-2")){
             mapLocation = "maps/completed_map/level_2/level_two_complete.tmx";
         } else if(game.getCurrentLevel().equals("1-3")){
-            mapLocation = "retro_game_map3_collidable_objects.tmx";
+            mapLocation = "maps/completed_map/level_4/level_4.tmx";
         }
             reload = false;
             if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
-                this.loadedLevel = "1-3";
-                this.map = new Level(game,/* hud,*/ this);
+                //this.loadedLevel = "1-3";
+                this.map = new Level(game,this);
                 map.load(mapLocation);
             hud = new Hud(game.batch, map, this);
             hudStage = hud.getStage();
@@ -155,63 +154,11 @@ public class PlayScreen implements Screen {
 
     public void pauseGame(){
         isPause = true;
-        /*pauseGroup =  new Group();
-
-        Image levelPausedBackground = new Image(new Texture(Gdx.files.internal("ui/new ui/paused_background.png")));
-        Image invisibleSquare = new Image(new Texture(Gdx.files.internal("ui/new ui/invisible_square_paused_screen.png")));
-        Image muteButton;
-        Image resumeButton;
-        Image restartButton;
-        Image exitButton;
-
-        Table outerTable = new Table();
-        outerTable.top();
-        outerTable.setFillParent(true);
-
-        //add backgrounds
-        Table backgroundTable = new Table();
-        backgroundTable.add(levelPausedBackground);
-
-        //add buttons
-        Table innerInfoTable = new Table();
-        innerInfoTable.top();
-        innerInfoTable.setFillParent(true);
-        innerInfoTable.row();
-        innerInfoTable.add(invisibleSquare).left().colspan(3);
-
-        innerInfoTable.row();
-        if(Jumpy.mute){
-            muteButton = new Image(new Texture("ui/new ui/volume_off_32x32.png"));
-        } else{
-            muteButton = new Image(new Texture("ui/new ui/volume_on_32x32.png"));
-        }
-        innerInfoTable.add(muteButton).expandX().left().padTop(20);
-        innerInfoTable.row();
-
-        resumeButton = new Image(new Texture("ui/new ui/blue_button_resume_92x42.png"));
-        innerInfoTable.add(resumeButton).expandX().center().padTop(20);
-        resumeButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                resumeGame();
-            }
-        });
-
-        Stack stack = new Stack();
-        stack.add(backgroundTable);
-        stack.add(innerInfoTable);
-
-
-        outerTable.add(stack).center();
-        pauseGroup.addActor(outerTable);
-
-        hud.stage.addActor(pauseGroup);*/
     }
 
     public void resumeGame(){
         if(isPause){
             isPause = false;
-           // pauseGroup.remove();
         }
     }
 }

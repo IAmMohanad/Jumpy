@@ -80,8 +80,8 @@ public class HiscoreScene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked bacak in no connection scene!");
-                if(!game.mute){// game.soundOn){
-                    click.play(game.volume);//game.volume);
+                if(!game.mute){
+                    click.play(game.volume);
                 }
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
             }
@@ -122,6 +122,10 @@ public class HiscoreScene {
 
         innerTable.row();
         String suffix;
+
+        //populateScores(innerTable, "ONE", levelOneScoreMap);
+        //populateScores(innerTable, "TWO", levelTwoScoreMap);
+        //populateScores(innerTable, "THREE", levelThreeScoreMap);
 
         if(levelOneScoreMap.get("completed").equals("true")){
             Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
@@ -241,6 +245,42 @@ public class HiscoreScene {
         return table;
     }
 
+    private void populateScores(Table innerTable, String level, Map<String, String> scoreMap){
+        String suffix;
+        if(scoreMap.get("completed").equals("true")) {
+            Label levelTwoRankingTitle = new Label("LEVEL "+level+" RANKING", skin, "skin-normal");
+            innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+
+            if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 1) {
+                suffix = "st";
+            } else if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 2) {
+                suffix = "nd";
+            } else if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 3) {
+                suffix = "rd";
+            } else {
+                suffix = "th";
+            }
+            innerTable.row();
+
+            addRankingToTable(innerTable, "Your Rank: ", scoreMap.get("player_rank") + suffix);
+
+            innerTable.row();
+            addRankingToTable(innerTable, "Fastest Time: ", scoreMap.get("fastest_time") + "secs");
+
+            innerTable.row();
+            addRankingToTable(innerTable, "Max Points Earned: ", scoreMap.get("max_points"));
+
+            innerTable.row();//empty line for formatting
+            innerTable.add(new Label("", skin, "skin-normal"));
+            innerTable.row();
+        } else{
+            Label levelTwoRankingTitle = new Label("LEVEL "+level+" NOT COMPLETE", skin, "skin-normal");
+            innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.add(new Label("", skin, "skin-normal")).expandX().expandY().center().padLeft(5).colspan(3);
+            innerTable.row();
+        }
+    }
+
     private void setConnected(boolean isConn){
         if(isConn){
             isConnected = true;
@@ -340,28 +380,29 @@ public class HiscoreScene {
         Preferences levelOnePrefs = Gdx.app.getPreferences("1-1");
         Preferences levelTwoPrefs = Gdx.app.getPreferences("1-2");
         Preferences levelThreePrefs = Gdx.app.getPreferences("1-3");
+        Preferences levelFourPrefs = Gdx.app.getPreferences("1-4");
 
         httpRequestFinished = false;
         if(levelOnePrefs != null){
-           // if(levelOnePrefs.getBoolean("needsUpdate", false)){
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/"+playerPrefs.getString("username")+"/1/"+levelOnePrefs.getInteger("pointsEarned")+"/"+levelOnePrefs.getInteger("goldEarned")+"/"+levelOnePrefs.getInteger("numberOfStars")+"/"+levelOnePrefs.getInteger("fastestCompletionTime"));
                 levelOnePrefs.putBoolean("needsUpdate", false);
                 levelOnePrefs.flush();
-           // }
         }
         if(levelTwoPrefs != null) {
-           // if (levelTwoPrefs.getBoolean("needsUpdate", false)) {
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/2/" + levelTwoPrefs.getInteger("pointsEarned") + "/" + levelTwoPrefs.getInteger("goldEarned") + "/" + levelTwoPrefs.getInteger("numberOfStars") + "/" + levelTwoPrefs.getInteger("fastestCompletionTime"));
                 levelTwoPrefs.putBoolean("needsUpdate", false);
                 levelTwoPrefs.flush();
-           // }
         }
         if(levelThreePrefs != null) {
-            //if (levelThreePrefs.getBoolean("needsUpdate", false)) {
                 sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/3/" + levelThreePrefs.getInteger("pointsEarned") + "/" + levelThreePrefs.getInteger("goldEarned") + "/" + levelThreePrefs.getInteger("numberOfStars") + "/" + levelThreePrefs.getInteger("fastestCompletionTime"));
                 levelThreePrefs.putBoolean("needsUpdate", false);
                 levelThreePrefs.flush();
-           // }
+        }
+
+        if(levelFourPrefs != null) {
+            sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/3/" + levelFourPrefs.getInteger("pointsEarned") + "/" + levelFourPrefs.getInteger("goldEarned") + "/" + levelFourPrefs.getInteger("numberOfStars") + "/" + levelFourPrefs.getInteger("fastestCompletionTime"));
+            levelFourPrefs.putBoolean("needsUpdate", false);
+            levelFourPrefs.flush();
         }
 
         while(!httpRequestFinished){

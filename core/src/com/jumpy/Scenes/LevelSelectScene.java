@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -36,6 +37,7 @@ public class LevelSelectScene {
     public Stage create(){
         loadSound();
         Label title = new Label("CHOOSE YOUR LEVEL:", skin, "large");
+        Stack levelOneStack = new Stack();
         Label oneOne = new Label("1-1", skin, "medium");
         Label oneTwo = new Label("1-2", skin, "medium");
         Label oneThree = new Label("1-3", skin, "medium");
@@ -77,7 +79,6 @@ public class LevelSelectScene {
             }
         });
 
-        //final CheckBox hardModeCheckBox = new CheckBox("   HARD MODE", skin, "blue");
         final Label shopLabel = new Label("SHOP", skin, "medium");
 
         shopLabel.addListener(new ClickListener(){

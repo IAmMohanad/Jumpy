@@ -35,7 +35,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 	private boolean needsUpdate = false;
 	@Override
 	public void create () {
-		//SoundManager.init(this);
 		settings = Gdx.app.getPreferences("settings");
 		Jumpy.mute = this.settings.getBoolean("mute", false);
 		Jumpy.volume = this.settings.getFloat("volume", 1.0f);

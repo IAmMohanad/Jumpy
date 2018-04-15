@@ -1,6 +1,7 @@
 package com.jumpy.Characters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -49,6 +50,7 @@ public class GargoyleFlying extends Enemy {
         velocityY = 0;
         grounded = false;
         dead = false;
+        deathSound = Jumpy.assetManager.get("sound/goblin_death.wav", Sound.class);
 
         create();
     }
@@ -169,6 +171,7 @@ public class GargoyleFlying extends Enemy {
     public void getsHit(int dmg){
         health -= dmg;
         if(health <= 0){
+            deathSound.play(Jumpy.volume);
             die();
         }
     }

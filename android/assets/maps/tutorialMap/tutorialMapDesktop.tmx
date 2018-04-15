@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="35" height="20" tilewidth="32" tileheight="32" nextobjectid="10">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-down" width="35" height="20" tilewidth="32" tileheight="32" nextobjectid="31">
  <tileset firstgid="1" source="../../retro_tiled_tileset.tsx"/>
  <tileset firstgid="10" source="../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
@@ -32,7 +32,7 @@
  <objectgroup name="spawn">
   <object id="1" name="collidable" x="602.5" y="126.333" width="11" height="86.3333">
    <properties>
-    <property name="all" type="bool" value="false"/>
+    <property name="all" type="bool" value="true"/>
     <property name="goblin" type="bool" value="true"/>
    </properties>
   </object>
@@ -50,8 +50,29 @@
   <object id="3" name="coin" x="1053.33" y="289.333"/>
   <object id="4" name="coin" x="744" y="200"/>
   <object id="5" name="coin" x="588" y="125.333"/>
-  <object id="6" name="goblin" x="337.333" y="161.333"/>
+  <object id="6" name="totem" x="337.333" y="161.333"/>
   <object id="7" name="player" x="186.667" y="498.667"/>
   <object id="8" name="exit" x="21.9167" y="155.833" width="6.5" height="23"/>
+  <object id="10" name="coin" x="809" y="238"/>
+  <object id="11" name="coin" x="784" y="231"/>
+  <object id="12" name="coin" x="804" y="230"/>
+  <object id="13" name="coin" x="820" y="253"/>
+  <object id="14" name="coin" x="803" y="203"/>
+  <object id="15" name="coin" x="796" y="176"/>
+  <object id="16" name="coin" x="756" y="267"/>
+  <object id="17" name="coin" x="870" y="245"/>
+  <object id="18" name="coin" x="787" y="184"/>
+  <object id="19" name="coin" x="789" y="257"/>
+  <object id="20" name="coin" x="829" y="245"/>
+  <object id="21" name="coin" x="776" y="275"/>
+  <object id="22" name="coin" x="859" y="234"/>
+  <object id="23" name="coin" x="779" y="241"/>
+  <object id="24" name="coin" x="794" y="190"/>
+  <object id="25" name="coin" x="812" y="259"/>
+  <object id="26" name="coin" x="753" y="214"/>
+  <object id="27" name="coin" x="841" y="255"/>
+  <object id="28" name="coin" x="802" y="234"/>
+  <object id="29" name="coin" x="836" y="216"/>
+  <object id="30" name="coin" x="798" y="198"/>
  </objectgroup>
 </map>

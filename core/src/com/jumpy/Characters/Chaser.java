@@ -72,10 +72,19 @@ public class Chaser extends Enemy {
             movementSpeed += 0.05;
         }
         if(player.isAlive()){
-            int px = (int) player.getBoundingBox().x + (int) (player.getBoundingBox().width / 2);
-            int py = (int) player.getBoundingBox().y + (int) (player.getBoundingBox().height / 2);
-
-            if(position.x < px){
+            Vector2 start = new Vector2(this.position.x / 32, this.position.y / 32);
+            Vector2 goal = new Vector2(player.getPosition().x / 32, player.getPosition().y / 32);
+            path = map.findPath(start, goal);
+            if(path != null){
+                if(path.size() > 0){
+                    Vector2 vec = path.get(path.size() - 1).tile;
+                    if(this.position.x < vec.x * 32) moveRight(delta);
+                    if(this.position.x > vec.x * 32) moveLeft(delta);
+                    if(this.position.y > vec.y * 32) position.y  += movementSpeed * delta;
+                    if(this.position.y > vec.y * 32) position.y -= movementSpeed * delta;
+                }
+            }
+            /*if(position.x < px){
                 moveRight(delta);
             }
             if(position.x > px){
@@ -86,7 +95,7 @@ public class Chaser extends Enemy {
             }
             if(position.y > py){
                 position.y -= movementSpeed * delta;
-            }
+            }*/
         }
 
         if(moveAnimation.isAnimationFinished(stateTime)){

@@ -66,17 +66,17 @@ public class HelpScene {
         innerTable.row();
         innerTable.add(new Label("", skin, "medium"));//empty line for formatting
         innerTable.row();
-        String description = "The game is simple. You will start the game in one of several entry ways marked with a red diamond, you must find your way to one of several different exit points marked with a green diamond. At the same time you must avoid all the creatures on the way, once you purchase a weapon, you can defeat them for bonus points. Take as many gold coins with you as you can, but keep an eye on the time! Once you earn enough gold, you can buy a teleporter to find your way back home! \\n Special thanks to Kenny NL";
+        String description = "The game is simple. You will start the game in one of several entry ways marked with a red diamond, you must find your way to one of several different exit points marked with a green diamond. At the same time you must avoid all the creatures on the way, once you purchase a weapon, you can defeat them for bonus points. Take as many gold coins with you as you can, but keep an eye on the time! Once you earn enough gold, you can buy a teleporter to find your way back home!                           Special thanks to Kenny.nl";
         Label descriptionLabel = new Label(description, skin, "medium");
         descriptionLabel.setWrap(true);
         descriptionLabel.setWidth(450);
         innerTable.add(descriptionLabel).width(450f).padTop(10).colspan(2);
 
         ScrollPane instructionsScrollPane = new ScrollPane(innerTable, skin, "default-no-slider");
-        outerTable.add(instructionsScrollPane).height(150).padTop(10).expandX();
+        outerTable.add(instructionsScrollPane).height(140).padTop(10).expandX();
         outerTable.row();
 
-        outerTable.add(backButton).bottom().right().padTop(20).padRight(10);
+        outerTable.add(backButton).bottom().right().padTop(10).padRight(10);
 
         backButton.addListener(new ClickListener(){
             @Override

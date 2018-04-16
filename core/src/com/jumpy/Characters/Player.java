@@ -286,8 +286,7 @@ public class Player extends DynamicObject {
         velocityY += gravity * delta;
         newY += velocityY * delta;
         if(map.doesRectCollideWithMap(boundingBox.x, newY, (int) boundingBox.width, (int) boundingBox.height) && !dead){
-            //if colliding with map & falling down hit ground
-            if(velocityY < 0){//snap position to ground
+            if(velocityY < 0){//if collided with map + velocityY < 0 i.e. falling down than object has hit ground
                 position.y = (float) Math.floor(position.y);
                 grounded = true;
             }
@@ -296,10 +295,10 @@ public class Player extends DynamicObject {
             velocityY = 0;
         } else{
             if(!exitReached){
-                if(velocityY > 200){
-                    velocityY = 200;
+                if(velocityY < -300){
+                    velocityY = -300;
                 }
-                if(newY < 0){
+                if(newY < 0){//this is to resolve a bug where infrequently objects spawning are shot off the map
                     newY = position.y;
                 }
                 position.y = newY;

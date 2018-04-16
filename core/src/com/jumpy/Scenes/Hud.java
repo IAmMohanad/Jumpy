@@ -226,15 +226,19 @@ public class Hud{
                     Player.left = true;
                 }
             } else{
-                System.out.println("x - "+accelX+" y - "+accelY+ " z - "+accelZ);
+                //System.out.println("x - "+accelX+" y - "+accelY+ " z - "+accelZ);
                 //delay to test if the phone has been flicked
                 timer += Gdx.graphics.getDeltaTime();
+                float accelerometerReading = 0;
+                for(int i=0; i<10; i++){
+                    accelerometerReading += Gdx.input.getAccelerometerX();
+                }
                 if(timer > 0.125){
                     timer = 0;
                     originalX = accelX;
                 }
-
-                if(Math.abs(originalX) - Math.abs(accelX) > 1.5){
+                float accelXAverage = accelerometerReading / 10;
+                if(Math.abs(originalX) - Math.abs(accelXAverage) > 2.5){
                     Player.up = true;
                 }
 

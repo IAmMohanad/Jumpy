@@ -42,6 +42,23 @@ public abstract class GameMap {
     public abstract void load(String location);
     public abstract void render(OrthographicCamera camera, SpriteBatch batch, float delta);
     public abstract void dispose();
+
+    public boolean doesRectCollideWithMap2(float x, float y, int width, int height) {
+        //check tiles from bottom left to top right of given bounding box, if the bounding box collides
+        //with a collidable tile than a collision has occurred.
+        for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
+            for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
+                TileType type = getTileTypeByCoordinate(1, col, row);
+                if (type != null && type.isCollidable()) {
+                    return true;
+                }
+            }
+        }
+        if(!getTileTypeByCoordinate(1, (int) x / TileType.TILE_SIZE, ((int) y / TileType.TILE_SIZE - 1)).isCollidable()){
+            return true;
+        }
+        return false;
+    }
     /**
      * Gets a tile by pixel position whithin the game world at a specified layer.
      * @param layer
@@ -63,8 +80,7 @@ public abstract class GameMap {
     public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 
     public boolean doesRectCollideWithMap(float x, float y, int width, int height) {
-        //check tiles from bottom left to top right of given bounding box, if the bounding box collides
-        //with a collidable tile than a collision has occurred.
+        //check tiles from bottom left to top right of given bounding box
         for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
             for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
                 TileType type = getTileTypeByCoordinate(1, col, row);
@@ -130,22 +146,20 @@ public abstract class GameMap {
             //check tiles surrounding to current tile
             for(int i = 0; i<9; i++){
                 if(i == 4) {
-                    // skip current tile
-                    continue;
+                    continue;// skip current tile
                 }
                 int currentTileX = (int) currentNode.tile.x;
                 int currentTileY = (int) currentNode.tile.y;
                 int offsetX = (i % 3) - 1;
                 int offsetY = (i / 3) - 1;
                 //tile being considered
-                TileType at = getTileTypeByCoordinate(2, currentTileX + offsetX, currentTileY + offsetY);
+                TileType at = getTileTypeByCoordinate(1, currentTileX + offsetX, currentTileY + offsetY);
                 if(at == null){
                     continue;
                 }
                 if(at.isCollidable()){
                     continue;
                 }
-
                 //calculate costs of tile being considered
                 Vector2 consideredTile = new Vector2(currentTileX + offsetX, currentTileY + offsetY);
                 //cost from current tile to tile being considered
@@ -153,11 +167,11 @@ public abstract class GameMap {
                 //cost from tile being considered to the goal
                 double hCost = getEuclideanDistance(consideredTile, goal);
                 Node consideredNode = new Node(consideredTile, currentNode, gCost, hCost);
-                //has this tile already been added to closedList
-                if(nodeInList(closedList, consideredTile) && gCost >= consideredNode.gCost) {
+                //If we've already been there, don't add to closedList again
+                if(nodeInList(closedList, consideredTile) && gCost >= consideredNode.gCost){//TODO take this out
                     continue;
                 }
-                if(!nodeInList(openList, consideredTile) || gCost < consideredNode.gCost) {
+                if(!nodeInList(openList, consideredTile) || gCost < consideredNode.gCost){
                     openList.add(consideredNode);
                 }
             }

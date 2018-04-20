@@ -40,8 +40,8 @@ public class LevelSummaryScene {
     }
 
     public int getHighScore(){
-        Preferences levelPrefs = Gdx.app.getPreferences("1-3");
-        return levelPrefs.getInteger("pointsEarned", 0);
+        Preferences levelPrefs = Gdx.app.getPreferences(game.getCurrentLevel());
+        return totalScoreEarned;//levelPrefs.getInteger("pointsEarned", 0);
     }
 
     private int calculateTotalScoreEarned(int coinsCollected, int enemiesKilled, int timePlayed){

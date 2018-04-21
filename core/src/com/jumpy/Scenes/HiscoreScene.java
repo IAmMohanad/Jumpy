@@ -234,8 +234,8 @@ public class HiscoreScene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked bacak in no connection scene!");
-                if(!game.mute){// game.soundOn){
-                    click.play(game.volume);//game.volume);
+                if(!game.mute){
+                    click.play(game.volume);
                 }
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.MAIN_MENU);
             }
@@ -341,7 +341,6 @@ public class HiscoreScene {
 
     public Stage create(){
         loadSound();
-       //Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
         Table innerTable;
         Table table = new Table();
         table.setFillParent(true);

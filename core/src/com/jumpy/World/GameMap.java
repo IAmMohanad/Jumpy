@@ -44,8 +44,6 @@ public abstract class GameMap {
     public abstract void dispose();
 
     public boolean doesRectCollideWithMap2(float x, float y, int width, int height) {
-        //check tiles from bottom left to top right of given bounding box, if the bounding box collides
-        //with a collidable tile than a collision has occurred.
         for (int row = (int) y / TileType.TILE_SIZE; row < Math.ceil((y + height) / TileType.TILE_SIZE); row++) {
             for (int col = (int) x / TileType.TILE_SIZE; col < Math.ceil((x + width) / TileType.TILE_SIZE); col++) {
                 TileType type = getTileTypeByCoordinate(1, col, row);
@@ -168,10 +166,10 @@ public abstract class GameMap {
                 double hCost = getEuclideanDistance(consideredTile, goal);
                 Node consideredNode = new Node(consideredTile, currentNode, gCost, hCost);
                 //If we've already been there, don't add to closedList again
-                if(nodeInList(closedList, consideredTile) && gCost >= consideredNode.gCost){//TODO take this out
+                if(nodeInList(closedList, consideredTile)){
                     continue;
                 }
-                if(!nodeInList(openList, consideredTile) || gCost < consideredNode.gCost){
+                if(!nodeInList(openList, consideredTile)){
                     openList.add(consideredNode);
                 }
             }

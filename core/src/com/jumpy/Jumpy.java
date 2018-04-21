@@ -12,7 +12,7 @@ import com.jumpy.Screens.*;
 import java.io.IOException;
 import java.util.Random;
 
-public class Jumpy extends Game {//ApplicationAdapter {
+public class Jumpy extends Game {
 	private Preferences settings;
 	public static boolean mute;
 	public static float volume;
@@ -32,7 +32,7 @@ public class Jumpy extends Game {//ApplicationAdapter {
 
 	private Preferences upgradePrefs;
 
-	private boolean needsUpdate = false;
+	private boolean needsUpdate = true;
 	@Override
 	public void create () {
 		settings = Gdx.app.getPreferences("settings");
@@ -53,11 +53,6 @@ public class Jumpy extends Game {//ApplicationAdapter {
 		setScreen(new LoadingScreen(this, screenManager));
 		//soundManager.playMusic(screenManager.getGameState());
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
-
-
-		//different preference file for upgrades and weapons
-		//userPrefs.getInteger("upgrades");
-		//userPrefs.getInteger("weapons");
 
 		// RESET USER PREFS
 		/*userPrefs.putInteger("goldEarned", 0);

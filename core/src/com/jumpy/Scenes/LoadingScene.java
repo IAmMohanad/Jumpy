@@ -38,7 +38,6 @@ public class LoadingScene {
     public LoadingScene(Jumpy game){
         this.game = game;
 
-        //loadingSkin = new Skin(Gdx.files.internal("ui/new ui/exported_progress_bar_skin/progress_bar_skin.json"));
         loadingSkin = new Skin(Gdx.files.internal("ui/skin/main_menu.json"));
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
@@ -47,11 +46,9 @@ public class LoadingScene {
 
     public Stage create(){
         loadSound();
-//        Jumpy.soundManager.playMusic(Jumpy.screenManager.getGameState());
 
         Table table = new Table();
         table.setFillParent(true);
-        //ProgressBar(float min, float max, float stepSize, boolean vertical, Skin skin, java.lang.String styleName)
         progressBar = new ProgressBar(0, 1, 1, false, loadingSkin, "default-horizontal");
         table.add(progressBar).fillX().fillY().center();
         stage.addActor(table);
@@ -62,8 +59,6 @@ public class LoadingScene {
     public void loadSound(){
 
         click = Gdx.audio.newSound(Gdx.files.internal("ui/sounds/click1.ogg"));
-        //backgroundMusic = Gdx.audio.newMusic((Gdx.files.internal("music/Celestial Harps.ogg")));
-        //SoundManager.loadBackgroundMusic();
     }
 
     public void render() {

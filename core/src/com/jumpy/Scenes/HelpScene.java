@@ -30,7 +30,6 @@ public class HelpScene {
     }
 
     public Stage create(){
-        //loadSound();
         Label title = new Label("INSTRUCTIONS:", skin, "large");
         Label welcomeLabel = new Label("Welcome to SunnyLand!", skin, "medium");
         Label backLabel = new Label("To exit: pause game, press (b)ack button.", skin, "medium");

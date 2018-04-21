@@ -113,7 +113,7 @@ public class ShopScene {
         availableGoldGroup.addActor(currentGoldLabel);
         outerTable.add(availableGoldGroup);
         outerTable.row();
-        outerTable.add(upgradesPane).height(150).left();//scrollpane height must be explicitly set for scrolling to work
+        outerTable.add(upgradesPane).height(150).left();
         outerTable.add(informationTable).expandX().left().padLeft(5);
 
 
@@ -262,8 +262,7 @@ public class ShopScene {
 
         Table upgradeImageTable = new Table();
         Table upgradeLevelTable =  new Table();
-        upgradeImageTable.add(new Image(Jumpy.assetManager.get("ui/new ui/Anti-gravity_boots2.png", Texture.class)));//speed boots changed name because it crashes otherwise..
-        //upgradeImageTable.add(new Image(new Texture("ui/new ui/Magnet_48.png")));
+        upgradeImageTable.add(new Image(Jumpy.assetManager.get("ui/new ui/Anti-gravity_boots2.png", Texture.class)));
         upgradeLevelTable.add(new Label(upgradeName, skin, "skin-normal"));
         upgradeLevelTable.row();
         final Table speedHorizontalGroup = new Table();

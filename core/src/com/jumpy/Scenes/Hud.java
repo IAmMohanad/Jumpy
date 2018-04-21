@@ -247,7 +247,7 @@ public class Hud{
                 } else if(accelY < -runThreshold){
                     Player.left = true;
                 }
-                //accY > 0 tilt right, accY < 0 tilt left. use 3.5 as trigger
+                //accY > 0 tilt right, accY < 0 tilt left.
             }
         }
     }

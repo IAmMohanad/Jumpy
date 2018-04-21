@@ -47,8 +47,6 @@ public class MainMenuScene {
 
     public Stage create(){
         loadSound();
-        // game.soundManager.playMusic(Jumpy.screenManager.getGameState());
-        //System.out.println(settings.getBoolean("mute")+" playing? "+backgroundMusic.isPlaying());
 
         Table table = new Table();
         table.setFillParent(true);
@@ -68,8 +66,8 @@ public class MainMenuScene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked start!");
-                if(!game.mute){// game.soundOn){
-                    click.play(game.volume);//game.volume);
+                if(!game.mute){
+                    click.play(game.volume);
                 }
                 //game.setLevel();//commented out during screenManager changes
                 game.screenManager.setScreen(ScreenManager.GAME_STATE.LEVEL_SELECT);

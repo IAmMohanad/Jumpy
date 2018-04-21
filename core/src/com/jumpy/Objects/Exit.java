@@ -29,7 +29,7 @@ public class Exit extends Object {
 
     @Override
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
-        updateBoundingBoxPicture(camera, (int) position.x, (int) position.y);
+        //updateBoundingBoxPicture(camera, (int) position.x, (int) position.y);
     }
 
     @Override

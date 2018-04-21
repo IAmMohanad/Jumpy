@@ -165,7 +165,7 @@ public class Goblin extends Enemy {
         }
 
         boundingBox.setPosition(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET);
-        updateBoundingBoxPicture(camera,(int) position.x + B_BOX_X_OFFSET, (int) position.y + B_BOX_Y_OFFSET);
+        //updateBoundingBoxPicture(camera,(int) position.x + B_BOX_X_OFFSET, (int) position.y + B_BOX_Y_OFFSET);
         if(!deathComplete){
             batch.begin();
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);

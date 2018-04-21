@@ -45,13 +45,12 @@ public class Jumpy extends Game {
 		assetManager = new AssetManager();
 
 		upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
-		if(needsUpdate){//!upgradePrefs.contains("upToDate") || upgradePrefs.getBoolean("upToDate") == false){
+		if(needsUpdate){
 			upgradePrefs.clear();
 			updateUpgradePrefs("upgrades.xml");
 		}
 
 		setScreen(new LoadingScreen(this, screenManager));
-		//soundManager.playMusic(screenManager.getGameState());
 		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
 
 		// RESET USER PREFS
@@ -63,7 +62,7 @@ public class Jumpy extends Game {
 
 		if(userPrefsKeys == false){
 			//doesn't exist, so create it
-			if(!userPrefs.getBoolean("created", false)){
+			if(!userPrefs.getBoolean("created", true)){
 				userPrefs.putInteger("goldEarned", 10000);
 				userPrefs.putInteger("pointsEarned", 0);
 				userPrefs.putString("equippedActive", Active.NONE.toString());

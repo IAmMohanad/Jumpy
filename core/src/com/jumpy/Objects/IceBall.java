@@ -114,10 +114,10 @@ public class IceBall extends Object{
 
             if (direction == Move.UP || direction == Move.UP){
                 boundingBox.setPosition(position.x + B_BOX_X_UP_OFFSET, position.y + B_BOX_Y_UP_OFFSET);
-                updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_UP_OFFSET, (int) position.y + B_BOX_Y_UP_OFFSET);
+                //updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_UP_OFFSET, (int) position.y + B_BOX_Y_UP_OFFSET);
             } else{
                 boundingBox.setPosition(position.x + B_BOX_X_RIGHT_OFFSET, position.y + B_BOX_Y_RIGHT_OFFSET);
-                updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_RIGHT_OFFSET, (int) position.y + B_BOX_Y_RIGHT_OFFSET);
+                //updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_RIGHT_OFFSET, (int) position.y + B_BOX_Y_RIGHT_OFFSET);
             }
 
             batch.begin();

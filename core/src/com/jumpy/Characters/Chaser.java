@@ -104,7 +104,7 @@ public class Chaser extends Enemy {
         currentFrame = moveAnimation.getKeyFrame(stateTime, false);
 
         boundingBox.setPosition(position.x, position.y);
-        updateBoundingBoxPicture(camera, (int) getPosition().x + B_BOX_OFFSET_X, (int) getPosition().y + B_BOX_OFFSET_Y);
+        //updateBoundingBoxPicture(camera, (int) getPosition().x + B_BOX_OFFSET_X, (int) getPosition().y + B_BOX_OFFSET_Y);
 
         batch.begin();
         batch.draw(currentFrame, position.x, position.y);

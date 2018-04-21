@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-up" width="141" height="89" tilewidth="32" tileheight="32" nextobjectid="701">
- <tileset firstgid="1" source="../../retro_tiled_tileset.tsx"/>
- <tileset firstgid="10" source="../../tilesets/door_tileset.tsx"/>
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="left-up" width="141" height="89" tilewidth="32" tileheight="32" nextobjectid="699">
+ <tileset firstgid="1" source="../../../retro_tiled_tileset.tsx"/>
+ <tileset firstgid="10" source="../../../tilesets/door_tileset.tsx"/>
  <imagelayer name="Image Layer 1">
-  <image source="../completed_map/level_4/level_1_4512_2848.png" width="4512" height="2848"/>
+  <image source="level_1_4512_2848.png" width="4512" height="2848"/>
  </imagelayer>
  <layer name="Tile Layer 1" width="141" height="89">
   <data encoding="csv">
@@ -98,7 +98,7 @@
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
 </data>
  </layer>
- <objectgroup name="spawn">
+ <objectgroup name="spawn" visible="0">
   <object id="56" name="collidable" x="282.5" y="2337" width="11" height="94">
    <properties>
     <property name="all" type="bool" value="true"/>
@@ -535,7 +535,7 @@
     <property name="shootInterval" value="4"/>
    </properties>
   </object>
-  <object id="103" name="ice_ball_shooter" x="395.75" y="1091.5" width="6.5" height="7">
+  <object id="103" name="ice_ball_shooter" x="395.75" y="1066.5" width="6.5" height="7">
    <properties>
     <property name="direction" value="down"/>
     <property name="shootInterval" value="4"/>
@@ -706,7 +706,6 @@
     <property name="numberOfSpawns" value="1"/>
    </properties>
   </object>
-  <object id="700" name="barbarian" x="1192" y="1000"/>
  </objectgroup>
  <objectgroup name="spawn2">
   <properties>
@@ -841,7 +840,7 @@
     <property name="shootInterval" value="4"/>
    </properties>
   </object>
-  <object id="536" name="ice_ball_shooter" x="395.75" y="1091.5" width="6.5" height="7">
+  <object id="536" name="ice_ball_shooter" x="395.75" y="1066.5" width="6.5" height="7">
    <properties>
     <property name="direction" value="down"/>
     <property name="shootInterval" value="4"/>
@@ -1013,6 +1012,5 @@
    </properties>
   </object>
   <object id="698" name="player" x="3582.5" y="365"/>
-  <object id="699" name="barbarian" x="1191" y="998"/>
  </objectgroup>
 </map>

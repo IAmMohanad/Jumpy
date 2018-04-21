@@ -66,7 +66,7 @@ public class Bee extends Enemy {
         currentFrame = flyAnimation.getKeyFrame(stateTime, true);
 
         boundingBox.setPosition(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET);
-        updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_OFFSET, (int) getPosition().y + B_BOX_Y_OFFSET);
+        //updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_OFFSET, (int) getPosition().y + B_BOX_Y_OFFSET);
         batch.begin();
         batch.draw(currentFrame, position.x, position.y);
         batch.end();

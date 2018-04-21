@@ -64,11 +64,11 @@ public class Spike extends Enemy {
     public void update(SpriteBatch batch, float delta, OrthographicCamera camera) {
         this.stateTime += delta;
         currentFrame = idleAnimation.getKeyFrame(stateTime, true);
-        if(direction == Move.UP){
+        /*if(direction == Move.UP){
             updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_UP_OFFSET, (int) position.y + B_BOX_Y_UP_OFFSET);
         } else{
             updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_DOWN_OFFSET, (int) position.y + B_BOX_Y_DOWN_OFFSET);
-        }
+        }*/
         batch.begin();
         batch.draw(currentFrame, position.x,position.y, width, height);
         batch.end();

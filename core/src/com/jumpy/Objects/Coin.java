@@ -60,7 +60,7 @@ public class Coin extends Object{
         currentFrame = idleAnimation.getKeyFrame(stateTime, true);
 
         boundingBox.setPosition(position.x + B_BOX_X_OFFSET, position.y + B_BOX_Y_OFFSET);
-        updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_OFFSET, (int) getPosition().y + B_BOX_Y_OFFSET);
+        //updateBoundingBoxPicture(camera, (int) position.x + B_BOX_X_OFFSET, (int) getPosition().y + B_BOX_Y_OFFSET);
         batch.begin();
         if((dead) && (alpha > 0)){//decrease alpha to make the coin invisible over time
             position.y += velocityY * delta;

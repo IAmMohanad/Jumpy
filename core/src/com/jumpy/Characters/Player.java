@@ -171,13 +171,17 @@ public class Player extends DynamicObject {
             if(!boostOn){
                 boostTimer = 0;
                 boostOn = true;
-                powerUpOnSound.play(Jumpy.volume);
+                if(equippedBoost != Boost.NONE){
+                    powerUpOnSound.play(Jumpy.volume);
+                }
             }
         }
         if(boostOn){
             if((boostTimer >= (boostMaxTime - 2)) && !playedPowerWarning){
                 playedPowerWarning = true;
-                powerUpOffSound.play(Jumpy.volume);
+                if(equippedBoost != Boost.NONE){
+                    powerUpOffSound.play(Jumpy.volume);
+                }
             }
             if(boostTimer >= boostMaxTime){
                 boostOn = false;
@@ -194,20 +198,23 @@ public class Player extends DynamicObject {
     public void weaponShot(){
         shootPressed = false;
         if(shootCounter >= shootLimiter){
-            shootSound.play(Jumpy.volume);
             shootCounter = 0;
-            if(equippedWeapon == Active.NONE){
-                weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));//TODO remove this!!!
+            if(equippedWeapon != Active.NONE){
+                shootSound.play(Jumpy.volume);
+                if(equippedWeapon == Active.LASER){
+                    weaponList.add(new Laser(weaponDamage, map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
+                }
             }
-            if(equippedWeapon == Active.LASER){
-                weaponList.add(new Laser(weaponDamage, map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
-            }
+            /*if(equippedWeapon == Active.NONE){
+               //weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));//TODO remove this!!!
+            }*/
+
         }
     }
 
     @Override
     public void create(){
-        textureSheet = Jumpy.assetManager.get("characters/player/idle.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/idle.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/idle.png", Texture.class);
         TextureRegion[][] tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 1,
                 textureSheet.getHeight() / 1);
@@ -215,7 +222,7 @@ public class Player extends DynamicObject {
         idleFrames[0] = tmp[0][0];
         idleAnimation = new Animation<TextureRegion>(0.5f, idleFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/run.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/run.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/run.png", Texture.class);
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 6,
                 textureSheet.getHeight() / 1);
@@ -225,7 +232,7 @@ public class Player extends DynamicObject {
         }
         walkAnimation = new Animation<TextureRegion>(0.1f, walkFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/jump.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/jump.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/jump.png", Texture.class);
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 3,
                 textureSheet.getHeight() / 1);
@@ -235,7 +242,7 @@ public class Player extends DynamicObject {
         }
         jumpAnimation = new Animation<TextureRegion>(0.2f, jumpFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/fall.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/fall.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/fall.png", Texture.class);
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 3,
                 textureSheet.getHeight() / 1);
@@ -245,7 +252,7 @@ public class Player extends DynamicObject {
         }
         fallAnimation = new Animation<TextureRegion>(0.2f, fallFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/down.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/down.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/down.png", Texture.class);
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 1,
                 textureSheet.getHeight() / 1);
@@ -253,7 +260,7 @@ public class Player extends DynamicObject {
         downFrames[0] = tmp[0][0];
         downAnimation = new Animation<TextureRegion>(0.5f, downFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/spinJump_fixed.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/spinJump_fixed.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/spinJump_fixed.png", Texture.class);
         tmp = TextureRegion.split(textureSheet,
                 textureSheet.getWidth() / 10,
                 textureSheet.getHeight() / 1);
@@ -270,7 +277,7 @@ public class Player extends DynamicObject {
         spinJumpFrames[9] = tmp[0][9];
         spinJumpAnimation = new Animation<TextureRegion>(0.1f, spinJumpFrames);
 
-        textureSheet = Jumpy.assetManager.get("characters/player/bonk.png", Texture.class);//new Texture(Gdx.files.internal("characters/player/bonk.png"));
+        textureSheet = Jumpy.assetManager.get("characters/player/bonk.png", Texture.class);
         tmp = TextureRegion.split(textureSheet, textureSheet.getWidth() / 1, textureSheet.getHeight() / 1);
         TextureRegion[] deathFrames = new TextureRegion[1];
         deathFrames[0] = tmp[0][0];
@@ -400,7 +407,7 @@ public class Player extends DynamicObject {
         }
 
         boundingBox.setPosition(position.x + BBOX_X_OFFSET, position.y + BBOX_Y_OFFSET);
-        updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
+        //updateBoundingBoxPicture(camera,(int) getPosition().x + BBOX_X_OFFSET, (int) getPosition().y + BBOX_Y_OFFSET);
         batch.begin();
         if(!deathComplete){
             batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y - 1, !flip ? width : -width, height);
@@ -414,7 +421,7 @@ public class Player extends DynamicObject {
                 Weapon w = weaponList.get(i);
                 w.update(batch, delta, camera);
                 ArrayList<Enemy> enemies = map.getEnemies();
-                for(int j = 0; j<enemies.size(); j++){//for(Enemy e : map.getEnemies()){
+                for(int j = 0; j<enemies.size(); j++){
                     Enemy e = enemies.get(j);
                     if(w.getBoundingBox().overlaps(e.getBoundingBox()) && e.isAlive()){
                         e.getsHit(w.getDamage());
@@ -494,7 +501,7 @@ public class Player extends DynamicObject {
 
 
     @Override
-    public void render(SpriteBatch batch, float delta, TextureRegion currentFrame){//camera only there to update boundingBoxPicture, can be removed
+    public void render(SpriteBatch batch, float delta, TextureRegion currentFrame){
         batch.begin();
         batch.draw(currentFrame, !flip ? position.x : position.x + width, position.y, !flip ? width : -width, height);
         batch.end();

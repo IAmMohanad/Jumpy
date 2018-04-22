@@ -69,6 +69,7 @@ public class HiscoreScene {
         isConnected = false;
     }
 
+    //Show no connection message
     private Table noConnection(){
         Table table = new Table();
         Label message = new Label("Could not connect to internet,\ntry again in a few minutes...", skin, "skin-normal");
@@ -90,6 +91,7 @@ public class HiscoreScene {
         return table;
     }
 
+    //Adds a row with the name labelText to the rankings table
     private void addRankingToTable(Table table, String labelText, String value){
         Label totalGoldLabel = new Label(labelText, skin, "skin-normal");
         Label totalGoldScore = new Label(value, skin, "skin-normal");
@@ -97,6 +99,7 @@ public class HiscoreScene {
         table.add(totalGoldScore).expandX().left();
     }
 
+    //Retrieve all the rankings for the player and populate them into tables
     private Table isConnected(){
         registerNewPlayer();
         updatePlayerRankings();
@@ -133,29 +136,19 @@ public class HiscoreScene {
 
             suffix = getNumberSuffix(Integer.parseInt(levelOneScoreMap.get("player_rank")));
 
-            /*
-            if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 1){
-                suffix = "st";
-                } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 2){
-                    suffix = "nd";
-                } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 3){
-                    suffix = "rd";
-                } else{
-                    suffix = "th";
-                }*/
-                innerTable.row();
+            innerTable.row();
 
-                addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
+            addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
 
-                innerTable.row();
-                addRankingToTable(innerTable, "Fastest Time: ", levelOneScoreMap.get("fastest_time")+"secs");
+            innerTable.row();
+            addRankingToTable(innerTable, "Fastest Time: ", levelOneScoreMap.get("fastest_time")+"secs");
 
-                innerTable.row();
-                addRankingToTable(innerTable, "Max Points Earned: ", levelOneScoreMap.get("max_points"));
+            innerTable.row();
+            addRankingToTable(innerTable, "Max Points Earned: ", levelOneScoreMap.get("max_points"));
 
-                innerTable.row();//empty line for formatting
-                innerTable.add(new Label("", skin, "skin-normal"));
-                innerTable.row();
+            innerTable.row();//empty line for formatting
+            innerTable.add(new Label("", skin, "skin-normal"));
+            innerTable.row();
         } else{
             Label levelOneRankingTitle = new Label("LEVEL ONE NOT COMPLETE", skin, "skin-normal");
             innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
@@ -168,16 +161,7 @@ public class HiscoreScene {
             innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
             suffix = getNumberSuffix(Integer.parseInt(levelTwoScoreMap.get("player_rank")));
-/*
-            if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 1) {
-                suffix = "st";
-            } else if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 2) {
-                suffix = "nd";
-            } else if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 3) {
-                suffix = "rd";
-            } else {
-                suffix = "th";
-            }*/
+
             innerTable.row();
 
             addRankingToTable(innerTable, "Your Rank: ", levelTwoScoreMap.get("player_rank") + suffix);
@@ -243,6 +227,7 @@ public class HiscoreScene {
         return table;
     }
 
+    //get the suffix of the given number
     private String getNumberSuffix(int number){
         int j = number % 10;
         int k = number % 100;
@@ -258,21 +243,14 @@ public class HiscoreScene {
         return "th";
     }
 
+    //po
     private void populateScores(Table innerTable, String level, Map<String, String> scoreMap){
         String suffix;
         if(scoreMap.get("completed").equals("true")) {
             Label levelTwoRankingTitle = new Label("LEVEL "+level+" RANKING", skin, "skin-normal");
             innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
-            if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 1) {
-                suffix = "st";
-            } else if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 2) {
-                suffix = "nd";
-            } else if (Integer.parseInt(scoreMap.get("player_rank")) % 10 == 3) {
-                suffix = "rd";
-            } else {
-                suffix = "th";
-            }
+            suffix = getNumberSuffix(Integer.parseInt(scoreMap.get("player_rank")));
             innerTable.row();
 
             addRankingToTable(innerTable, "Your Rank: ", scoreMap.get("player_rank") + suffix);
@@ -302,6 +280,7 @@ public class HiscoreScene {
         }
     }
 
+    //sends a light-weight request to the hiscore server to check if the application has an internet connection
     private void checkConnection(){
         httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(Jumpy.HISCORE_SERVER_URL+"/checkConnection").content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
@@ -371,6 +350,7 @@ public class HiscoreScene {
         return stage;
     }
 
+    //updates the players personal rankings, NOT the levels
     private void updatePlayerRankings(){
         //path('update/<int:username>/<int:levelCompleted>/<int:pointsEarned>/<int:goldEarned>/<int:starsEarned>/<int:timeToComplete>'),
         httpRequestFinished = false;
@@ -387,12 +367,13 @@ public class HiscoreScene {
         return;
     }
 
+    //Sends Http request to update all levels in the game
     private void updateLevelRankings(String playerName){
         //path('update/<int:username>/<int:levelCompleted>/<int:pointsEarned>/<int:goldEarned>/<int:starsEarned>/<int:timeToComplete>'),
         Preferences levelOnePrefs = Gdx.app.getPreferences("1-1");
         Preferences levelTwoPrefs = Gdx.app.getPreferences("1-2");
         Preferences levelThreePrefs = Gdx.app.getPreferences("1-3");
-        Preferences levelFourPrefs = Gdx.app.getPreferences("1-4");
+        //Preferences levelFourPrefs = Gdx.app.getPreferences("1-4");
 
         httpRequestFinished = false;
         if(levelOnePrefs != null){
@@ -411,11 +392,12 @@ public class HiscoreScene {
                 levelThreePrefs.flush();
         }
 
+        /*
         if(levelFourPrefs != null) {
             sendUpdateHttpRequest(Jumpy.HISCORE_SERVER_URL, "/update/" + playerPrefs.getString("username") + "/3/" + levelFourPrefs.getInteger("pointsEarned") + "/" + levelFourPrefs.getInteger("goldEarned") + "/" + levelFourPrefs.getInteger("numberOfStars") + "/" + levelFourPrefs.getInteger("fastestCompletionTime"));
             levelFourPrefs.putBoolean("needsUpdate", false);
             levelFourPrefs.flush();
-        }
+        }*/
 
         while(!httpRequestFinished){
             //do nothing

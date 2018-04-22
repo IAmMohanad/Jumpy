@@ -523,12 +523,12 @@ public class ShopScene {
     public void loadLaserContainer(){
         laserContainer.clear();
         String upgradeName = "Laser";
-        final String laserUpgradeDescription = upgradePrefs.getString(Boost.ARMOUR.name()+"Description", "LEL");
+        final String laserUpgradeDescription = upgradePrefs.getString(Active.LASER.name()+"Description", "LEL");
         final Label laserBuyUpgradeLabel = new Label("", skin, "skin-normal");
         final Label laserEquipLabel = new Label("", skin, "skin-normal");
-        final int laserUpgradeLevel = upgradePrefs.getInteger(Boost.ARMOUR.name()+"Level", -1);
-        final int laserUpgradeCost = upgradePrefs.getInteger(Boost.ARMOUR.name()+"Level-"+String.valueOf(laserUpgradeLevel)+"-price", 9999);
-        final boolean laserUpgradeUnlocked = upgradePrefs.getBoolean(Boost.ARMOUR.name()+"Unlocked", false);
+        final int laserUpgradeLevel = upgradePrefs.getInteger(Active.LASER.name()+"Level", -1);
+        final int laserUpgradeCost = upgradePrefs.getInteger(Active.LASER.name()+"Level-"+String.valueOf(laserUpgradeLevel)+"-price", 9999);
+        final boolean laserUpgradeUnlocked = upgradePrefs.getBoolean(Active.LASER.name()+"Unlocked", false);
 
 
         Table upgradeImageTable = new Table();
@@ -577,7 +577,7 @@ public class ShopScene {
             }
         });
 
-        if(userPrefs.getString("equippedBoost").equals(Active.LASER.name())){
+        if(userPrefs.getString("equippedActive").equals(Active.LASER.name())){
             laserEquipLabel.setText("EQUIPPED");
         } else{
             laserEquipLabel.setText("EQUIP");
@@ -586,9 +586,8 @@ public class ShopScene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(upgradePrefs.getInteger(Active.LASER.name()+"Level") > 0){
-                    loadLaserContainer();
                     laserEquipLabel.setText("EQUIPPED");
-                    userPrefs.putString("equippedBoost", Active.LASER.name());
+                    userPrefs.putString("equippedActive", Active.LASER.name());
                     userPrefs.flush();
                     loadLaserContainer();
                 }

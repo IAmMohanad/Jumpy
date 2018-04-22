@@ -150,6 +150,7 @@ public class Player extends DynamicObject {
                 movementSpeed *= 1 + upgradePrefs.getFloat(equippedPassive.toString().toUpperCase()+"Level-"+equippedPassiveLevel+"-boost");
             }
         }
+        System.out.println(equippedBoost.toString());
         if(equippedBoost != Boost.NONE){
             int equippedBoostLevel = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level");
             if(equippedBoost == Boost.MAGNET){
@@ -415,6 +416,9 @@ public class Player extends DynamicObject {
         batch.end();
     }
 
+    /*
+    Resolves any interactions with other objects such as coins, projectiles, enemies etc.
+     */
     private void resolveObjectInteraction(float delta, SpriteBatch batch, OrthographicCamera camera){
         if(weaponList.size() > 0){
             for(int i = 0; i<weaponList.size(); i++){
@@ -436,8 +440,10 @@ public class Player extends DynamicObject {
         }
 
         for(Coin coin : map.getCoins()){
-            if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
-                coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
+            if(equippedBoost == Boost.MAGNET){
+                if(boostOn && magnetBoundingBox.overlaps(coin.getBoundingBox()) && coin.alive()){
+                    coin.moveTowardsPlayer(delta, this.position.x, this.position.y);
+                }
             }
             if((boundingBox.overlaps(coin.getBoundingBox())) && (coin.alive())){
                 collectCoinSound.play(Jumpy.volume);

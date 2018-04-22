@@ -32,7 +32,7 @@ public class Jumpy extends Game {
 
 	private Preferences upgradePrefs;
 
-	private boolean needsUpdate = true;
+	private boolean needsUpdate = false;
 	@Override
 	public void create () {
 		settings = Gdx.app.getPreferences("settings");
@@ -45,13 +45,16 @@ public class Jumpy extends Game {
 		assetManager = new AssetManager();
 
 		upgradePrefs = Gdx.app.getPreferences("upgradePrefs");
-		if(needsUpdate){
+		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+
+		if(!userPrefs.getBoolean("createdUpgrades", false) || needsUpdate){//only if first time launching game
 			upgradePrefs.clear();
 			updateUpgradePrefs("upgrades.xml");
+			userPrefs.putBoolean("createdUpgrades", true);
 		}
 
 		setScreen(new LoadingScreen(this, screenManager));
-		Preferences userPrefs = Gdx.app.getPreferences("userPrefs");
+
 
 		// RESET USER PREFS
 		/*userPrefs.putInteger("goldEarned", 0);
@@ -60,9 +63,9 @@ public class Jumpy extends Game {
 
 		boolean userPrefsKeys = userPrefs.getBoolean("created", false);
 
-		if(userPrefsKeys == false){
+		if(userPrefsKeys == false){//only if first time launching game
 			//doesn't exist, so create it
-			if(!userPrefs.getBoolean("created", true)){
+			if(!userPrefs.getBoolean("created", false)){
 				userPrefs.putInteger("goldEarned", 10000);
 				userPrefs.putInteger("pointsEarned", 0);
 				userPrefs.putString("equippedActive", Active.NONE.toString());
@@ -113,6 +116,9 @@ public class Jumpy extends Game {
 		this.currentLevel = lvl;
 	}
 
+	/*
+	Reads upgrade data from the upgrades XML file and stores them into a local file for quicker future access.
+	 */
 	private boolean updateUpgradePrefs(String upgradesUrl){
 		XmlReader xml = new XmlReader();
 		try{

@@ -59,8 +59,7 @@ public class LevelSummaryScene {
         return totalNumberOfStarsEarned;
     }
 
-    //player.getCoinsCollected(), player.getEnemiesKilled(), ((300 - hud.getLevelTimer()) / 10))
-    public Stage create(int coinsCollected, int enemiesKilled, int timeLeft, boolean ExitReached){//(int points, int numberOfStars, int goldEarnedAmount){
+    public Stage create(int coinsCollected, int enemiesKilled, int timeLeft, boolean ExitReached){
         loadSound();
         int timePlayed = 300 - timeLeft;
         calculateTotalScoreEarned(coinsCollected, enemiesKilled, timePlayed);

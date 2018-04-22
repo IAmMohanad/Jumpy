@@ -407,6 +407,7 @@ public class HiscoreScene {
     }
     //http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores/update/32796459/3/300/2/3/17
     //http://hiscores-mas34.apps.devcloud.eecs.qmul.ac.uk/hiscores/getPlayerScore/32796459
+    //Sends a Http request with the queryString as the parameter
     private void sendUpdateHttpRequest(String url, String queryString){
         httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(url + queryString).content("").build();
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
@@ -474,6 +475,7 @@ public class HiscoreScene {
         return;
     }
 
+    //Sends Http request to retrieve the players scores and populates a hashmap with them.
     private void getPlayerRankings(String playerName){
         //get player scores
         httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.GET).url(game.HISCORE_SERVER_URL+"/getPlayerScore/"+playerName).content("").build();

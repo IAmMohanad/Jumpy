@@ -131,6 +131,9 @@ public class HiscoreScene {
             Label levelOneRankingTitle = new Label("LEVEL ONE RANKING", skin, "skin-normal");
             innerTable.add(levelOneRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
+            suffix = getNumberSuffix(Integer.parseInt(levelOneScoreMap.get("player_rank")));
+
+            /*
             if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 1){
                 suffix = "st";
                 } else if(Integer.parseInt(levelOneScoreMap.get("player_rank")) % 10 == 2){
@@ -139,7 +142,7 @@ public class HiscoreScene {
                     suffix = "rd";
                 } else{
                     suffix = "th";
-                }
+                }*/
                 innerTable.row();
 
                 addRankingToTable(innerTable, "Your Rank: ", levelOneScoreMap.get("player_rank")+suffix);
@@ -164,6 +167,8 @@ public class HiscoreScene {
             Label levelTwoRankingTitle = new Label("LEVEL TWO RANKING", skin, "skin-normal");
             innerTable.add(levelTwoRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
+            suffix = getNumberSuffix(Integer.parseInt(levelTwoScoreMap.get("player_rank")));
+/*
             if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 1) {
                 suffix = "st";
             } else if (Integer.parseInt(levelTwoScoreMap.get("player_rank")) % 10 == 2) {
@@ -172,7 +177,7 @@ public class HiscoreScene {
                 suffix = "rd";
             } else {
                 suffix = "th";
-            }
+            }*/
             innerTable.row();
 
             addRankingToTable(innerTable, "Your Rank: ", levelTwoScoreMap.get("player_rank") + suffix);
@@ -197,15 +202,8 @@ public class HiscoreScene {
             Label levelThreeRankingTitle = new Label("LEVEL THREE RANKING", skin, "skin-normal");
             innerTable.add(levelThreeRankingTitle).expandX().expandY().center().padLeft(5).colspan(3);
 
-            if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 1) {
-                suffix = "st";
-            } else if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 2) {
-                suffix = "nd";
-            } else if (Integer.parseInt(levelThreeScoreMap.get("player_rank")) % 10 == 3) {
-                suffix = "rd";
-            } else {
-                suffix = "th";
-            }
+            suffix = getNumberSuffix(Integer.parseInt(levelThreeScoreMap.get("player_rank")));
+
             innerTable.row();
 
             addRankingToTable(innerTable, "Your Rank: ", levelThreeScoreMap.get("player_rank") + suffix);
@@ -243,6 +241,21 @@ public class HiscoreScene {
         table.add(backButton).left().expandX().bottom().padLeft(5).padTop(20);
 
         return table;
+    }
+
+    private String getNumberSuffix(int number){
+        int j = number % 10;
+        int k = number % 100;
+        if (j == 1 && k != 11) {
+            return "st";
+        }
+        if (j == 2 && k != 12) {
+            return "nd";
+        }
+        if (j == 3 && k != 13) {
+            return "rd";
+        }
+        return "th";
     }
 
     private void populateScores(Table innerTable, String level, Map<String, String> scoreMap){

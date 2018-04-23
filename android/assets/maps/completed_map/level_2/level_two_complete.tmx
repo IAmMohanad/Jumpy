@@ -45,7 +45,7 @@
     <property name="goblin" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="641" name="collidable" x="597.75" y="462.166" width="11" height="109.667">
+  <object id="641" name="collidable" x="599.75" y="461.499" width="11" height="109.667">
    <properties>
     <property name="all" type="bool" value="false"/>
     <property name="goblin" type="bool" value="true"/>
@@ -57,9 +57,9 @@
     <property name="goblin" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="643" name="collidable" x="797.455" y="451.098" width="11" height="109.667">
+  <object id="643" name="collidable" x="792.788" y="451.098" width="11" height="109.667">
    <properties>
-    <property name="all" type="bool" value="false"/>
+    <property name="all" type="bool" value="true"/>
     <property name="goblin" type="bool" value="true"/>
    </properties>
   </object>

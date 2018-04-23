@@ -160,7 +160,7 @@ public abstract class GameMap {
                 }
                 //calculate costs of tile being considered
                 Vector2 consideredTile = new Vector2(currentTileX + offsetX, currentTileY + offsetY);
-                //cost from current tile to tile being considered
+                //cost from starting tile to tile being considered
                 double gCost = currentNode.gCost + getEuclideanDistance(currentNode.tile, consideredTile);
                 //cost from tile being considered to the goal
                 double hCost = getEuclideanDistance(consideredTile, goal);

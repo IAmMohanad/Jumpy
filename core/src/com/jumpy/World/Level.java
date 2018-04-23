@@ -84,6 +84,7 @@ public class Level extends GameMap {
             numberOfSpawns = (Integer.parseInt(map.getLayers().get("spawn1").getProperties().get("numberOfSpawns").toString()));
         }
 
+
         int spawnToUse = getRandomSpawnPoint(numberOfSpawns);
 
         String spawnChoice = "spawn"+String.valueOf(spawnToUse);
@@ -93,6 +94,7 @@ public class Level extends GameMap {
         spawnProjectileShooters(spawnChoice);
     }
 
+    //Gets a random spawn point from 1-numberOfSpawns. numberOfSpawns is the maximum possible number of spawns in the map
     private int getRandomSpawnPoint(int numberOfSpawns) {
         int min = 1;
         Random r = new Random();
@@ -165,6 +167,7 @@ public class Level extends GameMap {
         }
     }
 
+    //rotates a object around a center point
     private Vector2 rotatePoint(Vector2 position, Rectangle center, double angle){
         angle = Math.toRadians(angle);
         double newX = center.x + (position.x-center.x)*Math.cos(angle) - (position.y-center.y)*Math.sin(angle);
@@ -254,8 +257,8 @@ public class Level extends GameMap {
 
     public int getPixelHeight() { return getHeight() * TileType.TILE_SIZE;}
 
+    //Stops camera moving out off the edge of the game world
     public void cameraStop(OrthographicCamera camera){
-        //Stops camera moving out off the edge of the game world
         float minCameraX = camera.zoom * (camera.viewportWidth / 2);
         float maxCameraX = getPixelWidth() - minCameraX;
         float minCameraY = camera.zoom * (camera.viewportHeight / 2);

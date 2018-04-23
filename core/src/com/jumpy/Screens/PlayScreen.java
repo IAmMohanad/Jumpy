@@ -49,7 +49,6 @@ public class PlayScreen implements Screen {
         gamePort = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
 
         inputController = new inputController();
-        //inputMultiplexer.addProcessor(inputController);
     }
 
     public void loadLevel(){
@@ -62,7 +61,7 @@ public class PlayScreen implements Screen {
         } else if(game.getCurrentLevel().equals("1-2")){
             mapLocation = "maps/completed_map/level_2/level_two_complete.tmx";
         } else if(game.getCurrentLevel().equals("1-3")){
-            mapLocation = "maps/completed_map/level_4/level_4.tmx";
+            mapLocation = "maps/completed_map/level_4/level_4-old.tmx";
         }
         reload = false;
         if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
@@ -72,12 +71,8 @@ public class PlayScreen implements Screen {
             hudStage = hud.getStage();
             map.setHud(hud);
 
-            //pauseScene = new PauseScene(game, this);
-            //pauseSceneStage = pauseScene.create();
-
             inputMultiplexer.addProcessor(hudStage);
             inputMultiplexer.addProcessor(inputController);
-            //inputMultiplexer.addProcessor(pauseSceneStage);
 
             loadComplete = true;
         }

@@ -50,10 +50,6 @@ public class ShopScene {
     }
 
     public Stage create(){
-        /**
-         *TABLE DESIGN, LEFT COLUMN HAS SCROLL-PANE, RIGHT COLUMN HAS ITEM INFORMATION LABEL.
-         * IF
-         * */
         loadSound();
 
         //create outer table

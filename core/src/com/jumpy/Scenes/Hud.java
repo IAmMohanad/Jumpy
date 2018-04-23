@@ -169,7 +169,7 @@ public class Hud{
 
         //touch pad
         if(android){
-            if(isTouchPad){
+            if(isTouchPad){//set touchpad on screen, otherwise leave the area empty, format holder is to keep the table looking the same without the touchpad being there
                 touchpad = new Touchpad(10, skin, "touchPad48");
                 table.row();
                 table.add(touchpad).expandY().expandX().bottom().left().padLeft(35).padBottom(35);
@@ -193,21 +193,18 @@ public class Hud{
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player.up = true;
-                    System.out.println("########## clicked boost button");
                 }
             });
             attackButton.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player.shootPressed = true;
-                    System.out.println("------------------------------------------------------------");
                 }
             });
             boostButton.addListener(new ClickListener(){
             @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Player.boostPressed = true;
-                    System.out.println("BOOOOOOOOOOOOOOOOOOST");
                 }
             });
         }

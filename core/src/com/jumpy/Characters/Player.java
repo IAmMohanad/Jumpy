@@ -38,10 +38,6 @@ public class Player extends DynamicObject {
     private boolean firstJump;
     private boolean exitReached;
 
-    //private boolean c
-
-    //private boolean dead;
-
     private static final int JUMP_VELOCITY = 130;
 
     private Animation<TextureRegion> idleAnimation;
@@ -155,7 +151,7 @@ public class Player extends DynamicObject {
             int equippedBoostLevel = upgradePrefs.getInteger(equippedBoost.toString().toUpperCase()+"Level");
             if(equippedBoost == Boost.MAGNET){
                 boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
-                magnetBoundingBox = new Rectangle(this.position.x - 32, this.position.y - 45, 96, 135);//width=96, height=135
+                magnetBoundingBox = new Rectangle(this.position.x - 32, this.position.y - 45, 96, 135);
                 //create bounding box
             } else if(equippedBoost == Boost.ARMOUR){
                 boostMaxTime = upgradePrefs.getFloat(equippedBoost.toString().toUpperCase()+"Level-"+equippedBoostLevel+"-duration");
@@ -207,7 +203,7 @@ public class Player extends DynamicObject {
                 }
             }
             /*if(equippedWeapon == Active.NONE){
-               //weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));//TODO remove this!!!
+               //weaponList.add(new Laser(map, this.position.x, this.position.y, flip ? Move.LEFT : Move.RIGHT));
             }*/
 
         }
@@ -306,7 +302,7 @@ public class Player extends DynamicObject {
                 if(velocityY < -300){
                     velocityY = -300;
                 }
-                if(newY < 0){//this is to resolve a bug where infrequently objects spawning are shot off the map
+                if(newY < 0){//this is to resolve an infrequently occurring bug where objects spawning are shot off the map
                     newY = position.y;
                 }
                 position.y = newY;

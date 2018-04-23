@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jumpy.Jumpy;
 import com.jumpy.Characters.Player;
 import com.jumpy.Scenes.Hud;
+import com.jumpy.Scenes.PauseScene;
 import com.jumpy.World.GameMap;
 import com.jumpy.World.Level;
 import com.jumpy.inputController;
@@ -30,6 +31,8 @@ public class PlayScreen implements Screen {
     private GameMap map;
     private Viewport gamePort;
     private Hud hud;
+    private PauseScene pauseScene;
+    private Stage pauseSceneStage;
 
     private Stage hudStage;
     private String loadedLevel = "";
@@ -61,16 +64,21 @@ public class PlayScreen implements Screen {
         } else if(game.getCurrentLevel().equals("1-3")){
             mapLocation = "maps/completed_map/level_4/level_4.tmx";
         }
-            reload = false;
-            if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
-                //this.loadedLevel = "1-3";
-                this.map = new Level(game,this);
-                map.load(mapLocation);
+        reload = false;
+        if(game.getCurrentLevel().equals("1-3") || game.getCurrentLevel().equals("1-2") || game.getCurrentLevel().equals("1-1")) {
+            this.map = new Level(game,this);
+            map.load(mapLocation);
             hud = new Hud(game.batch, map, this);
             hudStage = hud.getStage();
             map.setHud(hud);
+
+            //pauseScene = new PauseScene(game, this);
+            //pauseSceneStage = pauseScene.create();
+
             inputMultiplexer.addProcessor(hudStage);
             inputMultiplexer.addProcessor(inputController);
+            //inputMultiplexer.addProcessor(pauseSceneStage);
+
             loadComplete = true;
         }
     }
@@ -103,6 +111,7 @@ public class PlayScreen implements Screen {
                 if(delta > 1.2) delta = 1.2f;
                 if(isGamePaused()){
                     delta = 0f;
+                    //pauseScene.render();
                 }
 
                 if(game.exitPressed){

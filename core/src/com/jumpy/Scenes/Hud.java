@@ -56,6 +56,7 @@ public class Hud{
 
     private Group pauseGroup;
     private boolean isPause = false;
+    private Label pauseLabel;
 
     Skin skin;
 
@@ -143,8 +144,14 @@ public class Hud{
             public void clicked(InputEvent event, float x, float y) {
                 if(!isPause){
                     pauseGame();
+                    if(android){
+                        pauseLabel.setText("Press BACK button to exit");
+                    } else{
+                        pauseLabel.setText("Press B to exit");
+                    }
                 } else{
                     resumeGame();
+                    pauseLabel.setText("");
                 }
 
             }
@@ -152,6 +159,13 @@ public class Hud{
         topRowTable.add(pauseButton).expandX().right().padRight(30);
 
         table.add(topRowTable).expandX().left();
+        table.row();
+        pauseLabel = new Label("", skin, "small");
+        if(android){
+            table.add(pauseLabel).expandX().padLeft(100).padTop(70);
+        } else{
+            table.add(pauseLabel).expandX().padTop(70);
+        }
 
         //touch pad
         if(android){
@@ -191,11 +205,11 @@ public class Hud{
             });
             boostButton.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Player.boostPressed = true;
-                System.out.println("BOOOOOOOOOOOOOOOOOOST");
-            }
-        });
+                public void clicked(InputEvent event, float x, float y) {
+                    Player.boostPressed = true;
+                    System.out.println("BOOOOOOOOOOOOOOOOOOST");
+                }
+            });
         }
 
         stage.addActor(table);
